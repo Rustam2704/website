@@ -2,6 +2,8 @@
 
 Fast static landing page for selling direct technical coaching and setup support.
 
+Live URL: https://rustam2704.github.io/website/
+
 ## Edit these first
 
 - `index.html`: replace placeholder contact details and adjust final wording.
@@ -27,6 +29,7 @@ Use Netlify Drop for the laziest first version:
 3. Connect a custom domain later.
 
 The form is prepared for Netlify Forms. Locally it opens an email draft; after Netlify deploy it can collect leads in the Netlify dashboard.
+On GitHub Pages, the form uses the email draft fallback because GitHub Pages does not process form submissions.
 
 ## Current positioning
 

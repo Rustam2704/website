@@ -7,9 +7,11 @@ emailLink.href = `mailto:${contactEmail}`;
 emailLink.textContent = contactEmail;
 
 leadForm.addEventListener("submit", (event) => {
-  const isLocalPreview = ["", "localhost", "127.0.0.1"].includes(window.location.hostname);
+  const mailtoFallbackHosts = ["", "localhost", "127.0.0.1"];
+  const isGitHubPages = window.location.hostname.endsWith("github.io");
+  const shouldUseMailtoFallback = mailtoFallbackHosts.includes(window.location.hostname) || isGitHubPages;
 
-  if (!isLocalPreview) {
+  if (!shouldUseMailtoFallback) {
     return;
   }
 
