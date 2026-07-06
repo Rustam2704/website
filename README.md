@@ -65,6 +65,9 @@ Done:
 - GitHub Pages enabled.
 - Domain purchased: `fanatic.space`.
 - Public URL is being moved to `https://fanatic.space/`.
+- Domain expires: July 6, 2027.
+- Renewal price: $250.20/year.
+- Auto-renew is currently off.
 - Basic SEO metadata added.
 - Favicon, sitemap, robots.txt, and 404 page added.
 - Roadmap file created.
