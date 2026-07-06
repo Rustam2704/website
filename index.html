@@ -263,8 +263,11 @@
             selling you a session that will not be useful.
           </p>
         </div>
-        <form class="apply-form" id="leadForm" name="lead" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="lead" />
+        <form class="apply-form" id="leadForm" action="https://formsubmit.co/direct@fanatic.space" method="POST">
+          <input type="hidden" name="_subject" value="New consultation request from fanatic.space" />
+          <input type="hidden" name="_next" value="http://fanatic.space/thanks.html" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
           <label>
             Your name
             <input name="name" type="text" autocomplete="name" required />
@@ -272,6 +275,7 @@
           <label>
             Email
             <input name="email" type="email" autocomplete="email" required />
+            <input name="_replyto" type="hidden" value="" />
           </label>
           <label>
             Area

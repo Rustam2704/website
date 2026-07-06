@@ -70,6 +70,7 @@ Done:
 - Auto-renew is currently off.
 - Basic SEO metadata added.
 - Favicon, sitemap, robots.txt, and 404 page added.
+- Static form submission moved from `mailto` to FormSubmit.
 - Roadmap file created.
 - Immediate launch checklist created.
 
@@ -86,6 +87,7 @@ Files:
 - `ROADMAP.md` - future CRM and Android plan
 - `NEXT_STEPS.md` - immediate launch checklist
 - `EMAIL_SETUP.md` - Cloudflare Email Routing setup notes
+- `FORM_SETUP.md` - contact form backend setup notes
 
 ---
 
@@ -106,9 +108,9 @@ Technical constraints:
 
 - Current site is static HTML/CSS/JS.
 - Current hosting is GitHub Pages.
-- GitHub Pages does not process form submissions.
-- Because of that, the form currently uses `mailto` fallback on GitHub Pages.
-- Netlify Forms or Tally can be used later for real form handling.
+- GitHub Pages does not process form submissions by itself.
+- The current form uses FormSubmit and forwards submissions to `direct@fanatic.space`.
+- Tally, Netlify Forms, or Supabase can replace FormSubmit later if needed.
 - CRM should not be built until the lead path works.
 
 Data / future portability constraints:
@@ -129,7 +131,7 @@ Highest priority:
 3. Create domain email routing for `direct@fanatic.space`.
 4. Confirm `direct@fanatic.space` forwards to Rustam's working inbox.
 5. Replace the phone placeholder in `index.html`.
-6. Decide whether the first lead flow stays email-only or moves to Tally / Netlify Forms.
+6. Activate FormSubmit with one first public form submission.
 
 Nice but not blocking:
 

@@ -10,6 +10,7 @@
 - Auto-renew is currently off
 - GitHub Pages is enabled from `main`.
 - The form uses an email draft fallback on GitHub Pages.
+- The form now posts to FormSubmit instead of opening the visitor's email app.
 
 ## Next practical steps
 
@@ -17,7 +18,8 @@
 2. Enable HTTPS in GitHub Pages after DNS is verified.
 3. Create domain email routing for `direct@fanatic.space`.
 4. Confirm `direct@fanatic.space` forwards to Rustam's working inbox.
-5. Before May 2027, decide whether to renew `fanatic.space` or migrate to a cheaper domain.
+5. Activate FormSubmit with one first public form submission.
+6. Before May 2027, decide whether to renew `fanatic.space` or migrate to a cheaper domain.
 5. Replace the phone placeholder in `index.html`.
 6. Add one real photo or a better technical workspace image if needed.
 7. Add two short credibility blocks:
@@ -27,7 +29,7 @@
 
 ## Fast form options
 
-- Keep `mailto` for the first public test.
+- Current choice: FormSubmit.
 - Use Netlify Forms if deploying through Netlify.
 - Use Tally if a polished form is needed with almost no coding.
 - Use Supabase later when the CRM starts.
