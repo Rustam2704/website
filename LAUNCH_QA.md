@@ -7,6 +7,7 @@ Use this checklist after every meaningful site change.
 - `http://fanatic.space/` loads.
 - Hero image loads.
 - Form is visible.
+- Privacy note opens.
 - Pricing is correct:
   - `$100` session only
   - `$130` session plus support

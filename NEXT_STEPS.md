@@ -11,6 +11,8 @@
 - GitHub Pages is enabled from `main`.
 - The form now posts to FormSubmit instead of opening the visitor's email app.
 - FormSubmit is activated and tested.
+- `direct@fanatic.space` receives routed email.
+- The site has a short privacy note for form submissions.
 
 ## Next practical steps
 

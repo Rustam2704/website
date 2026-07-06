@@ -413,6 +413,30 @@ blockquote a {
   background: var(--paper);
 }
 
+.examples-section {
+  background: #ffffff;
+}
+
+.example-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.example-list article {
+  min-height: 170px;
+  padding: 22px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.example-list p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .quotes {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -521,6 +545,30 @@ textarea:focus {
   font-weight: 800;
 }
 
+.plain-page {
+  width: min(820px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 96px 0;
+}
+
+.plain-page h1 {
+  color: var(--ink);
+  font-size: clamp(42px, 7vw, 72px);
+}
+
+.plain-page p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.plain-back {
+  display: inline-flex;
+  margin-bottom: 28px;
+  color: var(--green);
+  font-weight: 800;
+}
+
 .site-footer {
   display: flex;
   justify-content: space-between;
@@ -560,6 +608,7 @@ textarea:focus {
   .apply-section,
   .service-section,
   .plans,
+  .example-list,
   .quotes {
     grid-template-columns: 1fr;
   }

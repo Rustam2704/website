@@ -88,6 +88,7 @@ Files:
 - `robots.txt` - search crawler instructions
 - `sitemap.xml` - public sitemap
 - `404.html` - GitHub Pages not-found page
+- `privacy.html` - short privacy note for the contact form
 - `ROADMAP.md` - future CRM and Android plan
 - `NEXT_STEPS.md` - immediate launch checklist
 - `EMAIL_SETUP.md` - Cloudflare Email Routing setup notes
@@ -136,12 +137,11 @@ Data / future portability constraints:
 
 Highest priority:
 
-1. Finish DNS connection for `fanatic.space`.
-2. Enable HTTPS in GitHub Pages after DNS is verified.
-3. Create domain email routing for `direct@fanatic.space`.
-4. Confirm `direct@fanatic.space` forwards to Rustam's working inbox.
-5. Replace the phone placeholder in `index.html`.
-6. Enable HTTPS in GitHub Pages after the certificate is ready.
+1. Deploy the site through Cloudflare Pages.
+2. Attach `fanatic.space` as a Cloudflare Pages custom domain.
+3. Confirm `https://fanatic.space/` works.
+4. Change the FormSubmit thank-you redirect to `https://fanatic.space/thanks.html`.
+5. Keep GitHub Pages as a fallback.
 
 Nice but not blocking:
 
