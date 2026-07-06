@@ -1,6 +1,6 @@
 # Email Setup
 
-Goal: make `hello@fanatic.space` receive consultation requests.
+Goal: make `direct@fanatic.space` receive consultation requests.
 
 ## Recommended first setup
 
@@ -13,14 +13,14 @@ This creates a professional domain email address and forwards incoming mail to R
 Use:
 
 ```text
-hello@fanatic.space
+direct@fanatic.space
 ```
 
 Later optional addresses:
 
 ```text
+hello@fanatic.space
 rustam@fanatic.space
-support@fanatic.space
 ```
 
 ## Cloudflare steps
@@ -33,7 +33,7 @@ support@fanatic.space
 6. Create routing rule:
 
 ```text
-Custom address: hello@fanatic.space
+Custom address: direct@fanatic.space
 Action: Send to verified destination address
 ```
 
@@ -41,11 +41,11 @@ Action: Send to verified destination address
 
 ## Important limitation
 
-Cloudflare Email Routing receives and forwards email. It does not automatically make Gmail send outgoing mail as `hello@fanatic.space`.
+Cloudflare Email Routing receives and forwards email. It does not automatically make Gmail send outgoing mail as `direct@fanatic.space`.
 
 For launch this is acceptable:
 
-- Client writes to `hello@fanatic.space`.
+- Client writes to `direct@fanatic.space`.
 - Rustam receives it in his normal inbox.
 - Rustam can reply from the normal inbox at first.
 
@@ -60,5 +60,5 @@ Later, if outgoing branded email matters, use one of:
 The website form already points to:
 
 ```text
-hello@fanatic.space
+direct@fanatic.space
 ```

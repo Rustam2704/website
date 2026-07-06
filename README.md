@@ -126,8 +126,8 @@ Highest priority:
 
 1. Finish DNS connection for `fanatic.space`.
 2. Enable HTTPS in GitHub Pages after DNS is verified.
-3. Create domain email routing for `hello@fanatic.space`.
-4. Confirm `hello@fanatic.space` forwards to Rustam's working inbox.
+3. Create domain email routing for `direct@fanatic.space`.
+4. Confirm `direct@fanatic.space` forwards to Rustam's working inbox.
 5. Replace the phone placeholder in `index.html`.
 6. Decide whether the first lead flow stays email-only or moves to Tally / Netlify Forms.
 
