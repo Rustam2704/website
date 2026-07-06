@@ -58,3 +58,13 @@ Consultation: <name> / <area> / <timestamp>
 ```
 
 This makes separate requests less likely to collapse into one Gmail conversation.
+
+## Spam control
+
+The form includes a hidden `_honey` field. Normal visitors will not fill it, but simple bots often do.
+
+Captcha is disabled for now to reduce friction:
+
+```text
+_captcha=false
+```
