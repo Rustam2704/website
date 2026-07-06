@@ -64,6 +64,8 @@ Done:
 - Project pushed to GitHub.
 - GitHub Pages enabled.
 - Temporary public URL is live.
+- Basic SEO metadata added.
+- Favicon, sitemap, robots.txt, and 404 page added.
 - Roadmap file created.
 - Immediate launch checklist created.
 
@@ -73,6 +75,10 @@ Files:
 - `styles.css` - visual design
 - `script.js` - form behavior
 - `assets/online-tutoring-hero.png` - generated hero image
+- `assets/favicon.svg` - simple favicon
+- `robots.txt` - search crawler instructions
+- `sitemap.xml` - public sitemap
+- `404.html` - GitHub Pages not-found page
 - `ROADMAP.md` - future CRM and Android plan
 - `NEXT_STEPS.md` - immediate launch checklist
 

@@ -310,6 +310,11 @@ blockquote {
   line-height: 1.6;
 }
 
+blockquote a {
+  color: var(--green);
+  font-weight: 800;
+}
+
 .service-section {
   background: #eaf0ed;
 }
@@ -373,6 +378,10 @@ blockquote {
   background: #ffffff;
 }
 
+.faq-section {
+  background: var(--paper);
+}
+
 .quotes {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -391,6 +400,30 @@ cite {
   color: var(--ink);
   font-style: normal;
   font-weight: 800;
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+details {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+details p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 .apply-section {
@@ -457,6 +490,21 @@ textarea:focus {
   color: rgba(255, 255, 255, 0.72);
   background: #0c1514;
   font-size: 14px;
+}
+
+.not-found {
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+  padding: clamp(28px, 8vw, 96px);
+  color: #ffffff;
+  background:
+    linear-gradient(90deg, rgba(13, 25, 24, 0.94), rgba(13, 25, 24, 0.72)),
+    url("assets/online-tutoring-hero.png") center / cover;
+}
+
+.not-found > div {
+  width: min(680px, 100%);
 }
 
 @media (max-width: 900px) {
