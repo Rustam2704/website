@@ -42,3 +42,4 @@ On GitHub Pages, the form uses the email draft fallback because GitHub Pages doe
 ## Roadmap
 
 See `ROADMAP.md` for the planned CRM and later Android monitoring app.
+See `NEXT_STEPS.md` for the immediate launch checklist.
