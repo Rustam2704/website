@@ -9,7 +9,6 @@
 - Renewal price: $250.20/year
 - Auto-renew is currently off
 - GitHub Pages is enabled from `main`.
-- The form uses an email draft fallback on GitHub Pages.
 - The form now posts to FormSubmit instead of opening the visitor's email app.
 - FormSubmit is activated and tested.
 

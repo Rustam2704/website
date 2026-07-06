@@ -221,6 +221,37 @@ h3 {
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
 }
 
+.tool-cloud {
+  max-width: 680px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 30px;
+  opacity: 0.72;
+}
+
+.tool-cloud span {
+  padding: 6px 9px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tool-cloud span:nth-child(3n) {
+  transform: translateY(5px);
+}
+
+.tool-cloud span:nth-child(4n) {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.tool-cloud span:nth-child(5n) {
+  background: rgba(197, 83, 63, 0.16);
+}
+
 .section {
   padding: clamp(64px, 9vw, 112px) clamp(18px, 6vw, 84px);
 }
@@ -560,6 +591,11 @@ textarea:focus {
   .button,
   .hero-actions {
     width: 100%;
+  }
+
+  .tool-cloud {
+    max-height: 120px;
+    overflow: hidden;
   }
 
   .proof-band,

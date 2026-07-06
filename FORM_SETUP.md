@@ -46,3 +46,15 @@ After receiving a valid test message:
 The visitor's email is needed for reply and qualification. It is included in the submission and copied into the `_replyto` field before submit.
 
 Rustam can reply using the email address provided in the form.
+
+## Gmail threading
+
+FormSubmit sends messages from the same sender, so Gmail may group similar submissions.
+
+The site script changes `_subject` before submit:
+
+```text
+Consultation: <name> / <area> / <timestamp>
+```
+
+This makes separate requests less likely to collapse into one Gmail conversation.

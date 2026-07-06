@@ -32,13 +32,16 @@ Name / positioning:
 
 Areas:
 
-- Blender
-- Godot
-- Unreal Engine
-- Unity
+- Teaching and mentorship for technical skills
+- Technical advice and support when the problem is unclear
 - Computer administration and workspace setup
+- Creative and engineering tools as needed
 - Process organization and prioritization
-- Broad technical support when the exact problem is unclear
+- Broad technical support across practical software and workflow problems
+
+Example background tools:
+
+- Blender, Godot, Unreal Engine, Unity, Git, Windows, Linux, Python, AI tools, VS Code, OBS, Figma, Notion, networks, hardware, pipelines, automation, debugging
 
 Pricing:
 
@@ -114,6 +117,7 @@ Technical constraints:
 - GitHub Pages does not process form submissions by itself.
 - The current form uses FormSubmit and forwards submissions to `direct@fanatic.space`.
 - Form submissions are confirmed to arrive in Gmail through Cloudflare Email Routing.
+- The form sets a unique subject before submit so Gmail does not merge all requests into one thread.
 - Tally, Netlify Forms, or Supabase can replace FormSubmit later if needed.
 - CRM should not be built until the lead path works.
 
