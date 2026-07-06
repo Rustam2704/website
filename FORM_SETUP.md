@@ -12,6 +12,12 @@ fanatic.space form -> FormSubmit -> direct@fanatic.space -> rustam.aleskerov7@gm
 
 The visitor does not need to open Gmail or any local mail app.
 
+Successful submissions redirect to:
+
+```text
+https://fanatic.space/thanks/
+```
+
 ## Endpoint
 
 ```text

@@ -62,7 +62,7 @@ www.fanatic.space
 FormSubmit redirect in `index.html` should be:
 
 ```text
-_next=https://fanatic.space/thanks.html
+_next=https://fanatic.space/thanks/
 ```
 
 This is now configured.

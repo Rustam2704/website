@@ -12,7 +12,7 @@ Use this checklist after every meaningful site change.
   - `$100` session only
   - `$130` session plus support
 - Contact email is `direct@fanatic.space`.
-- `thanks.html` loads.
+- `/thanks/` loads.
 
 ## Form
 
@@ -37,5 +37,5 @@ When ready:
 
 - `https://fanatic.space/` loads.
 - Hosting provider has HTTPS enabled.
-- `_next` in `index.html` uses `https://fanatic.space/thanks.html`.
+- `_next` in `index.html` uses `https://fanatic.space/thanks/`.
 - canonical / sitemap should already use `https://fanatic.space/`.
