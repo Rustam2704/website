@@ -3,15 +3,16 @@
 ## Done
 
 - Website source is in GitHub: https://github.com/Rustam2704/website
-- Public temporary URL is live: https://rustam2704.github.io/website/
+- Domain purchased: `fanatic.space`
+- Public URL target: https://fanatic.space/
 - GitHub Pages is enabled from `main`.
 - The form uses an email draft fallback on GitHub Pages.
 
 ## Next practical steps
 
-1. Buy a domain.
-2. Connect the domain to GitHub Pages or Netlify.
-3. Create domain email, for example `rustam@domain.com` or `hello@domain.com`.
+1. Finish DNS connection for `fanatic.space`.
+2. Enable HTTPS in GitHub Pages after DNS is verified.
+3. Create domain email, for example `rustam@fanatic.space` or `hello@fanatic.space`.
 4. Replace `hello@example.com` in `script.js`.
 5. Replace the phone placeholder in `index.html`.
 6. Add one real photo or a better technical workspace image if needed.

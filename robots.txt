@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rustam2704.github.io/website/sitemap.xml
+Sitemap: https://fanatic.space/sitemap.xml

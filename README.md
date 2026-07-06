@@ -2,7 +2,7 @@
 
 Public landing page and future client system for direct technical coaching.
 
-Live site: https://rustam2704.github.io/website/  
+Live site: https://fanatic.space/  
 Repository: https://github.com/Rustam2704/website
 
 ---
@@ -63,7 +63,8 @@ Done:
 - Git repository initialized.
 - Project pushed to GitHub.
 - GitHub Pages enabled.
-- Temporary public URL is live.
+- Domain purchased: `fanatic.space`.
+- Public URL is being moved to `https://fanatic.space/`.
 - Basic SEO metadata added.
 - Favicon, sitemap, robots.txt, and 404 page added.
 - Roadmap file created.
@@ -119,9 +120,9 @@ Data / future portability constraints:
 
 Highest priority:
 
-1. Buy a domain.
-2. Connect the domain to GitHub Pages or Netlify.
-3. Create domain email, for example `rustam@domain.com` or `hello@domain.com`.
+1. Finish DNS connection for `fanatic.space`.
+2. Enable HTTPS in GitHub Pages after DNS is verified.
+3. Create domain email, for example `rustam@fanatic.space` or `hello@fanatic.space`.
 4. Replace `hello@example.com` in `script.js`.
 5. Replace the phone placeholder in `index.html`.
 6. Decide whether the first lead flow stays email-only or moves to Tally / Netlify Forms.
