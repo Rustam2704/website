@@ -1,45 +1,201 @@
-# Rustam "fanatic" Alieskerov Landing Page
+# Rustam "fanatic" Alieskerov Website
 
-Fast static landing page for selling direct technical coaching and setup support.
+Public landing page and future client system for direct technical coaching.
 
-Live URL: https://rustam2704.github.io/website/
+Live site: https://rustam2704.github.io/website/  
+Repository: https://github.com/Rustam2704/website
 
-## Edit these first
+---
 
-- `index.html`: replace placeholder contact details and adjust final wording.
-- `script.js`: replace `hello@example.com` with your real email.
-- `assets/online-tutoring-hero.png`: generated hero image already copied into the project.
+## 1. Project Goal
 
-## Run locally
+Create a fast, serious, low-friction online presence for Rustam Alieskerov's direct consulting and coaching work.
 
-Open `http://127.0.0.1:4173` if the local server is running.
+The site should sell a simple path:
 
-If you need to start it again:
+```text
+visitor -> free 15-minute consultation -> fit check -> paid 50-minute session
+```
+
+The project must eventually grow into a lightweight client CRM where clients can log in, upload progress, track work, and later use a small Android monitoring app.
+
+---
+
+## 2. Current Offer
+
+Name / positioning:
+
+- Rustam "fanatic" Alieskerov
+- Direct technical coaching for serious learners
+- Respectful, direct, practical approach
+- Focus on result, not luxury-service theatrics
+
+Areas:
+
+- Blender
+- Godot
+- Unreal Engine
+- Unity
+- Computer administration and workspace setup
+- Process organization and prioritization
+- Broad technical support when the exact problem is unclear
+
+Pricing:
+
+- Free consultation: 15 minutes
+- Session only: $100 for 50 minutes
+- Session plus support: $130 for 50 minutes plus small questions during the week
+
+Credibility:
+
+- 12 years of technical education experience
+- Existing online school: https://portal.zt.ua
+- This offer is direct work with Rustam, not delegated school classes
+
+---
+
+## 3. Current Status
+
+Done:
+
+- Static landing page created.
+- Hero image generated and stored locally.
+- Git repository initialized.
+- Project pushed to GitHub.
+- GitHub Pages enabled.
+- Temporary public URL is live.
+- Roadmap file created.
+- Immediate launch checklist created.
+
+Files:
+
+- `index.html` - page structure and copy
+- `styles.css` - visual design
+- `script.js` - form behavior
+- `assets/online-tutoring-hero.png` - generated hero image
+- `ROADMAP.md` - future CRM and Android plan
+- `NEXT_STEPS.md` - immediate launch checklist
+
+---
+
+## 4. Current Constraints
+
+Primary constraint:
+
+- Move fast and avoid overbuilding. The user has been stuck for more than a year, so momentum matters more than perfect infrastructure.
+
+Business constraints:
+
+- The site must look serious, direct, and competent.
+- It should not look overly elite or service-heavy.
+- The copy should filter for strict, serious clients.
+- The first consultation must be free because clients often cannot clearly define their technical problem.
+
+Technical constraints:
+
+- Current site is static HTML/CSS/JS.
+- Current hosting is GitHub Pages.
+- GitHub Pages does not process form submissions.
+- Because of that, the form currently uses `mailto` fallback on GitHub Pages.
+- Netlify Forms or Tally can be used later for real form handling.
+- CRM should not be built until the lead path works.
+
+Data / future portability constraints:
+
+- Future CRM should use ordinary database tables where possible.
+- Avoid deep vendor lock-in.
+- Supabase is acceptable for the first CRM because it uses PostgreSQL and can export data.
+- Keep CSV export as a safety valve.
+
+---
+
+## 5. Immediate Next Tasks
+
+Highest priority:
+
+1. Buy a domain.
+2. Connect the domain to GitHub Pages or Netlify.
+3. Create domain email, for example `rustam@domain.com` or `hello@domain.com`.
+4. Replace `hello@example.com` in `script.js`.
+5. Replace the phone placeholder in `index.html`.
+6. Decide whether the first lead flow stays email-only or moves to Tally / Netlify Forms.
+
+Nice but not blocking:
+
+- Add a real photo or stronger technical workspace image.
+- Add a compact credibility section for portal.zt.ua.
+- Add one or two short testimonials or proof points.
+
+Detailed checklist: `NEXT_STEPS.md`
+
+---
+
+## 6. Future Plan
+
+Phase 1: Landing page and lead capture
+
+- Finish domain and email.
+- Make the consultation request path work reliably.
+- Keep the site simple.
+
+Phase 2: Minimal client CRM
+
+- Admin login.
+- Client login.
+- Client profiles.
+- Session logs.
+- Progress statuses.
+- File / link uploads.
+- Support thread for $130 plan.
+- CSV export.
+
+Likely stack:
+
+- Supabase auth
+- Supabase Postgres
+- Supabase Storage
+- Simple responsive web dashboard
+
+Phase 3: Android monitoring app
+
+- Small companion app, not full rewrite.
+- View clients.
+- Add quick notes.
+- Update progress.
+- Check uploads and support questions.
+
+Detailed roadmap: `ROADMAP.md`
+
+---
+
+## 7. Local Development
+
+Start local server:
 
 ```powershell
 python -m http.server 4173 --bind 127.0.0.1
 ```
 
-## Deploy fast
+Open:
 
-Use Netlify Drop for the laziest first version:
+```text
+http://127.0.0.1:4173
+```
 
-1. Go to `https://app.netlify.com/drop`.
-2. Drag this whole project folder into the page.
-3. Connect a custom domain later.
+Git path on this machine if `git` is not available in the current terminal:
 
-The form is prepared for Netlify Forms. Locally it opens an email draft; after Netlify deploy it can collect leads in the Netlify dashboard.
-On GitHub Pages, the form uses the email draft fallback because GitHub Pages does not process form submissions.
+```text
+C:\Program Files\Git\cmd\git.exe
+```
 
-## Current positioning
+---
 
-- Name: Rustam "fanatic" Alieskerov
-- Services: Blender, Godot, Unreal Engine, Unity, computer administration, workflow setup, process organization
-- Free consultation: 15 minutes
-- Session: 50 minutes
-- Plans: $100 session only, $130 session plus support during the week
+## 8. Operating Rule
 
-## Roadmap
+Do not build the CRM, Android app, payments, or complex automation before the first commercial path works:
 
-See `ROADMAP.md` for the planned CRM and later Android monitoring app.
-See `NEXT_STEPS.md` for the immediate launch checklist.
+```text
+public site -> consultation request -> reply -> paid session
+```
+
+This project should reduce friction, not create a new reason to avoid launch.
