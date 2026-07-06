@@ -71,6 +71,7 @@ Done:
 - Basic SEO metadata added.
 - Favicon, sitemap, robots.txt, and 404 page added.
 - Static form submission moved from `mailto` to FormSubmit.
+- FormSubmit activated and tested.
 - Roadmap file created.
 - Immediate launch checklist created.
 
@@ -110,6 +111,7 @@ Technical constraints:
 - Current hosting is GitHub Pages.
 - GitHub Pages does not process form submissions by itself.
 - The current form uses FormSubmit and forwards submissions to `direct@fanatic.space`.
+- Form submissions are confirmed to arrive in Gmail through Cloudflare Email Routing.
 - Tally, Netlify Forms, or Supabase can replace FormSubmit later if needed.
 - CRM should not be built until the lead path works.
 
@@ -131,7 +133,7 @@ Highest priority:
 3. Create domain email routing for `direct@fanatic.space`.
 4. Confirm `direct@fanatic.space` forwards to Rustam's working inbox.
 5. Replace the phone placeholder in `index.html`.
-6. Activate FormSubmit with one first public form submission.
+6. Enable HTTPS in GitHub Pages after the certificate is ready.
 
 Nice but not blocking:
 

@@ -18,11 +18,13 @@ The visitor does not need to open Gmail or any local mail app.
 https://formsubmit.co/direct@fanatic.space
 ```
 
-## First activation
+## Activation status
 
-FormSubmit requires one first submission to activate the target email address.
+Status: activated and tested.
 
-Expected flow:
+FormSubmit requires one first submission to activate the target email address. This has already been done.
+
+Activation flow used:
 
 1. Submit a test form on the public site.
 2. FormSubmit sends an activation email to `direct@fanatic.space`.
