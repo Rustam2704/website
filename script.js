@@ -9,7 +9,9 @@ emailLink.textContent = contactEmail;
 leadForm.addEventListener("submit", (event) => {
   const mailtoFallbackHosts = ["", "localhost", "127.0.0.1"];
   const isGitHubPages = window.location.hostname.endsWith("github.io");
-  const shouldUseMailtoFallback = mailtoFallbackHosts.includes(window.location.hostname) || isGitHubPages;
+  const isStaticCustomDomain = window.location.hostname === "fanatic.space";
+  const shouldUseMailtoFallback =
+    mailtoFallbackHosts.includes(window.location.hostname) || isGitHubPages || isStaticCustomDomain;
 
   if (!shouldUseMailtoFallback) {
     return;
