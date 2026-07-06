@@ -96,6 +96,7 @@ Files:
 - `GMAIL_FILTER.md` - Gmail spam/filter setup notes
 - `LAUNCH_QA.md` - public launch QA checklist
 - `CLOUDFLARE_PAGES.md` - Cloudflare Pages deployment notes
+- `CRM_SPEC.md` - first scoped CRM/product spec
 
 ---
 

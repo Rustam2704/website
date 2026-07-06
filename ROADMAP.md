@@ -14,6 +14,8 @@ Status: in progress
 
 Goal: replace the current spreadsheet with a simple, respectable client portal without overbuilding.
 
+Detailed first scope: `CRM_SPEC.md`
+
 Core features:
 
 - Admin login for Rustam.
