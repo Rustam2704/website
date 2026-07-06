@@ -16,10 +16,10 @@
 
 ## Next practical steps
 
-1. Deploy the site to Cloudflare Pages from the GitHub repository.
-2. Attach `fanatic.space` as the Cloudflare Pages custom domain.
-3. Confirm HTTPS works on `https://fanatic.space/`.
-4. Change FormSubmit `_next` redirect to `https://fanatic.space/thanks.html`.
+1. Replace the phone/contact placeholder if a phone or messenger will be used.
+2. Add stronger credibility examples for portal.zt.ua.
+3. Add one or two real proof points, examples, or testimonials.
+4. Decide whether to add lightweight analytics.
 5. Keep GitHub Pages only as fallback.
 6. Before May 2027, decide whether to renew `fanatic.space` or migrate to a cheaper domain.
 5. Replace the phone placeholder in `index.html`.

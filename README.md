@@ -65,9 +65,9 @@ Done:
 - Hero image generated and stored locally.
 - Git repository initialized.
 - Project pushed to GitHub.
-- GitHub Pages enabled.
+- GitHub Pages enabled as fallback.
 - Domain purchased: `fanatic.space`.
-- Public URL is being moved to `https://fanatic.space/`.
+- Production URL is live on Cloudflare Pages: `https://fanatic.space/`.
 - Domain expires: July 6, 2027.
 - Renewal price: $250.20/year.
 - Auto-renew is currently off.
@@ -116,8 +116,8 @@ Business constraints:
 Technical constraints:
 
 - Current site is static HTML/CSS/JS.
-- Current hosting is GitHub Pages while GitHub HTTPS provisioning is pending.
-- Next preferred hosting step is Cloudflare Pages because the domain is already in Cloudflare.
+- Current production hosting is Cloudflare Pages.
+- GitHub Pages remains configured as fallback.
 - GitHub Pages does not process form submissions by itself.
 - The current form uses FormSubmit and forwards submissions to `direct@fanatic.space`.
 - Form submissions are confirmed to arrive in Gmail through Cloudflare Email Routing.
@@ -138,10 +138,10 @@ Data / future portability constraints:
 
 Highest priority:
 
-1. Deploy the site through Cloudflare Pages.
-2. Attach `fanatic.space` as a Cloudflare Pages custom domain.
-3. Confirm `https://fanatic.space/` works.
-4. Change the FormSubmit thank-you redirect to `https://fanatic.space/thanks.html`.
+1. Replace the phone/contact placeholder if a phone or messenger will be used.
+2. Add stronger credibility examples for portal.zt.ua.
+3. Add one or two real proof points, examples, or testimonials.
+4. Decide whether to add lightweight analytics.
 5. Keep GitHub Pages as a fallback.
 
 Nice but not blocking:

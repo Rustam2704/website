@@ -2,6 +2,8 @@
 
 Goal: host `fanatic.space` on Cloudflare Pages instead of waiting for GitHub Pages HTTPS provisioning.
 
+Status: active.
+
 This is the preferred next move because:
 
 - the domain is already registered in Cloudflare
@@ -57,13 +59,13 @@ www.fanatic.space
 
 ## After Cloudflare Pages works
 
-Update the FormSubmit redirect in `index.html`:
+FormSubmit redirect in `index.html` should be:
 
 ```text
 _next=https://fanatic.space/thanks.html
 ```
 
-Then commit and push.
+This is now configured.
 
 ## GitHub Pages fallback
 

@@ -4,7 +4,7 @@ Use this checklist after every meaningful site change.
 
 ## Public site
 
-- `http://fanatic.space/` loads.
+- `https://fanatic.space/` loads.
 - Hero image loads.
 - Form is visible.
 - Privacy note opens.
@@ -31,11 +31,11 @@ Use this checklist after every meaningful site change.
 
 ## HTTPS
 
-Preferred next move: deploy through Cloudflare Pages and use Cloudflare-managed HTTPS.
+Production hosting: Cloudflare Pages with Cloudflare-managed HTTPS.
 
 When ready:
 
 - `https://fanatic.space/` loads.
 - Hosting provider has HTTPS enabled.
-- `_next` in `index.html` should be changed from `http://fanatic.space/thanks.html` to `https://fanatic.space/thanks.html`.
+- `_next` in `index.html` uses `https://fanatic.space/thanks.html`.
 - canonical / sitemap should already use `https://fanatic.space/`.
