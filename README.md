@@ -89,6 +89,8 @@ Files:
 - `NEXT_STEPS.md` - immediate launch checklist
 - `EMAIL_SETUP.md` - Cloudflare Email Routing setup notes
 - `FORM_SETUP.md` - contact form backend setup notes
+- `GMAIL_FILTER.md` - Gmail spam/filter setup notes
+- `LAUNCH_QA.md` - public launch QA checklist
 
 ---
 
