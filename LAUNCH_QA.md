@@ -30,11 +30,11 @@ Use this checklist after every meaningful site change.
 
 ## HTTPS
 
-Pending until GitHub certificate is issued.
+Preferred next move: deploy through Cloudflare Pages and use Cloudflare-managed HTTPS.
 
 When ready:
 
 - `https://fanatic.space/` loads.
-- GitHub Pages has `Enforce HTTPS` enabled.
+- Hosting provider has HTTPS enabled.
 - `_next` in `index.html` should be changed from `http://fanatic.space/thanks.html` to `https://fanatic.space/thanks.html`.
 - canonical / sitemap should already use `https://fanatic.space/`.

@@ -94,6 +94,7 @@ Files:
 - `FORM_SETUP.md` - contact form backend setup notes
 - `GMAIL_FILTER.md` - Gmail spam/filter setup notes
 - `LAUNCH_QA.md` - public launch QA checklist
+- `CLOUDFLARE_PAGES.md` - Cloudflare Pages deployment notes
 
 ---
 
@@ -113,7 +114,8 @@ Business constraints:
 Technical constraints:
 
 - Current site is static HTML/CSS/JS.
-- Current hosting is GitHub Pages.
+- Current hosting is GitHub Pages while GitHub HTTPS provisioning is pending.
+- Next preferred hosting step is Cloudflare Pages because the domain is already in Cloudflare.
 - GitHub Pages does not process form submissions by itself.
 - The current form uses FormSubmit and forwards submissions to `direct@fanatic.space`.
 - Form submissions are confirmed to arrive in Gmail through Cloudflare Email Routing.
