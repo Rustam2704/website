@@ -1,4 +1,4 @@
-const contactEmail = "hello@example.com";
+const contactEmail = "hello@fanatic.space";
 
 const emailLink = document.querySelector("#emailLink");
 const leadForm = document.querySelector("#leadForm");

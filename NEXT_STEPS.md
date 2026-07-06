@@ -12,8 +12,8 @@
 
 1. Finish DNS connection for `fanatic.space`.
 2. Enable HTTPS in GitHub Pages after DNS is verified.
-3. Create domain email, for example `rustam@fanatic.space` or `hello@fanatic.space`.
-4. Replace `hello@example.com` in `script.js`.
+3. Create domain email routing for `hello@fanatic.space`.
+4. Confirm `hello@fanatic.space` forwards to Rustam's working inbox.
 5. Replace the phone placeholder in `index.html`.
 6. Add one real photo or a better technical workspace image if needed.
 7. Add two short credibility blocks:
