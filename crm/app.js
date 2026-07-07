@@ -9,6 +9,8 @@ const state = {
   clients: [],
   clientSearch: "",
   clientStatusFilter: "all",
+  clientAreaFilter: "all",
+  clientSort: "next_session",
   selectedClient: null,
   progress: [],
   sessions: [],
@@ -40,6 +42,8 @@ const views = {
   clientEditForm: $("#client-edit-form"),
   clientSearchInput: $("#client-search"),
   clientStatusFilter: $("#client-status-filter"),
+  clientAreaFilter: $("#client-area-filter"),
+  clientSort: $("#client-sort"),
   stats: $("#stats-grid"),
   upcomingRecords: $("#upcoming-records"),
   attentionRecords: $("#attention-records"),
@@ -83,6 +87,16 @@ function formatDate(value) {
   return new Intl.DateTimeFormat("en", {
     dateStyle: "medium",
     timeStyle: "short"
+  }).format(new Date(value));
+}
+
+function formatCompactDate(value) {
+  if (!value) return "-";
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
   }).format(new Date(value));
 }
 
@@ -323,6 +337,8 @@ function withClientCounts(clients, related) {
 
   return clients.map((client) => ({
     ...client,
+    next_session_at: nextSessionDate(client.id, related.sessions),
+    last_activity_at: latestActivityDate(client, related),
     counts: {
       progress: progress[client.id] || 0,
       blocked: blocked[client.id] || 0,
@@ -331,6 +347,28 @@ function withClientCounts(clients, related) {
       files: files[client.id] || 0
     }
   }));
+}
+
+function nextSessionDate(clientId, sessions) {
+  const now = Date.now();
+  const next = sessions
+    .filter((session) => session.client_id === clientId && session.date && new Date(session.date).getTime() >= now)
+    .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+
+  return next?.date || null;
+}
+
+function latestActivityDate(client, related) {
+  const dates = [
+    client.updated_at,
+    client.created_at,
+    ...related.progress.filter((record) => record.client_id === client.id).map((record) => record.updated_at),
+    ...related.sessions.filter((record) => record.client_id === client.id).map((record) => record.date),
+    ...related.support.filter((record) => record.client_id === client.id).map((record) => record.created_at)
+  ].filter(Boolean);
+
+  if (!dates.length) return null;
+  return dates.sort((a, b) => new Date(b) - new Date(a))[0];
 }
 
 function renderStats() {
@@ -452,6 +490,7 @@ function renderAttentionItems() {
 }
 
 function renderClients() {
+  renderAreaFilter();
   const clients = filteredClients();
 
   if (!clients.length) {
@@ -461,13 +500,20 @@ function renderClients() {
 
   views.clientList.innerHTML = clients.map((client) => `
     <button class="client-card ${state.selectedClient?.id === client.id ? "active" : ""}" type="button" data-client-id="${client.id}">
-      <strong>${h(client.name)}</strong>
+      <span class="client-card-main">
+        <strong>${h(client.name)}</strong>
+        <small>${h(client.status)} / ${h(client.plan.replaceAll("_", " "))}</small>
+      </span>
       <span>${h(client.email || "No email")}</span>
-      <small>${h(client.status)} / ${h(client.plan.replaceAll("_", " "))}</small>
+      <span class="client-card-detail">
+        <span>Next: ${h(formatCompactDate(client.next_session_at))}</span>
+        <span>Last: ${h(formatCompactDate(client.last_activity_at))}</span>
+      </span>
+      ${client.current_goal ? `<span class="client-card-goal">${h(client.current_goal)}</span>` : ""}
       <span class="client-card-metrics">
-        <span>${client.counts?.progress || 0} progress</span>
+        <span>${client.counts?.progress || 0} tasks</span>
         <span>${client.counts?.sessions || 0} sessions</span>
-        <span>${client.counts?.openSupport || 0} open support</span>
+        <span>${client.counts?.openSupport || 0} messages</span>
         <span>${client.counts?.files || 0} files</span>
       </span>
     </button>
@@ -478,12 +524,28 @@ function renderClients() {
   });
 }
 
+function renderAreaFilter() {
+  const current = state.clientAreaFilter;
+  const areas = [...new Set(state.clients.map((client) => client.area).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
+
+  views.clientAreaFilter.innerHTML = [
+    `<option value="all">All areas</option>`,
+    ...areas.map((area) => `<option value="${h(area)}">${h(area)}</option>`)
+  ].join("");
+
+  views.clientAreaFilter.value = areas.includes(current) ? current : "all";
+  state.clientAreaFilter = views.clientAreaFilter.value;
+}
+
 function filteredClients() {
   const query = state.clientSearch.trim().toLowerCase();
 
-  return state.clients.filter((client) => {
+  const clients = state.clients.filter((client) => {
     const statusOk = state.clientStatusFilter === "all" || client.status === state.clientStatusFilter;
     if (!statusOk) return false;
+    const areaOk = state.clientAreaFilter === "all" || client.area === state.clientAreaFilter;
+    if (!areaOk) return false;
     if (!query) return true;
 
     return [
@@ -494,6 +556,21 @@ function filteredClients() {
       client.timezone
     ].some((value) => String(value || "").toLowerCase().includes(query));
   });
+
+  return clients.sort((a, b) => {
+    if (state.clientSort === "name") return a.name.localeCompare(b.name);
+    if (state.clientSort === "created") return new Date(b.created_at) - new Date(a.created_at);
+    if (state.clientSort === "last_activity") return dateSortValue(b.last_activity_at) - dateSortValue(a.last_activity_at);
+    return upcomingSortValue(a.next_session_at) - upcomingSortValue(b.next_session_at);
+  });
+}
+
+function dateSortValue(value) {
+  return value ? new Date(value).getTime() : 0;
+}
+
+function upcomingSortValue(value) {
+  return value ? new Date(value).getTime() : Number.MAX_SAFE_INTEGER;
 }
 
 async function selectClient(clientId) {
@@ -887,6 +964,26 @@ $("#client-search").addEventListener("input", (event) => {
 $("#client-status-filter").addEventListener("change", (event) => {
   state.clientStatusFilter = event.currentTarget.value;
   renderClients();
+});
+
+$("#client-area-filter").addEventListener("change", (event) => {
+  state.clientAreaFilter = event.currentTarget.value;
+  renderClients();
+});
+
+$("#client-sort").addEventListener("change", (event) => {
+  state.clientSort = event.currentTarget.value;
+  renderClients();
+});
+
+$("#quick-session-button").addEventListener("click", async () => {
+  if (!state.selectedClient) {
+    openStudentModal();
+    return;
+  }
+
+  setActiveTab("sessions");
+  document.querySelector("[data-panel='sessions']")?.scrollIntoView({ block: "start" });
 });
 
 $("#delete-client-button").addEventListener("click", async () => {

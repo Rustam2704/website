@@ -9,7 +9,7 @@
     <link rel="icon" href="../assets/favicon-crm.svg" type="image/svg+xml">
     <link rel="manifest" href="./manifest.webmanifest">
     <link rel="apple-touch-icon" href="../assets/icon-192.png">
-    <link rel="stylesheet" href="./styles.css?v=2026-07-07-2">
+    <link rel="stylesheet" href="./styles.css?v=2026-07-07-3">
   </head>
   <body>
     <div class="app-shell">
@@ -88,12 +88,18 @@
             </div>
             <div class="button-row">
               <button type="button" id="add-student-button">Add student</button>
+              <button type="button" class="secondary" id="quick-session-button">Add session</button>
               <input class="visually-hidden" id="import-clients-input" type="file" accept=".csv,text/csv">
-              <button type="button" class="secondary" id="import-clients-button">Import CSV</button>
-              <button type="button" class="secondary" id="template-button">Template CSV</button>
-              <button type="button" class="secondary" id="export-button">Export CSV</button>
-              <button type="button" class="secondary" id="backup-button">Backup JSON</button>
-              <button type="button" class="secondary" id="sign-out-button">Sign out</button>
+              <details class="toolbar-menu">
+                <summary>Tools</summary>
+                <div class="toolbar-menu-content">
+                  <button type="button" class="secondary" id="import-clients-button">Import CSV</button>
+                  <button type="button" class="secondary" id="template-button">Template CSV</button>
+                  <button type="button" class="secondary" id="export-button">Export CSV</button>
+                  <button type="button" class="secondary" id="backup-button">Backup JSON</button>
+                  <button type="button" class="secondary" id="sign-out-button">Sign out</button>
+                </div>
+              </details>
             </div>
           </div>
 
@@ -148,6 +154,15 @@
                   <option value="active">Active</option>
                   <option value="paused">Paused</option>
                   <option value="done">Done</option>
+                </select>
+                <select id="client-area-filter">
+                  <option value="all">All areas</option>
+                </select>
+                <select id="client-sort">
+                  <option value="next_session">Next session</option>
+                  <option value="last_activity">Last activity</option>
+                  <option value="name">Name</option>
+                  <option value="created">Newest</option>
                 </select>
               </div>
 
@@ -408,7 +423,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-22"></script>
+    <script type="module" src="./app.js?v=2026-07-07-24"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");
