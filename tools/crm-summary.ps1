@@ -35,7 +35,11 @@ where n.owner_id = o.owner_id and n.resolved = false
 union all
 select 'files', count(*)::text
 from public.client_files f, owner o
-where f.owner_id = o.owner_id;
+where f.owner_id = o.owner_id
+union all
+select 'new_intake_requests', count(*)::text
+from public.intake_requests
+where status = 'new';
 "@
 
 Invoke-CrmPsql -ConnectionString $connection -Sql $sql

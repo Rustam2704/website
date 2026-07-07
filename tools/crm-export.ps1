@@ -16,7 +16,9 @@ $tables = @(
   "sessions",
   "progress_items",
   "support_notes",
-  "client_files"
+  "client_files",
+  "client_access",
+  "intake_requests"
 )
 
 foreach ($table in $tables) {
