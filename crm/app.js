@@ -416,6 +416,9 @@ async function insertRecord(table, form, extra = {}) {
 
 async function deleteRecord(table, id) {
   if (!state.selectedClient) return;
+  const ok = window.confirm(`Delete this ${table.replaceAll("_", " ")} record?`);
+  if (!ok) return;
+
   await requireResult(
     supabase
       .from(table)
