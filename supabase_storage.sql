@@ -19,6 +19,23 @@ using (
   and (storage.foldername(name))[1] = auth.uid()::text
 );
 
+drop policy if exists "client can read assigned storage files" on storage.objects;
+create policy "client can read assigned storage files"
+on storage.objects
+for select
+to authenticated
+using (
+  bucket_id = 'client-files'
+  and exists (
+    select 1
+    from public.client_access access
+    where access.user_id = auth.uid()
+      and access.status = 'active'
+      and access.owner_id::text = (storage.foldername(name))[1]
+      and access.client_id::text = (storage.foldername(name))[2]
+  )
+);
+
 drop policy if exists "owner can upload own client files" on storage.objects;
 create policy "owner can upload own client files"
 on storage.objects

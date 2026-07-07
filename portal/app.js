@@ -56,6 +56,11 @@ function setSupportMessage(message, isError = false) {
   views.supportMessage.classList.toggle("error", isError);
 }
 
+function storagePathFromUrl(url) {
+  const prefix = "storage://client-files/";
+  return url?.startsWith(prefix) ? url.slice(prefix.length) : null;
+}
+
 async function requireResult(query) {
   const { data, error } = await query;
   if (error) throw error;
@@ -155,11 +160,17 @@ async function loadPortalData() {
           <div class="record-body">
             <strong>${h(item.label || item.kind)}</strong>
             <span>${h(item.kind)}</span>
-            <a href="${h(item.url)}" target="_blank" rel="noreferrer">${h(item.url)}</a>
+            ${storagePathFromUrl(item.url)
+              ? `<button type="button" class="secondary portal-open-file" data-path="${h(storagePathFromUrl(item.url))}">Open stored file</button><span>${h(storagePathFromUrl(item.url))}</span>`
+              : `<a href="${h(item.url)}" target="_blank" rel="noreferrer">${h(item.url)}</a>`}
           </div>
         </article>
       `).join("")
       : `<div class="empty-list">No files or links are available yet.</div>`;
+
+    document.querySelectorAll(".portal-open-file").forEach((button) => {
+      button.addEventListener("click", () => openStoredFile(button.dataset.path));
+    });
 
     views.sessionRecords.innerHTML = sessions.length
       ? sessions.map((item) => `
@@ -185,6 +196,19 @@ function progressStatusOptions(currentStatus) {
     ["improved", "Improved"],
     ["done", "Done"]
   ].map(([value, label]) => `<option value="${value}" ${value === currentStatus ? "selected" : ""}>${label}</option>`).join("");
+}
+
+async function openStoredFile(path) {
+  const { data, error } = await supabase.storage
+    .from("client-files")
+    .createSignedUrl(path, 60);
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  window.open(data.signedUrl, "_blank", "noreferrer");
 }
 
 async function updateProgressStatus(progressId, status) {

@@ -21,6 +21,8 @@ select 'table:client_access', exists(select 1 from information_schema.tables whe
 union all
 select 'bucket:client-files', exists(select 1 from storage.buckets where id='client-files')
 union all
+select 'policy:client storage read', exists(select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='client can read assigned storage files')
+union all
 select 'rpc:grant_client_access_by_email', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='grant_client_access_by_email')
 union all
 select 'rpc:client_update_progress_status', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_update_progress_status')
