@@ -122,6 +122,19 @@ $env:PGPASSWORD = "<database-password>"
   -Message "Support note text"
 ```
 
+Export CRM tables to CSV:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-export.ps1
+```
+
+Exports are written to:
+
+```text
+exports/crm-YYYYMMDD-HHMMSS/
+```
+
 Current test data:
 
 - `Codex Test Client`
