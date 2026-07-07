@@ -122,6 +122,15 @@ $env:PGPASSWORD = "<database-password>"
   -Message "Support note text"
 ```
 
+Grant portal access after a client auth user exists:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-grant-client-access.ps1 `
+  -ClientEmail "client@example.com" `
+  -UserEmail "client@example.com"
+```
+
 Export CRM tables to CSV:
 
 ```powershell
