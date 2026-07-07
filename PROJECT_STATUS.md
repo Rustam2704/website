@@ -52,6 +52,7 @@ Last updated: July 7, 2026
 - Remove test clients after UI testing:
   - `Codex Test Client`
   - `CLI Test Client`
+  - `Form Lead Test`
 - Add lightweight analytics if needed.
 
 ## Useful Commands
