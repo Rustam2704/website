@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Fanatic Client Portal</title>
+    <link rel="stylesheet" href="../crm/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../">
+          <span class="brand-mark">f</span>
+          <span>
+            <strong>fanatic.portal</strong>
+            <small>client progress</small>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="#profile">Profile</a>
+          <a href="#progress">Progress</a>
+        </nav>
+        <div class="sidebar-note">
+          <strong>v0</strong>
+          <span>Client-facing read-only progress view.</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Client portal</p>
+            <h1>Your current work</h1>
+          </div>
+          <div class="auth-status" id="auth-status">Checking session...</div>
+        </header>
+
+        <section class="auth-panel hidden" id="auth-panel">
+          <div>
+            <p class="eyebrow">Sign in</p>
+            <h2>Client access</h2>
+            <p class="muted">Use the email that was invited to your client profile.</p>
+          </div>
+          <form class="auth-form" id="auth-form">
+            <label>
+              Email
+              <input id="auth-email" type="email" autocomplete="email" required>
+            </label>
+            <div class="button-row">
+              <button type="submit">Send magic link</button>
+            </div>
+            <p class="form-message" id="auth-message"></p>
+          </form>
+        </section>
+
+        <section class="dashboard hidden" id="portal-dashboard">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h2 id="client-name">Client</h2>
+            </div>
+            <button type="button" class="secondary" id="sign-out-button">Sign out</button>
+          </div>
+
+          <section class="panel" id="profile">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Profile</p>
+                <h3>Current direction</h3>
+              </div>
+            </div>
+            <div class="mini-summary" id="client-summary"></div>
+          </section>
+
+          <section class="panel" id="progress">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Progress</p>
+                <h3>Tracked items</h3>
+              </div>
+            </div>
+            <div class="records" id="progress-records"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="../crm/config.js?v=2026-07-07-1"></script>
+    <script type="module" src="./app.js?v=2026-07-07-1"></script>
+  </body>
+</html>

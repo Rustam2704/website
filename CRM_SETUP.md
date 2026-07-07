@@ -23,7 +23,9 @@ This avoids building a big client portal before the workflow is proven.
 
 ```text
 Site URL: https://fanatic.space
-Redirect URLs: https://fanatic.space/crm/
+Redirect URLs:
+https://fanatic.space/crm/
+https://fanatic.space/portal/
 ```
 
 6. Open Project Settings -> Data API.
@@ -71,6 +73,13 @@ The first small web dashboard is in `crm/`:
 - add support note
 - add file/link
 - upload private client files
+
+Client portal preparation:
+
+- `/portal/`
+- `client_access` table maps a Supabase auth user to a CRM client.
+- Client users can read their assigned client profile and progress items.
+- The portal is read-only for now.
 
 The current static route is:
 

@@ -102,7 +102,9 @@ Files:
 - `DB_ACCESS.md` - psql / Supabase database access notes
 - `supabase_schema.sql` - first CRM database schema
 - `supabase_storage.sql` - private Supabase Storage bucket and policies
+- `supabase_client_portal.sql` - client access mapping and read policies
 - `crm/` - first admin-only CRM web dashboard
+- `portal/` - first read-only client portal skeleton
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow
 - `REPLY_TEMPLATES.md` - email replies for new leads
 - `DOMAIN_WWW_FIX.md` - remaining `www.fanatic.space` DNS/redirect fix
