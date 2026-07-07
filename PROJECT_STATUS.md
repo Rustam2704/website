@@ -31,6 +31,17 @@ Last updated: July 7, 2026
 - CLI helpers for CRM operations in `tools/`.
 - Read-only client portal database foundation.
 - Admin CRM can grant/revoke client portal access from the Access tab.
+- CRM quality-of-life:
+  - first client auto-selects after login
+  - newly created client opens immediately
+  - active tab persists across reloads
+  - delete actions ask for confirmation
+  - session private notes supported
+  - client cards show activity counts
+- Combined checks:
+  - `tools/check-all.ps1`
+  - `tools/check-public.ps1`
+  - `tools/check-supabase.ps1`
 
 ## Important Follow-Ups
 
