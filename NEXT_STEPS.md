@@ -27,6 +27,7 @@
 - Client portal can update assigned progress item statuses.
 - Client portal can add assigned progress items and support notes.
 - Client portal can add file/project/screenshot/video links.
+- Client portal can show session history and next actions without private notes.
 
 ## Next practical steps
 

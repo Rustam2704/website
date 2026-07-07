@@ -338,3 +338,38 @@ end;
 $$;
 
 grant execute on function public.client_create_file_link(text, text, text) to authenticated;
+
+create or replace function public.client_list_sessions()
+returns table (
+  id uuid,
+  date timestamptz,
+  duration_minutes integer,
+  topic text,
+  notes text,
+  next_actions text,
+  created_at timestamptz
+)
+language sql
+security definer
+set search_path = public
+as $$
+  select
+    sessions.id,
+    sessions.date,
+    sessions.duration_minutes,
+    sessions.topic,
+    sessions.notes,
+    sessions.next_actions,
+    sessions.created_at
+  from public.sessions
+  where exists (
+    select 1
+    from public.client_access access
+    where access.client_id = sessions.client_id
+      and access.user_id = auth.uid()
+      and access.status = 'active'
+  )
+  order by sessions.date desc;
+$$;
+
+grant execute on function public.client_list_sessions() to authenticated;

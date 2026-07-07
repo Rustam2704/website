@@ -16,6 +16,7 @@ const views = {
   clientName: $("#client-name"),
   clientSummary: $("#client-summary"),
   progressRecords: $("#progress-records"),
+  sessionRecords: $("#session-records"),
   fileRecords: $("#file-records"),
   clientProgressForm: $("#client-progress-form"),
   clientSupportForm: $("#client-support-form"),
@@ -35,6 +36,14 @@ function h(value) {
 
 function show(element, visible) {
   element.classList.toggle("hidden", !visible);
+}
+
+function formatDate(value) {
+  if (!value) return "-";
+  return new Intl.DateTimeFormat("en", {
+    dateStyle: "medium",
+    timeStyle: "short"
+  }).format(new Date(value));
 }
 
 function setMessage(message, isError = false) {
@@ -91,6 +100,7 @@ async function loadPortalData() {
       views.clientName.textContent = "No client profile assigned";
       views.clientSummary.innerHTML = `<div><span>Status</span><strong>No access record found for this email.</strong></div>`;
       views.progressRecords.innerHTML = `<div class="empty-list">No progress is available yet.</div>`;
+      views.sessionRecords.innerHTML = `<div class="empty-list">No sessions are available yet.</div>`;
       views.fileRecords.innerHTML = `<div class="empty-list">No files or links are available yet.</div>`;
       return;
     }
@@ -111,6 +121,7 @@ async function loadPortalData() {
         .eq("client_id", clientId)
         .order("created_at", { ascending: false })
     );
+    const sessions = await requireResult(supabase.rpc("client_list_sessions"));
 
     views.clientName.textContent = client.name;
     views.clientSummary.innerHTML = `
@@ -149,6 +160,19 @@ async function loadPortalData() {
         </article>
       `).join("")
       : `<div class="empty-list">No files or links are available yet.</div>`;
+
+    views.sessionRecords.innerHTML = sessions.length
+      ? sessions.map((item) => `
+        <article class="record">
+          <div class="record-body">
+            <strong>${h(item.topic || "Session")}</strong>
+            <span>${h(formatDate(item.date))} / ${h(item.duration_minutes)} min</span>
+            ${item.notes ? `<p>${h(item.notes)}</p>` : ""}
+            ${item.next_actions ? `<p><strong>Next:</strong> ${h(item.next_actions)}</p>` : ""}
+          </div>
+        </article>
+      `).join("")
+      : `<div class="empty-list">No sessions are available yet.</div>`;
   } catch (error) {
     alert(error.message);
   }

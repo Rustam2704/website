@@ -35,6 +35,7 @@ Last updated: July 7, 2026
 - Client portal can update assigned progress statuses through a safe RPC.
 - Client portal can add assigned progress items and support notes.
 - Client portal can add file/project/screenshot/video links.
+- Client portal can show session history and next actions without exposing private session notes.
 - Admin CRM can grant/revoke client portal access from the Access tab.
 - CRM quality-of-life:
   - first client auto-selects after login
