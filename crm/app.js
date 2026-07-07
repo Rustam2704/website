@@ -722,7 +722,9 @@ function renderRelatedRecords() {
 
   views.progressRecords.innerHTML = renderRecordList(state.progress, "progress_items", (item) => `
     <strong>${h(item.title)}</strong>
-    <span>${h(item.priority)}</span>
+    <span>${h(item.priority)}${item.due_at ? ` / Due: ${h(formatCompactDate(item.due_at))}` : ""}</span>
+    ${item.teacher_comment ? `<p><strong>Teacher:</strong> ${h(item.teacher_comment)}</p>` : ""}
+    ${item.client_comment ? `<p><strong>Student:</strong> ${h(item.client_comment)}</p>` : ""}
     <select class="record-update" data-table="progress_items" data-id="${item.id}" data-field="status">
       ${progressStatusOptions(item.status)}
     </select>

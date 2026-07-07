@@ -68,7 +68,7 @@ Started:
 Still needed:
 
 - Apply `supabase_calendar.sql` to Supabase.
-- Apply `supabase_lesson_fields.sql` before wiring meeting URLs/statuses into the UI.
+- Apply `supabase_lesson_fields.sql` before using meeting URLs/statuses in the live database.
 - Store calendar connection state.
 - Request Google Calendar permissions.
 - Create/find the `fanatic.space` calendar.
@@ -222,6 +222,12 @@ Later, not now:
 Rule:
 
 - Do not turn the system into a course builder before it is genuinely needed.
+
+Status:
+
+- `supabase_lms_fields.sql` adds task deadline, teacher comment, and student comment fields.
+- The base schema includes those fields for fresh installs.
+- CRM and portal display due dates/comments when the migration has been applied and data exists.
 
 ## 9. Visual Direction
 

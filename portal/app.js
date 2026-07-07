@@ -146,7 +146,9 @@ async function loadPortalData() {
         <article class="record">
           <div class="record-body">
             <strong>${h(item.title)}</strong>
-            <span>${h(item.priority)}</span>
+            <span>${h(item.priority)}${item.due_at ? ` / Due: ${h(formatDate(item.due_at))}` : ""}</span>
+            ${item.teacher_comment ? `<p><strong>Teacher:</strong> ${h(item.teacher_comment)}</p>` : ""}
+            ${item.client_comment ? `<p><strong>Your note:</strong> ${h(item.client_comment)}</p>` : ""}
             <select class="progress-status" data-progress-id="${item.id}">
               ${progressStatusOptions(item.status)}
             </select>

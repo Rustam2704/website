@@ -111,6 +111,7 @@ Files:
 - `DB_ACCESS.md` - psql / Supabase database access notes
 - `supabase_schema.sql` - first CRM database schema
 - `supabase_lesson_fields.sql` - optional lesson URL and confirmation fields for sessions
+- `supabase_lms_fields.sql` - optional LMS-lite deadline/comment fields for tasks
 - `supabase_calendar.sql` - Google Calendar sync groundwork schema
 - `supabase_storage.sql` - private Supabase Storage bucket and policies
 - `supabase_client_portal.sql` - client access mapping and read policies

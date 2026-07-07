@@ -44,6 +44,9 @@ create table if not exists public.progress_items (
     check (status in ('blocked', 'in_progress', 'improved', 'done')),
   priority text not null default 'normal'
     check (priority in ('low', 'normal', 'high')),
+  due_at timestamptz,
+  teacher_comment text,
+  client_comment text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -236,6 +239,8 @@ create index if not exists clients_owner_email_idx on public.clients(owner_id, e
 create index if not exists sessions_client_date_idx on public.sessions(client_id, date desc);
 create index if not exists sessions_owner_confirmation_idx on public.sessions(owner_id, confirmation_status, date desc);
 create index if not exists progress_items_client_status_idx on public.progress_items(client_id, status);
+create index if not exists progress_items_owner_due_idx on public.progress_items(owner_id, due_at)
+where due_at is not null;
 create index if not exists support_notes_client_resolved_idx on public.support_notes(client_id, resolved);
 create index if not exists client_files_client_created_idx on public.client_files(client_id, created_at desc);
 create index if not exists intake_requests_status_created_idx on public.intake_requests(status, created_at desc);

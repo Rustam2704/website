@@ -19,9 +19,10 @@ This avoids building a big client portal before the workflow is proven.
 2. Open SQL Editor.
 3. Paste and run `supabase_schema.sql`.
 4. Later, when lesson links/statuses are ready, paste and run `supabase_lesson_fields.sql`.
-5. Later, when Calendar sync is ready, paste and run `supabase_calendar.sql`.
-6. In Authentication, enable Email login.
-7. In Authentication -> URL Configuration, set:
+5. Later, when task deadlines/comments are ready, paste and run `supabase_lms_fields.sql`.
+6. Later, when Calendar sync is ready, paste and run `supabase_calendar.sql`.
+7. In Authentication, enable Email login.
+8. In Authentication -> URL Configuration, set:
 
 ```text
 Site URL: https://fanatic.space
@@ -30,9 +31,9 @@ https://fanatic.space/crm/
 https://fanatic.space/portal/
 ```
 
-8. Open Project Settings -> Data API.
-9. Copy the Project URL and anon public key into `crm/config.js`.
-10. Create the first Rustam admin user by signing in from `/crm/`.
+9. Open Project Settings -> Data API.
+10. Copy the Project URL and anon public key into `crm/config.js`.
+11. Create the first Rustam admin user by signing in from `/crm/`.
 
 Current Supabase project:
 

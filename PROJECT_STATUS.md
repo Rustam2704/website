@@ -56,6 +56,7 @@ Last updated: July 7, 2026
   - delete actions ask for confirmation
   - session private notes supported
   - sessions can display future meeting URL, confirmation status, and calendar sync status after lesson/calendar migrations are applied
+  - task cards can display due date, teacher comment, and student comment after LMS-lite migration is applied
   - client cards show activity counts
   - quick Add session action
   - secondary tools are grouped under a Tools menu
@@ -73,6 +74,10 @@ Last updated: July 7, 2026
   - `supabase_lesson_fields.sql`
   - `GOOGLE_CALENDAR_SETUP.md`
   - session calendar mapping fields in the base schema
+- LMS-lite groundwork:
+  - `supabase_lms_fields.sql`
+  - task deadline/comment fields in the base schema
+  - CRM and portal display those fields when present
 
 ## Important Follow-Ups
 
@@ -80,6 +85,7 @@ Last updated: July 7, 2026
 - Keep improving the admin CRM and client portal until they can replace the spreadsheet workflow.
 - Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
 - Apply `supabase_calendar.sql` and implement the Calendar Edge Function when moving into real calendar sync.
+- Apply `supabase_lms_fields.sql` when task deadlines/comments are ready in the live database.
 - Prepare 2-4 static ad images later for online lessons for ages 8-18: programming, AI tools, and practical computer directions.
 - Replace contact phone / messenger placeholder when the number is ready.
 - Remove test clients after UI testing:
