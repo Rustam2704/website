@@ -181,12 +181,13 @@ to anon, authenticated
 with check (true);
 
 drop policy if exists "authenticated can manage intake requests" on public.intake_requests;
-create policy "authenticated can manage intake requests"
+drop policy if exists "admin can manage intake requests" on public.intake_requests;
+create policy "admin can manage intake requests"
 on public.intake_requests
 for all
 to authenticated
-using (true)
-with check (true);
+using (lower(auth.jwt() ->> 'email') = 'direct@fanatic.space')
+with check (lower(auth.jwt() ->> 'email') = 'direct@fanatic.space');
 
 grant insert on public.intake_requests to anon;
 grant select, insert, update, delete on public.intake_requests to authenticated;
