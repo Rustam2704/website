@@ -91,6 +91,17 @@ $env:PGPASSWORD = "<database-password>"
   -CurrentGoal "First goal"
 ```
 
+Add a lead from a FormSubmit email:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-add-lead-from-form.ps1 `
+  -Name "Lead Name" `
+  -Email "lead@example.com" `
+  -Area "teaching/mentorship" `
+  -Goal "What they wrote in the form"
+```
+
 Add progress:
 
 ```powershell
