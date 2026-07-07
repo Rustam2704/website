@@ -834,7 +834,10 @@ $$("[data-oauth-provider]").forEach((button) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: config.redirectUrl || `${window.location.origin}/crm/`
+        redirectTo: config.redirectUrl || `${window.location.origin}/crm/`,
+        queryParams: {
+          prompt: "select_account"
+        }
       }
     });
 

@@ -98,6 +98,7 @@ Files:
 - `404.html` - GitHub Pages not-found page
 - `privacy.html` - short privacy note for the contact form
 - `ROADMAP.md` - future CRM and Android plan
+- `TASK_MAP.md` - full task map from the current product instruction file
 - `NEXT_STEPS.md` - immediate launch checklist
 - `EMAIL_SETUP.md` - Cloudflare Email Routing setup notes
 - `FORM_SETUP.md` - contact form backend setup notes
@@ -163,7 +164,7 @@ Highest priority:
 2. Keep improving the Supabase-backed CRM until it can replace the spreadsheet.
 3. Test the client portal with a real invited client account when a real client email is ready.
 4. Keep the CRM and portal readable, simple, and portable instead of adding heavy product ceremony.
-5. Configure Supabase Google and Apple OAuth providers if social login should work in production.
+5. Configure Supabase Google OAuth provider if social login should work in production.
 6. Add Google Calendar integration only after the teaching CRM session workflow is stable.
 7. Replace the phone/contact placeholder if a phone or messenger will be used.
 

@@ -45,8 +45,9 @@ Recommended first implementation:
 
 Upcoming integration:
 
-- Google / Apple auth buttons are present in the UI.
-- Supabase OAuth providers must be configured before production social login works.
+- Google auth buttons are present in the UI.
+- Supabase Google OAuth provider must be configured before production social login works.
+- Apple login is parked unless it can be enabled without the paid Apple Developer Program.
 - Google Calendar integration should create/use a separate `fanatic.space` calendar and sync session events after the session workflow is stable.
 
 Avoid in version 1:

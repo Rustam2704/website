@@ -41,9 +41,10 @@ Current Supabase project:
 
 OAuth status:
 
-- Google and Apple buttons exist in `/crm/` and `/portal/`.
+- Google buttons exist in `/crm/` and `/portal/`.
 - They require provider setup in Supabase Authentication before they work in production.
 - GitHub login is intentionally not shown.
+- Apple login is intentionally not shown unless it can be enabled without Apple Developer Program cost.
 
 ## Tables Created
 

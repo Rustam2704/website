@@ -325,7 +325,10 @@ document.querySelectorAll("[data-oauth-provider]").forEach((button) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: "https://fanatic.space/portal/"
+        redirectTo: "https://fanatic.space/portal/",
+        queryParams: {
+          prompt: "select_account"
+        }
       }
     });
 

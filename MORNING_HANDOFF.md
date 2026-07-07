@@ -56,7 +56,7 @@ Latest checked pieces:
 - Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
 - `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 - Landing hero uses a Lenovo-style technical workspace image.
-- CRM and portal show Google / Apple login buttons; Supabase provider setup is still required before production OAuth works.
+- CRM and portal show Google login buttons; Supabase provider setup is still required before production OAuth works.
 - CRM shell is moving from generic client tracker toward teaching CRM: Today dashboard, Students, Tasks, Messages.
 
 ## Still Needs User Clicks Later
