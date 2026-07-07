@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /crm/
+Disallow: /portal/
 
 Sitemap: https://fanatic.space/sitemap.xml
