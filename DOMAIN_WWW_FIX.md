@@ -46,5 +46,5 @@ Cloudflare Pages custom domain is active for `www.fanatic.space`.
 The repository includes `_redirects` to redirect:
 
 ```text
-https://www.fanatic.space/* -> https://fanatic.space/:splat
+https://www.fanatic.space/* -> https://fanatic.space/:splat 301!
 ```
