@@ -147,6 +147,15 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-list-access.ps1
 ```
 
+Revoke client portal access:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-revoke-client-access.ps1 `
+  -ClientEmail "client@example.com" `
+  -UserEmail "client@example.com"
+```
+
 Remove known Codex test clients after UI testing:
 
 ```powershell

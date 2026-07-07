@@ -196,6 +196,15 @@ $env:PGPASSWORD = "<database-password>"
   -UserEmail "client@example.com"
 ```
 
+Revoke portal access:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-revoke-client-access.ps1 `
+  -ClientEmail "client@example.com" `
+  -UserEmail "client@example.com"
+```
+
 Create a client and grant portal access if that auth user already exists:
 
 ```powershell
