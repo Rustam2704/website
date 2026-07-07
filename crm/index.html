@@ -81,6 +81,7 @@
             <div class="button-row">
               <input class="visually-hidden" id="import-clients-input" type="file" accept=".csv,text/csv">
               <button type="button" class="secondary" id="import-clients-button">Import CSV</button>
+              <button type="button" class="secondary" id="template-button">Template CSV</button>
               <button type="button" class="secondary" id="export-button">Export CSV</button>
               <button type="button" class="secondary" id="backup-button">Backup JSON</button>
               <button type="button" class="secondary" id="sign-out-button">Sign out</button>
@@ -346,7 +347,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-19"></script>
+    <script type="module" src="./app.js?v=2026-07-07-20"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

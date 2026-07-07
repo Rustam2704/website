@@ -30,6 +30,7 @@ const views = {
   deleteClientButton: $("#delete-client-button"),
   importClientsButton: $("#import-clients-button"),
   importClientsInput: $("#import-clients-input"),
+  templateButton: $("#template-button"),
   clientEditForm: $("#client-edit-form"),
   clientSearchInput: $("#client-search"),
   clientStatusFilter: $("#client-status-filter"),
@@ -701,6 +702,13 @@ $("#import-clients-input").addEventListener("change", async (event) => {
   } finally {
     event.currentTarget.value = "";
   }
+});
+
+$("#template-button").addEventListener("click", () => {
+  download("fanatic-crm-client-import-template.csv", [
+    "name,email,timezone,plan,area,current_goal,status",
+    "\"Example Client\",client@example.com,UK,session_only,\"programming, AI, setup\",\"First 50-minute session\",lead"
+  ].join("\n"));
 });
 
 $("#client-search").addEventListener("input", (event) => {
