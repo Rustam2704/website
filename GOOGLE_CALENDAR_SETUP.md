@@ -5,6 +5,7 @@ Goal: sync CRM sessions into a separate Google Calendar named `fanatic.space`.
 ## Current State
 
 - CRM already stores session date, duration, topic, notes, next actions, and repeat choice.
+- CRM can optionally store meeting URL and confirmation status after `supabase_lesson_fields.sql` is applied.
 - `supabase_calendar.sql` adds the database fields needed for calendar connection and event mapping.
 - Actual sync should be implemented after the schema is applied and Google Calendar OAuth scope is enabled.
 

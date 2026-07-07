@@ -139,14 +139,21 @@ function buildSessionPayload(raw) {
   const repeatNote = raw.repeat && raw.repeat !== "never" ? `Repeat: ${raw.repeat}` : "";
   const notes = [raw.notes, repeatNote].filter(Boolean).join("\n");
 
-  return {
+  const payload = {
     date: start.toISOString(),
     duration_minutes: duration,
     topic: raw.topic,
     notes,
     next_actions: raw.next_actions,
-    private_notes: raw.private_notes
+    private_notes: raw.private_notes,
+    meeting_url: raw.meeting_url
   };
+
+  if (raw.confirmation_status) {
+    payload.confirmation_status = raw.confirmation_status;
+  }
+
+  return payload;
 }
 
 function fillForm(form, values) {

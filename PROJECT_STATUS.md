@@ -60,6 +60,7 @@ Last updated: July 7, 2026
   - task cards can display due date, teacher comment, and student comment after LMS-lite migration is applied
   - client cards show activity counts
   - quick Add session action
+  - session form can optionally capture meeting URL and confirmation status after lesson migration is applied
   - secondary tools are grouped under a Tools menu
   - student list supports status filter, area filter, and sorting
   - add/edit forms are collapsed behind action blocks until needed

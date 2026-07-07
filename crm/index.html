@@ -324,6 +324,20 @@
                         <input name="topic">
                       </label>
                       <label>
+                        Meeting link
+                        <input name="meeting_url" type="url" placeholder="https://...">
+                      </label>
+                      <label>
+                        Confirmation
+                        <select name="confirmation_status">
+                          <option value="">Not tracked yet</option>
+                          <option value="unconfirmed">Unconfirmed</option>
+                          <option value="confirmed">Confirmed</option>
+                          <option value="cancelled">Cancelled</option>
+                          <option value="completed">Completed</option>
+                        </select>
+                      </label>
+                      <label>
                         Notes
                         <textarea name="notes" rows="3"></textarea>
                       </label>
@@ -465,7 +479,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-31"></script>
+    <script type="module" src="./app.js?v=2026-07-07-32"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");
