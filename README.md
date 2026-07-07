@@ -108,6 +108,7 @@ Files:
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow
 - `REPLY_TEMPLATES.md` - email replies for new leads
 - `DOMAIN_WWW_FIX.md` - remaining `www.fanatic.space` DNS/redirect fix
+- `PROJECT_STATUS.md` - concise current status and next actions
 
 ---
 
