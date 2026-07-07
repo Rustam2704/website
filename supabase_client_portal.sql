@@ -313,6 +313,10 @@ begin
     raise exception 'URL is required';
   end if;
 
+  if trim(p_url) !~* '^https?://' then
+    raise exception 'Only http and https links are allowed';
+  end if;
+
   if p_kind not in ('screenshot', 'project', 'video', 'document', 'other') then
     raise exception 'Invalid file kind';
   end if;
