@@ -99,6 +99,7 @@ Files:
 - `CRM_SPEC.md` - first scoped CRM/product spec
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow
 - `REPLY_TEMPLATES.md` - email replies for new leads
+- `DOMAIN_WWW_FIX.md` - remaining `www.fanatic.space` DNS/redirect fix
 
 ---
 
