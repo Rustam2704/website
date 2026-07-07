@@ -7,8 +7,10 @@ $pages = @(
   @{ Name = "thanks"; Url = "https://fanatic.space/thanks/" }
 )
 
-foreach ($page in $pages) {
+$results = foreach ($page in $pages) {
   $response = Invoke-WebRequest -Uri $page.Url -UseBasicParsing
+  $styles = [regex]::Matches($response.Content, '<link[^>]+href="([^"]+\.css[^"]*)"') |
+    ForEach-Object { $_.Groups[1].Value }
   $scripts = [regex]::Matches($response.Content, '<script[^>]+src="([^"]+)"') |
     ForEach-Object { $_.Groups[1].Value }
 
@@ -16,7 +18,9 @@ foreach ($page in $pages) {
     Name = $page.Name
     Url = $page.Url
     Status = [int]$response.StatusCode
+    Styles = ($styles -join "; ")
     Scripts = ($scripts -join "; ")
   }
 }
 
+$results | Format-List
