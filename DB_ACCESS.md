@@ -134,6 +134,24 @@ $env:PGPASSWORD = "<database-password>"
   -Message "Support note text"
 ```
 
+Add a client file / project / screenshot / video link:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-add-file-link.ps1 `
+  -ClientEmail "client@example.com" `
+  -Url "https://example.com/client-artifact" `
+  -Label "Client artifact" `
+  -Kind "project"
+```
+
+List client file links:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-list-files.ps1 -ClientEmail "client@example.com"
+```
+
 Resolve latest support note for a client:
 
 ```powershell

@@ -31,6 +31,7 @@ Last updated: July 7, 2026
 - Admin CRM can be installed as a PWA shell on Android-compatible browsers.
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
+- CLI helpers can add and list client file/project/screenshot/video links.
 - Client portal database foundation.
 - Client portal can update assigned progress statuses through a safe RPC.
 - Client portal can add assigned progress items and support notes.
@@ -103,6 +104,17 @@ List intake requests:
 ```powershell
 $env:PGPASSWORD = "<database-password>"
 .\tools\crm-list-intake.ps1
+```
+
+Add a client file or project link:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-add-file-link.ps1 `
+  -ClientEmail "client@example.com" `
+  -Url "https://example.com/client-artifact" `
+  -Label "Client artifact" `
+  -Kind "project"
 ```
 
 Remove known Codex test clients after UI testing:
