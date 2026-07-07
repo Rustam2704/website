@@ -142,10 +142,13 @@ Add a session:
 $env:PGPASSWORD = "<database-password>"
 .\tools\crm-add-session.ps1 `
   -ClientEmail "client@example.com" `
+  -Date "2026-07-10 18:00+03" `
   -Topic "Session topic" `
   -Notes "Session notes" `
   -NextActions "Next actions" `
-  -PrivateNotes "Private admin-only notes"
+  -PrivateNotes "Private admin-only notes" `
+  -MeetingUrl "https://zoom.us/j/example" `
+  -ConfirmationStatus "confirmed"
 ```
 
 Add a support note:

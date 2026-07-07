@@ -37,6 +37,7 @@ Last updated: July 7, 2026
 - CLI helpers for CRM operations in `tools/`.
 - CLI helpers can add and list client file/project/screenshot/video links.
 - CLI progress helper can add task deadline and teacher/student comments after LMS-lite migration is applied.
+- CLI session helper can add date, meeting URL, and confirmation status.
 - CSV import exists for moving clients from the current spreadsheet into CRM.
 - Client portal database foundation.
 - Client portal can update assigned progress statuses through a safe RPC.
