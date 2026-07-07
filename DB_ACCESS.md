@@ -164,6 +164,16 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-delete-client.ps1 -ClientEmail "client@example.com"
 ```
 
+Update client status / plan / fields:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-update-client.ps1 `
+  -ClientEmail "client@example.com" `
+  -Status "active" `
+  -Plan "session_plus_support"
+```
+
 Export CRM tables to CSV:
 
 ```powershell
