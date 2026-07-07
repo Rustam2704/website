@@ -145,6 +145,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-export.ps1
 ```
 
+Check Supabase infrastructure:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\check-supabase.ps1
+```
+
 Exports are written to:
 
 ```text
