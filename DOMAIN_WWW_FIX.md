@@ -28,7 +28,7 @@ www.fanatic.space
 ```
 
 5. Let Cloudflare update DNS.
-6. If offered, redirect `www` to apex:
+6. Redirect `www` to apex:
 
 ```text
 https://fanatic.space/
@@ -41,4 +41,10 @@ https://fanatic.space/
 
 ## Current status
 
-Tracked in GitHub issue #8.
+Cloudflare Pages custom domain is active for `www.fanatic.space`.
+
+The repository includes `_redirects` to redirect:
+
+```text
+https://www.fanatic.space/* -> https://fanatic.space/:splat
+```

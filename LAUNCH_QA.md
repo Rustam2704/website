@@ -5,7 +5,7 @@ Use this checklist after every meaningful site change.
 ## Public site
 
 - `https://fanatic.space/` loads.
-- `https://www.fanatic.space/` should redirect or serve cleanly. Current status: tracked separately.
+- `https://www.fanatic.space/` redirects to `https://fanatic.space/`.
 - Hero image loads.
 - Form is visible.
 - Privacy note opens.

@@ -68,6 +68,7 @@ Done:
 - GitHub Pages enabled as fallback.
 - Domain purchased: `fanatic.space`.
 - Production URL is live on Cloudflare Pages: `https://fanatic.space/`.
+- `www.fanatic.space` is configured and redirects to the apex domain.
 - Domain expires: July 6, 2027.
 - Renewal price: $250.20/year.
 - Auto-renew is currently off.
