@@ -134,6 +134,20 @@ $env:PGPASSWORD = "<database-password>"
   -Message "Support note text"
 ```
 
+Resolve latest support note for a client:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-resolve-support.ps1 -ClientEmail "client@example.com"
+```
+
+Resolve all open support notes for a client:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-resolve-support.ps1 -ClientEmail "client@example.com" -All
+```
+
 Grant portal access after a client auth user exists:
 
 ```powershell
