@@ -374,6 +374,23 @@ h3 {
   margin-top: 18px;
 }
 
+.edit-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #f8faf8;
+}
+
+.edit-card summary {
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 750;
+}
+
+.edit-card form {
+  margin-top: 14px;
+}
+
 .mini-summary {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -457,6 +474,12 @@ h3 {
   padding: 7px 10px;
 }
 
+.record select {
+  max-width: 190px;
+  min-height: 36px;
+  padding: 7px 10px;
+}
+
 .record span,
 .record p {
   margin: 0;
@@ -509,5 +532,9 @@ h3 {
   .inline-form,
   .record {
     grid-template-columns: 1fr;
+  }
+
+  .record select {
+    max-width: 100%;
   }
 }

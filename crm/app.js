@@ -24,6 +24,7 @@ const views = {
   authStatus: $("#auth-status"),
   authMessage: $("#auth-message"),
   deleteClientButton: $("#delete-client-button"),
+  clientEditForm: $("#client-edit-form"),
   stats: $("#stats-grid"),
   clientList: $("#client-list"),
   selectedTitle: $("#selected-title"),
@@ -71,6 +72,13 @@ function cleanPayload(payload) {
   return Object.fromEntries(
     Object.entries(payload).map(([key, value]) => [key, value === "" ? null : value])
   );
+}
+
+function fillForm(form, values) {
+  Object.entries(values).forEach(([key, value]) => {
+    const field = form.elements[key];
+    if (field) field.value = value ?? "";
+  });
 }
 
 function download(filename, content, type = "text/csv") {
@@ -230,12 +238,17 @@ function renderSelectedClient() {
     <div><span>Area</span><strong>${h(client.area || "-")}</strong></div>
     <div><span>Goal</span><strong>${h(client.current_goal || "-")}</strong></div>
   `;
+
+  fillForm(views.clientEditForm, client);
 }
 
 function renderRelatedRecords() {
   views.progressRecords.innerHTML = renderRecordList(state.progress, "progress_items", (item) => `
     <strong>${h(item.title)}</strong>
-    <span>${h(item.status.replaceAll("_", " "))} / ${h(item.priority)}</span>
+    <span>${h(item.priority)}</span>
+    <select class="record-update" data-table="progress_items" data-id="${item.id}" data-field="status">
+      ${progressStatusOptions(item.status)}
+    </select>
   `);
 
   views.sessionRecords.innerHTML = renderRecordList(state.sessions, "sessions", (item) => `
@@ -248,6 +261,9 @@ function renderRelatedRecords() {
     <strong>${h(item.source)}</strong>
     <span>${h(formatDate(item.created_at))} / ${item.resolved ? "resolved" : "open"}</span>
     <p>${h(item.message)}</p>
+    <button type="button" class="secondary record-toggle" data-table="support_notes" data-id="${item.id}" data-field="resolved" data-value="${item.resolved ? "false" : "true"}">
+      Mark ${item.resolved ? "open" : "resolved"}
+    </button>
   `);
 
   views.fileRecords.innerHTML = renderRecordList(state.files, "client_files", (item) => `
@@ -259,6 +275,14 @@ function renderRelatedRecords() {
   $$(".record-delete").forEach((button) => {
     button.addEventListener("click", () => deleteRecord(button.dataset.table, button.dataset.id));
   });
+
+  $$(".record-update").forEach((control) => {
+    control.addEventListener("change", () => updateRecord(control.dataset.table, control.dataset.id, control.dataset.field, control.value));
+  });
+
+  $$(".record-toggle").forEach((button) => {
+    button.addEventListener("click", () => updateRecord(button.dataset.table, button.dataset.id, button.dataset.field, button.dataset.value === "true"));
+  });
 }
 
 function renderRecordList(records, table, template) {
@@ -269,6 +293,15 @@ function renderRecordList(records, table, template) {
       <button type="button" class="danger record-delete" data-table="${table}" data-id="${record.id}">Delete</button>
     </article>
   `).join("");
+}
+
+function progressStatusOptions(currentStatus) {
+  return [
+    ["blocked", "Blocked"],
+    ["in_progress", "In progress"],
+    ["improved", "Improved"],
+    ["done", "Done"]
+  ].map(([value, label]) => `<option value="${value}" ${value === currentStatus ? "selected" : ""}>${label}</option>`).join("");
 }
 
 async function insertRecord(table, form, extra = {}) {
@@ -288,6 +321,19 @@ async function deleteRecord(table, id) {
     supabase
       .from(table)
       .delete()
+      .eq("owner_id", state.user.id)
+      .eq("id", id)
+      .select()
+  );
+  await selectClient(state.selectedClient.id);
+}
+
+async function updateRecord(table, id, field, value) {
+  if (!state.selectedClient) return;
+  await requireResult(
+    supabase
+      .from(table)
+      .update({ [field]: value })
       .eq("owner_id", state.user.id)
       .eq("id", id)
       .select()
@@ -352,6 +398,26 @@ $("#client-form").addEventListener("submit", async (event) => {
   event.preventDefault();
   try {
     await insertRecord("clients", event.currentTarget, { owner_id: state.user.id });
+    await loadClients();
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+$("#client-edit-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!state.selectedClient) return;
+
+  try {
+    const payload = cleanPayload(formToObject(event.currentTarget));
+    await requireResult(
+      supabase
+        .from("clients")
+        .update(payload)
+        .eq("owner_id", state.user.id)
+        .eq("id", state.selectedClient.id)
+        .select()
+    );
     await loadClients();
   } catch (error) {
     alert(error.message);
