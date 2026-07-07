@@ -30,10 +30,11 @@ Last updated: July 7, 2026
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
 - Read-only client portal database foundation.
+- Admin CRM can grant/revoke client portal access from the Access tab.
 
 ## Important Follow-Ups
 
-- Add `https://fanatic.space/portal/` to Supabase Auth redirect URLs before testing real client portal login.
+- Add `https://fanatic.space/portal/` to Supabase Auth redirect URLs before testing real client portal login with a real client email.
 - Add Cloudflare Redirect Rule for `www.fanatic.space -> fanatic.space` with 301 for SEO.
 - Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
 - Replace contact phone / messenger placeholder when the number is ready.
