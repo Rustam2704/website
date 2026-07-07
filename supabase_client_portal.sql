@@ -7,6 +7,7 @@ create table if not exists public.client_access (
   owner_id uuid not null references auth.users(id) on delete cascade,
   client_id uuid not null references public.clients(id) on delete cascade,
   user_id uuid not null references auth.users(id) on delete cascade,
+  user_email text,
   status text not null default 'active'
     check (status in ('active', 'revoked')),
   created_at timestamptz not null default now(),
@@ -69,3 +70,60 @@ using (
 create index if not exists client_access_owner_idx on public.client_access(owner_id);
 create index if not exists client_access_user_status_idx on public.client_access(user_id, status);
 create index if not exists client_access_client_idx on public.client_access(client_id);
+
+alter table public.client_access
+add column if not exists user_email text;
+
+create or replace function public.grant_client_access_by_email(
+  p_client_id uuid,
+  p_user_email text
+)
+returns public.client_access
+language plpgsql
+security definer
+set search_path = public, auth
+as $$
+declare
+  v_owner_id uuid;
+  v_user_id uuid;
+  v_access public.client_access;
+begin
+  v_owner_id := auth.uid();
+
+  if v_owner_id is null then
+    raise exception 'Not authenticated';
+  end if;
+
+  select id
+  into v_user_id
+  from auth.users
+  where lower(email) = lower(p_user_email)
+  limit 1;
+
+  if v_user_id is null then
+    raise exception 'No Supabase auth user exists for %', p_user_email;
+  end if;
+
+  if not exists (
+    select 1
+    from public.clients
+    where id = p_client_id
+      and owner_id = v_owner_id
+  ) then
+    raise exception 'Client not found for current owner';
+  end if;
+
+  insert into public.client_access (owner_id, client_id, user_id, user_email, status)
+  values (v_owner_id, p_client_id, v_user_id, lower(p_user_email), 'active')
+  on conflict (client_id, user_id) do update
+  set
+    user_email = excluded.user_email,
+    status = 'active',
+    updated_at = now()
+  returning * into v_access;
+
+  return v_access;
+end;
+$$;
+
+grant execute on function public.grant_client_access_by_email(uuid, text) to authenticated;

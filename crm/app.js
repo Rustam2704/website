@@ -13,7 +13,8 @@ const state = {
   progress: [],
   sessions: [],
   support: [],
-  files: []
+  files: [],
+  access: []
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -39,7 +40,8 @@ const views = {
   progressRecords: $("#progress-records"),
   sessionRecords: $("#session-records"),
   supportRecords: $("#support-records"),
-  fileRecords: $("#file-records")
+  fileRecords: $("#file-records"),
+  accessRecords: $("#access-records")
 };
 
 function show(element, visible) {
@@ -283,17 +285,19 @@ async function selectClient(clientId) {
 
   const clientFilter = (query) => query.eq("owner_id", state.user.id).eq("client_id", clientId);
 
-  const [progress, sessions, support, files] = await Promise.all([
+  const [progress, sessions, support, files, access] = await Promise.all([
     requireResult(clientFilter(supabase.from("progress_items").select("*")).order("updated_at", { ascending: false })),
     requireResult(clientFilter(supabase.from("sessions").select("*")).order("date", { ascending: false })),
     requireResult(clientFilter(supabase.from("support_notes").select("*")).order("created_at", { ascending: false })),
-    requireResult(clientFilter(supabase.from("client_files").select("*")).order("created_at", { ascending: false }))
+    requireResult(clientFilter(supabase.from("client_files").select("*")).order("created_at", { ascending: false })),
+    requireResult(clientFilter(supabase.from("client_access").select("*")).order("created_at", { ascending: false }))
   ]);
 
   state.progress = progress;
   state.sessions = sessions;
   state.support = support;
   state.files = files;
+  state.access = access;
 
   renderRelatedRecords();
 }
@@ -352,6 +356,14 @@ function renderRelatedRecords() {
     ${storagePathFromUrl(item.url)
       ? `<button type="button" class="secondary record-open-file" data-path="${h(storagePathFromUrl(item.url))}">Open stored file</button><span>${h(storagePathFromUrl(item.url))}</span>`
       : `<a href="${h(item.url)}" target="_blank" rel="noreferrer">${h(item.url)}</a>`}
+  `);
+
+  views.accessRecords.innerHTML = renderRecordList(state.access, "client_access", (item) => `
+    <strong>${h(item.user_email || item.user_id)}</strong>
+    <span>${h(item.status)} / ${h(item.user_id)}</span>
+    <button type="button" class="secondary record-toggle" data-table="client_access" data-id="${item.id}" data-field="status" data-value="${item.status === "active" ? "revoked" : "active"}">
+      Mark ${item.status === "active" ? "revoked" : "active"}
+    </button>
   `);
 
   $$(".record-delete").forEach((button) => {
@@ -583,6 +595,26 @@ $("#file-form").addEventListener("submit", async (event) => {
       owner_id: state.user.id,
       client_id: state.selectedClient.id
     });
+    await selectClient(state.selectedClient.id);
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+$("#access-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!state.selectedClient) return;
+
+  const payload = formToObject(event.currentTarget);
+
+  try {
+    await requireResult(
+      supabase.rpc("grant_client_access_by_email", {
+        p_client_id: state.selectedClient.id,
+        p_user_email: payload.email
+      })
+    );
+    event.currentTarget.reset();
     await selectClient(state.selectedClient.id);
   } catch (error) {
     alert(error.message);

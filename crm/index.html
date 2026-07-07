@@ -219,6 +219,7 @@
                   <button type="button" class="tab" data-tab="sessions">Sessions</button>
                   <button type="button" class="tab" data-tab="support">Support</button>
                   <button type="button" class="tab" data-tab="files">Files / links</button>
+                  <button type="button" class="tab" data-tab="access">Access</button>
                 </div>
 
                 <section class="tab-panel" data-panel="progress">
@@ -311,6 +312,14 @@
                   </form>
                   <div class="records" id="file-records"></div>
                 </section>
+
+                <section class="tab-panel hidden" data-panel="access">
+                  <form class="inline-form" id="access-form">
+                    <input name="email" type="email" placeholder="client@example.com" required>
+                    <button type="submit">Grant portal access</button>
+                  </form>
+                  <div class="records" id="access-records"></div>
+                </section>
               </div>
             </section>
           </div>
@@ -319,7 +328,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-8"></script>
+    <script type="module" src="./app.js?v=2026-07-07-9"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");
