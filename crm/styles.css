@@ -455,6 +455,10 @@ h3 {
   align-items: end;
 }
 
+.inline-form + .inline-form {
+  margin-top: 10px;
+}
+
 .compact {
   padding: 0;
 }

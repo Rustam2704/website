@@ -281,6 +281,19 @@
                 </section>
 
                 <section class="tab-panel hidden" data-panel="files">
+                  <form class="inline-form" id="upload-form">
+                    <input name="file" type="file" required>
+                    <input name="label" placeholder="File label">
+                    <select name="kind">
+                      <option value="screenshot">Screenshot</option>
+                      <option value="project">Project</option>
+                      <option value="video">Video</option>
+                      <option value="document">Document</option>
+                      <option value="other" selected>Other</option>
+                    </select>
+                    <button type="submit">Upload</button>
+                  </form>
+
                   <form class="inline-form" id="file-form">
                     <input name="url" type="url" placeholder="https://..." required>
                     <input name="label" placeholder="Label">
@@ -303,6 +316,6 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-5"></script>
+    <script type="module" src="./app.js?v=2026-07-07-6"></script>
   </body>
 </html>

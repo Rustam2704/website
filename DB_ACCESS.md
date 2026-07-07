@@ -64,6 +64,13 @@ order by created_at desc
 limit 10;
 ```
 
+Show storage buckets:
+
+```sql
+select id, name, public, file_size_limit
+from storage.buckets;
+```
+
 ## Helper Scripts
 
 List clients:

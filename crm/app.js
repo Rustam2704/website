@@ -102,6 +102,20 @@ function toCsv(rows) {
   return [headers.join(","), ...rows.map((row) => headers.map((key) => escape(row[key])).join(","))].join("\n");
 }
 
+function safeFileName(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9._-]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 120) || "file";
+}
+
+function storagePathFromUrl(url) {
+  const prefix = "storage://client-files/";
+  return url?.startsWith(prefix) ? url.slice(prefix.length) : null;
+}
+
 async function requireResult(query) {
   const { data, error } = await query;
   if (error) throw error;
@@ -293,7 +307,9 @@ function renderRelatedRecords() {
   views.fileRecords.innerHTML = renderRecordList(state.files, "client_files", (item) => `
     <strong>${h(item.label || item.kind)}</strong>
     <span>${h(item.kind)}</span>
-    <a href="${h(item.url)}" target="_blank" rel="noreferrer">${h(item.url)}</a>
+    ${storagePathFromUrl(item.url)
+      ? `<button type="button" class="secondary record-open-file" data-path="${h(storagePathFromUrl(item.url))}">Open stored file</button><span>${h(storagePathFromUrl(item.url))}</span>`
+      : `<a href="${h(item.url)}" target="_blank" rel="noreferrer">${h(item.url)}</a>`}
   `);
 
   $$(".record-delete").forEach((button) => {
@@ -306,6 +322,10 @@ function renderRelatedRecords() {
 
   $$(".record-toggle").forEach((button) => {
     button.addEventListener("click", () => updateRecord(button.dataset.table, button.dataset.id, button.dataset.field, button.dataset.value === "true"));
+  });
+
+  $$(".record-open-file").forEach((button) => {
+    button.addEventListener("click", () => openStoredFile(button.dataset.path));
   });
 }
 
@@ -363,6 +383,19 @@ async function updateRecord(table, id, field, value) {
       .select()
   );
   await selectClient(state.selectedClient.id);
+}
+
+async function openStoredFile(path) {
+  const { data, error } = await supabase.storage
+    .from("client-files")
+    .createSignedUrl(path, 60);
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  window.open(data.signedUrl, "_blank", "noreferrer");
 }
 
 $("#auth-form").addEventListener("submit", async (event) => {
@@ -508,6 +541,40 @@ $("#file-form").addEventListener("submit", async (event) => {
       owner_id: state.user.id,
       client_id: state.selectedClient.id
     });
+    await selectClient(state.selectedClient.id);
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+$("#upload-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!state.selectedClient) return;
+
+  const form = event.currentTarget;
+  const payload = formToObject(form);
+  const file = form.elements.file.files[0];
+  if (!file) return;
+
+  try {
+    const path = `${state.user.id}/${state.selectedClient.id}/${Date.now()}-${safeFileName(file.name)}`;
+    const { error: uploadError } = await supabase.storage
+      .from("client-files")
+      .upload(path, file, { upsert: false });
+
+    if (uploadError) throw uploadError;
+
+    await requireResult(
+      supabase.from("client_files").insert({
+        owner_id: state.user.id,
+        client_id: state.selectedClient.id,
+        url: `storage://client-files/${path}`,
+        label: payload.label || file.name,
+        kind: payload.kind || "other"
+      }).select()
+    );
+
+    form.reset();
     await selectClient(state.selectedClient.id);
   } catch (error) {
     alert(error.message);
