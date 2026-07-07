@@ -113,6 +113,7 @@ Files:
 - `REPLY_TEMPLATES.md` - email replies for new leads
 - `DOMAIN_WWW_FIX.md` - remaining `www.fanatic.space` DNS/redirect fix
 - `PROJECT_STATUS.md` - concise current status and next actions
+- `MORNING_HANDOFF.md` - current handoff snapshot after autonomous setup work
 
 ---
 
