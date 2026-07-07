@@ -109,6 +109,7 @@ Files:
 - `CRM_SPEC.md` - first scoped CRM/product spec
 - `CRM_SETUP.md` - Supabase setup path for CRM v0
 - `DB_ACCESS.md` - psql / Supabase database access notes
+- `tools/apply-migration.ps1` - one-command SQL migration runner
 - `supabase_schema.sql` - first CRM database schema
 - `supabase_lesson_fields.sql` - optional lesson URL and confirmation fields for sessions
 - `supabase_lms_fields.sql` - optional LMS-lite deadline/comment fields for tasks

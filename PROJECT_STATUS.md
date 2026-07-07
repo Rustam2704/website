@@ -74,6 +74,7 @@ Last updated: July 7, 2026
   - `tools/check-public.ps1`
   - `tools/check-supabase.ps1`
 - SQL migration order is documented in `MIGRATIONS.md`.
+- SQL migrations can be applied through `tools/apply-migration.ps1`.
 - Google Calendar groundwork:
   - `supabase_calendar.sql`
   - `supabase_lesson_fields.sql`

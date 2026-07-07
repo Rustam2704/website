@@ -45,6 +45,13 @@ psql "host=aws-0-eu-west-1.pooler.supabase.com port=6543 dbname=postgres user=po
 
 Do not commit the database password.
 
+Apply one project migration:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\apply-migration.ps1 -File "supabase_lesson_fields.sql"
+```
+
 ## Smoke Test
 
 Show the current CRM users:
