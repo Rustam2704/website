@@ -26,6 +26,7 @@ Last updated: July 7, 2026
   - private file upload to Supabase Storage
   - CSV export
   - JSON backup
+- Admin CRM can be installed as a PWA shell on Android-compatible browsers.
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
 - Read-only client portal database foundation.

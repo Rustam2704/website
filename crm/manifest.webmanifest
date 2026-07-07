@@ -1,0 +1,18 @@
+{
+  "name": "Fanatic CRM",
+  "short_name": "Fanatic CRM",
+  "description": "Admin tracker for fanatic.space clients.",
+  "start_url": "/crm/",
+  "scope": "/crm/",
+  "display": "standalone",
+  "background_color": "#f5f7f5",
+  "theme_color": "#111817",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
