@@ -14,7 +14,8 @@ Last updated: July 7, 2026
 - Landing requests now save into Supabase `intake_requests` and still send email through FormSubmit.
 - CRM has a global `Requests` panel.
 - CRM can convert intake requests into clients.
-- CRM has CLI helpers for intake listing, conversion, archive, auth users, CSV export, SQL dump, and test-data cleanup.
+- CRM has CLI helpers for intake listing, conversion, archive, auth users, CSV export, SQL dump, full backup, CSV import, file links, portal access, and test-data cleanup.
+- CRM intake conversion now reuses an existing client with the same email instead of creating duplicates.
 - Client portal can:
   - show assigned client profile
   - show progress
@@ -23,9 +24,10 @@ Last updated: July 7, 2026
   - add support notes
   - add file / project / screenshot / video links
   - show safe session history without private notes
+  - open assigned private stored files through short-lived signed URLs
 - CRM and portal are marked `noindex, nofollow` through meta tags, robots.txt, and Cloudflare `_headers`.
 - PWA icons were added for CRM installability on Android-compatible browsers.
-- Portable PostgreSQL dump helper added.
+- Portable PostgreSQL dump helper and one-command backup helper added.
 
 ## Verified
 
@@ -42,8 +44,10 @@ Latest checked pieces:
 - CRM and portal return `X-Robots-Tag: noindex, nofollow`.
 - Supabase tables exist.
 - Supabase storage bucket exists.
+- Supabase storage policy lets clients read only assigned private files.
 - Client portal RPC functions exist.
 - `pg_dump` backup script works.
+- Live CRM and portal pages were checked in the browser: no console errors and no blank screen.
 
 ## Still Needs User Clicks Later
 
@@ -87,9 +91,33 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-export.ps1
 ```
 
+Import clients from CSV:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-import-clients.ps1 -CsvPath ".\examples\clients-import-template.csv"
+```
+
 Dump database:
 
 ```powershell
 $env:PGPASSWORD = "<database-password>"
 .\tools\crm-dump-db.ps1
+```
+
+Create a full backup bundle:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-backup.ps1
+```
+
+Create a client and grant portal access if the auth user already exists:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-create-client-with-access.ps1 `
+  -Name "Client Name" `
+  -Email "client@example.com" `
+  -Area "AI / programming"
 ```

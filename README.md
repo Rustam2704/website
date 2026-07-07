@@ -80,6 +80,7 @@ Done:
 - Admin CRM deployed at `/crm/` and connected to Supabase.
 - Client portal deployed at `/portal/` and connected to Supabase.
 - Client portal can add progress, support notes, file links, and see safe session history.
+- CLI helpers support CSV import from the current spreadsheet, full backup bundles, file links, and portal access grants.
 - Roadmap file created.
 - Immediate launch checklist created.
 
@@ -148,6 +149,7 @@ Data / future portability constraints:
 - Avoid deep vendor lock-in.
 - Supabase is acceptable for the first CRM because it uses PostgreSQL and can export data.
 - Keep CSV export as a safety valve.
+- Keep SQL dumps and backup bundles available so the database can move away from Supabase later.
 
 ---
 
