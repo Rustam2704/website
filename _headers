@@ -9,3 +9,9 @@
 
 /crm/manifest.webmanifest
   Content-Type: application/manifest+json; charset=utf-8
+
+/crm/*
+  X-Robots-Tag: noindex, nofollow
+
+/portal/*
+  X-Robots-Tag: noindex, nofollow
