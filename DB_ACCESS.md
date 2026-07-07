@@ -64,9 +64,30 @@ order by created_at desc
 limit 10;
 ```
 
+## Helper Scripts
+
+List clients:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-list-clients.ps1
+```
+
+Add a client:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-add-client.ps1 `
+  -Name "Client Name" `
+  -Email "client@example.com" `
+  -Area "AI / programming" `
+  -CurrentGoal "First goal"
+```
+
 Current test data:
 
 - `Codex Test Client`
 - one progress item
 - one session
 - one support note
+- `CLI Test Client`
