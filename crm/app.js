@@ -511,7 +511,11 @@ async function convertRequestToClient(id) {
   const request = state.intake.find((item) => item.id === id);
   if (!request) return;
 
-  const [client] = await requireResult(
+  const existingClient = state.clients.find((client) => {
+    return client.email && request.email && client.email.toLowerCase() === request.email.toLowerCase();
+  });
+
+  const client = existingClient || (await requireResult(
     supabase
       .from("clients")
       .insert({
@@ -524,7 +528,7 @@ async function convertRequestToClient(id) {
         plan: "session_only"
       })
       .select()
-  );
+  ))[0];
 
   await updateIntakeStatus(id, "converted", { client_id: client.id });
   state.selectedClient = client;
