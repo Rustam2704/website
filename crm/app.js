@@ -44,6 +44,8 @@ const views = {
   accessRecords: $("#access-records")
 };
 
+const ACTIVE_TAB_KEY = "fanatic.crm.activeTab";
+
 function show(element, visible) {
   element.classList.toggle("hidden", !visible);
 }
@@ -692,11 +694,18 @@ $("#backup-button").addEventListener("click", async () => {
 
 $$(".tab").forEach((button) => {
   button.addEventListener("click", () => {
-    $$(".tab").forEach((tab) => tab.classList.toggle("active", tab === button));
-    $$(".tab-panel").forEach((panel) => {
-      panel.classList.toggle("hidden", panel.dataset.panel !== button.dataset.tab);
-    });
+    setActiveTab(button.dataset.tab);
   });
 });
+
+function setActiveTab(tabName) {
+  localStorage.setItem(ACTIVE_TAB_KEY, tabName);
+  $$(".tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.tab === tabName));
+  $$(".tab-panel").forEach((panel) => {
+    panel.classList.toggle("hidden", panel.dataset.panel !== tabName);
+  });
+}
+
+setActiveTab(localStorage.getItem(ACTIVE_TAB_KEY) || "progress");
 
 boot();
