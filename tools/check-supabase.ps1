@@ -23,6 +23,8 @@ select 'bucket:client-files', exists(select 1 from storage.buckets where id='cli
 union all
 select 'policy:client storage read', exists(select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='client can read assigned storage files')
 union all
+select 'policy:client support read', exists(select 1 from pg_policies where schemaname='public' and tablename='support_notes' and policyname='client can read own support notes')
+union all
 select 'rpc:grant_client_access_by_email', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='grant_client_access_by_email')
 union all
 select 'rpc:claim_client_access_by_email', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='claim_client_access_by_email')

@@ -82,6 +82,21 @@ using (
   )
 );
 
+drop policy if exists "client can read own support notes" on public.support_notes;
+create policy "client can read own support notes"
+on public.support_notes
+for select
+to authenticated
+using (
+  exists (
+    select 1
+    from public.client_access access
+    where access.client_id = support_notes.client_id
+      and access.user_id = auth.uid()
+      and access.status = 'active'
+  )
+);
+
 create index if not exists client_access_owner_idx on public.client_access(owner_id);
 create index if not exists client_access_user_status_idx on public.client_access(user_id, status);
 create index if not exists client_access_client_idx on public.client_access(client_id);
@@ -430,6 +445,8 @@ $$;
 
 grant execute on function public.client_create_file_link(text, text, text) to authenticated;
 
+drop function if exists public.client_list_sessions();
+
 create or replace function public.client_list_sessions()
 returns table (
   id uuid,
@@ -438,6 +455,8 @@ returns table (
   topic text,
   notes text,
   next_actions text,
+  meeting_url text,
+  confirmation_status text,
   created_at timestamptz
 )
 language sql
@@ -451,6 +470,8 @@ as $$
     sessions.topic,
     sessions.notes,
     sessions.next_actions,
+    sessions.meeting_url,
+    sessions.confirmation_status,
     sessions.created_at
   from public.sessions
   where exists (

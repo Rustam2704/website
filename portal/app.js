@@ -23,6 +23,7 @@ const views = {
   recentProgressList: $("#recent-progress-list"),
   progressRecords: $("#progress-records"),
   sessionRecords: $("#session-records"),
+  messageRecords: $("#message-records"),
   fileRecords: $("#file-records"),
   clientProgressForm: $("#client-progress-form"),
   clientSupportForm: $("#client-support-form"),
@@ -123,6 +124,7 @@ async function loadPortalData() {
       views.recentProgressList.innerHTML = `<p>No progress is available yet.</p>`;
       views.progressRecords.innerHTML = `<div class="empty-list">No progress is available yet.</div>`;
       views.sessionRecords.innerHTML = `<div class="empty-list">No sessions are available yet.</div>`;
+      views.messageRecords.innerHTML = `<div class="empty-list">No messages yet.</div>`;
       views.fileRecords.innerHTML = `<div class="empty-list">No files or links are available yet.</div>`;
       return;
     }
@@ -144,6 +146,13 @@ async function loadPortalData() {
         .order("created_at", { ascending: false })
     );
     const sessions = await requireResult(supabase.rpc("client_list_sessions"));
+    const messages = await requireResult(
+      supabase
+        .from("support_notes")
+        .select("*")
+        .eq("client_id", clientId)
+        .order("created_at", { ascending: false })
+    );
 
     views.clientName.textContent = client.name;
     views.clientTimezone.textContent = client.timezone || client.area || "-";
@@ -212,6 +221,18 @@ async function loadPortalData() {
         </article>
       `).join("")
       : `<div class="empty-list">No sessions are available yet.</div>`;
+
+    views.messageRecords.innerHTML = messages.length
+      ? messages.map((item) => `
+        <article class="record">
+          <div class="record-body">
+            <strong>${h(item.source || "message")}</strong>
+            <span>${h(formatDate(item.created_at))} / ${item.resolved ? "resolved" : "open"}</span>
+            <p>${h(item.message)}</p>
+          </div>
+        </article>
+      `).join("")
+      : `<div class="empty-list">No messages yet.</div>`;
   } catch (error) {
     alert(error.message);
   }
@@ -338,6 +359,7 @@ views.clientSupportForm.addEventListener("submit", async (event) => {
     );
     event.currentTarget.reset();
     setSupportMessage("Sent.");
+    await loadPortalData();
   } catch (error) {
     setSupportMessage(error.message, true);
   }

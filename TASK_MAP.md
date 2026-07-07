@@ -196,6 +196,7 @@ Done / started:
 - Home has Next lesson, Your next steps, Current goal, and Recent progress.
 - Home has direct actions to sessions and tasks.
 - Add forms are collapsed until needed.
+- Messages tab shows message history.
 
 Still needed:
 

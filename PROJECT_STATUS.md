@@ -42,6 +42,7 @@ Last updated: July 7, 2026
 - Client portal can update assigned progress statuses through a safe RPC.
 - Client portal can update its own progress/task notes through a safe RPC.
 - Client portal can add assigned progress items and support notes.
+- Client portal can show its message history.
 - Client portal can add file/project/screenshot/video links.
 - Client portal can show session history and next actions without exposing private session notes.
 - Client portal has its own manifest and service worker.
