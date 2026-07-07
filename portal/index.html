@@ -20,10 +20,11 @@
         <nav class="nav">
           <a href="#profile">Profile</a>
           <a href="#progress">Progress</a>
+          <a href="#support">Support</a>
         </nav>
         <div class="sidebar-note">
           <strong>v0</strong>
-          <span>Client-facing read-only progress view.</span>
+          <span>Client-facing progress and support view.</span>
         </div>
       </aside>
 
@@ -80,13 +81,45 @@
                 <h3>Tracked items</h3>
               </div>
             </div>
+            <form class="inline-form" id="client-progress-form">
+              <input name="title" placeholder="Add progress, blocker, or next action" required>
+              <select name="status">
+                <option value="blocked">Blocked</option>
+                <option value="in_progress" selected>In progress</option>
+                <option value="improved">Improved</option>
+                <option value="done">Done</option>
+              </select>
+              <select name="priority">
+                <option value="low">Low</option>
+                <option value="normal" selected>Normal</option>
+                <option value="high">High</option>
+              </select>
+              <button type="submit">Add</button>
+            </form>
             <div class="records" id="progress-records"></div>
+          </section>
+
+          <section class="panel" id="support">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Support</p>
+                <h3>Small question or note</h3>
+              </div>
+            </div>
+            <form class="stacked-form" id="client-support-form">
+              <label>
+                Message
+                <textarea name="message" rows="3" placeholder="Write the question or update you want Rustam to see." required></textarea>
+              </label>
+              <button type="submit">Send note</button>
+              <p class="form-message" id="support-message"></p>
+            </form>
           </section>
         </section>
       </main>
     </div>
 
     <script src="../crm/config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-2"></script>
+    <script type="module" src="./app.js?v=2026-07-07-3"></script>
   </body>
 </html>

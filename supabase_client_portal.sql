@@ -172,3 +172,103 @@ end;
 $$;
 
 grant execute on function public.client_update_progress_status(uuid, text) to authenticated;
+
+create or replace function public.client_create_progress_item(
+  p_title text,
+  p_status text default 'in_progress',
+  p_priority text default 'normal'
+)
+returns public.progress_items
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid;
+  v_access public.client_access;
+  v_item public.progress_items;
+begin
+  v_user_id := auth.uid();
+
+  if v_user_id is null then
+    raise exception 'Not authenticated';
+  end if;
+
+  if nullif(trim(p_title), '') is null then
+    raise exception 'Progress title is required';
+  end if;
+
+  if p_status not in ('blocked', 'in_progress', 'improved', 'done') then
+    raise exception 'Invalid progress status';
+  end if;
+
+  if p_priority not in ('low', 'normal', 'high') then
+    raise exception 'Invalid progress priority';
+  end if;
+
+  select *
+  into v_access
+  from public.client_access access
+  where access.user_id = v_user_id
+    and access.status = 'active'
+  order by access.created_at desc
+  limit 1;
+
+  if v_access.id is null then
+    raise exception 'No active client access found';
+  end if;
+
+  insert into public.progress_items (owner_id, client_id, title, status, priority)
+  values (v_access.owner_id, v_access.client_id, trim(p_title), p_status, p_priority)
+  returning * into v_item;
+
+  return v_item;
+end;
+$$;
+
+grant execute on function public.client_create_progress_item(text, text, text) to authenticated;
+
+create or replace function public.client_create_support_note(
+  p_message text
+)
+returns public.support_notes
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid;
+  v_access public.client_access;
+  v_note public.support_notes;
+begin
+  v_user_id := auth.uid();
+
+  if v_user_id is null then
+    raise exception 'Not authenticated';
+  end if;
+
+  if nullif(trim(p_message), '') is null then
+    raise exception 'Message is required';
+  end if;
+
+  select *
+  into v_access
+  from public.client_access access
+  where access.user_id = v_user_id
+    and access.status = 'active'
+  order by access.created_at desc
+  limit 1;
+
+  if v_access.id is null then
+    raise exception 'No active client access found';
+  end if;
+
+  insert into public.support_notes (owner_id, client_id, message, source)
+  values (v_access.owner_id, v_access.client_id, trim(p_message), 'chat')
+  returning * into v_note;
+
+  return v_note;
+end;
+$$;
+
+grant execute on function public.client_create_support_note(text) to authenticated;

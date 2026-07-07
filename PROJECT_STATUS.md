@@ -33,6 +33,7 @@ Last updated: July 7, 2026
 - CLI helpers for CRM operations in `tools/`.
 - Client portal database foundation.
 - Client portal can update assigned progress statuses through a safe RPC.
+- Client portal can add assigned progress items and support notes.
 - Admin CRM can grant/revoke client portal access from the Access tab.
 - CRM quality-of-life:
   - first client auto-selects after login

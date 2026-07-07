@@ -25,6 +25,7 @@
 - CLI helpers created for client/progress/session/support/export/delete.
 - Client portal skeleton deployed at `/portal/`.
 - Client portal can update assigned progress item statuses.
+- Client portal can add assigned progress items and support notes.
 
 ## Next practical steps
 

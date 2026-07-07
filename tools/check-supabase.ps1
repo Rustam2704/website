@@ -23,7 +23,11 @@ select 'bucket:client-files', exists(select 1 from storage.buckets where id='cli
 union all
 select 'rpc:grant_client_access_by_email', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='grant_client_access_by_email')
 union all
-select 'rpc:client_update_progress_status', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_update_progress_status');
+select 'rpc:client_update_progress_status', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_update_progress_status')
+union all
+select 'rpc:client_create_progress_item', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_progress_item')
+union all
+select 'rpc:client_create_support_note', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_support_note');
 "@
 
 & $psql $connection -c $sql

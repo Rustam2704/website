@@ -12,9 +12,12 @@ const views = {
   authForm: $("#auth-form"),
   authEmail: $("#auth-email"),
   authMessage: $("#auth-message"),
+  supportMessage: $("#support-message"),
   clientName: $("#client-name"),
   clientSummary: $("#client-summary"),
-  progressRecords: $("#progress-records")
+  progressRecords: $("#progress-records"),
+  clientProgressForm: $("#client-progress-form"),
+  clientSupportForm: $("#client-support-form")
 };
 
 let user = null;
@@ -35,6 +38,11 @@ function show(element, visible) {
 function setMessage(message, isError = false) {
   views.authMessage.textContent = message || "";
   views.authMessage.classList.toggle("error", isError);
+}
+
+function setSupportMessage(message, isError = false) {
+  views.supportMessage.textContent = message || "";
+  views.supportMessage.classList.toggle("error", isError);
 }
 
 async function requireResult(query) {
@@ -146,6 +154,43 @@ async function updateProgressStatus(progressId, status) {
     alert(error.message);
   }
 }
+
+views.clientProgressForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
+
+  try {
+    await requireResult(
+      supabase.rpc("client_create_progress_item", {
+        p_title: payload.title,
+        p_status: payload.status,
+        p_priority: payload.priority
+      })
+    );
+    event.currentTarget.reset();
+    await loadPortalData();
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+views.clientSupportForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  setSupportMessage("Sending...");
+  const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
+
+  try {
+    await requireResult(
+      supabase.rpc("client_create_support_note", {
+        p_message: payload.message
+      })
+    );
+    event.currentTarget.reset();
+    setSupportMessage("Sent.");
+  } catch (error) {
+    setSupportMessage(error.message, true);
+  }
+});
 
 views.authForm.addEventListener("submit", async (event) => {
   event.preventDefault();
