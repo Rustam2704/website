@@ -258,15 +258,22 @@ async function updateProgressStatus(progressId, status) {
 views.clientProgressForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
+  const request = {
+    p_title: payload.title,
+    p_status: payload.status,
+    p_priority: payload.priority
+  };
+
+  if (payload.due_at) {
+    request.p_due_at = payload.due_at;
+  }
+
+  if (payload.client_comment) {
+    request.p_client_comment = payload.client_comment;
+  }
 
   try {
-    await requireResult(
-      supabase.rpc("client_create_progress_item", {
-        p_title: payload.title,
-        p_status: payload.status,
-        p_priority: payload.priority
-      })
-    );
+    await requireResult(supabase.rpc("client_create_progress_item", request));
     event.currentTarget.reset();
     await loadPortalData();
   } catch (error) {

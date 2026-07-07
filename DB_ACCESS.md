@@ -124,7 +124,9 @@ $env:PGPASSWORD = "<database-password>"
   -ClientEmail "client@example.com" `
   -Title "First progress item" `
   -Status "in_progress" `
-  -Priority "normal"
+  -Priority "normal" `
+  -DueAt "2026-07-10" `
+  -TeacherComment "Keep the folder structure boring and repeatable."
 ```
 
 Add a session:

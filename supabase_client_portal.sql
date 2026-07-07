@@ -263,10 +263,14 @@ $$;
 
 grant execute on function public.client_update_progress_status(uuid, text) to authenticated;
 
+drop function if exists public.client_create_progress_item(text, text, text);
+
 create or replace function public.client_create_progress_item(
   p_title text,
   p_status text default 'in_progress',
-  p_priority text default 'normal'
+  p_priority text default 'normal',
+  p_due_at timestamptz default null,
+  p_client_comment text default null
 )
 returns public.progress_items
 language plpgsql
@@ -308,15 +312,23 @@ begin
     raise exception 'No active client access found';
   end if;
 
-  insert into public.progress_items (owner_id, client_id, title, status, priority)
-  values (v_access.owner_id, v_access.client_id, trim(p_title), p_status, p_priority)
+  insert into public.progress_items (owner_id, client_id, title, status, priority, due_at, client_comment)
+  values (
+    v_access.owner_id,
+    v_access.client_id,
+    trim(p_title),
+    p_status,
+    p_priority,
+    p_due_at,
+    nullif(trim(p_client_comment), '')
+  )
   returning * into v_item;
 
   return v_item;
 end;
 $$;
 
-grant execute on function public.client_create_progress_item(text, text, text) to authenticated;
+grant execute on function public.client_create_progress_item(text, text, text, timestamptz, text) to authenticated;
 
 create or replace function public.client_create_support_note(
   p_message text

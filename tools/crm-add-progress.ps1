@@ -11,6 +11,12 @@ param(
   [ValidateSet("low", "normal", "high")]
   [string]$Priority = "normal",
 
+  [string]$DueAt,
+
+  [string]$TeacherComment,
+
+  [string]$ClientComment,
+
   [string]$OwnerEmail = "direct@fanatic.space"
 )
 
@@ -33,10 +39,27 @@ client as (
   order by c.created_at desc
   limit 1
 )
-insert into public.progress_items (owner_id, client_id, title, status, priority)
-select owner_id, client_id, $(ConvertTo-SqlText $Title), '$Status', '$Priority'
+insert into public.progress_items (
+  owner_id,
+  client_id,
+  title,
+  status,
+  priority,
+  due_at,
+  teacher_comment,
+  client_comment
+)
+select
+  owner_id,
+  client_id,
+  $(ConvertTo-SqlText $Title),
+  '$Status',
+  '$Priority',
+  $(ConvertTo-SqlText $DueAt)::timestamptz,
+  $(ConvertTo-SqlText $TeacherComment),
+  $(ConvertTo-SqlText $ClientComment)
 from client
-returning id, client_id, title, status, priority, created_at;
+returning id, client_id, title, status, priority, due_at, teacher_comment, client_comment, created_at;
 "@
 
 Invoke-CrmPsql -ConnectionString $connection -Sql $sql
