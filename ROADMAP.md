@@ -1,14 +1,19 @@
 # Product Roadmap
 
-## Phase 1: Landing page and lead capture
+## Phase 1: Landing page, deploy, and lead capture
 
 Status: in progress
 
 - Static landing page with clear positioning.
 - Free 15-minute consultation request form.
 - Two plans: $100 session only, $130 session plus weekly support.
-- Deploy to Netlify or similar static hosting.
+- Deploy through Cloudflare Pages.
 - Add domain and domain email.
+- Keep `www.fanatic.space` working and later redirect it to `fanatic.space` for SEO consistency.
+
+Important rule:
+
+- Do not spend time on playbooks, reply templates, or extra sales documents until the technical infrastructure is moving.
 
 ## Phase 2: Minimal client CRM
 
@@ -58,6 +63,19 @@ Recommended first implementation:
 
 - Start with a responsive web dashboard that works well on mobile.
 - Wrap or rebuild only the small monitoring surface for Android after the CRM workflow is proven.
+
+## Later: Static Ad Creatives
+
+Goal: prepare a few simple static ad images for online lessons aimed at parents / children ages 8-18.
+
+Scope:
+
+- Programming lessons.
+- AI tools and practical computer skills.
+- Other computer directions as needed.
+- 2-4 static images for tests.
+
+Do later, after the site and first CRM path are working.
 
 ## Current principle
 

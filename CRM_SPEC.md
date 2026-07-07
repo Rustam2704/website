@@ -87,6 +87,11 @@ Client cannot:
 - simple responsive web dashboard first
 - Android later only as a small monitoring surface
 
+First technical artifact:
+
+- `supabase_schema.sql` creates the v0 tables, indexes, timestamps, and owner-based Row Level Security policies.
+- `CRM_SETUP.md` describes the Supabase setup path.
+
 ## Export requirement
 
 Every core table must be exportable to CSV.

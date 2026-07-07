@@ -5,6 +5,7 @@
 - Website source is in GitHub: https://github.com/Rustam2704/website
 - Domain purchased: `fanatic.space`
 - Public URL target: https://fanatic.space/
+- Cloudflare Pages is the main production deploy target.
 - Domain expires: July 6, 2027
 - Renewal price: $250.20/year
 - Auto-renew is currently off
@@ -17,18 +18,13 @@
 
 ## Next practical steps
 
-1. Replace the phone/contact placeholder if a phone or messenger will be used.
-2. Add stronger credibility examples for portal.zt.ua.
-3. Add one or two real proof points, examples, or testimonials.
-4. Decide whether to add lightweight analytics.
-5. Keep GitHub Pages only as fallback.
-6. Before May 2027, decide whether to renew `fanatic.space` or migrate to a cheaper domain.
-5. Replace the phone placeholder in `index.html`.
-6. Add one real photo or a better technical workspace image if needed.
-7. Add two short credibility blocks:
-   - 12 years in technical education.
-   - Online school: portal.zt.ua.
-8. Decide whether applications should go to email only or a real form backend.
+1. Confirm the latest Cloudflare Pages deploy after each push.
+2. Keep `www.fanatic.space` active, then add an apex redirect later for SEO consistency.
+3. Prepare the Supabase database schema for the first admin-only CRM tracker.
+4. Build the first responsive web dashboard before Android.
+5. Replace the phone/contact placeholder if a phone or messenger will be used.
+6. Decide whether to add lightweight analytics.
+7. Before May 2027, decide whether to renew `fanatic.space` or migrate to a cheaper domain.
 
 ## Fast form options
 
@@ -45,6 +41,8 @@
 
 ## Rule for now
 
-Do not build the CRM before the first lead path works:
+The first lead path works, so the next technical priority is CRM infrastructure:
 
 visitor -> free 15-minute consultation request -> reply -> paid session.
+
+Avoid spending more time on reply templates or sales playbooks for now. Rustam can adjust those later.

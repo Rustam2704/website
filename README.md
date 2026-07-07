@@ -98,6 +98,8 @@ Files:
 - `LAUNCH_QA.md` - public launch QA checklist
 - `CLOUDFLARE_PAGES.md` - Cloudflare Pages deployment notes
 - `CRM_SPEC.md` - first scoped CRM/product spec
+- `CRM_SETUP.md` - Supabase setup path for CRM v0
+- `supabase_schema.sql` - first CRM database schema
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow
 - `REPLY_TEMPLATES.md` - email replies for new leads
 - `DOMAIN_WWW_FIX.md` - remaining `www.fanatic.space` DNS/redirect fix
@@ -142,17 +144,18 @@ Data / future portability constraints:
 
 Highest priority:
 
-1. Replace the phone/contact placeholder if a phone or messenger will be used.
-2. Add stronger credibility examples for portal.zt.ua.
-3. Add one or two real proof points, examples, or testimonials.
-4. Decide whether to add lightweight analytics.
-5. Keep GitHub Pages as a fallback.
+1. Confirm Cloudflare Pages deploys after each push.
+2. Keep `www.fanatic.space` working, then add a redirect to `fanatic.space` later for SEO consistency.
+3. Prepare the Supabase schema for the admin-only CRM tracker.
+4. Build the first responsive dashboard before Android.
+5. Replace the phone/contact placeholder if a phone or messenger will be used.
 
 Nice but not blocking:
 
 - Add a real photo or stronger technical workspace image.
 - Add a compact credibility section for portal.zt.ua.
 - Add one or two short testimonials or proof points.
+- Prepare 2-4 static ad images later for online lessons for ages 8-18: programming, AI tools, and practical computer directions.
 
 Detailed checklist: `NEXT_STEPS.md`
 
@@ -220,10 +223,10 @@ C:\Program Files\Git\cmd\git.exe
 
 ## 8. Operating Rule
 
-Do not build the CRM, Android app, payments, or complex automation before the first commercial path works:
+The first commercial path should stay simple:
 
 ```text
 public site -> consultation request -> reply -> paid session
 ```
 
-This project should reduce friction, not create a new reason to avoid launch.
+Now that the page, domain, email routing, and form are working, the next real technical work is CRM infrastructure. Avoid spending more time on playbooks, reply templates, or extra sales text unless they unblock the technical setup.
