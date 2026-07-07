@@ -41,16 +41,12 @@ Done / started:
 - Secondary export/import/backup/sign-out actions are grouped under `Tools`.
 - Student list supports status filter, area filter, and sorting.
 - Add/edit forms are collapsed until needed.
+- Selected-student page now has a header and Overview tab.
+- Today dashboard detects stale messages, stale tasks, sessions missing next actions, active students without upcoming sessions, and request review work.
 
 Still needed:
 
-- Make the daily dashboard truly useful:
-  - upcoming lessons;
-  - unconfirmed lessons;
-  - overdue tasks;
-  - unread messages;
-  - students who have not received a response for too long.
-- Keep refining the daily dashboard logic and selected-student workflow.
+- Keep refining the daily dashboard logic after real workflow friction appears.
 
 ## 3. Google Calendar Integration
 
@@ -143,7 +139,8 @@ Needs attention should show:
 Status:
 
 - Basic `Today`, `Upcoming sessions`, and `Needs attention` sections exist.
-- They are still shallow and need better data model support.
+- `Needs attention` now includes stale messages, stale tasks, sessions missing next actions, active students without upcoming sessions, blockers, and new requests.
+- Data model still needs explicit confirmation/due-date/payment fields later.
 
 ## 6. Students Page
 

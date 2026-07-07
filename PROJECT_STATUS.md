@@ -62,6 +62,7 @@ Last updated: July 7, 2026
   - add/edit forms are collapsed behind action blocks until needed
   - selected student has a working page header and Overview tab
   - student Overview shows current goal, next lesson, active tasks, blockers, latest session, latest message, and latest file
+  - Today detects stale messages, stale tasks, missing session next actions, active students without upcoming sessions, blockers, and new requests
 - Combined checks:
   - `tools/check-all.ps1`
   - `tools/check-public.ps1`

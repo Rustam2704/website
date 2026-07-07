@@ -449,7 +449,6 @@ function renderUpcomingSessions() {
 
 function renderAttentionItems() {
   const items = [];
-  const sessionsByClient = countByClient(state.overviewSessions);
   const openSupportByClient = countByClient(state.overviewSupport, (record) => !record.resolved);
   const blockedByClient = countByClient(state.overviewProgress, (record) => record.status === "blocked");
   const newRequests = state.intake.filter((request) => request.status === "new").length;
@@ -457,17 +456,20 @@ function renderAttentionItems() {
   if (newRequests) {
     items.push({
       title: `${newRequests} new consultation request${newRequests === 1 ? "" : "s"}`,
-      detail: "Review and convert or archive."
+      detail: "Review and convert or archive.",
+      target: "requests"
     });
   }
 
   state.clients
-    .filter((client) => client.status === "active" && !sessionsByClient[client.id])
+    .filter((client) => client.status === "active" && !hasUpcomingSession(client.id))
     .slice(0, 4)
     .forEach((client) => {
       items.push({
         title: `${client.name}: no session scheduled`,
-        detail: client.current_goal || client.area || "Add next lesson."
+        detail: client.current_goal || client.area || "Add next lesson.",
+        clientId: client.id,
+        tab: "sessions"
       });
     });
 
@@ -479,9 +481,38 @@ function renderAttentionItems() {
       const blocked = blockedByClient[client.id] || 0;
       items.push({
         title: client.name,
-        detail: `${openSupport} open message${openSupport === 1 ? "" : "s"} / ${blocked} blocker${blocked === 1 ? "" : "s"}`
+        detail: `${openSupport} open message${openSupport === 1 ? "" : "s"} / ${blocked} blocker${blocked === 1 ? "" : "s"}`,
+        clientId: client.id,
+        tab: openSupport ? "support" : "progress"
       });
     });
+
+  staleOpenSupportItems().forEach(({ client, note }) => {
+    items.push({
+      title: `${client.name}: message waiting`,
+      detail: `${daysSince(note.created_at)} day${daysSince(note.created_at) === 1 ? "" : "s"} old / ${note.message}`,
+      clientId: client.id,
+      tab: "support"
+    });
+  });
+
+  staleTaskItems().forEach(({ client, task }) => {
+    items.push({
+      title: `${client.name}: stale task`,
+      detail: `${daysSince(task.updated_at)} day${daysSince(task.updated_at) === 1 ? "" : "s"} old / ${task.title}`,
+      clientId: client.id,
+      tab: "progress"
+    });
+  });
+
+  sessionsMissingNextActions().forEach(({ client, session }) => {
+    items.push({
+      title: `${client.name}: session needs summary`,
+      detail: `${formatCompactDate(session.date)} / add next actions or notes`,
+      clientId: client.id,
+      tab: "sessions"
+    });
+  });
 
   if (!items.length) {
     views.attentionRecords.innerHTML = `<div class="empty-list">No urgent open loops right now.</div>`;
@@ -494,8 +525,62 @@ function renderAttentionItems() {
         <strong>${h(item.title)}</strong>
         <span>${h(item.detail)}</span>
       </div>
+      <div class="record-actions">
+        ${item.clientId ? `<button type="button" class="secondary attention-open" data-client-id="${item.clientId}" data-tab="${item.tab || "overview"}">Open</button>` : ""}
+        ${item.target === "requests" ? `<a class="text-action" href="#requests">Requests</a>` : ""}
+      </div>
     </article>
   `).join("");
+
+  $$(".attention-open").forEach((button) => {
+    button.addEventListener("click", async () => {
+      await selectClient(button.dataset.clientId);
+      setActiveTab(button.dataset.tab || "overview");
+      document.querySelector(".detail-panel")?.scrollIntoView({ block: "start" });
+    });
+  });
+}
+
+function hasUpcomingSession(clientId) {
+  const now = Date.now();
+  return state.overviewSessions.some((session) => {
+    return session.client_id === clientId && session.date && new Date(session.date).getTime() >= now;
+  });
+}
+
+function staleOpenSupportItems() {
+  return state.overviewSupport
+    .filter((note) => !note.resolved && daysSince(note.created_at) >= 2)
+    .map((note) => ({ note, client: state.clients.find((client) => client.id === note.client_id) }))
+    .filter((item) => item.client)
+    .slice(0, 4);
+}
+
+function staleTaskItems() {
+  return state.overviewProgress
+    .filter((task) => task.status !== "done" && daysSince(task.updated_at) >= 7)
+    .map((task) => ({ task, client: state.clients.find((client) => client.id === task.client_id) }))
+    .filter((item) => item.client)
+    .slice(0, 4);
+}
+
+function sessionsMissingNextActions() {
+  const now = Date.now();
+  return state.overviewSessions
+    .filter((session) => {
+      return session.date
+        && new Date(session.date).getTime() < now
+        && !session.next_actions
+        && !session.topic;
+    })
+    .map((session) => ({ session, client: state.clients.find((client) => client.id === session.client_id) }))
+    .filter((item) => item.client)
+    .slice(0, 4);
+}
+
+function daysSince(value) {
+  if (!value) return 0;
+  return Math.max(0, Math.floor((Date.now() - new Date(value).getTime()) / 86400000));
 }
 
 function renderClients() {

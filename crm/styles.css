@@ -802,6 +802,14 @@ h3 {
   min-width: 112px;
 }
 
+.compact-record .text-action {
+  display: inline-grid;
+  place-items: center;
+  min-height: 34px;
+  margin-top: 0;
+  text-align: center;
+}
+
 .record-body {
   display: grid;
   gap: 5px;
