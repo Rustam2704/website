@@ -15,13 +15,20 @@
 - `direct@fanatic.space` receives routed email.
 - The site has a short privacy note for form submissions.
 - Intake and reply templates are documented.
+- Supabase project `fanatic-crm` created.
+- CRM database schema applied.
+- CRM private file storage bucket created.
+- Admin CRM dashboard deployed at `/crm/`.
+- psql installed and documented.
+- CLI helpers created for client/progress/session/support/export/delete.
+- Read-only client portal skeleton deployed at `/portal/`.
 
 ## Next practical steps
 
 1. Confirm the latest Cloudflare Pages deploy after each push.
 2. Keep `www.fanatic.space` active, then add an apex redirect later for SEO consistency.
-3. Prepare the Supabase database schema for the first admin-only CRM tracker.
-4. Build the first responsive web dashboard before Android.
+3. Keep improving the admin CRM until it can replace the spreadsheet.
+4. Add `https://fanatic.space/portal/` to Supabase Auth redirect URLs before real client portal testing.
 5. Replace the phone/contact placeholder if a phone or messenger will be used.
 6. Decide whether to add lightweight analytics.
 7. Before May 2027, decide whether to renew `fanatic.space` or migrate to a cheaper domain.

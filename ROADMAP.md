@@ -17,25 +17,27 @@ Important rule:
 
 ## Phase 2: Minimal client CRM
 
+Status: in progress
+
 Goal: replace the current spreadsheet with a simple, respectable client portal without overbuilding.
 
 Detailed first scope: `CRM_SPEC.md`
 
 Core features:
 
-- Admin login for Rustam.
-- Client login.
-- Client profile: name, contact, area, plan, time zone, current goal.
-- Session log: date, topic, notes, homework / next actions.
-- Progress tracker: simple statuses such as blocked, in progress, improved, done.
-- Client uploads or links: screenshots, project files, videos, documents.
-- Support thread for small between-session questions on the $130 plan.
-- Export data to CSV so the system never traps the business.
+- Admin login for Rustam. Done.
+- Client login. Prepared as read-only `/portal/`, needs redirect URL and real client access records later.
+- Client profile: name, contact, area, plan, time zone, current goal. Done.
+- Session log: date, topic, notes, homework / next actions. Done.
+- Progress tracker: simple statuses such as blocked, in progress, improved, done. Done.
+- Client uploads or links: screenshots, project files, videos, documents. Admin upload/link done.
+- Support thread for small between-session questions on the $130 plan. Admin notes done; client support later.
+- Export data to CSV so the system never traps the business. Done via CLI and browser JSON backup.
 
 Recommended first implementation:
 
-- Supabase for auth, database, file storage.
-- Simple web app dashboard.
+- Supabase for auth, database, file storage. Done.
+- Simple web app dashboard. In progress and deployed at `/crm/`.
 - Keep the spreadsheet as backup until the CRM feels stable.
 
 Avoid in version 1:
