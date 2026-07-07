@@ -156,10 +156,14 @@ async function loadPortalData() {
             <strong>${h(item.title)}</strong>
             <span>${h(item.priority)}${item.due_at ? ` / Due: ${h(formatDate(item.due_at))}` : ""}</span>
             ${item.teacher_comment ? `<p><strong>Teacher:</strong> ${h(item.teacher_comment)}</p>` : ""}
-            ${item.client_comment ? `<p><strong>Your note:</strong> ${h(item.client_comment)}</p>` : ""}
+            <label class="compact-field">
+              Your note
+              <textarea class="progress-note" data-progress-id="${item.id}" rows="2">${h(item.client_comment || "")}</textarea>
+            </label>
             <select class="progress-status" data-progress-id="${item.id}">
               ${progressStatusOptions(item.status)}
             </select>
+            <button type="button" class="secondary progress-note-save" data-progress-id="${item.id}">Save note</button>
           </div>
         </article>
       `).join("")
@@ -167,6 +171,13 @@ async function loadPortalData() {
 
     document.querySelectorAll(".progress-status").forEach((control) => {
       control.addEventListener("change", () => updateProgressStatus(control.dataset.progressId, control.value));
+    });
+
+    document.querySelectorAll(".progress-note-save").forEach((button) => {
+      button.addEventListener("click", () => {
+        const note = document.querySelector(`.progress-note[data-progress-id="${button.dataset.progressId}"]`)?.value || "";
+        updateProgressNote(button.dataset.progressId, note);
+      });
     });
 
     views.fileRecords.innerHTML = files.length
@@ -266,6 +277,20 @@ async function updateProgressStatus(progressId, status) {
       supabase.rpc("client_update_progress_status", {
         p_progress_id: progressId,
         p_status: status
+      })
+    );
+    await loadPortalData();
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+async function updateProgressNote(progressId, comment) {
+  try {
+    await requireResult(
+      supabase.rpc("client_update_progress_note", {
+        p_progress_id: progressId,
+        p_client_comment: comment
       })
     );
     await loadPortalData();

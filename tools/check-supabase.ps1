@@ -38,6 +38,8 @@ select 'client_access:user_id nullable', exists(
 union all
 select 'rpc:client_update_progress_status', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_update_progress_status')
 union all
+select 'rpc:client_update_progress_note', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_update_progress_note')
+union all
 select 'rpc:client_create_progress_item', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_progress_item')
 union all
 select 'rpc:client_create_support_note', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_support_note')

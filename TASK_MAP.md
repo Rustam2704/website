@@ -206,6 +206,7 @@ Status:
 
 - Portal home now switches the next lesson action between `Join lesson` when a meeting link exists and `View sessions` otherwise.
 - Portal header shows the student's timezone/area when available.
+- Students can save their own note on assigned tasks.
 
 ## 8. LMS-Lite Features
 

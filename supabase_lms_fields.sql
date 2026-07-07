@@ -75,3 +75,46 @@ end;
 $$;
 
 grant execute on function public.client_create_progress_item(text, text, text, timestamptz, text) to authenticated;
+
+create or replace function public.client_update_progress_note(
+  p_progress_id uuid,
+  p_client_comment text
+)
+returns public.progress_items
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid;
+  v_item public.progress_items;
+begin
+  v_user_id := auth.uid();
+
+  if v_user_id is null then
+    raise exception 'Not authenticated';
+  end if;
+
+  update public.progress_items item
+  set
+    client_comment = nullif(trim(p_client_comment), ''),
+    updated_at = now()
+  where item.id = p_progress_id
+    and exists (
+      select 1
+      from public.client_access access
+      where access.client_id = item.client_id
+        and access.user_id = v_user_id
+        and access.status = 'active'
+    )
+  returning item.* into v_item;
+
+  if v_item.id is null then
+    raise exception 'Progress item not found for current client';
+  end if;
+
+  return v_item;
+end;
+$$;
+
+grant execute on function public.client_update_progress_note(uuid, text) to authenticated;
