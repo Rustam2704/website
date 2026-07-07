@@ -56,6 +56,14 @@ button.secondary:hover {
   background: #dfe7e3;
 }
 
+button.danger {
+  background: #a33d2f;
+}
+
+button.danger:hover {
+  background: #7f2d23;
+}
+
 input,
 select,
 textarea {
@@ -227,6 +235,14 @@ h3 {
   background: #ffffff;
   font-size: 13px;
   white-space: nowrap;
+}
+
+.selected-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .setup-panel,
@@ -421,11 +437,24 @@ h3 {
 
 .record {
   display: grid;
-  gap: 5px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 14px;
   background: #ffffff;
+}
+
+.record-body {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.record button {
+  min-height: 34px;
+  padding: 7px 10px;
 }
 
 .record span,
@@ -464,7 +493,8 @@ h3 {
 
   .topbar,
   .toolbar,
-  .panel-header {
+  .panel-header,
+  .selected-actions {
     align-items: flex-start;
     flex-direction: column;
   }
@@ -476,7 +506,8 @@ h3 {
   .stats-grid,
   .field-grid,
   .mini-summary,
-  .inline-form {
+  .inline-form,
+  .record {
     grid-template-columns: 1fr;
   }
 }

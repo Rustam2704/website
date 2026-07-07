@@ -23,6 +23,7 @@ const views = {
   dashboard: $("#dashboard"),
   authStatus: $("#auth-status"),
   authMessage: $("#auth-message"),
+  deleteClientButton: $("#delete-client-button"),
   stats: $("#stats-grid"),
   clientList: $("#client-list"),
   selectedTitle: $("#selected-title"),
@@ -51,6 +52,15 @@ function formatDate(value) {
     dateStyle: "medium",
     timeStyle: "short"
   }).format(new Date(value));
+}
+
+function h(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function formToObject(form) {
@@ -166,9 +176,9 @@ function renderClients() {
 
   views.clientList.innerHTML = state.clients.map((client) => `
     <button class="client-card ${state.selectedClient?.id === client.id ? "active" : ""}" type="button" data-client-id="${client.id}">
-      <strong>${client.name}</strong>
-      <span>${client.email || "No email"}</span>
-      <small>${client.status} / ${client.plan.replaceAll("_", " ")}</small>
+      <strong>${h(client.name)}</strong>
+      <span>${h(client.email || "No email")}</span>
+      <small>${h(client.status)} / ${h(client.plan.replaceAll("_", " "))}</small>
     </button>
   `).join("");
 
@@ -204,6 +214,7 @@ function renderSelectedClient() {
   const client = state.selectedClient;
   show(views.emptyState, !client);
   show(views.clientWork, Boolean(client));
+  show(views.deleteClientButton, Boolean(client));
 
   if (!client) {
     views.selectedTitle.textContent = "No client selected";
@@ -214,41 +225,50 @@ function renderSelectedClient() {
   views.selectedTitle.textContent = client.name;
   views.selectedStatus.textContent = client.status;
   views.clientSummary.innerHTML = `
-    <div><span>Email</span><strong>${client.email || "-"}</strong></div>
-    <div><span>Plan</span><strong>${client.plan.replaceAll("_", " ")}</strong></div>
-    <div><span>Area</span><strong>${client.area || "-"}</strong></div>
-    <div><span>Goal</span><strong>${client.current_goal || "-"}</strong></div>
+    <div><span>Email</span><strong>${h(client.email || "-")}</strong></div>
+    <div><span>Plan</span><strong>${h(client.plan.replaceAll("_", " "))}</strong></div>
+    <div><span>Area</span><strong>${h(client.area || "-")}</strong></div>
+    <div><span>Goal</span><strong>${h(client.current_goal || "-")}</strong></div>
   `;
 }
 
 function renderRelatedRecords() {
-  views.progressRecords.innerHTML = renderRecordList(state.progress, (item) => `
-    <strong>${item.title}</strong>
-    <span>${item.status.replaceAll("_", " ")} / ${item.priority}</span>
+  views.progressRecords.innerHTML = renderRecordList(state.progress, "progress_items", (item) => `
+    <strong>${h(item.title)}</strong>
+    <span>${h(item.status.replaceAll("_", " "))} / ${h(item.priority)}</span>
   `);
 
-  views.sessionRecords.innerHTML = renderRecordList(state.sessions, (item) => `
-    <strong>${item.topic || "Session"}</strong>
-    <span>${formatDate(item.date)} / ${item.duration_minutes} min</span>
-    <p>${item.next_actions || item.notes || ""}</p>
+  views.sessionRecords.innerHTML = renderRecordList(state.sessions, "sessions", (item) => `
+    <strong>${h(item.topic || "Session")}</strong>
+    <span>${h(formatDate(item.date))} / ${h(item.duration_minutes)} min</span>
+    <p>${h(item.next_actions || item.notes || "")}</p>
   `);
 
-  views.supportRecords.innerHTML = renderRecordList(state.support, (item) => `
-    <strong>${item.source}</strong>
-    <span>${formatDate(item.created_at)} / ${item.resolved ? "resolved" : "open"}</span>
-    <p>${item.message}</p>
+  views.supportRecords.innerHTML = renderRecordList(state.support, "support_notes", (item) => `
+    <strong>${h(item.source)}</strong>
+    <span>${h(formatDate(item.created_at))} / ${item.resolved ? "resolved" : "open"}</span>
+    <p>${h(item.message)}</p>
   `);
 
-  views.fileRecords.innerHTML = renderRecordList(state.files, (item) => `
-    <strong>${item.label || item.kind}</strong>
-    <span>${item.kind}</span>
-    <a href="${item.url}" target="_blank" rel="noreferrer">${item.url}</a>
+  views.fileRecords.innerHTML = renderRecordList(state.files, "client_files", (item) => `
+    <strong>${h(item.label || item.kind)}</strong>
+    <span>${h(item.kind)}</span>
+    <a href="${h(item.url)}" target="_blank" rel="noreferrer">${h(item.url)}</a>
   `);
+
+  $$(".record-delete").forEach((button) => {
+    button.addEventListener("click", () => deleteRecord(button.dataset.table, button.dataset.id));
+  });
 }
 
-function renderRecordList(records, template) {
+function renderRecordList(records, table, template) {
   if (!records.length) return `<div class="empty-list">No records yet.</div>`;
-  return records.map((record) => `<article class="record">${template(record)}</article>`).join("");
+  return records.map((record) => `
+    <article class="record">
+      <div class="record-body">${template(record)}</div>
+      <button type="button" class="danger record-delete" data-table="${table}" data-id="${record.id}">Delete</button>
+    </article>
+  `).join("");
 }
 
 async function insertRecord(table, form, extra = {}) {
@@ -260,6 +280,19 @@ async function insertRecord(table, form, extra = {}) {
 
   await requireResult(supabase.from(table).insert(payload).select());
   form.reset();
+}
+
+async function deleteRecord(table, id) {
+  if (!state.selectedClient) return;
+  await requireResult(
+    supabase
+      .from(table)
+      .delete()
+      .eq("owner_id", state.user.id)
+      .eq("id", id)
+      .select()
+  );
+  await selectClient(state.selectedClient.id);
 }
 
 $("#auth-form").addEventListener("submit", async (event) => {
@@ -294,6 +327,25 @@ $("#magic-link-button").addEventListener("click", async () => {
 
 $("#sign-out-button").addEventListener("click", async () => {
   await supabase.auth.signOut();
+});
+
+$("#delete-client-button").addEventListener("click", async () => {
+  if (!state.selectedClient) return;
+  const name = state.selectedClient.name;
+  const ok = window.confirm(`Delete ${name} and all related records?`);
+  if (!ok) return;
+
+  await requireResult(
+    supabase
+      .from("clients")
+      .delete()
+      .eq("owner_id", state.user.id)
+      .eq("id", state.selectedClient.id)
+      .select()
+  );
+
+  state.selectedClient = null;
+  await loadClients();
 });
 
 $("#client-form").addEventListener("submit", async (event) => {
