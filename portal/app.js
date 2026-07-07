@@ -14,6 +14,7 @@ const views = {
   authMessage: $("#auth-message"),
   supportMessage: $("#support-message"),
   clientName: $("#client-name"),
+  clientTimezone: $("#client-timezone"),
   nextLessonTitle: $("#next-lesson-title"),
   nextLessonDetail: $("#next-lesson-detail"),
   nextLessonAction: $("#next-lesson-action"),
@@ -110,6 +111,7 @@ async function loadPortalData() {
 
     if (!access.length) {
       views.clientName.textContent = "No client profile assigned";
+      views.clientTimezone.textContent = "-";
       views.nextLessonTitle.textContent = "No profile assigned";
       views.nextLessonDetail.textContent = "No access record found for this email.";
       views.nextLessonAction.textContent = "View sessions";
@@ -144,6 +146,7 @@ async function loadPortalData() {
     const sessions = await requireResult(supabase.rpc("client_list_sessions"));
 
     views.clientName.textContent = client.name;
+    views.clientTimezone.textContent = client.timezone || client.area || "-";
     renderStudentHome(client, progress, sessions);
 
     views.progressRecords.innerHTML = progress.length

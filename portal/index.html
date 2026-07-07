@@ -7,7 +7,7 @@
     <title>Fanatic Client Portal</title>
     <link rel="icon" href="../assets/favicon-portal.svg" type="image/svg+xml">
     <link rel="manifest" href="./manifest.webmanifest">
-    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-07-7">
+    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-07-9">
   </head>
   <body>
     <div class="app-shell">
@@ -72,6 +72,7 @@
             <div>
               <p class="eyebrow">Overview</p>
               <h2 id="client-name">Client</h2>
+              <p class="muted-line" id="client-timezone">-</p>
             </div>
             <button type="button" class="secondary" id="sign-out-button">Sign out</button>
           </div>
@@ -212,7 +213,7 @@
     </div>
 
     <script src="../crm/config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-15"></script>
+    <script type="module" src="./app.js?v=2026-07-07-16"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

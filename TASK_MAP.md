@@ -199,12 +199,12 @@ Done / started:
 Still needed:
 
 - Show better next lesson details.
-- Use the student's timezone.
 - Make `Continue task` or `View next lesson` the clear primary action.
 
 Status:
 
 - Portal home now switches the next lesson action between `Join lesson` when a meeting link exists and `View sessions` otherwise.
+- Portal header shows the student's timezone/area when available.
 
 ## 8. LMS-Lite Features
 

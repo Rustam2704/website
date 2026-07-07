@@ -400,6 +400,12 @@ h3 {
   color: var(--danger);
 }
 
+.muted-line {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .dashboard {
   display: grid;
   gap: 18px;
