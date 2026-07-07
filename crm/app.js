@@ -156,6 +156,38 @@ function buildSessionPayload(raw) {
   return payload;
 }
 
+function toDateInputValue(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function toTimeInputValue(date) {
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  return `${hours}:${minutes}`;
+}
+
+function prefillSessionForm(client = state.selectedClient) {
+  const form = $("#session-form");
+  if (!form) return;
+
+  const start = new Date();
+  const end = new Date(start.getTime() + 50 * 60000);
+
+  form.elements.start_date.value = toDateInputValue(start);
+  form.elements.start_time.value = toTimeInputValue(start);
+  form.elements.end_date.value = toDateInputValue(end);
+  form.elements.end_time.value = toTimeInputValue(end);
+
+  if (!form.elements.topic.value) {
+    form.elements.topic.value = client?.current_goal || client?.area || "";
+  }
+}
+
 function fillForm(form, values) {
   Object.entries(values).forEach(([key, value]) => {
     const field = form.elements[key];
@@ -449,6 +481,8 @@ function renderUpcomingSessions() {
     button.addEventListener("click", async () => {
       await selectClient(button.dataset.clientId);
       setActiveTab("sessions");
+      prefillSessionForm();
+      $("#session-action-card").open = true;
       document.querySelector("[data-panel='sessions']")?.scrollIntoView({ block: "start" });
     });
   });
@@ -1198,6 +1232,7 @@ $("#quick-session-button").addEventListener("click", async () => {
   }
 
   setActiveTab("sessions");
+  prefillSessionForm();
   $("#session-action-card").open = true;
   document.querySelector("[data-panel='sessions']")?.scrollIntoView({ block: "start" });
 });

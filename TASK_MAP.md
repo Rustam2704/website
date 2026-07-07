@@ -147,6 +147,7 @@ Status:
 
 - Basic `Today`, `Upcoming sessions`, and `Needs attention` sections exist.
 - `Needs attention` now includes stale messages, stale tasks, sessions missing next actions, active students without upcoming sessions, blockers, and new requests.
+- `Start session` now opens the session form with a 50-minute time window prefilled.
 - Data model still needs explicit confirmation/due-date/payment fields later.
 
 ## 6. Students Page
