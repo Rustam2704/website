@@ -213,6 +213,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-list-auth-users.ps1
 ```
 
+List client portal access records:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-list-access.ps1
+```
+
 Delete a client and related records:
 
 ```powershell

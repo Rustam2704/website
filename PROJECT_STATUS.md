@@ -140,6 +140,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-client-report.ps1 -ClientEmail "client@example.com"
 ```
 
+List client portal access records:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-list-access.ps1
+```
+
 Remove known Codex test clients after UI testing:
 
 ```powershell
