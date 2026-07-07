@@ -189,6 +189,16 @@ $env:PGPASSWORD = "<database-password>"
   -UserEmail "client@example.com"
 ```
 
+Create a client and grant portal access if that auth user already exists:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-create-client-with-access.ps1 `
+  -Name "Client Name" `
+  -Email "client@example.com" `
+  -Area "AI / programming"
+```
+
 List Supabase Auth users:
 
 ```powershell

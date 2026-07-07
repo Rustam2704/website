@@ -39,6 +39,7 @@ Last updated: July 7, 2026
 - Client portal can add file/project/screenshot/video links.
 - Client portal can show session history and next actions without exposing private session notes.
 - Admin CRM can grant/revoke client portal access from the Access tab.
+- CLI can create a client and grant portal access in one command when the auth user already exists.
 - CRM quality-of-life:
   - first client auto-selects after login
   - newly created client opens immediately
