@@ -1,16 +1,18 @@
 # Form Setup
 
-The site uses FormSubmit for the first real contact form.
+The site uses Supabase for CRM intake records and FormSubmit for email delivery.
 
 ## Current behavior
 
 Visitor submits the website form:
 
 ```text
+fanatic.space form -> Supabase intake_requests
 fanatic.space form -> FormSubmit -> direct@fanatic.space -> rustam.aleskerov7@gmail.com
 ```
 
-The visitor does not need to open Gmail or any local mail app.
+The visitor does not need to open Gmail or any local mail app. A successful request is saved to
+the CRM first, then forwarded by email as a backup notification.
 
 Successful submissions redirect to:
 
