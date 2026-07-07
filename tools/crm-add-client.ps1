@@ -14,36 +14,15 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+. "$PSScriptRoot\crm-lib.ps1"
 
-if (-not $env:PGPASSWORD) {
-  throw "Set `$env:PGPASSWORD to the Supabase database password before running this script."
-}
-
-$psql = Get-Command psql -ErrorAction SilentlyContinue
-if (-not $psql) {
-  $fallback = "C:\Program Files\PostgreSQL\17\bin\psql.exe"
-  if (Test-Path $fallback) {
-    $psql = @{ Source = $fallback }
-  } else {
-    throw "psql was not found. Install PostgreSQL client tools first."
-  }
-}
-
-function SqlText([string]$Value) {
-  if ([string]::IsNullOrWhiteSpace($Value)) {
-    return "null"
-  }
-
-  return "'" + $Value.Replace("'", "''") + "'"
-}
-
-$connection = "host=aws-0-eu-west-1.pooler.supabase.com port=6543 dbname=postgres user=postgres.iavkvtkoowwkvizjpasy sslmode=require"
+$connection = Get-CrmConnectionString
 
 $sql = @"
 with owner as (
   select id as owner_id
   from auth.users
-  where email = $(SqlText $OwnerEmail)
+  where email = $(ConvertTo-SqlText $OwnerEmail)
   limit 1
 )
 insert into public.clients (
@@ -58,15 +37,15 @@ insert into public.clients (
 )
 select
   owner_id,
-  $(SqlText $Name),
-  $(SqlText $Email),
-  $(SqlText $Timezone),
+  $(ConvertTo-SqlText $Name),
+  $(ConvertTo-SqlText $Email),
+  $(ConvertTo-SqlText $Timezone),
   '$Plan',
-  $(SqlText $Area),
-  $(SqlText $CurrentGoal),
+  $(ConvertTo-SqlText $Area),
+  $(ConvertTo-SqlText $CurrentGoal),
   '$Status'
 from owner
 returning id, name, email, status, plan, created_at;
 "@
 
-& $psql.Source $connection -c $sql
+Invoke-CrmPsql -ConnectionString $connection -Sql $sql

@@ -4,22 +4,9 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+. "$PSScriptRoot\crm-lib.ps1"
 
-if (-not $env:PGPASSWORD) {
-  throw "Set `$env:PGPASSWORD to the Supabase database password before running this script."
-}
-
-$psql = Get-Command psql -ErrorAction SilentlyContinue
-if (-not $psql) {
-  $fallback = "C:\Program Files\PostgreSQL\17\bin\psql.exe"
-  if (Test-Path $fallback) {
-    $psql = @{ Source = $fallback }
-  } else {
-    throw "psql was not found. Install PostgreSQL client tools first."
-  }
-}
-
-$connection = "host=aws-0-eu-west-1.pooler.supabase.com port=6543 dbname=postgres user=postgres.iavkvtkoowwkvizjpasy sslmode=require"
+$connection = Get-CrmConnectionString
 
 $sql = @"
 select
@@ -36,4 +23,4 @@ order by c.created_at desc
 limit $Limit;
 "@
 
-& $psql.Source $connection -c $sql
+Invoke-CrmPsql -ConnectionString $connection -Sql $sql

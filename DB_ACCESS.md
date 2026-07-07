@@ -91,6 +91,37 @@ $env:PGPASSWORD = "<database-password>"
   -CurrentGoal "First goal"
 ```
 
+Add progress:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-add-progress.ps1 `
+  -ClientEmail "client@example.com" `
+  -Title "First progress item" `
+  -Status "in_progress" `
+  -Priority "normal"
+```
+
+Add a session:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-add-session.ps1 `
+  -ClientEmail "client@example.com" `
+  -Topic "Session topic" `
+  -Notes "Session notes" `
+  -NextActions "Next actions"
+```
+
+Add a support note:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-add-support.ps1 `
+  -ClientEmail "client@example.com" `
+  -Message "Support note text"
+```
+
 Current test data:
 
 - `Codex Test Client`
@@ -98,3 +129,6 @@ Current test data:
 - one session
 - one support note
 - `CLI Test Client`
+- one progress item
+- one session
+- one support note
