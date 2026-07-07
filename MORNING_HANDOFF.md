@@ -33,7 +33,7 @@ Run the same checks any time:
 
 ```powershell
 $env:PGPASSWORD = "<database-password>"
-.\tools\check-all.ps1
+.\tools\project-status.ps1
 ```
 
 Latest checked pieces:
