@@ -81,6 +81,7 @@ Last updated: July 7, 2026
   - `tools/check-all.ps1`
   - `tools/check-public.ps1`
   - `tools/check-supabase.ps1`
+  - `tools/check-live-assets.ps1`
 - SQL migration order is documented in `MIGRATIONS.md`.
 - SQL migrations can be applied through `tools/apply-migration.ps1`.
 - Supabase structural check covers optional lesson, LMS-lite, billing, and calendar fields.
