@@ -47,6 +47,7 @@ Last updated: July 7, 2026
 - Client portal can add file/project/screenshot/video links.
 - Client portal can show session history and next actions without exposing private session notes.
 - Client portal has its own manifest and service worker.
+- Client portal manifest includes PNG icons for Android-compatible install prompts.
 - Client portal home has direct actions to sessions and tasks, with add forms collapsed until needed.
 - Client portal home shows `Join lesson` when the next session has a meeting link.
 - Client portal header shows timezone/area context when available.

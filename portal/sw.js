@@ -1,4 +1,4 @@
-const CACHE_NAME = "fanatic-portal-20260707-1";
+const CACHE_NAME = "fanatic-portal-20260707-2";
 const SHELL_ASSETS = [
   "/portal/",
   "/portal/index.html",
