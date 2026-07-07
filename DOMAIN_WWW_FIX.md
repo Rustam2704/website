@@ -56,3 +56,33 @@ If hostname equals www.fanatic.space
 Static redirect to https://fanatic.space/${path}
 Status code 301
 ```
+
+Exact Cloudflare UI path:
+
+1. Open Cloudflare dashboard.
+2. Open domain `fanatic.space`.
+3. Go to `Rules`.
+4. Open `Redirect Rules`.
+5. Create rule.
+6. Rule name:
+
+```text
+www to apex
+```
+
+7. If incoming requests match:
+
+```text
+Hostname equals www.fanatic.space
+```
+
+8. Then:
+
+```text
+Static redirect
+URL: https://fanatic.space${uri.path}
+Status code: 301
+Preserve query string: enabled
+```
+
+9. Deploy rule.
