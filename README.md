@@ -99,6 +99,7 @@ Files:
 - `CLOUDFLARE_PAGES.md` - Cloudflare Pages deployment notes
 - `CRM_SPEC.md` - first scoped CRM/product spec
 - `CRM_SETUP.md` - Supabase setup path for CRM v0
+- `DB_ACCESS.md` - psql / Supabase database access notes
 - `supabase_schema.sql` - first CRM database schema
 - `crm/` - first admin-only CRM web dashboard
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow

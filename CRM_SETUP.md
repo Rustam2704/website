@@ -35,6 +35,7 @@ Current Supabase project:
 - Project name: `fanatic-crm`
 - Region: West EU (Ireland)
 - Status: database schema created
+- psql access: `DB_ACCESS.md`
 
 ## Tables Created
 
