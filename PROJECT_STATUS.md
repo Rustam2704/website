@@ -63,6 +63,7 @@ Last updated: July 7, 2026
   - session form can optionally capture meeting URL and confirmation status after lesson migration is applied
   - secondary tools are grouped under a Tools menu
   - student list supports status filter, area filter, and sorting
+  - student list uses a dense table-like layout for scanning next session, goal, activity, work counters, and plan
   - add/edit forms are collapsed behind action blocks until needed
   - selected student has a working page header and Overview tab
   - student Overview shows current goal, next lesson, active tasks, blockers, latest session, latest message, and latest file

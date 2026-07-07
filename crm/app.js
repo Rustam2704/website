@@ -599,26 +599,36 @@ function renderClients() {
     return;
   }
 
-  views.clientList.innerHTML = clients.map((client) => `
-    <button class="client-card ${state.selectedClient?.id === client.id ? "active" : ""}" type="button" data-client-id="${client.id}">
-      <span class="client-card-main">
-        <strong>${h(client.name)}</strong>
-        <small>${h(client.status)} / ${h(client.plan.replaceAll("_", " "))}</small>
-      </span>
-      <span>${h(client.email || "No email")}</span>
-      <span class="client-card-detail">
-        <span>Next: ${h(formatCompactDate(client.next_session_at))}</span>
-        <span>Last: ${h(formatCompactDate(client.last_activity_at))}</span>
-      </span>
-      ${client.current_goal ? `<span class="client-card-goal">${h(client.current_goal)}</span>` : ""}
-      <span class="client-card-metrics">
-        <span>${client.counts?.progress || 0} tasks</span>
-        <span>${client.counts?.sessions || 0} sessions</span>
-        <span>${client.counts?.openSupport || 0} messages</span>
-        <span>${client.counts?.files || 0} files</span>
-      </span>
-    </button>
-  `).join("");
+  views.clientList.innerHTML = `
+    <div class="client-table-labels" aria-hidden="true">
+      <span>Student</span>
+      <span>Next</span>
+      <span>Goal</span>
+      <span>Last</span>
+      <span>Work</span>
+      <span>Plan</span>
+    </div>
+    ${clients.map((client) => `
+      <button class="client-card ${state.selectedClient?.id === client.id ? "active" : ""}" type="button" data-client-id="${client.id}">
+        <span class="client-card-main">
+          <strong>${h(client.name)}</strong>
+          <small>${h(client.email || client.timezone || "No contact")}</small>
+        </span>
+        <span>${h(formatCompactDate(client.next_session_at))}</span>
+        <span class="client-card-goal">${h(client.current_goal || client.area || "No goal yet")}</span>
+        <span>${h(formatCompactDate(client.last_activity_at))}</span>
+        <span class="client-card-metrics">
+          <span>${client.counts?.progress || 0} tasks</span>
+          <span>${client.counts?.sessions || 0} lessons</span>
+          <span>${client.counts?.openSupport || 0} msgs</span>
+        </span>
+        <span class="client-card-plan">
+          <strong>${h(statusLabel(client.status))}</strong>
+          <small>${h(client.plan.replaceAll("_", " "))}</small>
+        </span>
+      </button>
+    `).join("")}
+  `;
 
   $$(".client-card").forEach((button) => {
     button.addEventListener("click", () => selectClient(button.dataset.clientId));

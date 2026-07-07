@@ -176,8 +176,9 @@ Controls:
 Status:
 
 - Add student modal exists.
-- Search and status filter exist.
-- Full table layout, area filter, and next-session sorting are still needed.
+- Search, status filter, area filter, and sorting exist.
+- Student list now uses a dense table-like layout with next session, goal, last activity, work counters, and plan.
+- Full payment columns are still intentionally deferred.
 
 ## 7. Student Portal
 
