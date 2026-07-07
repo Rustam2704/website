@@ -67,6 +67,21 @@ using (
   )
 );
 
+drop policy if exists "client can read own file links" on public.client_files;
+create policy "client can read own file links"
+on public.client_files
+for select
+to authenticated
+using (
+  exists (
+    select 1
+    from public.client_access access
+    where access.client_id = client_files.client_id
+      and access.user_id = auth.uid()
+      and access.status = 'active'
+  )
+);
+
 create index if not exists client_access_owner_idx on public.client_access(owner_id);
 create index if not exists client_access_user_status_idx on public.client_access(user_id, status);
 create index if not exists client_access_client_idx on public.client_access(client_id);
@@ -272,3 +287,54 @@ end;
 $$;
 
 grant execute on function public.client_create_support_note(text) to authenticated;
+
+create or replace function public.client_create_file_link(
+  p_url text,
+  p_label text default null,
+  p_kind text default 'other'
+)
+returns public.client_files
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid;
+  v_access public.client_access;
+  v_file public.client_files;
+begin
+  v_user_id := auth.uid();
+
+  if v_user_id is null then
+    raise exception 'Not authenticated';
+  end if;
+
+  if nullif(trim(p_url), '') is null then
+    raise exception 'URL is required';
+  end if;
+
+  if p_kind not in ('screenshot', 'project', 'video', 'document', 'other') then
+    raise exception 'Invalid file kind';
+  end if;
+
+  select *
+  into v_access
+  from public.client_access access
+  where access.user_id = v_user_id
+    and access.status = 'active'
+  order by access.created_at desc
+  limit 1;
+
+  if v_access.id is null then
+    raise exception 'No active client access found';
+  end if;
+
+  insert into public.client_files (owner_id, client_id, url, label, kind)
+  values (v_access.owner_id, v_access.client_id, trim(p_url), nullif(trim(p_label), ''), p_kind)
+  returning * into v_file;
+
+  return v_file;
+end;
+$$;
+
+grant execute on function public.client_create_file_link(text, text, text) to authenticated;

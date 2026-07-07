@@ -16,8 +16,10 @@ const views = {
   clientName: $("#client-name"),
   clientSummary: $("#client-summary"),
   progressRecords: $("#progress-records"),
+  fileRecords: $("#file-records"),
   clientProgressForm: $("#client-progress-form"),
-  clientSupportForm: $("#client-support-form")
+  clientSupportForm: $("#client-support-form"),
+  clientFileForm: $("#client-file-form")
 };
 
 let user = null;
@@ -89,6 +91,7 @@ async function loadPortalData() {
       views.clientName.textContent = "No client profile assigned";
       views.clientSummary.innerHTML = `<div><span>Status</span><strong>No access record found for this email.</strong></div>`;
       views.progressRecords.innerHTML = `<div class="empty-list">No progress is available yet.</div>`;
+      views.fileRecords.innerHTML = `<div class="empty-list">No files or links are available yet.</div>`;
       return;
     }
 
@@ -100,6 +103,13 @@ async function loadPortalData() {
         .select("*")
         .eq("client_id", clientId)
         .order("updated_at", { ascending: false })
+    );
+    const files = await requireResult(
+      supabase
+        .from("client_files")
+        .select("*")
+        .eq("client_id", clientId)
+        .order("created_at", { ascending: false })
     );
 
     views.clientName.textContent = client.name;
@@ -127,6 +137,18 @@ async function loadPortalData() {
     document.querySelectorAll(".progress-status").forEach((control) => {
       control.addEventListener("change", () => updateProgressStatus(control.dataset.progressId, control.value));
     });
+
+    views.fileRecords.innerHTML = files.length
+      ? files.map((item) => `
+        <article class="record">
+          <div class="record-body">
+            <strong>${h(item.label || item.kind)}</strong>
+            <span>${h(item.kind)}</span>
+            <a href="${h(item.url)}" target="_blank" rel="noreferrer">${h(item.url)}</a>
+          </div>
+        </article>
+      `).join("")
+      : `<div class="empty-list">No files or links are available yet.</div>`;
   } catch (error) {
     alert(error.message);
   }
@@ -189,6 +211,25 @@ views.clientSupportForm.addEventListener("submit", async (event) => {
     setSupportMessage("Sent.");
   } catch (error) {
     setSupportMessage(error.message, true);
+  }
+});
+
+views.clientFileForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
+
+  try {
+    await requireResult(
+      supabase.rpc("client_create_file_link", {
+        p_url: payload.url,
+        p_label: payload.label,
+        p_kind: payload.kind
+      })
+    );
+    event.currentTarget.reset();
+    await loadPortalData();
+  } catch (error) {
+    alert(error.message);
   }
 });
 

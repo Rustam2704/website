@@ -27,7 +27,9 @@ select 'rpc:client_update_progress_status', exists(select 1 from information_sch
 union all
 select 'rpc:client_create_progress_item', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_progress_item')
 union all
-select 'rpc:client_create_support_note', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_support_note');
+select 'rpc:client_create_support_note', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_support_note')
+union all
+select 'rpc:client_create_file_link', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_file_link');
 "@
 
 & $psql $connection -c $sql

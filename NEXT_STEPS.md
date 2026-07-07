@@ -26,6 +26,7 @@
 - Client portal skeleton deployed at `/portal/`.
 - Client portal can update assigned progress item statuses.
 - Client portal can add assigned progress items and support notes.
+- Client portal can add file/project/screenshot/video links.
 
 ## Next practical steps
 

@@ -20,6 +20,7 @@
         <nav class="nav">
           <a href="#profile">Profile</a>
           <a href="#progress">Progress</a>
+          <a href="#files">Files</a>
           <a href="#support">Support</a>
         </nav>
         <div class="sidebar-note">
@@ -115,11 +116,33 @@
               <p class="form-message" id="support-message"></p>
             </form>
           </section>
+
+          <section class="panel" id="files">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Files / links</p>
+                <h3>Project evidence</h3>
+              </div>
+            </div>
+            <form class="inline-form" id="client-file-form">
+              <input name="url" type="url" placeholder="https://..." required>
+              <input name="label" placeholder="Label">
+              <select name="kind">
+                <option value="screenshot">Screenshot</option>
+                <option value="project">Project</option>
+                <option value="video">Video</option>
+                <option value="document">Document</option>
+                <option value="other" selected>Other</option>
+              </select>
+              <button type="submit">Add</button>
+            </form>
+            <div class="records" id="file-records"></div>
+          </section>
         </section>
       </main>
     </div>
 
     <script src="../crm/config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-3"></script>
+    <script type="module" src="./app.js?v=2026-07-07-4"></script>
   </body>
 </html>
