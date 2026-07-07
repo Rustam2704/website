@@ -1,10 +1,8 @@
-const CACHE_NAME = "fanatic-crm-v1";
+const CACHE_NAME = "fanatic-crm-20260707-1";
 const SHELL_ASSETS = [
   "/crm/",
   "/crm/index.html",
   "/crm/styles.css",
-  "/crm/config.js",
-  "/crm/app.js",
   "/assets/favicon.svg"
 ];
 
