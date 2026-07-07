@@ -63,6 +63,7 @@ Latest checked pieces:
 - Selected student now has a working page header and Overview tab with goal, next lesson, tasks, blockers, latest session, latest message, and latest file.
 - Today detects stale messages, stale tasks, missing session next actions, active students without upcoming sessions, blockers, and new requests.
 - Portal home now has direct actions to sessions and tasks, with add forms collapsed until needed.
+- Google Calendar groundwork exists in `supabase_calendar.sql` and `GOOGLE_CALENDAR_SETUP.md`.
 
 ## Still Needs User Clicks Later
 

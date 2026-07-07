@@ -67,13 +67,17 @@ Last updated: July 7, 2026
   - `tools/check-all.ps1`
   - `tools/check-public.ps1`
   - `tools/check-supabase.ps1`
+- Google Calendar groundwork:
+  - `supabase_calendar.sql`
+  - `GOOGLE_CALENDAR_SETUP.md`
+  - session calendar mapping fields in the base schema
 
 ## Important Follow-Ups
 
 - Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
 - Keep improving the admin CRM and client portal until they can replace the spreadsheet workflow.
 - Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
-- Add Google Calendar integration after the session workflow is stable.
+- Apply `supabase_calendar.sql` and implement the Calendar Edge Function when moving into real calendar sync.
 - Prepare 2-4 static ad images later for online lessons for ages 8-18: programming, AI tools, and practical computer directions.
 - Replace contact phone / messenger placeholder when the number is ready.
 - Remove test clients after UI testing:

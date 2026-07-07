@@ -110,8 +110,10 @@ Files:
 - `CRM_SETUP.md` - Supabase setup path for CRM v0
 - `DB_ACCESS.md` - psql / Supabase database access notes
 - `supabase_schema.sql` - first CRM database schema
+- `supabase_calendar.sql` - Google Calendar sync groundwork schema
 - `supabase_storage.sql` - private Supabase Storage bucket and policies
 - `supabase_client_portal.sql` - client access mapping and read policies
+- `GOOGLE_CALENDAR_SETUP.md` - Calendar integration setup and architecture notes
 - `crm/` - admin CRM web dashboard
 - `portal/` - client portal
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow

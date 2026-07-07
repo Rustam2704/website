@@ -60,9 +60,12 @@ Goal:
 Started:
 
 - The CRM session form now has start date, start time, end date, end time, and repeat.
+- `supabase_calendar.sql` defines calendar connection and session event mapping fields.
+- `GOOGLE_CALENDAR_SETUP.md` documents setup and recommended architecture.
 
 Still needed:
 
+- Apply `supabase_calendar.sql` to Supabase.
 - Store calendar connection state.
 - Request Google Calendar permissions.
 - Create/find the `fanatic.space` calendar.

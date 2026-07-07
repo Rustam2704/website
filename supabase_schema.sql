@@ -86,6 +86,28 @@ create table if not exists public.intake_requests (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.calendar_connections (
+  id uuid primary key default gen_random_uuid(),
+  owner_id uuid not null references auth.users(id) on delete cascade,
+  provider text not null default 'google'
+    check (provider in ('google')),
+  calendar_id text,
+  calendar_name text not null default 'fanatic.space',
+  sync_enabled boolean not null default false,
+  last_sync_at timestamptz,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  unique (owner_id, provider)
+);
+
+alter table public.sessions
+  add column if not exists google_calendar_event_id text,
+  add column if not exists google_calendar_event_etag text,
+  add column if not exists google_calendar_sync_status text not null default 'not_synced'
+    check (google_calendar_sync_status in ('not_synced', 'pending', 'synced', 'failed')),
+  add column if not exists google_calendar_synced_at timestamptz,
+  add column if not exists google_calendar_error text;
+
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql
@@ -126,12 +148,18 @@ create trigger intake_requests_set_updated_at
 before update on public.intake_requests
 for each row execute function public.set_updated_at();
 
+drop trigger if exists calendar_connections_set_updated_at on public.calendar_connections;
+create trigger calendar_connections_set_updated_at
+before update on public.calendar_connections
+for each row execute function public.set_updated_at();
+
 alter table public.clients enable row level security;
 alter table public.sessions enable row level security;
 alter table public.progress_items enable row level security;
 alter table public.support_notes enable row level security;
 alter table public.client_files enable row level security;
 alter table public.intake_requests enable row level security;
+alter table public.calendar_connections enable row level security;
 
 drop policy if exists "owner can manage clients" on public.clients;
 create policy "owner can manage clients"
@@ -189,6 +217,14 @@ to authenticated
 using (lower(auth.jwt() ->> 'email') = 'direct@fanatic.space')
 with check (lower(auth.jwt() ->> 'email') = 'direct@fanatic.space');
 
+drop policy if exists "owner can manage calendar connections" on public.calendar_connections;
+create policy "owner can manage calendar connections"
+on public.calendar_connections
+for all
+to authenticated
+using (owner_id = auth.uid())
+with check (owner_id = auth.uid());
+
 grant insert on public.intake_requests to anon;
 grant select, insert, update, delete on public.intake_requests to authenticated;
 
@@ -200,3 +236,6 @@ create index if not exists support_notes_client_resolved_idx on public.support_n
 create index if not exists client_files_client_created_idx on public.client_files(client_id, created_at desc);
 create index if not exists intake_requests_status_created_idx on public.intake_requests(status, created_at desc);
 create index if not exists intake_requests_email_idx on public.intake_requests(lower(email));
+create index if not exists calendar_connections_owner_provider_idx on public.calendar_connections(owner_id, provider);
+create index if not exists sessions_google_calendar_event_idx on public.sessions(owner_id, google_calendar_event_id);
+create index if not exists sessions_google_calendar_sync_status_idx on public.sessions(owner_id, google_calendar_sync_status);
