@@ -52,12 +52,13 @@ Latest checked pieces:
 - Live CRM and portal pages were checked in the browser: no console errors and no blank screen.
 - Live frontend asset versions can be checked from the terminal.
 - CRM data integrity checks now catch duplicate client emails, invalid file URLs, broken access records, and converted requests without linked clients.
+- Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
+- `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 
 ## Still Needs User Clicks Later
 
-- Add `https://fanatic.space/portal/` to Supabase Auth redirect URLs before inviting real clients into the portal.
-- Add Cloudflare Redirect Rule for `www.fanatic.space -> fanatic.space` with 301 for SEO.
 - Test CRM install on Android / Chrome.
+- Keep improving the admin CRM and client portal before moving into Android-specific work.
 - Decide whether to delete test clients:
 
 ```powershell

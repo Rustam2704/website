@@ -43,46 +43,21 @@ https://fanatic.space/
 
 Cloudflare Pages custom domain is active for `www.fanatic.space`.
 
-`https://www.fanatic.space/` serves the site cleanly.
+`https://www.fanatic.space/` redirects to `https://fanatic.space/` with status `301`.
 
-Remaining SEO task:
-
-- Add a Cloudflare Redirect Rule so the canonical public domain is only `https://fanatic.space/`.
-
-Repository-level `_redirects` did not apply the host-level redirect reliably. Use a Cloudflare Redirect Rule:
+The implemented Cloudflare Page Rule is:
 
 ```text
-If hostname equals www.fanatic.space
-Static redirect to https://fanatic.space/${path}
-Status code 301
+URL match: www.fanatic.space/*
+Setting: Forwarding URL
+Status code: 301 - Permanent Redirect
+Destination: https://fanatic.space/$1
 ```
 
-Exact Cloudflare UI path:
-
-1. Open Cloudflare dashboard.
-2. Open domain `fanatic.space`.
-3. Go to `Rules`.
-4. Open `Redirect Rules`.
-5. Create rule.
-6. Rule name:
+Verification:
 
 ```text
-www to apex
+https://www.fanatic.space/test-path?x=1
+-> 301
+-> https://fanatic.space/test-path?x=1
 ```
-
-7. If incoming requests match:
-
-```text
-Hostname equals www.fanatic.space
-```
-
-8. Then:
-
-```text
-Static redirect
-URL: https://fanatic.space${uri.path}
-Status code: 301
-Preserve query string: enabled
-```
-
-9. Deploy rule.

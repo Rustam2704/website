@@ -32,13 +32,15 @@
 - Client portal can show session history and next actions without private notes.
 - Client portal can open assigned private stored files through signed URLs.
 - Project status now includes live frontend asset versions and CRM data integrity checks.
+- Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
+- `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 
 ## Next practical steps
 
 1. Confirm the latest Cloudflare Pages deploy after each push.
-2. Keep `www.fanatic.space` active, then add an apex redirect later for SEO consistency.
-3. Keep improving the admin CRM until it can replace the spreadsheet.
-4. Add `https://fanatic.space/portal/` to Supabase Auth redirect URLs before real client portal testing.
+2. Keep improving the admin CRM until it can replace the spreadsheet.
+3. Keep improving the client portal after the admin workflow is stable.
+4. Test real client portal login when a real client email is ready.
 5. Replace the phone/contact placeholder if a phone or messenger will be used.
 6. Decide whether to add lightweight analytics.
 7. Prepare 2-4 static ad images for ages 8-18 programming / AI / computer lessons after the core flow is stable.

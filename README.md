@@ -68,7 +68,7 @@ Done:
 - GitHub Pages enabled as fallback.
 - Domain purchased: `fanatic.space`.
 - Production URL is live on Cloudflare Pages: `https://fanatic.space/`.
-- `www.fanatic.space` is configured and serves cleanly; redirect to apex is tracked separately.
+- `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 - Domain expires: July 6, 2027.
 - Renewal price: $250.20/year.
 - Auto-renew is currently off.
@@ -113,7 +113,7 @@ Files:
 - `portal/` - client portal
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow
 - `REPLY_TEMPLATES.md` - email replies for new leads
-- `DOMAIN_WWW_FIX.md` - remaining `www.fanatic.space` DNS/redirect fix
+- `DOMAIN_WWW_FIX.md` - completed `www.fanatic.space` DNS/redirect notes
 - `PROJECT_STATUS.md` - concise current status and next actions
 - `MORNING_HANDOFF.md` - current handoff snapshot after autonomous setup work
 
@@ -159,9 +159,9 @@ Data / future portability constraints:
 Highest priority:
 
 1. Confirm Cloudflare Pages deploys after each push.
-2. Keep `www.fanatic.space` working, then add a redirect to `fanatic.space` later for SEO consistency.
-3. Keep improving the Supabase-backed CRM until it can replace the spreadsheet.
-4. Test the client portal with a real invited client account after Supabase redirect URLs are updated.
+2. Keep improving the Supabase-backed CRM until it can replace the spreadsheet.
+3. Test the client portal with a real invited client account after Supabase redirect URLs are updated.
+4. Keep the CRM and portal readable, simple, and portable instead of adding heavy product ceremony.
 5. Replace the phone/contact placeholder if a phone or messenger will be used.
 
 Nice but not blocking:

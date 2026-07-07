@@ -41,6 +41,8 @@ Last updated: July 7, 2026
 - Client portal can show session history and next actions without exposing private session notes.
 - Admin CRM can grant/revoke client portal access from the Access tab.
 - CLI can create a client and grant portal access in one command when the auth user already exists.
+- Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
+- `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 - CRM quality-of-life:
   - first client auto-selects after login
   - newly created client opens immediately
@@ -55,9 +57,8 @@ Last updated: July 7, 2026
 
 ## Important Follow-Ups
 
-- Add `https://fanatic.space/portal/` to Supabase Auth redirect URLs before testing real client portal login with a real client email.
-- Add Cloudflare Redirect Rule for `www.fanatic.space -> fanatic.space` with 301 for SEO.
 - Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
+- Keep improving the admin CRM and client portal until they can replace the spreadsheet workflow.
 - Prepare 2-4 static ad images later for online lessons for ages 8-18: programming, AI tools, and practical computer directions.
 - Replace contact phone / messenger placeholder when the number is ready.
 - Remove test clients after UI testing:

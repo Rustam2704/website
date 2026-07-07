@@ -9,7 +9,7 @@ Status: in progress
 - Two plans: $100 session only, $130 session plus weekly support.
 - Deploy through Cloudflare Pages.
 - Add domain and domain email.
-- Keep `www.fanatic.space` working and later redirect it to `fanatic.space` for SEO consistency.
+- Redirect `www.fanatic.space` to `fanatic.space` for SEO consistency. Done.
 
 Important rule:
 
@@ -26,12 +26,12 @@ Detailed first scope: `CRM_SPEC.md`
 Core features:
 
 - Admin login for Rustam. Done.
-- Client login. Prepared as read-only `/portal/`, needs redirect URL and real client access records later.
+- Client login. Prepared at `/portal/`; real client access records are added when a real client email is ready.
 - Client profile: name, contact, area, plan, time zone, current goal. Done.
 - Session log: date, topic, notes, homework / next actions. Done.
 - Progress tracker: simple statuses such as blocked, in progress, improved, done. Done.
 - Client uploads or links: screenshots, project files, videos, documents. Admin upload/link done.
-- Support thread for small between-session questions on the $130 plan. Admin notes done; client support later.
+- Support thread for small between-session questions on the $130 plan. Admin notes and client support notes are implemented.
 - Export data to CSV so the system never traps the business. Done via CLI and browser JSON backup.
 
 Recommended first implementation:
