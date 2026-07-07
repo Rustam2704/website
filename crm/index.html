@@ -265,6 +265,10 @@
                       Next actions
                       <textarea name="next_actions" rows="3"></textarea>
                     </label>
+                    <label>
+                      Private notes
+                      <textarea name="private_notes" rows="3"></textarea>
+                    </label>
                     <button type="submit">Add session</button>
                   </form>
                   <div class="records" id="session-records"></div>
@@ -328,7 +332,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-9"></script>
+    <script type="module" src="./app.js?v=2026-07-07-10"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

@@ -339,6 +339,7 @@ function renderRelatedRecords() {
     <strong>${h(item.topic || "Session")}</strong>
     <span>${h(formatDate(item.date))} / ${h(item.duration_minutes)} min</span>
     <p>${h(item.next_actions || item.notes || "")}</p>
+    ${item.private_notes ? `<p><strong>Private:</strong> ${h(item.private_notes)}</p>` : ""}
   `);
 
   views.supportRecords.innerHTML = renderRecordList(state.support, "support_notes", (item) => `

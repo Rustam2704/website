@@ -110,7 +110,8 @@ $env:PGPASSWORD = "<database-password>"
   -ClientEmail "client@example.com" `
   -Topic "Session topic" `
   -Notes "Session notes" `
-  -NextActions "Next actions"
+  -NextActions "Next actions" `
+  -PrivateNotes "Private admin-only notes"
 ```
 
 Add a support note:

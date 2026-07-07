@@ -5,6 +5,7 @@ param(
   [string]$Topic = "",
   [string]$Notes = "",
   [string]$NextActions = "",
+  [string]$PrivateNotes = "",
   [int]$DurationMinutes = 50,
   [string]$OwnerEmail = "direct@fanatic.space"
 )
@@ -35,7 +36,8 @@ insert into public.sessions (
   duration_minutes,
   topic,
   notes,
-  next_actions
+  next_actions,
+  private_notes
 )
 select
   owner_id,
@@ -44,7 +46,8 @@ select
   $DurationMinutes,
   $(ConvertTo-SqlText $Topic),
   $(ConvertTo-SqlText $Notes),
-  $(ConvertTo-SqlText $NextActions)
+  $(ConvertTo-SqlText $NextActions),
+  $(ConvertTo-SqlText $PrivateNotes)
 from client
 returning id, client_id, topic, duration_minutes, created_at;
 "@
