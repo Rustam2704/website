@@ -35,6 +35,7 @@ Last updated: July 7, 2026
 
 - Add `https://fanatic.space/portal/` to Supabase Auth redirect URLs before testing real client portal login.
 - Add Cloudflare Redirect Rule for `www.fanatic.space -> fanatic.space` with 301 for SEO.
+- Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
 - Replace contact phone / messenger placeholder when the number is ready.
 - Remove test clients after UI testing:
   - `Codex Test Client`
