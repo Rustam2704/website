@@ -8,6 +8,8 @@ alter table public.sessions
 
 create index if not exists sessions_owner_confirmation_idx on public.sessions(owner_id, confirmation_status, date desc);
 
+drop function if exists public.client_list_sessions();
+
 create or replace function public.client_list_sessions()
 returns table (
   id uuid,

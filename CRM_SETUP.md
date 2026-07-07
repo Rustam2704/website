@@ -42,7 +42,7 @@ Current Supabase project:
 
 - Project name: `fanatic-crm`
 - Region: West EU (Ireland)
-- Status: database schema created
+- Status: base schema, portal, lesson fields, LMS-lite fields, billing fields, and calendar groundwork applied
 - psql access: `DB_ACCESS.md`
 
 OAuth status:

@@ -83,18 +83,22 @@ Last updated: July 7, 2026
   - `supabase_lesson_fields.sql`
   - `GOOGLE_CALENDAR_SETUP.md`
   - session calendar mapping fields in the base schema
+  - live Supabase database has the calendar/session mapping fields applied
 - LMS-lite groundwork:
   - `supabase_lms_fields.sql`
   - task deadline/comment fields in the base schema
   - CRM and portal display those fields when present
+  - live Supabase database has the LMS-lite fields applied
+- Billing groundwork:
+  - `supabase_billing_fields.sql`
+  - live Supabase database has paid session total and support-until fields applied
 
 ## Important Follow-Ups
 
 - Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
 - Keep improving the admin CRM and client portal until they can replace the spreadsheet workflow.
 - Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
-- Apply `supabase_calendar.sql` and implement the Calendar Edge Function when moving into real calendar sync.
-- Apply `supabase_lms_fields.sql` when task deadlines/comments are ready in the live database.
+- Implement the Calendar Edge Function when moving into real calendar sync.
 - Prepare 2-4 static ad images later for online lessons for ages 8-18: programming, AI tools, and practical computer directions.
 - Replace contact phone / messenger placeholder when the number is ready.
 - Remove test clients after UI testing:

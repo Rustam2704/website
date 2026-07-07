@@ -26,3 +26,7 @@ $connection = Get-CrmConnectionString
 $psql = Get-CrmPsql
 
 & $psql $connection -v ON_ERROR_STOP=1 -f $migrationPath
+
+if ($LASTEXITCODE -ne 0) {
+  throw "Migration failed with exit code ${LASTEXITCODE}: $File"
+}

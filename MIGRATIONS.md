@@ -45,7 +45,7 @@ https://iavkvtkoowwkvizjpasy.supabase.co
 ## Notes
 
 - Run migrations from top to bottom on a fresh database.
-- On the current project, base schema and portal foundation are already created.
+- On the current project, base schema, portal foundation, and current optional migrations are already applied.
 - The optional migrations are written to be re-runnable where possible.
 - `supabase_lms_fields.sql` expects the client portal migration to exist because it updates a portal RPC function.
 - `supabase_calendar.sql` prepares the database only. Real sync still needs the Google Calendar API setup and Edge Function.

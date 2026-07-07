@@ -66,13 +66,13 @@ Latest checked pieces:
 - Google Calendar groundwork exists in `supabase_calendar.sql` and `GOOGLE_CALENDAR_SETUP.md`.
 - Session UI can display future meeting URL, confirmation status, and calendar sync status after lesson/calendar migrations are applied.
 - Task UI can display due dates, teacher comments, and student comments after LMS-lite migration is applied.
+- Live Supabase database has lesson, LMS-lite, billing, and calendar groundwork migrations applied.
 
 ## Still Needs User Clicks Later
 
 - Test CRM install on Android / Chrome.
 - Keep improving the admin CRM and client portal before moving into Android-specific work.
 - Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
-- Apply `supabase_lms_fields.sql` when ready to use task deadlines/comments in the live database.
 - Decide whether to delete test clients:
 
 ```powershell
