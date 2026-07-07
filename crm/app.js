@@ -310,13 +310,37 @@ async function boot() {
 
   const { data } = await supabase.auth.getSession();
   state.user = data.session?.user || null;
+  await captureCalendarConnection(data.session);
 
-  supabase.auth.onAuthStateChange((_event, session) => {
+  supabase.auth.onAuthStateChange(async (_event, session) => {
     state.user = session?.user || null;
+    await captureCalendarConnection(session);
     renderRoute();
   });
 
   renderRoute();
+}
+
+async function captureCalendarConnection(session) {
+  if (!session?.user || !session.provider_token) return;
+
+  try {
+    await requireResult(
+      supabase
+        .from("calendar_connections")
+        .upsert({
+          owner_id: session.user.id,
+          provider: "google",
+          calendar_name: "fanatic.space",
+          sync_enabled: false
+        }, {
+          onConflict: "owner_id,provider"
+        })
+        .select()
+    );
+  } catch (error) {
+    console.warn("Calendar connection state was not saved.", error);
+  }
 }
 
 function renderRoute() {

@@ -67,10 +67,10 @@ Started:
 - CRM session form can capture meeting URL and confirmation status when the lesson fields migration is applied.
 - Live Supabase database has lesson fields and calendar groundwork applied.
 - CRM has a Calendar panel and a Google Calendar access request button.
+- CRM records calendar connection state after Google OAuth returns provider access.
 
 Still needed:
 
-- Store calendar connection state.
 - Request Google Calendar permissions.
 - Create/find the `fanatic.space` calendar.
 - Sync CRM sessions to Google Calendar events.
