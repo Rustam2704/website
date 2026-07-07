@@ -20,7 +20,8 @@ const state = {
   intake: [],
   overviewProgress: [],
   overviewSessions: [],
-  overviewSupport: []
+  overviewSupport: [],
+  calendarConnection: null
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -47,6 +48,8 @@ const views = {
   stats: $("#stats-grid"),
   upcomingRecords: $("#upcoming-records"),
   attentionRecords: $("#attention-records"),
+  calendarStatus: $("#calendar-status"),
+  calendarConnectButton: $("#calendar-connect-button"),
   clientList: $("#client-list"),
   selectedTitle: $("#selected-title"),
   selectedStatus: $("#selected-status"),
@@ -330,7 +333,7 @@ function renderRoute() {
 
 async function loadClients() {
   try {
-    const [clients, progress, sessions, support, files, intake] = await Promise.all([
+    const [clients, progress, sessions, support, files, intake, calendarConnections] = await Promise.all([
       requireResult(
       supabase
         .from("clients")
@@ -342,11 +345,13 @@ async function loadClients() {
       requireResult(supabase.from("sessions").select("id, client_id, date, topic, next_actions, duration_minutes").eq("owner_id", state.user.id)),
       requireResult(supabase.from("support_notes").select("id, client_id, message, resolved, created_at").eq("owner_id", state.user.id)),
       requireResult(supabase.from("client_files").select("id, client_id").eq("owner_id", state.user.id)),
-      requireResult(supabase.from("intake_requests").select("*").order("created_at", { ascending: false }))
+      requireResult(supabase.from("intake_requests").select("*").order("created_at", { ascending: false })),
+      requireResult(supabase.from("calendar_connections").select("*").eq("owner_id", state.user.id).eq("provider", "google").limit(1))
     ]);
 
     state.clients = withClientCounts(clients, { progress, sessions, support, files });
     state.intake = intake;
+    state.calendarConnection = calendarConnections[0] || null;
     state.overviewProgress = progress;
     state.overviewSessions = sessions;
     state.overviewSupport = support;
@@ -360,6 +365,7 @@ async function loadClients() {
     renderClients();
     renderStats();
     renderToday();
+    renderCalendarStatus();
     renderIntakeRequests();
     if (state.selectedClient) {
       await selectClient(state.selectedClient.id);
@@ -444,6 +450,32 @@ function renderStats() {
 function renderToday() {
   renderUpcomingSessions();
   renderAttentionItems();
+}
+
+function renderCalendarStatus() {
+  const connection = state.calendarConnection;
+
+  if (!connection) {
+    views.calendarStatus.innerHTML = `
+      <article class="record compact-record">
+        <div class="record-body">
+          <strong>Not connected</strong>
+          <span>Google Calendar access has not been requested yet.</span>
+        </div>
+      </article>
+    `;
+    return;
+  }
+
+  views.calendarStatus.innerHTML = `
+    <article class="record compact-record">
+      <div class="record-body">
+        <strong>${connection.sync_enabled ? "Enabled" : "Connected, sync disabled"}</strong>
+        <span>${h(connection.calendar_name || "fanatic.space")} / ${h(connection.calendar_id || "No calendar id yet")}</span>
+        <p>${connection.last_sync_at ? `Last sync: ${h(formatDate(connection.last_sync_at))}` : "No sync yet."}</p>
+      </div>
+    </article>
+  `;
 }
 
 function renderUpcomingSessions() {
@@ -1251,6 +1283,24 @@ $$("[data-oauth-provider]").forEach((button) => {
 
     if (error) setMessage(error.message, true);
   });
+});
+
+views.calendarConnectButton.addEventListener("click", async () => {
+  setMessage("Opening Google Calendar access...");
+
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: config.redirectUrl || `${window.location.origin}/crm/`,
+      scopes: "https://www.googleapis.com/auth/calendar.events",
+      queryParams: {
+        access_type: "offline",
+        prompt: "consent select_account"
+      }
+    }
+  });
+
+  if (error) setMessage(error.message, true);
 });
 
 $("#sign-out-button").addEventListener("click", async () => {

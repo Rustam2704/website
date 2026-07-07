@@ -127,6 +127,17 @@
 
           <div class="stats-grid" id="stats-grid"></div>
 
+          <section class="panel" id="calendar">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Calendar</p>
+                <h3>Google Calendar sync</h3>
+              </div>
+              <button type="button" class="secondary" id="calendar-connect-button">Request access</button>
+            </div>
+            <div class="records compact-records" id="calendar-status"></div>
+          </section>
+
           <section class="panel" id="requests">
             <div class="panel-header">
               <div>
@@ -495,7 +506,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-37"></script>
+    <script type="module" src="./app.js?v=2026-07-07-38"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

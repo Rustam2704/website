@@ -90,6 +90,7 @@ Last updated: July 7, 2026
   - `GOOGLE_CALENDAR_SETUP.md`
   - session calendar mapping fields in the base schema
   - live Supabase database has the calendar/session mapping fields applied
+  - CRM has a Calendar panel and can request Google Calendar event scope
 - LMS-lite groundwork:
   - `supabase_lms_fields.sql`
   - task deadline/comment fields in the base schema

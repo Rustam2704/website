@@ -66,6 +66,7 @@ Started:
 - CRM and portal can display meeting URL / confirmation / calendar sync fields after migrations are applied.
 - CRM session form can capture meeting URL and confirmation status when the lesson fields migration is applied.
 - Live Supabase database has lesson fields and calendar groundwork applied.
+- CRM has a Calendar panel and a Google Calendar access request button.
 
 Still needed:
 
