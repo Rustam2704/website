@@ -51,6 +51,13 @@ Run public deployment checks:
 .\tools\check-public.ps1
 ```
 
+Run all infrastructure checks:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\check-all.ps1
+```
+
 List CRM clients:
 
 ```powershell
