@@ -559,6 +559,24 @@ function renderAttentionItems() {
     });
   });
 
+  lowLessonBalanceItems().forEach(({ client, remaining }) => {
+    items.push({
+      title: `${client.name}: ${remaining} paid lesson${remaining === 1 ? "" : "s"} left`,
+      detail: "Update paid sessions or plan the next payment conversation.",
+      clientId: client.id,
+      tab: "sessions"
+    });
+  });
+
+  supportEndingItems().forEach(({ client, label }) => {
+    items.push({
+      title: `${client.name}: support ${label}`,
+      detail: `Support until ${formatCompactDate(client.support_until)}.`,
+      clientId: client.id,
+      tab: "support"
+    });
+  });
+
   if (!items.length) {
     views.attentionRecords.innerHTML = `<div class="empty-list">No urgent open loops right now.</div>`;
     return;
@@ -620,6 +638,49 @@ function sessionsMissingNextActions() {
     })
     .map((session) => ({ session, client: state.clients.find((client) => client.id === session.client_id) }))
     .filter((item) => item.client)
+    .slice(0, 4);
+}
+
+function completedSessionsForClient(clientId) {
+  return state.overviewSessions.filter((session) => {
+    return session.client_id === clientId
+      && session.date
+      && new Date(session.date).getTime() < Date.now();
+  }).length;
+}
+
+function lowLessonBalanceItems() {
+  return state.clients
+    .map((client) => {
+      const paid = Number(client.paid_sessions_total);
+      if (!Number.isFinite(paid)) return null;
+
+      return {
+        client,
+        remaining: Math.max(0, paid - completedSessionsForClient(client.id))
+      };
+    })
+    .filter(Boolean)
+    .filter(({ client, remaining }) => client.status === "active" && remaining <= 1)
+    .slice(0, 4);
+}
+
+function supportEndingItems() {
+  const now = Date.now();
+  const soon = now + 2 * 86400000;
+
+  return state.clients
+    .filter((client) => client.status === "active" && client.support_until)
+    .map((client) => {
+      const time = new Date(client.support_until).getTime();
+      if (Number.isNaN(time) || time > soon) return null;
+
+      return {
+        client,
+        label: time < now ? "expired" : "ends soon"
+      };
+    })
+    .filter(Boolean)
     .slice(0, 4);
 }
 
