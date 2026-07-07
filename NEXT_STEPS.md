@@ -23,13 +23,14 @@
 - Admin CRM can review intake requests and convert them into clients.
 - psql installed and documented.
 - CLI helpers created for client/progress/session/support/export/delete.
-- CLI helpers added for CSV client import, full backup bundle, file links, and client portal access.
+- CLI helpers added for CSV client import, full backup bundle, file links, client reports, and client portal access grant/list/revoke.
 - Client portal skeleton deployed at `/portal/`.
 - Client portal can update assigned progress item statuses.
 - Client portal can add assigned progress items and support notes.
 - Client portal can add file/project/screenshot/video links.
 - Client portal can show session history and next actions without private notes.
 - Client portal can open assigned private stored files through signed URLs.
+- Project status now includes live frontend asset versions and CRM data integrity checks.
 
 ## Next practical steps
 

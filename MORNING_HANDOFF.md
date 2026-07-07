@@ -14,7 +14,7 @@ Last updated: July 7, 2026
 - Landing requests now save into Supabase `intake_requests` and still send email through FormSubmit.
 - CRM has a global `Requests` panel.
 - CRM can convert intake requests into clients.
-- CRM has CLI helpers for intake listing, conversion, archive, auth users, CSV export, SQL dump, full backup, CSV import, file links, portal access, and test-data cleanup.
+- CRM has CLI helpers for intake listing, conversion, archive, auth users, CSV export, SQL dump, full backup, CSV import, client reports, file links, portal access grant/list/revoke, and test-data cleanup.
 - CRM intake conversion now reuses an existing client with the same email instead of creating duplicates.
 - Client portal can:
   - show assigned client profile
@@ -28,6 +28,7 @@ Last updated: July 7, 2026
 - CRM and portal are marked `noindex, nofollow` through meta tags, robots.txt, and Cloudflare `_headers`.
 - PWA icons were added for CRM installability on Android-compatible browsers.
 - Portable PostgreSQL dump helper and one-command backup helper added.
+- CRM service worker cache was refreshed so installed CRM shells are less likely to hold stale JS/config.
 
 ## Verified
 
@@ -48,6 +49,8 @@ Latest checked pieces:
 - Client portal RPC functions exist.
 - `pg_dump` backup script works.
 - Live CRM and portal pages were checked in the browser: no console errors and no blank screen.
+- Live frontend asset versions can be checked from the terminal.
+- CRM data integrity checks now catch duplicate client emails, invalid file URLs, broken access records, and converted requests without linked clients.
 
 ## Still Needs User Clicks Later
 
@@ -82,6 +85,22 @@ List Supabase Auth users:
 ```powershell
 $env:PGPASSWORD = "<database-password>"
 .\tools\crm-list-auth-users.ps1
+```
+
+List portal access:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-list-access.ps1
+```
+
+Revoke portal access:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-revoke-client-access.ps1 `
+  -ClientEmail "client@example.com" `
+  -UserEmail "client@example.com"
 ```
 
 Export CSV tables:
@@ -120,4 +139,18 @@ $env:PGPASSWORD = "<database-password>"
   -Name "Client Name" `
   -Email "client@example.com" `
   -Area "AI / programming"
+```
+
+Show one-client report:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-client-report.ps1 -ClientEmail "client@example.com"
+```
+
+Run full local status:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\project-status.ps1
 ```
