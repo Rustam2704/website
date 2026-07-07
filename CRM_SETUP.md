@@ -19,7 +19,15 @@ This avoids building a big client portal before the workflow is proven.
 2. Open SQL Editor.
 3. Paste and run `supabase_schema.sql`.
 4. In Authentication, enable Email login.
-5. Create the first Rustam admin user by signing in from the future dashboard.
+5. Open Project Settings -> Data API.
+6. Copy the Project URL and anon public key into `crm/config.js`.
+7. Create the first Rustam admin user by signing in from `/crm/`.
+
+Current Supabase project:
+
+- Project name: `fanatic-crm`
+- Region: West EU (Ireland)
+- Status: database schema created
 
 ## Tables Created
 
@@ -38,7 +46,7 @@ Each table has:
 
 ## Next Build Step
 
-Create a small web dashboard:
+The first small web dashboard is in `crm/`:
 
 - `/crm/login`
 - `/crm/clients`
@@ -47,6 +55,23 @@ Create a small web dashboard:
 - add progress item
 - add support note
 - add file/link
+
+The current static route is:
+
+```text
+/crm/
+```
+
+Before it can talk to Supabase, fill:
+
+```js
+window.FANATIC_CRM_SUPABASE = {
+  url: "https://your-project.supabase.co",
+  anonKey: "your-anon-public-key"
+};
+```
+
+in `crm/config.js`.
 
 ## Do Not Build Yet
 

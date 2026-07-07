@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Fanatic CRM</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../">
+          <span class="brand-mark">f</span>
+          <span>
+            <strong>fanatic.crm</strong>
+            <small>admin tracker</small>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="#clients">Clients</a>
+          <a href="#progress">Progress</a>
+          <a href="#sessions">Sessions</a>
+        </nav>
+        <div class="sidebar-note">
+          <strong>v0</strong>
+          <span>Admin-only tracker before client accounts and Android.</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">CRM v0</p>
+            <h1>Client work tracker</h1>
+          </div>
+          <div class="auth-status" id="auth-status">Checking session...</div>
+        </header>
+
+        <section class="setup-panel hidden" id="setup-panel">
+          <h2>Connect Supabase</h2>
+          <p>
+            Add the Supabase project URL and anon public key to <code>crm/config.js</code>.
+            The database schema is already in <code>supabase_schema.sql</code>.
+          </p>
+        </section>
+
+        <section class="auth-panel hidden" id="auth-panel">
+          <div>
+            <p class="eyebrow">Sign in</p>
+            <h2>Admin access</h2>
+            <p class="muted">Use the account that owns the CRM records.</p>
+          </div>
+          <form class="auth-form" id="auth-form">
+            <label>
+              Email
+              <input id="auth-email" type="email" autocomplete="email" required>
+            </label>
+            <label>
+              Password
+              <input id="auth-password" type="password" autocomplete="current-password">
+            </label>
+            <div class="button-row">
+              <button type="submit">Sign in</button>
+              <button type="button" class="secondary" id="magic-link-button">Send magic link</button>
+            </div>
+            <p class="form-message" id="auth-message"></p>
+          </form>
+        </section>
+
+        <section class="dashboard hidden" id="dashboard">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h2>Pipeline</h2>
+            </div>
+            <div class="button-row">
+              <button type="button" class="secondary" id="export-button">Export CSV</button>
+              <button type="button" class="secondary" id="sign-out-button">Sign out</button>
+            </div>
+          </div>
+
+          <div class="stats-grid" id="stats-grid"></div>
+
+          <div class="work-grid">
+            <section class="panel" id="clients">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Clients</p>
+                  <h3>Add or select client</h3>
+                </div>
+              </div>
+
+              <form class="stacked-form" id="client-form">
+                <div class="field-grid">
+                  <label>
+                    Name
+                    <input name="name" required>
+                  </label>
+                  <label>
+                    Email
+                    <input name="email" type="email">
+                  </label>
+                  <label>
+                    Time zone
+                    <input name="timezone" placeholder="UK, US East, etc.">
+                  </label>
+                  <label>
+                    Plan
+                    <select name="plan">
+                      <option value="session_only">$100 session only</option>
+                      <option value="session_plus_support">$130 plus support</option>
+                    </select>
+                  </label>
+                  <label>
+                    Area
+                    <input name="area" placeholder="programming, AI, setup, tech support">
+                  </label>
+                  <label>
+                    Status
+                    <select name="status">
+                      <option value="lead">Lead</option>
+                      <option value="active">Active</option>
+                      <option value="paused">Paused</option>
+                      <option value="done">Done</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  Current goal
+                  <textarea name="current_goal" rows="3"></textarea>
+                </label>
+                <button type="submit">Add client</button>
+              </form>
+
+              <div class="client-list" id="client-list"></div>
+            </section>
+
+            <section class="panel detail-panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Selected client</p>
+                  <h3 id="selected-title">No client selected</h3>
+                </div>
+                <span class="status-pill" id="selected-status">-</span>
+              </div>
+
+              <div class="empty-state" id="empty-state">
+                Select or create a client to track sessions, progress, support notes, and files.
+              </div>
+
+              <div class="client-work hidden" id="client-work">
+                <div class="mini-summary" id="client-summary"></div>
+
+                <div class="tabs">
+                  <button type="button" class="tab active" data-tab="progress">Progress</button>
+                  <button type="button" class="tab" data-tab="sessions">Sessions</button>
+                  <button type="button" class="tab" data-tab="support">Support</button>
+                  <button type="button" class="tab" data-tab="files">Files / links</button>
+                </div>
+
+                <section class="tab-panel" data-panel="progress">
+                  <form class="inline-form" id="progress-form">
+                    <input name="title" placeholder="Progress item" required>
+                    <select name="status">
+                      <option value="blocked">Blocked</option>
+                      <option value="in_progress" selected>In progress</option>
+                      <option value="improved">Improved</option>
+                      <option value="done">Done</option>
+                    </select>
+                    <select name="priority">
+                      <option value="low">Low</option>
+                      <option value="normal" selected>Normal</option>
+                      <option value="high">High</option>
+                    </select>
+                    <button type="submit">Add</button>
+                  </form>
+                  <div class="records" id="progress-records"></div>
+                </section>
+
+                <section class="tab-panel hidden" data-panel="sessions">
+                  <form class="stacked-form compact" id="session-form">
+                    <div class="field-grid">
+                      <label>
+                        Date
+                        <input name="date" type="datetime-local">
+                      </label>
+                      <label>
+                        Duration
+                        <input name="duration_minutes" type="number" min="1" max="240" value="50">
+                      </label>
+                    </div>
+                    <label>
+                      Topic
+                      <input name="topic">
+                    </label>
+                    <label>
+                      Notes
+                      <textarea name="notes" rows="3"></textarea>
+                    </label>
+                    <label>
+                      Next actions
+                      <textarea name="next_actions" rows="3"></textarea>
+                    </label>
+                    <button type="submit">Add session</button>
+                  </form>
+                  <div class="records" id="session-records"></div>
+                </section>
+
+                <section class="tab-panel hidden" data-panel="support">
+                  <form class="inline-form" id="support-form">
+                    <input name="message" placeholder="Support note" required>
+                    <select name="source">
+                      <option value="manual">Manual</option>
+                      <option value="email">Email</option>
+                      <option value="form">Form</option>
+                      <option value="chat">Chat</option>
+                    </select>
+                    <button type="submit">Add</button>
+                  </form>
+                  <div class="records" id="support-records"></div>
+                </section>
+
+                <section class="tab-panel hidden" data-panel="files">
+                  <form class="inline-form" id="file-form">
+                    <input name="url" type="url" placeholder="https://..." required>
+                    <input name="label" placeholder="Label">
+                    <select name="kind">
+                      <option value="screenshot">Screenshot</option>
+                      <option value="project">Project</option>
+                      <option value="video">Video</option>
+                      <option value="document">Document</option>
+                      <option value="other" selected>Other</option>
+                    </select>
+                    <button type="submit">Add</button>
+                  </form>
+                  <div class="records" id="file-records"></div>
+                </section>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./config.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -100,6 +100,7 @@ Files:
 - `CRM_SPEC.md` - first scoped CRM/product spec
 - `CRM_SETUP.md` - Supabase setup path for CRM v0
 - `supabase_schema.sql` - first CRM database schema
+- `crm/` - first admin-only CRM web dashboard
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow
 - `REPLY_TEMPLATES.md` - email replies for new leads
 - `DOMAIN_WWW_FIX.md` - remaining `www.fanatic.space` DNS/redirect fix
@@ -171,6 +172,8 @@ Phase 1: Landing page and lead capture
 
 Phase 2: Minimal client CRM
 
+- First static admin dashboard is created at `/crm/`.
+- It waits for Supabase project URL and anon public key in `crm/config.js`.
 - Admin login.
 - Client login.
 - Client profiles.
