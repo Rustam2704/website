@@ -154,13 +154,21 @@ function renderRoute() {
 
 async function loadClients() {
   try {
-    state.clients = await requireResult(
+    const [clients, progress, sessions, support, files] = await Promise.all([
+      requireResult(
       supabase
         .from("clients")
         .select("*")
         .eq("owner_id", state.user.id)
         .order("created_at", { ascending: false })
-    );
+      ),
+      requireResult(supabase.from("progress_items").select("id, client_id, status").eq("owner_id", state.user.id)),
+      requireResult(supabase.from("sessions").select("id, client_id").eq("owner_id", state.user.id)),
+      requireResult(supabase.from("support_notes").select("id, client_id, resolved").eq("owner_id", state.user.id)),
+      requireResult(supabase.from("client_files").select("id, client_id").eq("owner_id", state.user.id))
+    ]);
+
+    state.clients = withClientCounts(clients, { progress, sessions, support, files });
 
     if (state.selectedClient) {
       state.selectedClient = state.clients.find((client) => client.id === state.selectedClient.id) || state.clients[0] || null;
@@ -176,6 +184,34 @@ async function loadClients() {
   } catch (error) {
     alert(error.message);
   }
+}
+
+function countByClient(records, predicate = () => true) {
+  return records.reduce((acc, record) => {
+    if (predicate(record)) {
+      acc[record.client_id] = (acc[record.client_id] || 0) + 1;
+    }
+    return acc;
+  }, {});
+}
+
+function withClientCounts(clients, related) {
+  const progress = countByClient(related.progress);
+  const blocked = countByClient(related.progress, (record) => record.status === "blocked");
+  const sessions = countByClient(related.sessions);
+  const openSupport = countByClient(related.support, (record) => !record.resolved);
+  const files = countByClient(related.files);
+
+  return clients.map((client) => ({
+    ...client,
+    counts: {
+      progress: progress[client.id] || 0,
+      blocked: blocked[client.id] || 0,
+      sessions: sessions[client.id] || 0,
+      openSupport: openSupport[client.id] || 0,
+      files: files[client.id] || 0
+    }
+  }));
 }
 
 function renderStats() {
@@ -207,6 +243,12 @@ function renderClients() {
       <strong>${h(client.name)}</strong>
       <span>${h(client.email || "No email")}</span>
       <small>${h(client.status)} / ${h(client.plan.replaceAll("_", " "))}</small>
+      <span class="client-card-metrics">
+        <span>${client.counts?.progress || 0} progress</span>
+        <span>${client.counts?.sessions || 0} sessions</span>
+        <span>${client.counts?.openSupport || 0} open support</span>
+        <span>${client.counts?.files || 0} files</span>
+      </span>
     </button>
   `).join("");
 

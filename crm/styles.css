@@ -366,6 +366,21 @@ h3 {
   color: var(--muted);
 }
 
+.client-card-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.client-card-metrics span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: #ffffff;
+  font-size: 12px;
+}
+
 .empty-state,
 .empty-list {
   border: 1px dashed #bfc9c5;
