@@ -174,6 +174,8 @@ async function loadClients() {
 
     if (state.selectedClient) {
       state.selectedClient = state.clients.find((client) => client.id === state.selectedClient.id) || state.clients[0] || null;
+    } else {
+      state.selectedClient = state.clients[0] || null;
     }
 
     renderClients();
