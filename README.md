@@ -75,7 +75,11 @@ Done:
 - Basic SEO metadata added.
 - Favicon, sitemap, robots.txt, and 404 page added.
 - Static form submission moved from `mailto` to FormSubmit.
+- Landing form also writes intake requests into Supabase.
 - FormSubmit activated and tested.
+- Admin CRM deployed at `/crm/` and connected to Supabase.
+- Client portal deployed at `/portal/` and connected to Supabase.
+- Client portal can add progress, support notes, file links, and see safe session history.
 - Roadmap file created.
 - Immediate launch checklist created.
 
@@ -103,8 +107,8 @@ Files:
 - `supabase_schema.sql` - first CRM database schema
 - `supabase_storage.sql` - private Supabase Storage bucket and policies
 - `supabase_client_portal.sql` - client access mapping and read policies
-- `crm/` - first admin-only CRM web dashboard
-- `portal/` - first read-only client portal skeleton
+- `crm/` - admin CRM web dashboard
+- `portal/` - client portal
 - `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow
 - `REPLY_TEMPLATES.md` - email replies for new leads
 - `DOMAIN_WWW_FIX.md` - remaining `www.fanatic.space` DNS/redirect fix
@@ -135,7 +139,7 @@ Technical constraints:
 - Form submissions are confirmed to arrive in Gmail through Cloudflare Email Routing.
 - The form sets a unique subject before submit so Gmail does not merge all requests into one thread.
 - Tally, Netlify Forms, or Supabase can replace FormSubmit later if needed.
-- CRM should not be built until the lead path works.
+- CRM should stay focused on replacing the spreadsheet before adding complex product features.
 
 Data / future portability constraints:
 
@@ -152,8 +156,8 @@ Highest priority:
 
 1. Confirm Cloudflare Pages deploys after each push.
 2. Keep `www.fanatic.space` working, then add a redirect to `fanatic.space` later for SEO consistency.
-3. Prepare the Supabase schema for the admin-only CRM tracker.
-4. Build the first responsive dashboard before Android.
+3. Keep improving the Supabase-backed CRM until it can replace the spreadsheet.
+4. Test the client portal with a real invited client account after Supabase redirect URLs are updated.
 5. Replace the phone/contact placeholder if a phone or messenger will be used.
 
 Nice but not blocking:
@@ -177,16 +181,12 @@ Phase 1: Landing page and lead capture
 
 Phase 2: Minimal client CRM
 
-- First static admin dashboard is created at `/crm/`.
-- It waits for Supabase project URL and anon public key in `crm/config.js`.
-- Admin login.
-- Client login.
-- Client profiles.
-- Session logs.
-- Progress statuses.
-- File / link uploads.
-- Support thread for $130 plan.
-- CSV export.
+- Admin dashboard is deployed at `/crm/`.
+- Supabase project URL and publishable key are configured in `crm/config.js`.
+- Admin login is working.
+- Client portal is deployed at `/portal/`.
+- Client profiles, session logs, progress statuses, support notes, file/link records, CSV export, and JSON backup are implemented in the CRM.
+- Client portal can show assigned profile/progress/sessions/files and can add progress/support/file-link updates.
 
 Likely stack:
 

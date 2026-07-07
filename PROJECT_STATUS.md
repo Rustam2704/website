@@ -91,6 +91,20 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-export.ps1
 ```
 
+List intake requests:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-list-intake.ps1
+```
+
+Remove known Codex test clients after UI testing:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-delete-test-data.ps1 -ConfirmDelete
+```
+
 ## Current Direction
 
 Keep improving the admin CRM until it can replace the spreadsheet. Client portal and Android should follow the proven admin workflow, not lead it.
