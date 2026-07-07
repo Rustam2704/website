@@ -152,6 +152,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\check-supabase.ps1
 ```
 
+Show CRM summary:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-summary.ps1
+```
+
 Exports are written to:
 
 ```text
