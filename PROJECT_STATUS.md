@@ -133,6 +133,13 @@ $env:PGPASSWORD = "<database-password>"
   -Kind "project"
 ```
 
+Show a compact report for one client:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-client-report.ps1 -ClientEmail "client@example.com"
+```
+
 Remove known Codex test clients after UI testing:
 
 ```powershell

@@ -166,6 +166,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-list-files.ps1 -ClientEmail "client@example.com"
 ```
 
+Show a compact report for one client:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-client-report.ps1 -ClientEmail "client@example.com"
+```
+
 Resolve latest support note for a client:
 
 ```powershell

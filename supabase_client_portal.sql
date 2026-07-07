@@ -89,6 +89,12 @@ create index if not exists client_access_client_idx on public.client_access(clie
 alter table public.client_access
 add column if not exists user_email text;
 
+update public.client_access access
+set user_email = lower(users.email)
+from auth.users users
+where access.user_id = users.id
+  and access.user_email is null;
+
 create or replace function public.grant_client_access_by_email(
   p_client_id uuid,
   p_user_email text
