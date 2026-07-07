@@ -788,7 +788,11 @@ function renderRelatedRecords() {
   views.sessionRecords.innerHTML = renderRecordList(state.sessions, "sessions", (item) => `
     <strong>${h(item.topic || "Session")}</strong>
     <span>${h(formatDate(item.date))} / ${h(item.duration_minutes)} min</span>
-    ${item.confirmation_status ? `<span>Status: ${h(statusLabel(item.confirmation_status))}</span>` : ""}
+    ${item.confirmation_status ? `
+      <select class="record-update" data-table="sessions" data-id="${item.id}" data-field="confirmation_status">
+        ${confirmationStatusOptions(item.confirmation_status)}
+      </select>
+    ` : ""}
     ${item.google_calendar_sync_status ? `<span>Calendar: ${h(statusLabel(item.google_calendar_sync_status))}</span>` : ""}
     ${item.meeting_url ? `<a href="${h(item.meeting_url)}" target="_blank" rel="noreferrer">Open meeting link</a>` : ""}
     <p>${h(item.next_actions || item.notes || "")}</p>
@@ -994,6 +998,15 @@ function progressStatusOptions(currentStatus) {
     ["in_progress", "In progress"],
     ["improved", "Improved"],
     ["done", "Done"]
+  ].map(([value, label]) => `<option value="${value}" ${value === currentStatus ? "selected" : ""}>${label}</option>`).join("");
+}
+
+function confirmationStatusOptions(currentStatus) {
+  return [
+    ["unconfirmed", "Unconfirmed"],
+    ["confirmed", "Confirmed"],
+    ["cancelled", "Cancelled"],
+    ["completed", "Completed"]
   ].map(([value, label]) => `<option value="${value}" ${value === currentStatus ? "selected" : ""}>${label}</option>`).join("");
 }
 
