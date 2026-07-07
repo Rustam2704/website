@@ -124,7 +124,7 @@ function formToObject(form) {
 
 function cleanPayload(payload) {
   return Object.fromEntries(
-    Object.entries(payload).map(([key, value]) => [key, value === "" ? null : value])
+    Object.entries(payload).filter(([, value]) => value !== "")
   );
 }
 
