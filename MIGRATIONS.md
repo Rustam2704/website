@@ -34,7 +34,11 @@ https://iavkvtkoowwkvizjpasy.supabase.co
 
    Optional task fields for due dates, teacher comments, and student comments.
 
-6. `supabase_calendar.sql`
+6. `supabase_billing_fields.sql`
+
+   Optional lightweight lesson balance and support-until fields.
+
+7. `supabase_calendar.sql`
 
    Google Calendar connection table and session event mapping fields.
 

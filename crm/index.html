@@ -212,6 +212,14 @@
                         </select>
                       </label>
                       <label>
+                        Paid sessions
+                        <input name="paid_sessions_total" type="number" min="0" step="1">
+                      </label>
+                      <label>
+                        Support until
+                        <input name="support_until" type="date">
+                      </label>
+                      <label>
                         Area
                         <input name="area">
                       </label>
@@ -454,6 +462,14 @@
                   </select>
                 </label>
                 <label>
+                  Paid sessions
+                  <input name="paid_sessions_total" type="number" min="0" step="1">
+                </label>
+                <label>
+                  Support until
+                  <input name="support_until" type="date">
+                </label>
+                <label>
                   Area
                   <input name="area" placeholder="teaching/mentorship, tech advice/support">
                 </label>
@@ -479,7 +495,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-33"></script>
+    <script type="module" src="./app.js?v=2026-07-07-34"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

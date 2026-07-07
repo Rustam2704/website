@@ -12,6 +12,9 @@ create table if not exists public.clients (
   timezone text,
   plan text not null default 'session_only'
     check (plan in ('session_only', 'session_plus_support')),
+  paid_sessions_total integer
+    check (paid_sessions_total is null or paid_sessions_total >= 0),
+  support_until timestamptz,
   area text,
   current_goal text,
   status text not null default 'lead'
@@ -236,6 +239,8 @@ grant select, insert, update, delete on public.intake_requests to authenticated;
 
 create index if not exists clients_owner_status_idx on public.clients(owner_id, status);
 create index if not exists clients_owner_email_idx on public.clients(owner_id, email);
+create index if not exists clients_owner_support_until_idx on public.clients(owner_id, support_until)
+where support_until is not null;
 create index if not exists sessions_client_date_idx on public.sessions(client_id, date desc);
 create index if not exists sessions_owner_confirmation_idx on public.sessions(owner_id, confirmation_status, date desc);
 create index if not exists progress_items_client_status_idx on public.progress_items(client_id, status);

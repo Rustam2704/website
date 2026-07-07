@@ -180,6 +180,7 @@ Status:
 - Search, status filter, area filter, and sorting exist.
 - Student list now uses a dense table-like layout with next session, goal, last activity, work counters, and plan.
 - Full payment columns are still intentionally deferred.
+- Lightweight paid session total and support-until fields exist as optional billing groundwork.
 
 ## 7. Student Portal
 

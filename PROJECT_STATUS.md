@@ -64,6 +64,7 @@ Last updated: July 7, 2026
   - quick Add session action
   - Start session and quick Add session prefill a 50-minute lesson window
   - session form can optionally capture meeting URL and confirmation status after lesson migration is applied
+  - student header can show paid lesson balance and support-until date after billing migration is applied
   - secondary tools are grouped under a Tools menu
   - student list supports status filter, area filter, and sorting
   - student list uses a dense table-like layout for scanning next session, goal, activity, work counters, and plan

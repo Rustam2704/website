@@ -6,6 +6,7 @@ param(
     "supabase_client_portal.sql",
     "supabase_lesson_fields.sql",
     "supabase_lms_fields.sql",
+    "supabase_billing_fields.sql",
     "supabase_calendar.sql"
   )]
   [string]$File

@@ -22,9 +22,10 @@ See `MIGRATIONS.md` for the current SQL migration order.
 3. Paste and run `supabase_schema.sql`.
 4. Later, when lesson links/statuses are ready, paste and run `supabase_lesson_fields.sql`.
 5. Later, when task deadlines/comments are ready, paste and run `supabase_lms_fields.sql` after the client portal migration has been applied.
-6. Later, when Calendar sync is ready, paste and run `supabase_calendar.sql`.
-7. In Authentication, enable Email login.
-8. In Authentication -> URL Configuration, set:
+6. Later, when paid lesson balance/support tracking is ready, paste and run `supabase_billing_fields.sql`.
+7. Later, when Calendar sync is ready, paste and run `supabase_calendar.sql`.
+8. In Authentication, enable Email login.
+9. In Authentication -> URL Configuration, set:
 
 ```text
 Site URL: https://fanatic.space
@@ -33,9 +34,9 @@ https://fanatic.space/crm/
 https://fanatic.space/portal/
 ```
 
-9. Open Project Settings -> Data API.
-10. Copy the Project URL and anon public key into `crm/config.js`.
-11. Create the first Rustam admin user by signing in from `/crm/`.
+10. Open Project Settings -> Data API.
+11. Copy the Project URL and anon public key into `crm/config.js`.
+12. Create the first Rustam admin user by signing in from `/crm/`.
 
 Current Supabase project:
 

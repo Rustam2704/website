@@ -191,7 +191,11 @@ function prefillSessionForm(client = state.selectedClient) {
 function fillForm(form, values) {
   Object.entries(values).forEach(([key, value]) => {
     const field = form.elements[key];
-    if (field) field.value = value ?? "";
+    if (field?.type === "date" && value) {
+      field.value = String(value).slice(0, 10);
+    } else if (field) {
+      field.value = value ?? "";
+    }
   });
 }
 
@@ -841,6 +845,8 @@ function renderStudentProfile() {
   const completedSessions = state.sessions.filter((session) => {
     return session.date && new Date(session.date).getTime() < Date.now();
   }).length;
+  const paidSessions = Number.isFinite(Number(client.paid_sessions_total)) ? Number(client.paid_sessions_total) : null;
+  const remainingSessions = paidSessions === null ? "-" : Math.max(0, paidSessions - completedSessions);
   const activeTasks = state.progress.filter((item) => item.status !== "done").length;
   const openMessages = state.support.filter((item) => !item.resolved).length;
 
@@ -858,6 +864,8 @@ function renderStudentProfile() {
     <div class="student-profile-metrics">
       <div><span>Next lesson</span><strong>${h(formatCompactDate(nextSession?.date))}</strong></div>
       <div><span>Sessions done</span><strong>${completedSessions}</strong></div>
+      <div><span>Remaining</span><strong>${h(remainingSessions)}</strong></div>
+      <div><span>Support until</span><strong>${h(formatCompactDate(client.support_until))}</strong></div>
       <div><span>Active tasks</span><strong>${activeTasks}</strong></div>
       <div><span>Open messages</span><strong>${openMessages}</strong></div>
     </div>

@@ -113,6 +113,7 @@ Files:
 - `supabase_schema.sql` - first CRM database schema
 - `supabase_lesson_fields.sql` - optional lesson URL and confirmation fields for sessions
 - `supabase_lms_fields.sql` - optional LMS-lite deadline/comment fields for tasks
+- `supabase_billing_fields.sql` - optional lesson balance and support-until fields
 - `supabase_calendar.sql` - Google Calendar sync groundwork schema
 - `supabase_storage.sql` - private Supabase Storage bucket and policies
 - `supabase_client_portal.sql` - client access mapping and read policies
