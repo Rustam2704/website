@@ -55,6 +55,7 @@ Last updated: July 7, 2026
   - active tab persists across reloads
   - delete actions ask for confirmation
   - session private notes supported
+  - sessions can display future meeting URL, confirmation status, and calendar sync status after lesson/calendar migrations are applied
   - client cards show activity counts
   - quick Add session action
   - secondary tools are grouped under a Tools menu
@@ -69,6 +70,7 @@ Last updated: July 7, 2026
   - `tools/check-supabase.ps1`
 - Google Calendar groundwork:
   - `supabase_calendar.sql`
+  - `supabase_lesson_fields.sql`
   - `GOOGLE_CALENDAR_SETUP.md`
   - session calendar mapping fields in the base schema
 

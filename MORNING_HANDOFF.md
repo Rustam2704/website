@@ -64,6 +64,7 @@ Latest checked pieces:
 - Today detects stale messages, stale tasks, missing session next actions, active students without upcoming sessions, blockers, and new requests.
 - Portal home now has direct actions to sessions and tasks, with add forms collapsed until needed.
 - Google Calendar groundwork exists in `supabase_calendar.sql` and `GOOGLE_CALENDAR_SETUP.md`.
+- Session UI can display future meeting URL, confirmation status, and calendar sync status after lesson/calendar migrations are applied.
 
 ## Still Needs User Clicks Later
 

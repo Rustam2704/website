@@ -731,6 +731,9 @@ function renderRelatedRecords() {
   views.sessionRecords.innerHTML = renderRecordList(state.sessions, "sessions", (item) => `
     <strong>${h(item.topic || "Session")}</strong>
     <span>${h(formatDate(item.date))} / ${h(item.duration_minutes)} min</span>
+    ${item.confirmation_status ? `<span>Status: ${h(statusLabel(item.confirmation_status))}</span>` : ""}
+    ${item.google_calendar_sync_status ? `<span>Calendar: ${h(statusLabel(item.google_calendar_sync_status))}</span>` : ""}
+    ${item.meeting_url ? `<a href="${h(item.meeting_url)}" target="_blank" rel="noreferrer">Open meeting link</a>` : ""}
     <p>${h(item.next_actions || item.notes || "")}</p>
     ${item.private_notes ? `<p><strong>Private:</strong> ${h(item.private_notes)}</p>` : ""}
   `);

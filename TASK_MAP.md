@@ -63,6 +63,7 @@ Started:
 - `supabase_calendar.sql` defines calendar connection and session event mapping fields.
 - `supabase_lesson_fields.sql` defines meeting URL and confirmation status fields.
 - `GOOGLE_CALENDAR_SETUP.md` documents setup and recommended architecture.
+- CRM and portal can display meeting URL / confirmation / calendar sync fields after migrations are applied.
 
 Still needed:
 

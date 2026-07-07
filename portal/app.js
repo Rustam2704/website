@@ -183,6 +183,8 @@ async function loadPortalData() {
           <div class="record-body">
             <strong>${h(item.topic || "Session")}</strong>
             <span>${h(formatDate(item.date))} / ${h(item.duration_minutes)} min</span>
+            ${item.confirmation_status ? `<span>Status: ${h(item.confirmation_status.replaceAll("_", " "))}</span>` : ""}
+            ${item.meeting_url ? `<a href="${h(item.meeting_url)}" target="_blank" rel="noreferrer">Join or open meeting link</a>` : ""}
             ${item.notes ? `<p>${h(item.notes)}</p>` : ""}
             ${item.next_actions ? `<p><strong>Next:</strong> ${h(item.next_actions)}</p>` : ""}
           </div>
