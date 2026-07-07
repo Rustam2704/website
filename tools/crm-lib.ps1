@@ -12,6 +12,20 @@ function Get-CrmPsql {
   throw "psql was not found. Install PostgreSQL client tools first."
 }
 
+function Get-CrmPgDump {
+  $pgDump = Get-Command pg_dump -ErrorAction SilentlyContinue
+  if ($pgDump) {
+    return $pgDump.Source
+  }
+
+  $fallback = "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe"
+  if (Test-Path $fallback) {
+    return $fallback
+  }
+
+  throw "pg_dump was not found. Install PostgreSQL client tools first."
+}
+
 function Get-CrmConnectionString {
   if (-not $env:PGPASSWORD) {
     throw "Set `$env:PGPASSWORD to the Supabase database password before running this script."

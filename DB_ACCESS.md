@@ -181,6 +181,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-export.ps1
 ```
 
+Dump the public PostgreSQL schema and data to a portable SQL file:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-dump-db.ps1
+```
+
 Check Supabase infrastructure:
 
 ```powershell
@@ -199,6 +206,7 @@ Exports are written to:
 
 ```text
 exports/crm-YYYYMMDD-HHMMSS/
+exports/fanatic-crm-db-YYYYMMDD-HHMMSS.sql
 ```
 
 Current test data:

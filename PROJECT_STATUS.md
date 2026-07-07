@@ -91,6 +91,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-export.ps1
 ```
 
+Dump CRM database as portable SQL:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-dump-db.ps1
+```
+
 List intake requests:
 
 ```powershell
