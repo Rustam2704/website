@@ -164,7 +164,7 @@ Highest priority:
 2. Keep improving the Supabase-backed CRM until it can replace the spreadsheet.
 3. Test the client portal with a real invited client account when a real client email is ready.
 4. Keep the CRM and portal readable, simple, and portable instead of adding heavy product ceremony.
-5. Configure Supabase Google OAuth provider if social login should work in production.
+5. Verify that Google login and magic-link login converge to the same account for the same email.
 6. Add Google Calendar integration only after the teaching CRM session workflow is stable.
 7. Replace the phone/contact placeholder if a phone or messenger will be used.
 

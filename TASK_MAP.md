@@ -11,6 +11,8 @@ Done:
 - Fix mobile hero/tool-cloud issue where tool tags could visually fall into the white page area.
 - Replace the old Mac-style background with a Lenovo-style technical workspace.
 - Add Google login UI.
+- Configure Google OAuth provider in Supabase.
+- Remove Apple login from the UI for now.
 
 Current decision:
 
@@ -20,8 +22,8 @@ Current decision:
 
 Still needed:
 
-- Configure Google OAuth provider in Supabase.
 - Verify that Google login and email magic-link login return the user to the same Supabase account when the email address matches.
+- Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
 
 ## 2. Core CRM Direction
 
@@ -36,6 +38,10 @@ Done / started:
 - Dashboard now starts moving toward `Today`.
 - Add student is moved into a modal instead of permanently occupying the page.
 - Terminology is moving from `Clients` to `Students`.
+- Quick `Add session` action exists.
+- Secondary export/import/backup/sign-out actions are grouped under `Tools`.
+- Student list supports status filter, area filter, and sorting.
+- Add/edit forms are collapsed until needed.
 
 Still needed:
 
@@ -45,8 +51,7 @@ Still needed:
   - overdue tasks;
   - unread messages;
   - students who have not received a response for too long.
-- Move secondary actions like export, backup, and sign out into a settings/user menu.
-- Add a stronger constant primary action, probably `Add session` or `Schedule lesson`.
+- Keep refining the daily dashboard logic and selected-student workflow.
 
 ## 3. Google Calendar Integration
 

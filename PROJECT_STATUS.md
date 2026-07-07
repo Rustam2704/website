@@ -31,7 +31,7 @@ Last updated: July 7, 2026
 - Admin CRM can be installed as a PWA shell on Android-compatible browsers.
 - Admin CRM can import clients from CSV directly in the browser.
 - Admin CRM is moving toward teaching CRM structure: Today dashboard, Students, Tasks, Messages.
-- CRM and portal show Google login buttons; Supabase provider setup is still required before production OAuth works.
+- CRM and portal Google login works through Supabase OAuth.
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
 - CLI helpers can add and list client file/project/screenshot/video links.
@@ -53,6 +53,10 @@ Last updated: July 7, 2026
   - delete actions ask for confirmation
   - session private notes supported
   - client cards show activity counts
+  - quick Add session action
+  - secondary tools are grouped under a Tools menu
+  - student list supports status filter, area filter, and sorting
+  - add/edit forms are collapsed behind action blocks until needed
 - Combined checks:
   - `tools/check-all.ps1`
   - `tools/check-public.ps1`
@@ -62,7 +66,7 @@ Last updated: July 7, 2026
 
 - Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
 - Keep improving the admin CRM and client portal until they can replace the spreadsheet workflow.
-- Configure Google OAuth provider in Supabase when ready.
+- Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
 - Add Google Calendar integration after the session workflow is stable.
 - Prepare 2-4 static ad images later for online lessons for ages 8-18: programming, AI tools, and practical computer directions.
 - Replace contact phone / messenger placeholder when the number is ready.

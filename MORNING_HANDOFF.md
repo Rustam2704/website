@@ -56,13 +56,15 @@ Latest checked pieces:
 - Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
 - `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 - Landing hero uses a Lenovo-style technical workspace image.
-- CRM and portal show Google login buttons; Supabase provider setup is still required before production OAuth works.
+- CRM and portal Google login works through Supabase OAuth.
 - CRM shell is moving from generic client tracker toward teaching CRM: Today dashboard, Students, Tasks, Messages.
+- CRM now has quick Add session, grouped Tools, student area filter, student sorting, and collapsed action forms.
 
 ## Still Needs User Clicks Later
 
 - Test CRM install on Android / Chrome.
 - Keep improving the admin CRM and client portal before moving into Android-specific work.
+- Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
 - Decide whether to delete test clients:
 
 ```powershell

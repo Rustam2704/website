@@ -44,7 +44,7 @@
 2. Keep improving the admin CRM until it can replace the spreadsheet.
 3. Keep improving the client portal after the admin workflow is stable.
 4. Test real client portal login when a real client email is ready.
-5. Configure Supabase Google OAuth provider if social login should work in production.
+5. Verify that Google login and magic-link login converge to the same account for the same email.
 6. Add Google Calendar integration after the CRM session workflow is stable.
 7. Replace the phone/contact placeholder if a phone or messenger will be used.
 8. Decide whether to add lightweight analytics.
