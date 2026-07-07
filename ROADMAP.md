@@ -74,7 +74,7 @@ Core features:
 Recommended first implementation:
 
 - Start with a responsive web dashboard that works well on mobile.
-- CRM is being made installable as a PWA first, which is the fastest Android-like monitoring path.
+- CRM and portal are being made installable as PWA shells first, which is the fastest Android-like monitoring path.
 - Wrap or rebuild only the small monitoring surface for Android after the CRM workflow is proven.
 
 ## Later: Static Ad Creatives

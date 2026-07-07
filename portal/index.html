@@ -6,7 +6,8 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Fanatic Client Portal</title>
     <link rel="icon" href="../assets/favicon-portal.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-07-2">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-07-4">
   </head>
   <body>
     <div class="app-shell">
@@ -181,6 +182,11 @@
     </div>
 
     <script src="../crm/config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-9"></script>
+    <script type="module" src="./app.js?v=2026-07-07-10"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./sw.js");
+      }
+    </script>
   </body>
 </html>

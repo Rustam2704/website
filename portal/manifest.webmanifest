@@ -1,0 +1,18 @@
+{
+  "name": "Fanatic Portal",
+  "short_name": "Fanatic Portal",
+  "description": "Student progress dashboard for fanatic.space clients.",
+  "start_url": "/portal/",
+  "scope": "/portal/",
+  "display": "standalone",
+  "background_color": "#f5f7f5",
+  "theme_color": "#111817",
+  "icons": [
+    {
+      "src": "/assets/favicon-portal.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

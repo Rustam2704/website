@@ -29,6 +29,7 @@ Last updated: July 7, 2026
   - claim pending email access after the first magic-link login
 - CRM and portal are marked `noindex, nofollow` through meta tags, robots.txt, and Cloudflare `_headers`.
 - PWA icons were added for CRM installability on Android-compatible browsers.
+- Portal manifest and service worker were added for Android-compatible browser installability.
 - Portable PostgreSQL dump helper and one-command backup helper added.
 - CRM service worker cache was refreshed so installed CRM shells are less likely to hold stale JS/config.
 

@@ -1,11 +1,11 @@
-const CACHE_NAME = "fanatic-crm-20260707-3";
+const CACHE_NAME = "fanatic-portal-20260707-1";
 const SHELL_ASSETS = [
-  "/crm/",
-  "/crm/index.html",
+  "/portal/",
+  "/portal/index.html",
+  "/portal/app.js",
   "/crm/styles.css",
   "/crm/config.js",
-  "/crm/app.js",
-  "/assets/favicon-crm.svg"
+  "/assets/favicon-portal.svg"
 ];
 
 self.addEventListener("install", (event) => {
@@ -18,7 +18,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => Promise.all(
-      keys.filter((key) => key.startsWith("fanatic-crm-") && key !== CACHE_NAME).map((key) => caches.delete(key))
+      keys.filter((key) => key.startsWith("fanatic-portal-") && key !== CACHE_NAME).map((key) => caches.delete(key))
     ))
   );
   self.clients.claim();

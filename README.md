@@ -80,6 +80,7 @@ Done:
 - Admin CRM deployed at `/crm/` and connected to Supabase.
 - Client portal deployed at `/portal/` and connected to Supabase.
 - Client portal can add progress, support notes, file links, and see safe session history.
+- Client portal can be installed as a PWA shell on Android-compatible browsers.
 - Admin CRM can import clients from CSV in the browser.
 - CLI helpers support CSV import from the current spreadsheet, full backup bundles, client reports, file links, and pending portal access grant/list/revoke.
 - Roadmap file created.
@@ -206,6 +207,7 @@ Likely stack:
 
 Phase 3: Android monitoring app
 
+- Current bridge: CRM and portal can already be installed as browser PWA shells on Android-compatible browsers.
 - Small companion app, not full rewrite.
 - View clients.
 - Add quick notes.
