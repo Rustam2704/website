@@ -131,6 +131,13 @@ $env:PGPASSWORD = "<database-password>"
   -UserEmail "client@example.com"
 ```
 
+Delete a client and related records:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-delete-client.ps1 -ClientEmail "client@example.com"
+```
+
 Export CRM tables to CSV:
 
 ```powershell
