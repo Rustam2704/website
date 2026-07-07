@@ -37,15 +37,19 @@
 - `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 - Landing hero now uses a Lenovo-style technical workspace image.
 - CRM shell now starts moving from generic client tracker toward teaching CRM: Today, Students, Tasks, Messages.
+- Selected-student page has a header and Overview tab.
+- CRM Today dashboard detects open loops.
+- Student/task forms can prepare lesson links, confirmation status, deadlines, and comments after the optional migrations are applied.
+- SQL migration order and a migration runner helper are documented.
 
 ## Next practical steps
 
-1. Confirm the latest Cloudflare Pages deploy after each push.
-2. Keep improving the admin CRM until it can replace the spreadsheet.
-3. Keep improving the client portal after the admin workflow is stable.
-4. Build the selected-student page into the main teacher working screen.
-5. Improve the CRM Today dashboard after the student page is useful.
-6. Add Google Calendar integration after the CRM session workflow is stable.
+1. Keep improving the admin CRM until it can replace the spreadsheet.
+2. Keep improving the client portal after the admin workflow is stable.
+3. Apply optional Supabase migrations when ready: lesson fields, LMS-lite fields, Calendar fields.
+4. Add Google Calendar sync after the session workflow is stable.
+5. Add payment/lesson-balance tracking only when it is needed for real work.
+6. Turn the portal into a small Android-friendly PWA before building a native Android app.
 7. Replace the phone/contact placeholder if a phone or messenger will be used.
 8. Decide whether to add lightweight analytics.
 9. Prepare 2-4 static ad images for ages 8-18 programming / AI / computer lessons after the core flow is stable.
