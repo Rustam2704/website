@@ -412,8 +412,9 @@ async function insertRecord(table, form, extra = {}) {
     ...extra
   });
 
-  await requireResult(supabase.from(table).insert(payload).select());
+  const data = await requireResult(supabase.from(table).insert(payload).select());
   form.reset();
+  return data;
 }
 
 async function deleteRecord(table, id) {
@@ -524,7 +525,8 @@ $("#delete-client-button").addEventListener("click", async () => {
 $("#client-form").addEventListener("submit", async (event) => {
   event.preventDefault();
   try {
-    await insertRecord("clients", event.currentTarget, { owner_id: state.user.id });
+    const [client] = await insertRecord("clients", event.currentTarget, { owner_id: state.user.id });
+    state.selectedClient = client || null;
     await loadClients();
   } catch (error) {
     alert(error.message);
