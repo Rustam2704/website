@@ -8,6 +8,10 @@ Write-Output "Public deployment"
 & "$PSScriptRoot\check-public.ps1"
 
 Write-Output ""
+Write-Output "Live frontend assets"
+& "$PSScriptRoot\check-live-assets.ps1"
+
+Write-Output ""
 Write-Output "Supabase infrastructure"
 & "$PSScriptRoot\check-supabase.ps1"
 
