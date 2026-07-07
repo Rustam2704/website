@@ -15,6 +15,8 @@ This avoids building a big client portal before the workflow is proven.
 
 ## Supabase Setup
 
+See `MIGRATIONS.md` for the current SQL migration order.
+
 1. Create a new Supabase project.
 2. Open SQL Editor.
 3. Paste and run `supabase_schema.sql`.

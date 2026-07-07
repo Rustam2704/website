@@ -115,6 +115,7 @@ Files:
 - `supabase_calendar.sql` - Google Calendar sync groundwork schema
 - `supabase_storage.sql` - private Supabase Storage bucket and policies
 - `supabase_client_portal.sql` - client access mapping and read policies
+- `MIGRATIONS.md` - recommended SQL migration order
 - `GOOGLE_CALENDAR_SETUP.md` - Calendar integration setup and architecture notes
 - `crm/` - admin CRM web dashboard
 - `portal/` - client portal
