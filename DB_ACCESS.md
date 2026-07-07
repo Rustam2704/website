@@ -91,6 +91,20 @@ $env:PGPASSWORD = "<database-password>"
   -CurrentGoal "First goal"
 ```
 
+Import clients from a CSV exported from Excel:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-import-clients.ps1 -CsvPath ".\examples\clients-import-template.csv"
+```
+
+Update existing clients with matching emails while importing:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-import-clients.ps1 -CsvPath ".\clients.csv" -UpdateExisting
+```
+
 Add a lead from a FormSubmit email:
 
 ```powershell

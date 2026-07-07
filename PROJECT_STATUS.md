@@ -32,6 +32,7 @@ Last updated: July 7, 2026
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
 - CLI helpers can add and list client file/project/screenshot/video links.
+- CSV import exists for moving clients from the current spreadsheet into CRM.
 - Client portal database foundation.
 - Client portal can update assigned progress statuses through a safe RPC.
 - Client portal can add assigned progress items and support notes.
@@ -83,6 +84,13 @@ List CRM clients:
 ```powershell
 $env:PGPASSWORD = "<database-password>"
 .\tools\crm-list-clients.ps1
+```
+
+Import clients from a CSV exported from Excel:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-import-clients.ps1 -CsvPath ".\examples\clients-import-template.csv"
 ```
 
 Export CRM tables:
