@@ -19,9 +19,16 @@ This avoids building a big client portal before the workflow is proven.
 2. Open SQL Editor.
 3. Paste and run `supabase_schema.sql`.
 4. In Authentication, enable Email login.
-5. Open Project Settings -> Data API.
-6. Copy the Project URL and anon public key into `crm/config.js`.
-7. Create the first Rustam admin user by signing in from `/crm/`.
+5. In Authentication -> URL Configuration, set:
+
+```text
+Site URL: https://fanatic.space
+Redirect URLs: https://fanatic.space/crm/
+```
+
+6. Open Project Settings -> Data API.
+7. Copy the Project URL and anon public key into `crm/config.js`.
+8. Create the first Rustam admin user by signing in from `/crm/`.
 
 Current Supabase project:
 
@@ -67,7 +74,8 @@ Before it can talk to Supabase, fill:
 ```js
 window.FANATIC_CRM_SUPABASE = {
   url: "https://your-project.supabase.co",
-  anonKey: "your-anon-public-key"
+  anonKey: "your-anon-public-key",
+  redirectUrl: "https://fanatic.space/crm/"
 };
 ```
 

@@ -287,7 +287,7 @@ $("#magic-link-button").addEventListener("click", async () => {
   setMessage("Sending magic link...");
   const { error } = await supabase.auth.signInWithOtp({
     email,
-    options: { emailRedirectTo: `${window.location.origin}/crm/` }
+    options: { emailRedirectTo: config.redirectUrl || `${window.location.origin}/crm/` }
   });
   setMessage(error ? error.message : "Magic link sent. Check email.", Boolean(error));
 });
