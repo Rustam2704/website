@@ -16,6 +16,7 @@ Last updated: July 7, 2026
 - CRM can convert intake requests into clients.
 - CRM has CLI helpers for intake listing, conversion, archive, auth users, CSV export, SQL dump, full backup, CSV import, client reports, file links, portal access grant/list/revoke, and test-data cleanup.
 - CRM intake conversion now reuses an existing client with the same email instead of creating duplicates.
+- CRM can import clients from CSV directly in the browser; existing clients are updated by email instead of duplicated.
 - Client portal can:
   - show assigned client profile
   - show progress

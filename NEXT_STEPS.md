@@ -21,6 +21,7 @@
 - CRM private file storage bucket created.
 - Admin CRM dashboard deployed at `/crm/`.
 - Admin CRM can review intake requests and convert them into clients.
+- Admin CRM can import clients from CSV in the browser.
 - psql installed and documented.
 - CLI helpers created for client/progress/session/support/export/delete.
 - CLI helpers added for CSV client import, full backup bundle, file links, client reports, and client portal access grant/list/revoke.

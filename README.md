@@ -80,6 +80,7 @@ Done:
 - Admin CRM deployed at `/crm/` and connected to Supabase.
 - Client portal deployed at `/portal/` and connected to Supabase.
 - Client portal can add progress, support notes, file links, and see safe session history.
+- Admin CRM can import clients from CSV in the browser.
 - CLI helpers support CSV import from the current spreadsheet, full backup bundles, client reports, file links, and portal access grant/list/revoke.
 - Roadmap file created.
 - Immediate launch checklist created.

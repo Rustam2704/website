@@ -29,6 +29,7 @@ Last updated: July 7, 2026
   - JSON backup
   - intake request review and conversion to client
 - Admin CRM can be installed as a PWA shell on Android-compatible browsers.
+- Admin CRM can import clients from CSV directly in the browser.
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
 - CLI helpers can add and list client file/project/screenshot/video links.

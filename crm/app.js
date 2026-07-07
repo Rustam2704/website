@@ -28,6 +28,8 @@ const views = {
   authStatus: $("#auth-status"),
   authMessage: $("#auth-message"),
   deleteClientButton: $("#delete-client-button"),
+  importClientsButton: $("#import-clients-button"),
+  importClientsInput: $("#import-clients-input"),
   clientEditForm: $("#client-edit-form"),
   clientSearchInput: $("#client-search"),
   clientStatusFilter: $("#client-status-filter"),
@@ -106,6 +108,68 @@ function toCsv(rows) {
   const headers = Object.keys(rows[0]);
   const escape = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
   return [headers.join(","), ...rows.map((row) => headers.map((key) => escape(row[key])).join(","))].join("\n");
+}
+
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let field = "";
+  let quoted = false;
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    const next = text[index + 1];
+
+    if (quoted) {
+      if (char === '"' && next === '"') {
+        field += '"';
+        index += 1;
+      } else if (char === '"') {
+        quoted = false;
+      } else {
+        field += char;
+      }
+    } else if (char === '"') {
+      quoted = true;
+    } else if (char === ",") {
+      row.push(field);
+      field = "";
+    } else if (char === "\n") {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else if (char !== "\r") {
+      field += char;
+    }
+  }
+
+  row.push(field);
+  rows.push(row);
+
+  const meaningfulRows = rows.filter((items) => items.some((item) => item.trim() !== ""));
+  if (!meaningfulRows.length) return [];
+
+  const headers = meaningfulRows[0].map((header) => header.trim().toLowerCase());
+  return meaningfulRows.slice(1).map((items) => {
+    return Object.fromEntries(headers.map((header, index) => [header, items[index]?.trim() || ""]));
+  });
+}
+
+function normalizeClientImportRow(row) {
+  const plan = ["session_only", "session_plus_support"].includes(row.plan) ? row.plan : "session_only";
+  const status = ["lead", "active", "paused", "done"].includes(row.status) ? row.status : "lead";
+
+  return cleanPayload({
+    owner_id: state.user.id,
+    name: row.name,
+    email: row.email,
+    timezone: row.timezone,
+    plan,
+    area: row.area,
+    current_goal: row.current_goal || row.goal,
+    status
+  });
 }
 
 function safeFileName(name) {
@@ -536,6 +600,45 @@ async function convertRequestToClient(id) {
   setActiveTab("progress");
 }
 
+async function importClientsFromCsv(file) {
+  const text = await file.text();
+  const rows = parseCsv(text)
+    .map(normalizeClientImportRow)
+    .filter((row) => row.name && row.email);
+
+  if (!rows.length) {
+    alert("No valid clients found. CSV needs at least name and email columns.");
+    return;
+  }
+
+  let created = 0;
+  let updated = 0;
+
+  for (const row of rows) {
+    const existing = state.clients.find((client) => {
+      return client.email && row.email && client.email.toLowerCase() === row.email.toLowerCase();
+    });
+
+    if (existing) {
+      await requireResult(
+        supabase
+          .from("clients")
+          .update(row)
+          .eq("owner_id", state.user.id)
+          .eq("id", existing.id)
+          .select()
+      );
+      updated += 1;
+    } else {
+      await requireResult(supabase.from("clients").insert(row).select());
+      created += 1;
+    }
+  }
+
+  await loadClients();
+  alert(`CSV import complete. Created: ${created}. Updated: ${updated}.`);
+}
+
 async function openStoredFile(path) {
   const { data, error } = await supabase.storage
     .from("client-files")
@@ -581,6 +684,23 @@ $("#magic-link-button").addEventListener("click", async () => {
 
 $("#sign-out-button").addEventListener("click", async () => {
   await supabase.auth.signOut();
+});
+
+$("#import-clients-button").addEventListener("click", () => {
+  views.importClientsInput.click();
+});
+
+$("#import-clients-input").addEventListener("change", async (event) => {
+  const file = event.currentTarget.files[0];
+  if (!file) return;
+
+  try {
+    await importClientsFromCsv(file);
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    event.currentTarget.value = "";
+  }
 });
 
 $("#client-search").addEventListener("input", (event) => {
