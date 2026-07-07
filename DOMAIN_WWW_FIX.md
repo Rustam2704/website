@@ -6,13 +6,13 @@ Current production domain:
 https://fanatic.space/
 ```
 
-Current issue:
+Original issue:
 
 ```text
 https://www.fanatic.space/
 ```
 
-still points to old GitHub Pages DNS and fails HTTPS.
+pointed to old GitHub Pages DNS and failed HTTPS.
 
 ## Preferred fix
 
@@ -28,7 +28,7 @@ www.fanatic.space
 ```
 
 5. Let Cloudflare update DNS.
-6. Redirect `www` to apex:
+6. Optional: add a Cloudflare Redirect Rule from `www` to apex:
 
 ```text
 https://fanatic.space/
@@ -43,8 +43,12 @@ https://fanatic.space/
 
 Cloudflare Pages custom domain is active for `www.fanatic.space`.
 
-The repository includes `_redirects` to redirect:
+`https://www.fanatic.space/` serves the site cleanly.
+
+Repository-level `_redirects` did not apply the host-level redirect reliably. Use a Cloudflare Redirect Rule if canonical `www -> apex` redirect is required:
 
 ```text
-https://www.fanatic.space/* -> https://fanatic.space/:splat 301!
+If hostname equals www.fanatic.space
+Static redirect to https://fanatic.space/${path}
+Status code 301
 ```
