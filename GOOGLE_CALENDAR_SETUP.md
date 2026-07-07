@@ -28,7 +28,13 @@ https://iavkvtkoowwkvizjpasy.supabase.co/auth/v1/callback
 
 ## Database Setup
 
-Run:
+Run the lesson fields migration first:
+
+```sql
+\i supabase_lesson_fields.sql
+```
+
+Then run:
 
 ```sql
 \i supabase_calendar.sql
@@ -40,6 +46,7 @@ This creates:
 
 - `calendar_connections`
 - calendar sync fields on `sessions`
+- event link/status fields from `supabase_lesson_fields.sql`
 - RLS policies
 - indexes for owner/event/status lookups
 

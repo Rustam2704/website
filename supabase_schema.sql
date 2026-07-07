@@ -101,6 +101,9 @@ create table if not exists public.calendar_connections (
 );
 
 alter table public.sessions
+  add column if not exists meeting_url text,
+  add column if not exists confirmation_status text not null default 'unconfirmed'
+    check (confirmation_status in ('unconfirmed', 'confirmed', 'cancelled', 'completed')),
   add column if not exists google_calendar_event_id text,
   add column if not exists google_calendar_event_etag text,
   add column if not exists google_calendar_sync_status text not null default 'not_synced'
@@ -231,6 +234,7 @@ grant select, insert, update, delete on public.intake_requests to authenticated;
 create index if not exists clients_owner_status_idx on public.clients(owner_id, status);
 create index if not exists clients_owner_email_idx on public.clients(owner_id, email);
 create index if not exists sessions_client_date_idx on public.sessions(client_id, date desc);
+create index if not exists sessions_owner_confirmation_idx on public.sessions(owner_id, confirmation_status, date desc);
 create index if not exists progress_items_client_status_idx on public.progress_items(client_id, status);
 create index if not exists support_notes_client_resolved_idx on public.support_notes(client_id, resolved);
 create index if not exists client_files_client_created_idx on public.client_files(client_id, created_at desc);
