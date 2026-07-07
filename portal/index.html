@@ -7,7 +7,7 @@
     <title>Fanatic Client Portal</title>
     <link rel="icon" href="../assets/favicon-portal.svg" type="image/svg+xml">
     <link rel="manifest" href="./manifest.webmanifest">
-    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-07-4">
+    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-07-5">
   </head>
   <body>
     <div class="app-shell">
@@ -88,10 +88,12 @@
                 <span>Next lesson</span>
                 <strong id="next-lesson-title">No lesson scheduled</strong>
                 <p id="next-lesson-detail">Rustam will add the next session here.</p>
+                <a class="text-action" href="#sessions">View sessions</a>
               </article>
               <article>
                 <span>Your next steps</span>
                 <div id="next-steps-list"></div>
+                <a class="text-action" href="#tasks">Open tasks</a>
               </article>
               <article>
                 <span>Current goal</span>
@@ -111,21 +113,24 @@
                 <h3>Current work</h3>
               </div>
             </div>
-            <form class="inline-form" id="client-progress-form">
-              <input name="title" placeholder="Add progress, blocker, or next action" required>
-              <select name="status">
-                <option value="blocked">Blocked</option>
-                <option value="in_progress" selected>In progress</option>
-                <option value="improved">Improved</option>
-                <option value="done">Done</option>
-              </select>
-              <select name="priority">
-                <option value="low">Low</option>
-                <option value="normal" selected>Normal</option>
-                <option value="high">High</option>
-              </select>
-              <button type="submit">Add</button>
-            </form>
+            <details class="action-card">
+              <summary>Add task or progress</summary>
+              <form class="inline-form" id="client-progress-form">
+                <input name="title" placeholder="Add progress, blocker, or next action" required>
+                <select name="status">
+                  <option value="blocked">Blocked</option>
+                  <option value="in_progress" selected>In progress</option>
+                  <option value="improved">Improved</option>
+                  <option value="done">Done</option>
+                </select>
+                <select name="priority">
+                  <option value="low">Low</option>
+                  <option value="normal" selected>Normal</option>
+                  <option value="high">High</option>
+                </select>
+                <button type="submit">Add</button>
+              </form>
+            </details>
             <div class="records" id="progress-records"></div>
           </section>
 
@@ -136,14 +141,17 @@
                 <h3>Small question or note</h3>
               </div>
             </div>
-            <form class="stacked-form" id="client-support-form">
-              <label>
-                Message
-                <textarea name="message" rows="3" placeholder="Write the question or update you want Rustam to see." required></textarea>
-              </label>
-              <button type="submit">Send note</button>
-              <p class="form-message" id="support-message"></p>
-            </form>
+            <details class="action-card">
+              <summary>Send message</summary>
+              <form class="stacked-form" id="client-support-form">
+                <label>
+                  Message
+                  <textarea name="message" rows="3" placeholder="Write the question or update you want Rustam to see." required></textarea>
+                </label>
+                <button type="submit">Send note</button>
+                <p class="form-message" id="support-message"></p>
+              </form>
+            </details>
           </section>
 
           <section class="panel" id="sessions">
@@ -163,18 +171,21 @@
                 <h3>Project evidence</h3>
               </div>
             </div>
-            <form class="inline-form" id="client-file-form">
-              <input name="url" type="url" placeholder="https://..." required>
-              <input name="label" placeholder="Label">
-              <select name="kind">
-                <option value="screenshot">Screenshot</option>
-                <option value="project">Project</option>
-                <option value="video">Video</option>
-                <option value="document">Document</option>
-                <option value="other" selected>Other</option>
-              </select>
-              <button type="submit">Add</button>
-            </form>
+            <details class="action-card">
+              <summary>Add file or project link</summary>
+              <form class="inline-form" id="client-file-form">
+                <input name="url" type="url" placeholder="https://..." required>
+                <input name="label" placeholder="Label">
+                <select name="kind">
+                  <option value="screenshot">Screenshot</option>
+                  <option value="project">Project</option>
+                  <option value="video">Video</option>
+                  <option value="document">Document</option>
+                  <option value="other" selected>Other</option>
+                </select>
+                <button type="submit">Add</button>
+              </form>
+            </details>
             <div class="records" id="file-records"></div>
           </section>
         </section>
@@ -182,7 +193,7 @@
     </div>
 
     <script src="../crm/config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-10"></script>
+    <script type="module" src="./app.js?v=2026-07-07-11"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

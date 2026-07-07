@@ -652,6 +652,23 @@ h3 {
   padding-top: 0;
 }
 
+.text-action {
+  width: fit-content;
+  margin-top: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: var(--ink);
+  background: #f6f8f7;
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.text-action:hover {
+  background: #e7f2ed;
+}
+
 .tabs {
   display: flex;
   flex-wrap: wrap;

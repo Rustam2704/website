@@ -43,6 +43,7 @@ Last updated: July 7, 2026
 - Client portal can add file/project/screenshot/video links.
 - Client portal can show session history and next actions without exposing private session notes.
 - Client portal has its own manifest and service worker.
+- Client portal home has direct actions to sessions and tasks, with add forms collapsed until needed.
 - Admin CRM can grant/revoke client portal access from the Access tab.
 - CRM and CLI can grant pending portal access by email before the client auth user exists.
 - Portal claims pending email access after the client's first magic-link login.

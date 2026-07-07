@@ -185,6 +185,8 @@ Done / started:
 - Navigation is now: Home, Tasks, Sessions, Progress, Files, Messages.
 - `Support` is renamed to `Messages`.
 - Home has Next lesson, Your next steps, Current goal, and Recent progress.
+- Home has direct actions to sessions and tasks.
+- Add forms are collapsed until needed.
 
 Still needed:
 
