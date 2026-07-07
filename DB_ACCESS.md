@@ -274,6 +274,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\check-supabase.ps1
 ```
 
+Check CRM data integrity:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\check-crm-data.ps1
+```
+
 Check live frontend asset versions:
 
 ```powershell

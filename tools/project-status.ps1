@@ -16,5 +16,9 @@ Write-Output "Supabase infrastructure"
 & "$PSScriptRoot\check-supabase.ps1"
 
 Write-Output ""
+Write-Output "CRM data integrity"
+& "$PSScriptRoot\check-crm-data.ps1"
+
+Write-Output ""
 Write-Output "CRM summary"
 & "$PSScriptRoot\crm-summary.ps1"

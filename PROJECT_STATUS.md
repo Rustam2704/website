@@ -86,6 +86,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\check-all.ps1
 ```
 
+Run CRM data integrity checks:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\check-crm-data.ps1
+```
+
 List CRM clients:
 
 ```powershell
