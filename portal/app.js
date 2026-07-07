@@ -16,6 +16,7 @@ const views = {
   clientName: $("#client-name"),
   nextLessonTitle: $("#next-lesson-title"),
   nextLessonDetail: $("#next-lesson-detail"),
+  nextLessonAction: $("#next-lesson-action"),
   nextStepsList: $("#next-steps-list"),
   currentGoal: $("#current-goal"),
   recentProgressList: $("#recent-progress-list"),
@@ -111,6 +112,10 @@ async function loadPortalData() {
       views.clientName.textContent = "No client profile assigned";
       views.nextLessonTitle.textContent = "No profile assigned";
       views.nextLessonDetail.textContent = "No access record found for this email.";
+      views.nextLessonAction.textContent = "View sessions";
+      views.nextLessonAction.href = "#sessions";
+      views.nextLessonAction.removeAttribute("target");
+      views.nextLessonAction.removeAttribute("rel");
       views.nextStepsList.innerHTML = `<p>No assigned work yet.</p>`;
       views.currentGoal.textContent = "-";
       views.recentProgressList.innerHTML = `<p>No progress is available yet.</p>`;
@@ -210,6 +215,17 @@ function renderStudentHome(client, progress, sessions) {
 
   views.nextLessonTitle.textContent = upcoming ? formatDate(upcoming.date) : "No lesson scheduled";
   views.nextLessonDetail.textContent = upcoming?.topic || upcoming?.next_actions || "Rustam will add the next session here.";
+  views.nextLessonAction.textContent = upcoming?.meeting_url ? "Join lesson" : "View sessions";
+  views.nextLessonAction.href = upcoming?.meeting_url || "#sessions";
+
+  if (upcoming?.meeting_url) {
+    views.nextLessonAction.target = "_blank";
+    views.nextLessonAction.rel = "noreferrer";
+  } else {
+    views.nextLessonAction.removeAttribute("target");
+    views.nextLessonAction.removeAttribute("rel");
+  }
+
   views.currentGoal.textContent = client.current_goal || "-";
   views.nextStepsList.innerHTML = activeTasks.length
     ? activeTasks.map((item) => `<p>${h(item.title)} <span>${h(item.status.replaceAll("_", " "))}</span></p>`).join("")
