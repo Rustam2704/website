@@ -127,3 +127,48 @@ end;
 $$;
 
 grant execute on function public.grant_client_access_by_email(uuid, text) to authenticated;
+
+create or replace function public.client_update_progress_status(
+  p_progress_id uuid,
+  p_status text
+)
+returns public.progress_items
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid;
+  v_item public.progress_items;
+begin
+  v_user_id := auth.uid();
+
+  if v_user_id is null then
+    raise exception 'Not authenticated';
+  end if;
+
+  if p_status not in ('blocked', 'in_progress', 'improved', 'done') then
+    raise exception 'Invalid progress status';
+  end if;
+
+  update public.progress_items item
+  set status = p_status
+  where item.id = p_progress_id
+    and exists (
+      select 1
+      from public.client_access access
+      where access.client_id = item.client_id
+        and access.user_id = v_user_id
+        and access.status = 'active'
+    )
+  returning item.* into v_item;
+
+  if v_item.id is null then
+    raise exception 'Progress item not found for current client';
+  end if;
+
+  return v_item;
+end;
+$$;
+
+grant execute on function public.client_update_progress_status(uuid, text) to authenticated;

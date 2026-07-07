@@ -107,11 +107,41 @@ async function loadPortalData() {
         <article class="record">
           <div class="record-body">
             <strong>${h(item.title)}</strong>
-            <span>${h(item.status.replaceAll("_", " "))} / ${h(item.priority)}</span>
+            <span>${h(item.priority)}</span>
+            <select class="progress-status" data-progress-id="${item.id}">
+              ${progressStatusOptions(item.status)}
+            </select>
           </div>
         </article>
       `).join("")
       : `<div class="empty-list">No progress is available yet.</div>`;
+
+    document.querySelectorAll(".progress-status").forEach((control) => {
+      control.addEventListener("change", () => updateProgressStatus(control.dataset.progressId, control.value));
+    });
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+function progressStatusOptions(currentStatus) {
+  return [
+    ["blocked", "Blocked"],
+    ["in_progress", "In progress"],
+    ["improved", "Improved"],
+    ["done", "Done"]
+  ].map(([value, label]) => `<option value="${value}" ${value === currentStatus ? "selected" : ""}>${label}</option>`).join("");
+}
+
+async function updateProgressStatus(progressId, status) {
+  try {
+    await requireResult(
+      supabase.rpc("client_update_progress_status", {
+        p_progress_id: progressId,
+        p_status: status
+      })
+    );
+    await loadPortalData();
   } catch (error) {
     alert(error.message);
   }
