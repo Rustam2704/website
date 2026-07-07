@@ -335,6 +335,13 @@ h3 {
   margin-top: 18px;
 }
 
+.client-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(130px, 0.45fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
 .client-card {
   width: 100%;
   display: grid;
@@ -528,6 +535,7 @@ h3 {
 
   .stats-grid,
   .field-grid,
+  .client-filters,
   .mini-summary,
   .inline-form,
   .record {

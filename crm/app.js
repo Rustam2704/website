@@ -7,6 +7,8 @@ const supabase = hasConfig ? createClient(config.url, config.anonKey) : null;
 const state = {
   user: null,
   clients: [],
+  clientSearch: "",
+  clientStatusFilter: "all",
   selectedClient: null,
   progress: [],
   sessions: [],
@@ -25,6 +27,8 @@ const views = {
   authMessage: $("#auth-message"),
   deleteClientButton: $("#delete-client-button"),
   clientEditForm: $("#client-edit-form"),
+  clientSearchInput: $("#client-search"),
+  clientStatusFilter: $("#client-status-filter"),
   stats: $("#stats-grid"),
   clientList: $("#client-list"),
   selectedTitle: $("#selected-title"),
@@ -177,12 +181,14 @@ function renderStats() {
 }
 
 function renderClients() {
-  if (!state.clients.length) {
+  const clients = filteredClients();
+
+  if (!clients.length) {
     views.clientList.innerHTML = `<div class="empty-list">No clients yet.</div>`;
     return;
   }
 
-  views.clientList.innerHTML = state.clients.map((client) => `
+  views.clientList.innerHTML = clients.map((client) => `
     <button class="client-card ${state.selectedClient?.id === client.id ? "active" : ""}" type="button" data-client-id="${client.id}">
       <strong>${h(client.name)}</strong>
       <span>${h(client.email || "No email")}</span>
@@ -192,6 +198,24 @@ function renderClients() {
 
   $$(".client-card").forEach((button) => {
     button.addEventListener("click", () => selectClient(button.dataset.clientId));
+  });
+}
+
+function filteredClients() {
+  const query = state.clientSearch.trim().toLowerCase();
+
+  return state.clients.filter((client) => {
+    const statusOk = state.clientStatusFilter === "all" || client.status === state.clientStatusFilter;
+    if (!statusOk) return false;
+    if (!query) return true;
+
+    return [
+      client.name,
+      client.email,
+      client.area,
+      client.current_goal,
+      client.timezone
+    ].some((value) => String(value || "").toLowerCase().includes(query));
   });
 }
 
@@ -373,6 +397,16 @@ $("#magic-link-button").addEventListener("click", async () => {
 
 $("#sign-out-button").addEventListener("click", async () => {
   await supabase.auth.signOut();
+});
+
+$("#client-search").addEventListener("input", (event) => {
+  state.clientSearch = event.currentTarget.value;
+  renderClients();
+});
+
+$("#client-status-filter").addEventListener("change", (event) => {
+  state.clientStatusFilter = event.currentTarget.value;
+  renderClients();
 });
 
 $("#delete-client-button").addEventListener("click", async () => {

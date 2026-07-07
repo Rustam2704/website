@@ -133,6 +133,17 @@
                 <button type="submit">Add client</button>
               </form>
 
+              <div class="client-filters">
+                <input id="client-search" type="search" placeholder="Search clients">
+                <select id="client-status-filter">
+                  <option value="all">All statuses</option>
+                  <option value="lead">Lead</option>
+                  <option value="active">Active</option>
+                  <option value="paused">Paused</option>
+                  <option value="done">Done</option>
+                </select>
+              </div>
+
               <div class="client-list" id="client-list"></div>
             </section>
 
@@ -292,6 +303,6 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-4"></script>
+    <script type="module" src="./app.js?v=2026-07-07-5"></script>
   </body>
 </html>
