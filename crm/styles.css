@@ -575,9 +575,9 @@ h3 {
   margin-top: 12px;
 }
 
-.mini-summary {
+.student-profile {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(280px, 0.9fr) minmax(360px, 1.1fr);
   gap: 1px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -585,13 +585,47 @@ h3 {
   background: var(--line);
 }
 
-.mini-summary div {
+.student-profile-main,
+.student-profile-metrics div {
   min-width: 0;
-  padding: 14px;
+  padding: 16px;
   background: #ffffff;
 }
 
-.mini-summary span {
+.student-profile-main h3 {
+  margin-bottom: 4px;
+  font-size: 26px;
+}
+
+.student-profile-main p {
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+.student-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.student-tags span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: var(--ink);
+  background: #f6f8f7;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.student-profile-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+}
+
+.student-profile-metrics span,
+.overview-card span {
   display: block;
   margin-bottom: 4px;
   color: var(--muted);
@@ -600,8 +634,41 @@ h3 {
   text-transform: uppercase;
 }
 
-.mini-summary strong {
+.student-profile-metrics strong {
   display: block;
+  overflow-wrap: anywhere;
+  font-size: 20px;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.overview-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.overview-card p {
+  margin: 0;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.overview-card ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.overview-card li {
+  color: var(--ink);
   overflow-wrap: anywhere;
 }
 
@@ -838,7 +905,9 @@ h3 {
   .stats-grid,
   .field-grid,
   .client-filters,
-  .mini-summary,
+    .student-profile,
+    .student-profile-metrics,
+    .overview-grid,
   .student-home-grid,
   .inline-form,
   .record {

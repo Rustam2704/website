@@ -60,6 +60,7 @@ Latest checked pieces:
 - CRM and portal Google login works through Supabase OAuth.
 - CRM shell is moving from generic client tracker toward teaching CRM: Today dashboard, Students, Tasks, Messages.
 - CRM now has quick Add session, grouped Tools, student area filter, student sorting, and collapsed action forms.
+- Selected student now has a working page header and Overview tab with goal, next lesson, tasks, blockers, latest session, latest message, and latest file.
 - Portal home now has direct actions to sessions and tasks, with add forms collapsed until needed.
 
 ## Still Needs User Clicks Later

@@ -60,6 +60,8 @@ Last updated: July 7, 2026
   - secondary tools are grouped under a Tools menu
   - student list supports status filter, area filter, and sorting
   - add/edit forms are collapsed behind action blocks until needed
+  - selected student has a working page header and Overview tab
+  - student Overview shows current goal, next lesson, active tasks, blockers, latest session, latest message, and latest file
 - Combined checks:
   - `tools/check-all.ps1`
   - `tools/check-public.ps1`

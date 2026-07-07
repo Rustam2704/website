@@ -9,7 +9,7 @@
     <link rel="icon" href="../assets/favicon-crm.svg" type="image/svg+xml">
     <link rel="manifest" href="./manifest.webmanifest">
     <link rel="apple-touch-icon" href="../assets/icon-192.png">
-    <link rel="stylesheet" href="./styles.css?v=2026-07-07-5">
+    <link rel="stylesheet" href="./styles.css?v=2026-07-07-6">
   </head>
   <body>
     <div class="app-shell">
@@ -186,7 +186,7 @@
               </div>
 
               <div class="client-work hidden" id="client-work">
-                <div class="mini-summary" id="client-summary"></div>
+                <div class="student-profile" id="student-profile"></div>
 
                 <details class="edit-card">
                   <summary>Edit client</summary>
@@ -234,14 +234,19 @@
                 </details>
 
                 <div class="tabs">
-                  <button type="button" class="tab active" data-tab="progress">Tasks</button>
+                  <button type="button" class="tab active" data-tab="overview">Overview</button>
+                  <button type="button" class="tab" data-tab="progress">Tasks</button>
                   <button type="button" class="tab" data-tab="sessions">Sessions</button>
                   <button type="button" class="tab" data-tab="support">Messages</button>
                   <button type="button" class="tab" data-tab="files">Files / links</button>
                   <button type="button" class="tab" data-tab="access">Access</button>
                 </div>
 
-                <section class="tab-panel" data-panel="progress">
+                <section class="tab-panel" data-panel="overview">
+                  <div class="overview-grid" id="student-overview"></div>
+                </section>
+
+                <section class="tab-panel hidden" data-panel="progress">
                   <details class="action-card">
                     <summary>Add task</summary>
                     <form class="inline-form" id="progress-form">
@@ -441,7 +446,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-25"></script>
+    <script type="module" src="./app.js?v=2026-07-07-27"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

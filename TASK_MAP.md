@@ -20,9 +20,8 @@ Current decision:
 - Apple login is not worth doing if it requires the paid Apple Developer Program.
 - Google login is the main social login target.
 
-Still needed:
+Parked / later:
 
-- Verify that Google login and email magic-link login return the user to the same Supabase account when the email address matches.
 - Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
 
 ## 2. Core CRM Direction
@@ -75,67 +74,9 @@ Still needed:
 - Support repeat rules.
 - Add confirmation status if needed.
 
-## 4. Admin Dashboard
+## 4. Student Page
 
-Target sections:
-
-- `Today`
-- `Upcoming sessions`
-- `Needs attention`
-- lower-priority stats: Total / Leads / Active / With support
-
-Upcoming sessions should show:
-
-- time;
-- student name;
-- lesson topic;
-- `Open student`;
-- `Start session`.
-
-Needs attention should show:
-
-- no next lesson;
-- paid lessons running out;
-- overdue task;
-- student inactive for too long;
-- missing summary after the last lesson.
-
-Status:
-
-- Basic `Today`, `Upcoming sessions`, and `Needs attention` sections exist.
-- They are still shallow and need better data model support.
-
-## 5. Students Page
-
-Target:
-
-- Use `Students`, not `Clients`, because most users are learners.
-
-Desired table columns:
-
-- Student
-- Next session
-- Current goal
-- Last activity
-- Progress
-- Plan
-- Notes
-
-Controls:
-
-- search;
-- Active / Lead / Paused filter;
-- area filter;
-- sort by next session;
-- `Add student` button.
-
-Status:
-
-- Add student modal exists.
-- Search and status filter exist.
-- Full table layout, area filter, and next-session sorting are still needed.
-
-## 6. Student Page
+Current priority.
 
 Goal:
 
@@ -169,9 +110,70 @@ Overview should show only the important daily context:
 
 Status:
 
-- Current selected-student panel exists.
-- Full student page and focused Overview are still needed.
-- Forms should not all be visible at once.
+- Selected-student page now has a page header.
+- Focused Overview tab exists.
+- Overview shows current goal, next lesson, active tasks, blockers, latest session, latest message, and latest file.
+- Forms are collapsed until needed.
+
+## 5. Admin Dashboard
+
+Target sections:
+
+- `Today`
+- `Upcoming sessions`
+- `Needs attention`
+- lower-priority stats: Total / Leads / Active / With support
+
+Upcoming sessions should show:
+
+- time;
+- student name;
+- lesson topic;
+- `Open student`;
+- `Start session`.
+
+Needs attention should show:
+
+- no next lesson;
+- paid lessons running out;
+- overdue task;
+- student inactive for too long;
+- missing summary after the last lesson.
+
+Status:
+
+- Basic `Today`, `Upcoming sessions`, and `Needs attention` sections exist.
+- They are still shallow and need better data model support.
+
+## 6. Students Page
+
+Target:
+
+- Use `Students`, not `Clients`, because most users are learners.
+
+Desired table columns:
+
+- Student
+- Next session
+- Current goal
+- Last activity
+- Progress
+- Plan
+- Notes
+
+Controls:
+
+- search;
+- Active / Lead / Paused filter;
+- area filter;
+- sort by next session;
+- `Add student` button.
+
+Status:
+
+- Add student modal exists.
+- Search and status filter exist.
+- Full table layout, area filter, and next-session sorting are still needed.
 
 ## 7. Student Portal
 

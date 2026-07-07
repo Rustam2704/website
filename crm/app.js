@@ -52,7 +52,8 @@ const views = {
   selectedStatus: $("#selected-status"),
   emptyState: $("#empty-state"),
   clientWork: $("#client-work"),
-  clientSummary: $("#client-summary"),
+  studentProfile: $("#student-profile"),
+  studentOverview: $("#student-overview"),
   progressRecords: $("#progress-records"),
   sessionRecords: $("#session-records"),
   supportRecords: $("#support-records"),
@@ -98,6 +99,14 @@ function formatCompactDate(value) {
     hour: "2-digit",
     minute: "2-digit"
   }).format(new Date(value));
+}
+
+function planLabel(value) {
+  return String(value || "session_only").replaceAll("_", " ");
+}
+
+function statusLabel(value) {
+  return String(value || "-").replaceAll("_", " ");
 }
 
 function h(value) {
@@ -575,6 +584,11 @@ function upcomingSortValue(value) {
 
 async function selectClient(clientId) {
   state.selectedClient = state.clients.find((client) => client.id === clientId) || null;
+  state.progress = [];
+  state.sessions = [];
+  state.support = [];
+  state.files = [];
+  state.access = [];
   renderClients();
   renderSelectedClient();
   if (!state.selectedClient) return;
@@ -612,17 +626,15 @@ function renderSelectedClient() {
 
   views.selectedTitle.textContent = client.name;
   views.selectedStatus.textContent = client.status;
-  views.clientSummary.innerHTML = `
-    <div><span>Email</span><strong>${h(client.email || "-")}</strong></div>
-    <div><span>Plan</span><strong>${h(client.plan.replaceAll("_", " "))}</strong></div>
-    <div><span>Area</span><strong>${h(client.area || "-")}</strong></div>
-    <div><span>Goal</span><strong>${h(client.current_goal || "-")}</strong></div>
-  `;
+  renderStudentProfile();
 
   fillForm(views.clientEditForm, client);
 }
 
 function renderRelatedRecords() {
+  renderStudentProfile();
+  renderStudentOverview();
+
   views.progressRecords.innerHTML = renderRecordList(state.progress, "progress_items", (item) => `
     <strong>${h(item.title)}</strong>
     <span>${h(item.priority)}</span>
@@ -678,6 +690,102 @@ function renderRelatedRecords() {
   $$(".record-open-file").forEach((button) => {
     button.addEventListener("click", () => openStoredFile(button.dataset.path));
   });
+}
+
+function renderStudentProfile() {
+  const client = state.selectedClient;
+  if (!client) return;
+
+  const nextSession = nextUpcomingRecord(state.sessions);
+  const completedSessions = state.sessions.filter((session) => {
+    return session.date && new Date(session.date).getTime() < Date.now();
+  }).length;
+  const activeTasks = state.progress.filter((item) => item.status !== "done").length;
+  const openMessages = state.support.filter((item) => !item.resolved).length;
+
+  views.studentProfile.innerHTML = `
+    <div class="student-profile-main">
+      <p class="eyebrow">Student page</p>
+      <h3>${h(client.name)}</h3>
+      <p>${h(client.email || "No email")} / ${h(client.timezone || "No timezone")}</p>
+      <div class="student-tags">
+        <span>${h(statusLabel(client.status))}</span>
+        <span>${h(planLabel(client.plan))}</span>
+        <span>${h(client.area || "No area")}</span>
+      </div>
+    </div>
+    <div class="student-profile-metrics">
+      <div><span>Next lesson</span><strong>${h(formatCompactDate(nextSession?.date))}</strong></div>
+      <div><span>Sessions done</span><strong>${completedSessions}</strong></div>
+      <div><span>Active tasks</span><strong>${activeTasks}</strong></div>
+      <div><span>Open messages</span><strong>${openMessages}</strong></div>
+    </div>
+  `;
+}
+
+function renderStudentOverview() {
+  const client = state.selectedClient;
+  if (!client) return;
+
+  const nextSession = nextUpcomingRecord(state.sessions);
+  const activeTasks = state.progress.filter((item) => item.status !== "done").slice(0, 4);
+  const blockers = state.progress.filter((item) => item.status === "blocked").slice(0, 3);
+  const latestSession = sortedByDate(state.sessions, "date")[0];
+  const latestMessage = sortedByDate(state.support, "created_at")[0];
+  const latestFile = sortedByDate(state.files, "created_at")[0];
+
+  views.studentOverview.innerHTML = `
+    ${overviewCard("Current goal", client.current_goal || "No current goal set.")}
+    ${overviewCard("Next lesson", nextSession
+      ? `${formatDate(nextSession.date)}${nextSession.topic ? ` / ${nextSession.topic}` : ""}`
+      : "No upcoming lesson scheduled.")}
+    ${overviewListCard("Active tasks", activeTasks, (item) => `${item.title} / ${statusLabel(item.status)}`)}
+    ${overviewListCard("Blockers", blockers, (item) => item.title)}
+    ${overviewCard("Latest session", latestSession
+      ? `${formatDate(latestSession.date)}${latestSession.next_actions ? ` / Next: ${latestSession.next_actions}` : ""}`
+      : "No session history yet.")}
+    ${overviewCard("Latest message", latestMessage
+      ? `${formatDate(latestMessage.created_at)} / ${latestMessage.message}`
+      : "No messages yet.")}
+    ${overviewCard("Latest file", latestFile
+      ? `${latestFile.label || latestFile.kind} / ${latestFile.kind}`
+      : "No files or links yet.")}
+  `;
+}
+
+function overviewCard(title, body) {
+  return `
+    <article class="overview-card">
+      <span>${h(title)}</span>
+      <p>${h(body)}</p>
+    </article>
+  `;
+}
+
+function overviewListCard(title, items, formatItem) {
+  const body = items.length
+    ? `<ul>${items.map((item) => `<li>${h(formatItem(item))}</li>`).join("")}</ul>`
+    : `<p>Nothing open.</p>`;
+
+  return `
+    <article class="overview-card">
+      <span>${h(title)}</span>
+      ${body}
+    </article>
+  `;
+}
+
+function nextUpcomingRecord(records) {
+  const now = Date.now();
+  return records
+    .filter((record) => record.date && new Date(record.date).getTime() >= now)
+    .sort((a, b) => new Date(a.date) - new Date(b.date))[0] || null;
+}
+
+function sortedByDate(records, field) {
+  return [...records]
+    .filter((record) => record[field])
+    .sort((a, b) => new Date(b[field]) - new Date(a[field]));
 }
 
 function renderIntakeRequests() {
@@ -1189,6 +1297,6 @@ function setActiveTab(tabName) {
   });
 }
 
-setActiveTab(localStorage.getItem(ACTIVE_TAB_KEY) || "progress");
+setActiveTab(localStorage.getItem(ACTIVE_TAB_KEY) || "overview");
 
 boot();

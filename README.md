@@ -163,9 +163,9 @@ Highest priority:
 
 1. Confirm Cloudflare Pages deploys after each push.
 2. Keep improving the Supabase-backed CRM until it can replace the spreadsheet.
-3. Test the client portal with a real invited client account when a real client email is ready.
-4. Keep the CRM and portal readable, simple, and portable instead of adding heavy product ceremony.
-5. Verify that Google login and magic-link login converge to the same account for the same email.
+3. Keep the CRM and portal readable, simple, and portable instead of adding heavy product ceremony.
+4. Build the selected-student page into the main teacher working screen.
+5. Improve the CRM Today dashboard after the student page is useful.
 6. Add Google Calendar integration only after the teaching CRM session workflow is stable.
 7. Replace the phone/contact placeholder if a phone or messenger will be used.
 
