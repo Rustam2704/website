@@ -65,11 +65,10 @@ Started:
 - `GOOGLE_CALENDAR_SETUP.md` documents setup and recommended architecture.
 - CRM and portal can display meeting URL / confirmation / calendar sync fields after migrations are applied.
 - CRM session form can capture meeting URL and confirmation status when the lesson fields migration is applied.
+- Live Supabase database has lesson fields and calendar groundwork applied.
 
 Still needed:
 
-- Apply `supabase_calendar.sql` to Supabase.
-- Apply `supabase_lesson_fields.sql` before using meeting URLs/statuses in the live database.
 - Store calendar connection state.
 - Request Google Calendar permissions.
 - Create/find the `fanatic.space` calendar.
@@ -149,7 +148,7 @@ Status:
 - `Needs attention` now includes stale messages, stale tasks, sessions missing next actions, active students without upcoming sessions, blockers, and new requests.
 - `Start session` now opens the session form with a 50-minute time window prefilled.
 - `Needs attention` includes low paid lesson balance and expiring support when billing fields are filled.
-- Data model still needs explicit confirmation/due-date/payment fields later.
+- Confirmation, due-date, and lightweight payment/support fields exist.
 
 ## 6. Students Page
 
@@ -238,6 +237,7 @@ Status:
 - `supabase_lms_fields.sql` adds task deadline, teacher comment, and student comment fields.
 - The base schema includes those fields for fresh installs.
 - CRM and portal display due dates/comments when the migration has been applied and data exists.
+- Live Supabase database has the LMS-lite fields and note-update RPC applied.
 
 ## 9. Visual Direction
 
