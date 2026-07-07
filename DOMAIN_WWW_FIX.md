@@ -28,7 +28,7 @@ www.fanatic.space
 ```
 
 5. Let Cloudflare update DNS.
-6. Optional: add a Cloudflare Redirect Rule from `www` to apex:
+6. Required for SEO: add a Cloudflare Redirect Rule from `www` to apex:
 
 ```text
 https://fanatic.space/
@@ -37,7 +37,7 @@ https://fanatic.space/
 ## Acceptance
 
 - `https://www.fanatic.space/` does not show certificate errors.
-- It either serves the site or redirects to `https://fanatic.space/`.
+- It redirects to `https://fanatic.space/` with status `301`.
 
 ## Current status
 
@@ -45,7 +45,11 @@ Cloudflare Pages custom domain is active for `www.fanatic.space`.
 
 `https://www.fanatic.space/` serves the site cleanly.
 
-Repository-level `_redirects` did not apply the host-level redirect reliably. Use a Cloudflare Redirect Rule if canonical `www -> apex` redirect is required:
+Remaining SEO task:
+
+- Add a Cloudflare Redirect Rule so the canonical public domain is only `https://fanatic.space/`.
+
+Repository-level `_redirects` did not apply the host-level redirect reliably. Use a Cloudflare Redirect Rule:
 
 ```text
 If hostname equals www.fanatic.space
