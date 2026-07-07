@@ -627,6 +627,29 @@ $("#export-button").addEventListener("click", () => {
   download(`fanatic-crm-clients-${new Date().toISOString().slice(0, 10)}.csv`, toCsv(state.clients));
 });
 
+$("#backup-button").addEventListener("click", async () => {
+  try {
+    const [clients, progress, sessions, support, files] = await Promise.all([
+      requireResult(supabase.from("clients").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false })),
+      requireResult(supabase.from("progress_items").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false })),
+      requireResult(supabase.from("sessions").select("*").eq("owner_id", state.user.id).order("date", { ascending: false })),
+      requireResult(supabase.from("support_notes").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false })),
+      requireResult(supabase.from("client_files").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false }))
+    ]);
+
+    download(`fanatic-crm-backup-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify({
+      exported_at: new Date().toISOString(),
+      clients,
+      progress_items: progress,
+      sessions,
+      support_notes: support,
+      client_files: files
+    }, null, 2), "application/json");
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
 $$(".tab").forEach((button) => {
   button.addEventListener("click", () => {
     $$(".tab").forEach((tab) => tab.classList.toggle("active", tab === button));
