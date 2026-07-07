@@ -72,6 +72,20 @@ create table if not exists public.client_files (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.intake_requests (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  area text,
+  goal text,
+  source text not null default 'fanatic.space',
+  status text not null default 'new'
+    check (status in ('new', 'reviewed', 'converted', 'archived')),
+  client_id uuid references public.clients(id) on delete set null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql
@@ -107,11 +121,17 @@ create trigger client_files_set_updated_at
 before update on public.client_files
 for each row execute function public.set_updated_at();
 
+drop trigger if exists intake_requests_set_updated_at on public.intake_requests;
+create trigger intake_requests_set_updated_at
+before update on public.intake_requests
+for each row execute function public.set_updated_at();
+
 alter table public.clients enable row level security;
 alter table public.sessions enable row level security;
 alter table public.progress_items enable row level security;
 alter table public.support_notes enable row level security;
 alter table public.client_files enable row level security;
+alter table public.intake_requests enable row level security;
 
 drop policy if exists "owner can manage clients" on public.clients;
 create policy "owner can manage clients"
@@ -153,9 +173,29 @@ to authenticated
 using (owner_id = auth.uid())
 with check (owner_id = auth.uid());
 
+drop policy if exists "anyone can create intake requests" on public.intake_requests;
+create policy "anyone can create intake requests"
+on public.intake_requests
+for insert
+to anon, authenticated
+with check (true);
+
+drop policy if exists "authenticated can manage intake requests" on public.intake_requests;
+create policy "authenticated can manage intake requests"
+on public.intake_requests
+for all
+to authenticated
+using (true)
+with check (true);
+
+grant insert on public.intake_requests to anon;
+grant select, insert, update, delete on public.intake_requests to authenticated;
+
 create index if not exists clients_owner_status_idx on public.clients(owner_id, status);
 create index if not exists clients_owner_email_idx on public.clients(owner_id, email);
 create index if not exists sessions_client_date_idx on public.sessions(client_id, date desc);
 create index if not exists progress_items_client_status_idx on public.progress_items(client_id, status);
 create index if not exists support_notes_client_resolved_idx on public.support_notes(client_id, resolved);
 create index if not exists client_files_client_created_idx on public.client_files(client_id, created_at desc);
+create index if not exists intake_requests_status_created_idx on public.intake_requests(status, created_at desc);
+create index if not exists intake_requests_email_idx on public.intake_requests(lower(email));

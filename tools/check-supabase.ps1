@@ -15,6 +15,8 @@ select 'table:support_notes', exists(select 1 from information_schema.tables whe
 union all
 select 'table:client_files', exists(select 1 from information_schema.tables where table_schema='public' and table_name='client_files')
 union all
+select 'table:intake_requests', exists(select 1 from information_schema.tables where table_schema='public' and table_name='intake_requests')
+union all
 select 'table:client_access', exists(select 1 from information_schema.tables where table_schema='public' and table_name='client_access')
 union all
 select 'bucket:client-files', exists(select 1 from storage.buckets where id='client-files')

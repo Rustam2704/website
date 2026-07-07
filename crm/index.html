@@ -216,6 +216,7 @@
 
                 <div class="tabs">
                   <button type="button" class="tab active" data-tab="progress">Progress</button>
+                  <button type="button" class="tab" data-tab="requests">Requests</button>
                   <button type="button" class="tab" data-tab="sessions">Sessions</button>
                   <button type="button" class="tab" data-tab="support">Support</button>
                   <button type="button" class="tab" data-tab="files">Files / links</button>
@@ -239,6 +240,10 @@
                     <button type="submit">Add</button>
                   </form>
                   <div class="records" id="progress-records"></div>
+                </section>
+
+                <section class="tab-panel hidden" data-panel="requests">
+                  <div class="records" id="intake-records"></div>
                 </section>
 
                 <section class="tab-panel hidden" data-panel="sessions">
@@ -332,7 +337,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-14"></script>
+    <script type="module" src="./app.js?v=2026-07-07-15"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

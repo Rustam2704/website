@@ -14,7 +14,8 @@ const state = {
   sessions: [],
   support: [],
   files: [],
-  access: []
+  access: [],
+  intake: []
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -41,7 +42,8 @@ const views = {
   sessionRecords: $("#session-records"),
   supportRecords: $("#support-records"),
   fileRecords: $("#file-records"),
-  accessRecords: $("#access-records")
+  accessRecords: $("#access-records"),
+  intakeRecords: $("#intake-records")
 };
 
 const ACTIVE_TAB_KEY = "fanatic.crm.activeTab";
@@ -158,7 +160,7 @@ function renderRoute() {
 
 async function loadClients() {
   try {
-    const [clients, progress, sessions, support, files] = await Promise.all([
+    const [clients, progress, sessions, support, files, intake] = await Promise.all([
       requireResult(
       supabase
         .from("clients")
@@ -169,10 +171,12 @@ async function loadClients() {
       requireResult(supabase.from("progress_items").select("id, client_id, status").eq("owner_id", state.user.id)),
       requireResult(supabase.from("sessions").select("id, client_id").eq("owner_id", state.user.id)),
       requireResult(supabase.from("support_notes").select("id, client_id, resolved").eq("owner_id", state.user.id)),
-      requireResult(supabase.from("client_files").select("id, client_id").eq("owner_id", state.user.id))
+      requireResult(supabase.from("client_files").select("id, client_id").eq("owner_id", state.user.id)),
+      requireResult(supabase.from("intake_requests").select("*").order("created_at", { ascending: false }))
     ]);
 
     state.clients = withClientCounts(clients, { progress, sessions, support, files });
+    state.intake = intake;
 
     if (state.selectedClient) {
       state.selectedClient = state.clients.find((client) => client.id === state.selectedClient.id) || state.clients[0] || null;
@@ -182,6 +186,7 @@ async function loadClients() {
 
     renderClients();
     renderStats();
+    renderIntakeRequests();
     if (state.selectedClient) {
       await selectClient(state.selectedClient.id);
     } else {
@@ -225,6 +230,7 @@ function renderStats() {
     leads: state.clients.filter((client) => client.status === "lead").length,
     active: state.clients.filter((client) => client.status === "active").length,
     support: state.clients.filter((client) => client.plan === "session_plus_support").length,
+    requests: state.intake.filter((request) => request.status === "new").length,
     total: state.clients.length
   };
 
@@ -232,6 +238,7 @@ function renderStats() {
     <article><span>Total</span><strong>${counts.total}</strong></article>
     <article><span>Leads</span><strong>${counts.leads}</strong></article>
     <article><span>Active</span><strong>${counts.active}</strong></article>
+    <article><span>New requests</span><strong>${counts.requests}</strong></article>
     <article><span>With support</span><strong>${counts.support}</strong></article>
   `;
 }
@@ -388,6 +395,47 @@ function renderRelatedRecords() {
   });
 }
 
+function renderIntakeRequests() {
+  if (!views.intakeRecords) return;
+
+  const requests = state.intake.filter((request) => request.status !== "archived");
+  if (!requests.length) {
+    views.intakeRecords.innerHTML = `<div class="empty-list">No intake requests yet.</div>`;
+    return;
+  }
+
+  views.intakeRecords.innerHTML = requests.map((request) => `
+    <article class="record">
+      <div class="record-body">
+        <strong>${h(request.name)}</strong>
+        <span>${h(request.email)} / ${h(request.status)} / ${h(formatDate(request.created_at))}</span>
+        <p>${h(request.area || "")}</p>
+        <p>${h(request.goal || "")}</p>
+      </div>
+      <div class="record-actions">
+        ${request.status === "converted"
+          ? `<button type="button" class="secondary request-select-client" data-client-id="${request.client_id || ""}">Open client</button>`
+          : `<button type="button" class="secondary request-convert" data-id="${request.id}">Convert to client</button>`}
+        <button type="button" class="secondary request-archive" data-id="${request.id}">Archive</button>
+      </div>
+    </article>
+  `).join("");
+
+  $$(".request-convert").forEach((button) => {
+    button.addEventListener("click", () => convertRequestToClient(button.dataset.id));
+  });
+
+  $$(".request-archive").forEach((button) => {
+    button.addEventListener("click", () => updateIntakeStatus(button.dataset.id, "archived"));
+  });
+
+  $$(".request-select-client").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.dataset.clientId) selectClient(button.dataset.clientId);
+    });
+  });
+}
+
 function renderRecordList(records, table, template) {
   if (!records.length) return `<div class="empty-list">No records yet.</div>`;
   return records.map((record) => `
@@ -446,6 +494,42 @@ async function updateRecord(table, id, field, value) {
       .select()
   );
   await selectClient(state.selectedClient.id);
+}
+
+async function updateIntakeStatus(id, status, extra = {}) {
+  await requireResult(
+    supabase
+      .from("intake_requests")
+      .update({ status, ...extra })
+      .eq("id", id)
+      .select()
+  );
+  await loadClients();
+}
+
+async function convertRequestToClient(id) {
+  const request = state.intake.find((item) => item.id === id);
+  if (!request) return;
+
+  const [client] = await requireResult(
+    supabase
+      .from("clients")
+      .insert({
+        owner_id: state.user.id,
+        name: request.name,
+        email: request.email,
+        area: request.area,
+        current_goal: request.goal,
+        status: "lead",
+        plan: "session_only"
+      })
+      .select()
+  );
+
+  await updateIntakeStatus(id, "converted", { client_id: client.id });
+  state.selectedClient = client;
+  await loadClients();
+  setActiveTab("progress");
 }
 
 async function openStoredFile(path) {
@@ -671,12 +755,13 @@ $("#export-button").addEventListener("click", () => {
 
 $("#backup-button").addEventListener("click", async () => {
   try {
-    const [clients, progress, sessions, support, files] = await Promise.all([
+    const [clients, progress, sessions, support, files, intake] = await Promise.all([
       requireResult(supabase.from("clients").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false })),
       requireResult(supabase.from("progress_items").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false })),
       requireResult(supabase.from("sessions").select("*").eq("owner_id", state.user.id).order("date", { ascending: false })),
       requireResult(supabase.from("support_notes").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false })),
-      requireResult(supabase.from("client_files").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false }))
+      requireResult(supabase.from("client_files").select("*").eq("owner_id", state.user.id).order("created_at", { ascending: false })),
+      requireResult(supabase.from("intake_requests").select("*").order("created_at", { ascending: false }))
     ]);
 
     download(`fanatic-crm-backup-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify({
@@ -685,7 +770,8 @@ $("#backup-button").addEventListener("click", async () => {
       progress_items: progress,
       sessions,
       support_notes: support,
-      client_files: files
+      client_files: files,
+      intake_requests: intake
     }, null, 2), "application/json");
   } catch (error) {
     alert(error.message);

@@ -15,6 +15,7 @@ Last updated: July 7, 2026
 - Domain `fanatic.space`.
 - Cloudflare Email Routing to `direct@fanatic.space`.
 - FormSubmit contact form to `direct@fanatic.space`.
+- Landing form also saves requests into Supabase `intake_requests`.
 - Supabase project `fanatic-crm`.
 - Admin CRM login with Supabase magic link.
 - Admin CRM client tracker:
@@ -26,10 +27,12 @@ Last updated: July 7, 2026
   - private file upload to Supabase Storage
   - CSV export
   - JSON backup
+  - intake request review and conversion to client
 - Admin CRM can be installed as a PWA shell on Android-compatible browsers.
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
-- Read-only client portal database foundation.
+- Client portal database foundation.
+- Client portal can update assigned progress statuses through a safe RPC.
 - Admin CRM can grant/revoke client portal access from the Access tab.
 - CRM quality-of-life:
   - first client auto-selects after login
@@ -48,6 +51,7 @@ Last updated: July 7, 2026
 - Add `https://fanatic.space/portal/` to Supabase Auth redirect URLs before testing real client portal login with a real client email.
 - Add Cloudflare Redirect Rule for `www.fanatic.space -> fanatic.space` with 301 for SEO.
 - Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
+- Prepare 2-4 static ad images later for online lessons for ages 8-18: programming, AI tools, and practical computer directions.
 - Replace contact phone / messenger placeholder when the number is ready.
 - Remove test clients after UI testing:
   - `Codex Test Client`
