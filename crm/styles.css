@@ -549,7 +549,8 @@ h3 {
   background: #f8faf8;
 }
 
-.edit-card summary {
+.edit-card summary,
+.action-card summary {
   color: var(--ink);
   cursor: pointer;
   font-weight: 750;
@@ -557,6 +558,21 @@ h3 {
 
 .edit-card form {
   margin-top: 14px;
+}
+
+.action-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #f8faf8;
+}
+
+.action-card + .action-card {
+  margin-top: 10px;
+}
+
+.action-card form {
+  margin-top: 12px;
 }
 
 .mini-summary {
@@ -661,6 +677,14 @@ h3 {
   grid-template-columns: minmax(180px, 1fr) minmax(120px, 0.4fr) minmax(120px, 0.4fr) auto;
   gap: 10px;
   align-items: end;
+}
+
+.inline-form.two-fields {
+  grid-template-columns: minmax(220px, 1fr) minmax(120px, 0.34fr) auto;
+}
+
+.inline-form.one-field {
+  grid-template-columns: minmax(220px, 1fr) auto;
 }
 
 .inline-form + .inline-form {

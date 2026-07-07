@@ -983,6 +983,7 @@ $("#quick-session-button").addEventListener("click", async () => {
   }
 
   setActiveTab("sessions");
+  $("#session-action-card").open = true;
   document.querySelector("[data-panel='sessions']")?.scrollIntoView({ block: "start" });
 });
 

@@ -9,7 +9,7 @@
     <link rel="icon" href="../assets/favicon-crm.svg" type="image/svg+xml">
     <link rel="manifest" href="./manifest.webmanifest">
     <link rel="apple-touch-icon" href="../assets/icon-192.png">
-    <link rel="stylesheet" href="./styles.css?v=2026-07-07-3">
+    <link rel="stylesheet" href="./styles.css?v=2026-07-07-4">
   </head>
   <body>
     <div class="app-shell">
@@ -242,123 +242,141 @@
                 </div>
 
                 <section class="tab-panel" data-panel="progress">
-                  <form class="inline-form" id="progress-form">
-                    <input name="title" placeholder="Task, blocker, or next action" required>
-                    <select name="status">
-                      <option value="blocked">Blocked</option>
-                      <option value="in_progress" selected>In progress</option>
-                      <option value="improved">Improved</option>
-                      <option value="done">Done</option>
-                    </select>
-                    <select name="priority">
-                      <option value="low">Low</option>
-                      <option value="normal" selected>Normal</option>
-                      <option value="high">High</option>
-                    </select>
-                    <button type="submit">Add</button>
-                  </form>
+                  <details class="action-card">
+                    <summary>Add task</summary>
+                    <form class="inline-form" id="progress-form">
+                      <input name="title" placeholder="Task, blocker, or next action" required>
+                      <select name="status">
+                        <option value="blocked">Blocked</option>
+                        <option value="in_progress" selected>In progress</option>
+                        <option value="improved">Improved</option>
+                        <option value="done">Done</option>
+                      </select>
+                      <select name="priority">
+                        <option value="low">Low</option>
+                        <option value="normal" selected>Normal</option>
+                        <option value="high">High</option>
+                      </select>
+                      <button type="submit">Add</button>
+                    </form>
+                  </details>
                   <div class="records" id="progress-records"></div>
                 </section>
 
                 <section class="tab-panel hidden" data-panel="sessions">
-                  <form class="stacked-form compact" id="session-form">
-                    <div class="field-grid">
+                  <details class="action-card" id="session-action-card">
+                    <summary>Add session</summary>
+                    <form class="stacked-form compact" id="session-form">
+                      <div class="field-grid">
+                        <label>
+                          Start date
+                          <input name="start_date" type="date">
+                        </label>
+                        <label>
+                          Start time
+                          <input name="start_time" type="time">
+                        </label>
+                        <label>
+                          End date
+                          <input name="end_date" type="date">
+                        </label>
+                        <label>
+                          End time
+                          <input name="end_time" type="time">
+                        </label>
+                        <label>
+                          Repeat
+                          <select name="repeat">
+                            <option value="never">Never</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="weekdays">Every weekday</option>
+                          </select>
+                        </label>
+                      </div>
                       <label>
-                        Start date
-                        <input name="start_date" type="date">
+                        Topic
+                        <input name="topic">
                       </label>
                       <label>
-                        Start time
-                        <input name="start_time" type="time">
+                        Notes
+                        <textarea name="notes" rows="3"></textarea>
                       </label>
                       <label>
-                        End date
-                        <input name="end_date" type="date">
+                        Next actions
+                        <textarea name="next_actions" rows="3"></textarea>
                       </label>
                       <label>
-                        End time
-                        <input name="end_time" type="time">
+                        Private notes
+                        <textarea name="private_notes" rows="3"></textarea>
                       </label>
-                      <label>
-                        Repeat
-                        <select name="repeat">
-                          <option value="never">Never</option>
-                          <option value="daily">Daily</option>
-                          <option value="weekly">Weekly</option>
-                          <option value="monthly">Monthly</option>
-                          <option value="weekdays">Every weekday</option>
-                        </select>
-                      </label>
-                    </div>
-                    <label>
-                      Topic
-                      <input name="topic">
-                    </label>
-                    <label>
-                      Notes
-                      <textarea name="notes" rows="3"></textarea>
-                    </label>
-                    <label>
-                      Next actions
-                      <textarea name="next_actions" rows="3"></textarea>
-                    </label>
-                    <label>
-                      Private notes
-                      <textarea name="private_notes" rows="3"></textarea>
-                    </label>
-                    <button type="submit">Add session</button>
-                  </form>
+                      <button type="submit">Add session</button>
+                    </form>
+                  </details>
                   <div class="records" id="session-records"></div>
                 </section>
 
                 <section class="tab-panel hidden" data-panel="support">
-                  <form class="inline-form" id="support-form">
-                    <input name="message" placeholder="Message or support note" required>
-                    <select name="source">
-                      <option value="manual">Manual</option>
-                      <option value="email">Email</option>
-                      <option value="form">Form</option>
-                      <option value="chat">Chat</option>
-                    </select>
-                    <button type="submit">Add</button>
-                  </form>
+                  <details class="action-card">
+                    <summary>Add message</summary>
+                    <form class="inline-form two-fields" id="support-form">
+                      <input name="message" placeholder="Message or support note" required>
+                      <select name="source">
+                        <option value="manual">Manual</option>
+                        <option value="email">Email</option>
+                        <option value="form">Form</option>
+                        <option value="chat">Chat</option>
+                      </select>
+                      <button type="submit">Add</button>
+                    </form>
+                  </details>
                   <div class="records" id="support-records"></div>
                 </section>
 
                 <section class="tab-panel hidden" data-panel="files">
-                  <form class="inline-form" id="upload-form">
-                    <input name="file" type="file" required>
-                    <input name="label" placeholder="File label">
-                    <select name="kind">
-                      <option value="screenshot">Screenshot</option>
-                      <option value="project">Project</option>
-                      <option value="video">Video</option>
-                      <option value="document">Document</option>
-                      <option value="other" selected>Other</option>
-                    </select>
-                    <button type="submit">Upload</button>
-                  </form>
+                  <details class="action-card">
+                    <summary>Upload file</summary>
+                    <form class="inline-form" id="upload-form">
+                      <input name="file" type="file" required>
+                      <input name="label" placeholder="File label">
+                      <select name="kind">
+                        <option value="screenshot">Screenshot</option>
+                        <option value="project">Project</option>
+                        <option value="video">Video</option>
+                        <option value="document">Document</option>
+                        <option value="other" selected>Other</option>
+                      </select>
+                      <button type="submit">Upload</button>
+                    </form>
+                  </details>
 
-                  <form class="inline-form" id="file-form">
-                    <input name="url" type="url" placeholder="https://..." required>
-                    <input name="label" placeholder="Label">
-                    <select name="kind">
-                      <option value="screenshot">Screenshot</option>
-                      <option value="project">Project</option>
-                      <option value="video">Video</option>
-                      <option value="document">Document</option>
-                      <option value="other" selected>Other</option>
-                    </select>
-                    <button type="submit">Add</button>
-                  </form>
+                  <details class="action-card">
+                    <summary>Add link</summary>
+                    <form class="inline-form" id="file-form">
+                      <input name="url" type="url" placeholder="https://..." required>
+                      <input name="label" placeholder="Label">
+                      <select name="kind">
+                        <option value="screenshot">Screenshot</option>
+                        <option value="project">Project</option>
+                        <option value="video">Video</option>
+                        <option value="document">Document</option>
+                        <option value="other" selected>Other</option>
+                      </select>
+                      <button type="submit">Add</button>
+                    </form>
+                  </details>
                   <div class="records" id="file-records"></div>
                 </section>
 
                 <section class="tab-panel hidden" data-panel="access">
-                  <form class="inline-form" id="access-form">
-                    <input name="email" type="email" placeholder="client@example.com" required>
-                    <button type="submit">Grant portal access</button>
-                  </form>
+                  <details class="action-card">
+                    <summary>Grant portal access</summary>
+                    <form class="inline-form one-field" id="access-form">
+                      <input name="email" type="email" placeholder="client@example.com" required>
+                      <button type="submit">Grant portal access</button>
+                    </form>
+                  </details>
                   <div class="records" id="access-records"></div>
                 </section>
               </div>
@@ -423,7 +441,7 @@
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-24"></script>
+    <script type="module" src="./app.js?v=2026-07-07-25"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");
