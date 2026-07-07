@@ -44,7 +44,25 @@ select 'rpc:client_create_support_note', exists(select 1 from information_schema
 union all
 select 'rpc:client_create_file_link', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_create_file_link')
 union all
-select 'rpc:client_list_sessions', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_list_sessions');
+select 'rpc:client_list_sessions', exists(select 1 from information_schema.routines where routine_schema='public' and routine_name='client_list_sessions')
+union all
+select 'column:sessions.meeting_url', exists(select 1 from information_schema.columns where table_schema='public' and table_name='sessions' and column_name='meeting_url')
+union all
+select 'column:sessions.confirmation_status', exists(select 1 from information_schema.columns where table_schema='public' and table_name='sessions' and column_name='confirmation_status')
+union all
+select 'column:progress_items.due_at', exists(select 1 from information_schema.columns where table_schema='public' and table_name='progress_items' and column_name='due_at')
+union all
+select 'column:progress_items.teacher_comment', exists(select 1 from information_schema.columns where table_schema='public' and table_name='progress_items' and column_name='teacher_comment')
+union all
+select 'column:progress_items.client_comment', exists(select 1 from information_schema.columns where table_schema='public' and table_name='progress_items' and column_name='client_comment')
+union all
+select 'column:clients.paid_sessions_total', exists(select 1 from information_schema.columns where table_schema='public' and table_name='clients' and column_name='paid_sessions_total')
+union all
+select 'column:clients.support_until', exists(select 1 from information_schema.columns where table_schema='public' and table_name='clients' and column_name='support_until')
+union all
+select 'table:calendar_connections', exists(select 1 from information_schema.tables where table_schema='public' and table_name='calendar_connections')
+union all
+select 'column:sessions.google_calendar_event_id', exists(select 1 from information_schema.columns where table_schema='public' and table_name='sessions' and column_name='google_calendar_event_id');
 "@
 
 & $psql $connection -c $sql
