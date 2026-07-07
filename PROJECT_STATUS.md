@@ -107,6 +107,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-dump-db.ps1
 ```
 
+Create a full CRM backup bundle:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-backup.ps1
+```
+
 List intake requests:
 
 ```powershell

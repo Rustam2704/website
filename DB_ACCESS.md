@@ -227,6 +227,13 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-dump-db.ps1
 ```
 
+Create a full local backup bundle with CSV tables, SQL dump, and summary:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-backup.ps1
+```
+
 Check Supabase infrastructure:
 
 ```powershell
@@ -246,6 +253,7 @@ Exports are written to:
 ```text
 exports/crm-YYYYMMDD-HHMMSS/
 exports/fanatic-crm-db-YYYYMMDD-HHMMSS.sql
+exports/backup-YYYYMMDD-HHMMSS/
 ```
 
 Current test data:
