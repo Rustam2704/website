@@ -157,6 +157,13 @@ $env:PGPASSWORD = "<database-password>"
   -UserEmail "client@example.com"
 ```
 
+List Supabase Auth users:
+
+```powershell
+$env:PGPASSWORD = "<database-password>"
+.\tools\crm-list-auth-users.ps1
+```
+
 Delete a client and related records:
 
 ```powershell
