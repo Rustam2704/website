@@ -14,7 +14,11 @@ const views = {
   authMessage: $("#auth-message"),
   supportMessage: $("#support-message"),
   clientName: $("#client-name"),
-  clientSummary: $("#client-summary"),
+  nextLessonTitle: $("#next-lesson-title"),
+  nextLessonDetail: $("#next-lesson-detail"),
+  nextStepsList: $("#next-steps-list"),
+  currentGoal: $("#current-goal"),
+  recentProgressList: $("#recent-progress-list"),
   progressRecords: $("#progress-records"),
   sessionRecords: $("#session-records"),
   fileRecords: $("#file-records"),
@@ -92,6 +96,8 @@ async function renderRoute() {
 
 async function loadPortalData() {
   try {
+    await requireResult(supabase.rpc("claim_client_access_by_email"));
+
     const access = await requireResult(
       supabase
         .from("client_access")
@@ -103,7 +109,11 @@ async function loadPortalData() {
 
     if (!access.length) {
       views.clientName.textContent = "No client profile assigned";
-      views.clientSummary.innerHTML = `<div><span>Status</span><strong>No access record found for this email.</strong></div>`;
+      views.nextLessonTitle.textContent = "No profile assigned";
+      views.nextLessonDetail.textContent = "No access record found for this email.";
+      views.nextStepsList.innerHTML = `<p>No assigned work yet.</p>`;
+      views.currentGoal.textContent = "-";
+      views.recentProgressList.innerHTML = `<p>No progress is available yet.</p>`;
       views.progressRecords.innerHTML = `<div class="empty-list">No progress is available yet.</div>`;
       views.sessionRecords.innerHTML = `<div class="empty-list">No sessions are available yet.</div>`;
       views.fileRecords.innerHTML = `<div class="empty-list">No files or links are available yet.</div>`;
@@ -129,12 +139,7 @@ async function loadPortalData() {
     const sessions = await requireResult(supabase.rpc("client_list_sessions"));
 
     views.clientName.textContent = client.name;
-    views.clientSummary.innerHTML = `
-      <div><span>Area</span><strong>${h(client.area || "-")}</strong></div>
-      <div><span>Goal</span><strong>${h(client.current_goal || "-")}</strong></div>
-      <div><span>Status</span><strong>${h(client.status || "-")}</strong></div>
-      <div><span>Plan</span><strong>${h((client.plan || "-").replaceAll("_", " "))}</strong></div>
-    `;
+    renderStudentHome(client, progress, sessions);
 
     views.progressRecords.innerHTML = progress.length
       ? progress.map((item) => `
@@ -187,6 +192,27 @@ async function loadPortalData() {
   } catch (error) {
     alert(error.message);
   }
+}
+
+function renderStudentHome(client, progress, sessions) {
+  const now = Date.now();
+  const upcoming = sessions
+    .filter((session) => session.date && new Date(session.date).getTime() >= now)
+    .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+  const activeTasks = progress
+    .filter((item) => item.status !== "done")
+    .slice(0, 4);
+  const recentProgress = progress.slice(0, 4);
+
+  views.nextLessonTitle.textContent = upcoming ? formatDate(upcoming.date) : "No lesson scheduled";
+  views.nextLessonDetail.textContent = upcoming?.topic || upcoming?.next_actions || "Rustam will add the next session here.";
+  views.currentGoal.textContent = client.current_goal || "-";
+  views.nextStepsList.innerHTML = activeTasks.length
+    ? activeTasks.map((item) => `<p>${h(item.title)} <span>${h(item.status.replaceAll("_", " "))}</span></p>`).join("")
+    : `<p>No active tasks yet.</p>`;
+  views.recentProgressList.innerHTML = recentProgress.length
+    ? recentProgress.map((item) => `<p>${h(item.title)} <span>${h(item.status.replaceAll("_", " "))}</span></p>`).join("")
+    : `<p>No progress is available yet.</p>`;
 }
 
 function progressStatusOptions(currentStatus) {
@@ -289,6 +315,22 @@ views.authForm.addEventListener("submit", async (event) => {
     options: { emailRedirectTo: "https://fanatic.space/portal/" }
   });
   setMessage(error ? error.message : "Magic link sent. Check email.", Boolean(error));
+});
+
+document.querySelectorAll("[data-oauth-provider]").forEach((button) => {
+  button.addEventListener("click", async () => {
+    const provider = button.dataset.oauthProvider;
+    setMessage(`Opening ${provider} sign in...`);
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: "https://fanatic.space/portal/"
+      }
+    });
+
+    if (error) setMessage(error.message, true);
+  });
 });
 
 $("#sign-out-button").addEventListener("click", async () => {

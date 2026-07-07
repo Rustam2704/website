@@ -22,7 +22,7 @@
         </a>
         <nav class="nav">
           <a href="#requests">Requests</a>
-          <a href="#clients">Clients</a>
+          <a href="#students">Students</a>
           <a href="#progress">Progress</a>
           <a href="#sessions">Sessions</a>
         </nav>
@@ -36,7 +36,7 @@
         <header class="topbar">
           <div>
             <p class="eyebrow">CRM v0</p>
-            <h1>Client work tracker</h1>
+            <h1>Teaching CRM</h1>
           </div>
           <div class="auth-status" id="auth-status">Checking session...</div>
         </header>
@@ -56,6 +56,17 @@
             <p class="muted">Use the account that owns the CRM records.</p>
           </div>
           <form class="auth-form" id="auth-form">
+            <div class="oauth-stack">
+              <button type="button" class="oauth-button" data-oauth-provider="google">
+                <span>G</span>
+                Continue with Google
+              </button>
+              <button type="button" class="oauth-button" data-oauth-provider="apple">
+                <span>Apple</span>
+                Continue with Apple
+              </button>
+            </div>
+            <div class="auth-divider"><span>or</span></div>
             <label>
               Email
               <input id="auth-email" type="email" autocomplete="email" required>
@@ -75,10 +86,11 @@
         <section class="dashboard hidden" id="dashboard">
           <div class="toolbar">
             <div>
-              <p class="eyebrow">Overview</p>
-              <h2>Pipeline</h2>
+              <p class="eyebrow">Dashboard</p>
+              <h2>Today</h2>
             </div>
             <div class="button-row">
+              <button type="button" id="add-student-button">Add student</button>
               <input class="visually-hidden" id="import-clients-input" type="file" accept=".csv,text/csv">
               <button type="button" class="secondary" id="import-clients-button">Import CSV</button>
               <button type="button" class="secondary" id="template-button">Template CSV</button>
@@ -86,6 +98,28 @@
               <button type="button" class="secondary" id="backup-button">Backup JSON</button>
               <button type="button" class="secondary" id="sign-out-button">Sign out</button>
             </div>
+          </div>
+
+          <div class="today-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Upcoming sessions</p>
+                  <h3>Next lessons</h3>
+                </div>
+              </div>
+              <div class="records compact-records" id="upcoming-records"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Needs attention</p>
+                  <h3>Open loops</h3>
+                </div>
+              </div>
+              <div class="records compact-records" id="attention-records"></div>
+            </section>
           </div>
 
           <div class="stats-grid" id="stats-grid"></div>
@@ -101,58 +135,16 @@
           </section>
 
           <div class="work-grid">
-            <section class="panel" id="clients">
+            <section class="panel" id="students">
               <div class="panel-header">
                 <div>
-                  <p class="eyebrow">Clients</p>
-                  <h3>Add or select client</h3>
+                  <p class="eyebrow">Students</p>
+                  <h3>Select student</h3>
                 </div>
               </div>
 
-              <form class="stacked-form" id="client-form">
-                <div class="field-grid">
-                  <label>
-                    Name
-                    <input name="name" required>
-                  </label>
-                  <label>
-                    Email
-                    <input name="email" type="email">
-                  </label>
-                  <label>
-                    Time zone
-                    <input name="timezone" placeholder="UK, US East, etc.">
-                  </label>
-                  <label>
-                    Plan
-                    <select name="plan">
-                      <option value="session_only">$100 session only</option>
-                      <option value="session_plus_support">$130 plus support</option>
-                    </select>
-                  </label>
-                  <label>
-                    Area
-                    <input name="area" placeholder="programming, AI, setup, tech support">
-                  </label>
-                  <label>
-                    Status
-                    <select name="status">
-                      <option value="lead">Lead</option>
-                      <option value="active">Active</option>
-                      <option value="paused">Paused</option>
-                      <option value="done">Done</option>
-                    </select>
-                  </label>
-                </div>
-                <label>
-                  Current goal
-                  <textarea name="current_goal" rows="3"></textarea>
-                </label>
-                <button type="submit">Add client</button>
-              </form>
-
               <div class="client-filters">
-                <input id="client-search" type="search" placeholder="Search clients">
+                <input id="client-search" type="search" placeholder="Search students">
                 <select id="client-status-filter">
                   <option value="all">All statuses</option>
                   <option value="lead">Lead</option>
@@ -168,8 +160,8 @@
             <section class="panel detail-panel">
               <div class="panel-header">
                 <div>
-                  <p class="eyebrow">Selected client</p>
-                  <h3 id="selected-title">No client selected</h3>
+                  <p class="eyebrow">Selected student</p>
+                  <h3 id="selected-title">No student selected</h3>
                 </div>
                 <div class="selected-actions">
                   <span class="status-pill" id="selected-status">-</span>
@@ -178,7 +170,7 @@
               </div>
 
               <div class="empty-state" id="empty-state">
-                Select or create a client to track sessions, progress, support notes, and files.
+                Select a student to track sessions, tasks, progress, messages, and files.
               </div>
 
               <div class="client-work hidden" id="client-work">
@@ -230,16 +222,16 @@
                 </details>
 
                 <div class="tabs">
-                  <button type="button" class="tab active" data-tab="progress">Progress</button>
+                  <button type="button" class="tab active" data-tab="progress">Tasks</button>
                   <button type="button" class="tab" data-tab="sessions">Sessions</button>
-                  <button type="button" class="tab" data-tab="support">Support</button>
+                  <button type="button" class="tab" data-tab="support">Messages</button>
                   <button type="button" class="tab" data-tab="files">Files / links</button>
                   <button type="button" class="tab" data-tab="access">Access</button>
                 </div>
 
                 <section class="tab-panel" data-panel="progress">
                   <form class="inline-form" id="progress-form">
-                    <input name="title" placeholder="Progress item" required>
+                    <input name="title" placeholder="Task, blocker, or next action" required>
                     <select name="status">
                       <option value="blocked">Blocked</option>
                       <option value="in_progress" selected>In progress</option>
@@ -260,12 +252,30 @@
                   <form class="stacked-form compact" id="session-form">
                     <div class="field-grid">
                       <label>
-                        Date
-                        <input name="date" type="datetime-local">
+                        Start date
+                        <input name="start_date" type="date">
                       </label>
                       <label>
-                        Duration
-                        <input name="duration_minutes" type="number" min="1" max="240" value="50">
+                        Start time
+                        <input name="start_time" type="time">
+                      </label>
+                      <label>
+                        End date
+                        <input name="end_date" type="date">
+                      </label>
+                      <label>
+                        End time
+                        <input name="end_time" type="time">
+                      </label>
+                      <label>
+                        Repeat
+                        <select name="repeat">
+                          <option value="never">Never</option>
+                          <option value="daily">Daily</option>
+                          <option value="weekly">Weekly</option>
+                          <option value="monthly">Monthly</option>
+                          <option value="weekdays">Every weekday</option>
+                        </select>
                       </label>
                     </div>
                     <label>
@@ -291,7 +301,7 @@
 
                 <section class="tab-panel hidden" data-panel="support">
                   <form class="inline-form" id="support-form">
-                    <input name="message" placeholder="Support note" required>
+                    <input name="message" placeholder="Message or support note" required>
                     <select name="source">
                       <option value="manual">Manual</option>
                       <option value="email">Email</option>
@@ -343,11 +353,65 @@
             </section>
           </div>
         </section>
+
+        <div class="modal-backdrop hidden" id="student-modal" role="dialog" aria-modal="true" aria-labelledby="student-modal-title">
+          <section class="modal-card">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Students</p>
+                <h3 id="student-modal-title">Add student</h3>
+              </div>
+              <button type="button" class="secondary icon-button" id="close-student-modal" aria-label="Close">x</button>
+            </div>
+
+            <form class="stacked-form" id="client-form">
+              <div class="field-grid">
+                <label>
+                  Name
+                  <input name="name" required>
+                </label>
+                <label>
+                  Email
+                  <input name="email" type="email">
+                </label>
+                <label>
+                  Time zone
+                  <input name="timezone" placeholder="UK, US East, etc.">
+                </label>
+                <label>
+                  Plan
+                  <select name="plan">
+                    <option value="session_only">$100 session only</option>
+                    <option value="session_plus_support">$130 plus support</option>
+                  </select>
+                </label>
+                <label>
+                  Area
+                  <input name="area" placeholder="teaching/mentorship, tech advice/support">
+                </label>
+                <label>
+                  Status
+                  <select name="status">
+                    <option value="lead">Lead</option>
+                    <option value="active">Active</option>
+                    <option value="paused">Paused</option>
+                    <option value="done">Done</option>
+                  </select>
+                </label>
+              </div>
+              <label>
+                Current goal
+                <textarea name="current_goal" rows="3"></textarea>
+              </label>
+              <button type="submit">Add student</button>
+            </form>
+          </section>
+        </div>
       </main>
     </div>
 
     <script src="./config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-20"></script>
+    <script type="module" src="./app.js?v=2026-07-07-21"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

@@ -14,7 +14,7 @@ Last updated: July 7, 2026
 - Landing requests now save into Supabase `intake_requests` and still send email through FormSubmit.
 - CRM has a global `Requests` panel.
 - CRM can convert intake requests into clients.
-- CRM has CLI helpers for intake listing, conversion, archive, auth users, CSV export, SQL dump, full backup, CSV import, client reports, file links, portal access grant/list/revoke, and test-data cleanup.
+- CRM has CLI helpers for intake listing, conversion, archive, auth users, CSV export, SQL dump, full backup, CSV import, client reports, file links, pending portal access grant/list/revoke, and test-data cleanup.
 - CRM intake conversion now reuses an existing client with the same email instead of creating duplicates.
 - CRM can import clients from CSV directly in the browser; existing clients are updated by email instead of duplicated.
 - Client portal can:
@@ -26,6 +26,7 @@ Last updated: July 7, 2026
   - add file / project / screenshot / video links
   - show safe session history without private notes
   - open assigned private stored files through short-lived signed URLs
+  - claim pending email access after the first magic-link login
 - CRM and portal are marked `noindex, nofollow` through meta tags, robots.txt, and Cloudflare `_headers`.
 - PWA icons were added for CRM installability on Android-compatible browsers.
 - Portable PostgreSQL dump helper and one-command backup helper added.
@@ -54,6 +55,9 @@ Latest checked pieces:
 - CRM data integrity checks now catch duplicate client emails, invalid file URLs, broken access records, and converted requests without linked clients.
 - Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
 - `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
+- Landing hero uses a Lenovo-style technical workspace image.
+- CRM and portal show Google / Apple login buttons; Supabase provider setup is still required before production OAuth works.
+- CRM shell is moving from generic client tracker toward teaching CRM: Today dashboard, Students, Tasks, Messages.
 
 ## Still Needs User Clicks Later
 
@@ -133,7 +137,7 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\crm-backup.ps1
 ```
 
-Create a client and grant portal access if the auth user already exists:
+Create a client and grant portal access by email:
 
 ```powershell
 $env:PGPASSWORD = "<database-password>"

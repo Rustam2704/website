@@ -30,6 +30,8 @@ Last updated: July 7, 2026
   - intake request review and conversion to client
 - Admin CRM can be installed as a PWA shell on Android-compatible browsers.
 - Admin CRM can import clients from CSV directly in the browser.
+- Admin CRM is moving toward teaching CRM structure: Today dashboard, Students, Tasks, Messages.
+- CRM and portal show Google / Apple login buttons; Supabase providers still need to be configured before production OAuth works.
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
 - CLI helpers can add and list client file/project/screenshot/video links.
@@ -40,7 +42,8 @@ Last updated: July 7, 2026
 - Client portal can add file/project/screenshot/video links.
 - Client portal can show session history and next actions without exposing private session notes.
 - Admin CRM can grant/revoke client portal access from the Access tab.
-- CLI can create a client and grant portal access in one command when the auth user already exists.
+- CRM and CLI can grant pending portal access by email before the client auth user exists.
+- Portal claims pending email access after the client's first magic-link login.
 - Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
 - `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 - CRM quality-of-life:
@@ -59,6 +62,8 @@ Last updated: July 7, 2026
 
 - Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
 - Keep improving the admin CRM and client portal until they can replace the spreadsheet workflow.
+- Configure Google and Apple OAuth providers in Supabase when ready.
+- Add Google Calendar integration after the session workflow is stable.
 - Prepare 2-4 static ad images later for online lessons for ages 8-18: programming, AI tools, and practical computer directions.
 - Replace contact phone / messenger placeholder when the number is ready.
 - Remove test clients after UI testing:

@@ -6,7 +6,7 @@ create table if not exists public.client_access (
   id uuid primary key default gen_random_uuid(),
   owner_id uuid not null references auth.users(id) on delete cascade,
   client_id uuid not null references public.clients(id) on delete cascade,
-  user_id uuid not null references auth.users(id) on delete cascade,
+  user_id uuid references auth.users(id) on delete cascade,
   user_email text,
   status text not null default 'active'
     check (status in ('active', 'revoked')),
@@ -89,11 +89,18 @@ create index if not exists client_access_client_idx on public.client_access(clie
 alter table public.client_access
 add column if not exists user_email text;
 
+alter table public.client_access
+alter column user_id drop not null;
+
 update public.client_access access
 set user_email = lower(users.email)
 from auth.users users
 where access.user_id = users.id
   and access.user_email is null;
+
+create unique index if not exists client_access_client_user_email_idx
+on public.client_access(client_id, lower(user_email))
+where user_email is not null;
 
 create or replace function public.grant_client_access_by_email(
   p_client_id uuid,
@@ -108,22 +115,24 @@ declare
   v_owner_id uuid;
   v_user_id uuid;
   v_access public.client_access;
+  v_user_email text;
 begin
   v_owner_id := auth.uid();
+  v_user_email := lower(trim(p_user_email));
 
   if v_owner_id is null then
     raise exception 'Not authenticated';
   end if;
 
+  if nullif(v_user_email, '') is null then
+    raise exception 'User email is required';
+  end if;
+
   select id
   into v_user_id
   from auth.users
-  where lower(email) = lower(p_user_email)
+  where lower(email) = v_user_email
   limit 1;
-
-  if v_user_id is null then
-    raise exception 'No Supabase auth user exists for %', p_user_email;
-  end if;
 
   if not exists (
     select 1
@@ -134,8 +143,28 @@ begin
     raise exception 'Client not found for current owner';
   end if;
 
+  if v_user_id is null then
+    update public.client_access access
+    set
+      user_email = v_user_email,
+      status = 'active',
+      updated_at = now()
+    where access.client_id = p_client_id
+      and access.user_id is null
+      and lower(access.user_email) = v_user_email
+    returning * into v_access;
+
+    if v_access.id is null then
+      insert into public.client_access (owner_id, client_id, user_email, status)
+      values (v_owner_id, p_client_id, v_user_email, 'active')
+      returning * into v_access;
+    end if;
+
+    return v_access;
+  end if;
+
   insert into public.client_access (owner_id, client_id, user_id, user_email, status)
-  values (v_owner_id, p_client_id, v_user_id, lower(p_user_email), 'active')
+  values (v_owner_id, p_client_id, v_user_id, v_user_email, 'active')
   on conflict (client_id, user_id) do update
   set
     user_email = excluded.user_email,
@@ -148,6 +177,46 @@ end;
 $$;
 
 grant execute on function public.grant_client_access_by_email(uuid, text) to authenticated;
+
+create or replace function public.claim_client_access_by_email()
+returns setof public.client_access
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid;
+  v_user_email text;
+begin
+  v_user_id := auth.uid();
+  v_user_email := lower(auth.jwt() ->> 'email');
+
+  if v_user_id is null then
+    raise exception 'Not authenticated';
+  end if;
+
+  if nullif(v_user_email, '') is null then
+    raise exception 'Authenticated user email is missing';
+  end if;
+
+  update public.client_access access
+  set
+    user_id = v_user_id,
+    updated_at = now()
+  where access.user_id is null
+    and lower(access.user_email) = v_user_email
+    and access.status = 'active';
+
+  return query
+  select *
+  from public.client_access access
+  where access.user_id = v_user_id
+    and access.status = 'active'
+  order by access.created_at desc;
+end;
+$$;
+
+grant execute on function public.claim_client_access_by_email() to authenticated;
 
 create or replace function public.client_update_progress_status(
   p_progress_id uuid,

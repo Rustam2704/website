@@ -15,7 +15,10 @@ const state = {
   support: [],
   files: [],
   access: [],
-  intake: []
+  intake: [],
+  overviewProgress: [],
+  overviewSessions: [],
+  overviewSupport: []
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -28,6 +31,9 @@ const views = {
   authStatus: $("#auth-status"),
   authMessage: $("#auth-message"),
   deleteClientButton: $("#delete-client-button"),
+  addStudentButton: $("#add-student-button"),
+  studentModal: $("#student-modal"),
+  closeStudentModal: $("#close-student-modal"),
   importClientsButton: $("#import-clients-button"),
   importClientsInput: $("#import-clients-input"),
   templateButton: $("#template-button"),
@@ -35,6 +41,8 @@ const views = {
   clientSearchInput: $("#client-search"),
   clientStatusFilter: $("#client-status-filter"),
   stats: $("#stats-grid"),
+  upcomingRecords: $("#upcoming-records"),
+  attentionRecords: $("#attention-records"),
   clientList: $("#client-list"),
   selectedTitle: $("#selected-title"),
   selectedStatus: $("#selected-status"),
@@ -58,6 +66,16 @@ function show(element, visible) {
 function setMessage(message, isError = false) {
   views.authMessage.textContent = message || "";
   views.authMessage.classList.toggle("error", isError);
+}
+
+function openStudentModal() {
+  views.studentModal.classList.remove("hidden");
+  $("#client-form").elements.name.focus();
+}
+
+function closeStudentModal() {
+  views.studentModal.classList.add("hidden");
+  $("#client-form").reset();
 }
 
 function formatDate(value) {
@@ -85,6 +103,27 @@ function cleanPayload(payload) {
   return Object.fromEntries(
     Object.entries(payload).map(([key, value]) => [key, value === "" ? null : value])
   );
+}
+
+function buildSessionPayload(raw) {
+  const startDate = raw.start_date || new Date().toISOString().slice(0, 10);
+  const startTime = raw.start_time || "00:00";
+  const endDate = raw.end_date || startDate;
+  const endTime = raw.end_time || startTime;
+  const start = new Date(`${startDate}T${startTime}`);
+  const end = new Date(`${endDate}T${endTime}`);
+  const duration = end > start ? Math.max(1, Math.round((end - start) / 60000)) : 50;
+  const repeatNote = raw.repeat && raw.repeat !== "never" ? `Repeat: ${raw.repeat}` : "";
+  const notes = [raw.notes, repeatNote].filter(Boolean).join("\n");
+
+  return {
+    date: start.toISOString(),
+    duration_minutes: duration,
+    topic: raw.topic,
+    notes,
+    next_actions: raw.next_actions,
+    private_notes: raw.private_notes
+  };
 }
 
 function fillForm(form, values) {
@@ -233,15 +272,18 @@ async function loadClients() {
         .eq("owner_id", state.user.id)
         .order("created_at", { ascending: false })
       ),
-      requireResult(supabase.from("progress_items").select("id, client_id, status").eq("owner_id", state.user.id)),
-      requireResult(supabase.from("sessions").select("id, client_id").eq("owner_id", state.user.id)),
-      requireResult(supabase.from("support_notes").select("id, client_id, resolved").eq("owner_id", state.user.id)),
+      requireResult(supabase.from("progress_items").select("id, client_id, title, status, priority, updated_at").eq("owner_id", state.user.id)),
+      requireResult(supabase.from("sessions").select("id, client_id, date, topic, next_actions, duration_minutes").eq("owner_id", state.user.id)),
+      requireResult(supabase.from("support_notes").select("id, client_id, message, resolved, created_at").eq("owner_id", state.user.id)),
       requireResult(supabase.from("client_files").select("id, client_id").eq("owner_id", state.user.id)),
       requireResult(supabase.from("intake_requests").select("*").order("created_at", { ascending: false }))
     ]);
 
     state.clients = withClientCounts(clients, { progress, sessions, support, files });
     state.intake = intake;
+    state.overviewProgress = progress;
+    state.overviewSessions = sessions;
+    state.overviewSupport = support;
 
     if (state.selectedClient) {
       state.selectedClient = state.clients.find((client) => client.id === state.selectedClient.id) || state.clients[0] || null;
@@ -251,6 +293,7 @@ async function loadClients() {
 
     renderClients();
     renderStats();
+    renderToday();
     renderIntakeRequests();
     if (state.selectedClient) {
       await selectClient(state.selectedClient.id);
@@ -308,11 +351,111 @@ function renderStats() {
   `;
 }
 
+function renderToday() {
+  renderUpcomingSessions();
+  renderAttentionItems();
+}
+
+function renderUpcomingSessions() {
+  const clientById = Object.fromEntries(state.clients.map((client) => [client.id, client]));
+  const now = Date.now();
+  const upcoming = state.overviewSessions
+    .filter((session) => session.date && new Date(session.date).getTime() >= now)
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .slice(0, 6);
+
+  if (!upcoming.length) {
+    views.upcomingRecords.innerHTML = `<div class="empty-list">No upcoming sessions. Add the next lesson from a student's Sessions tab.</div>`;
+    return;
+  }
+
+  views.upcomingRecords.innerHTML = upcoming.map((session) => {
+    const client = clientById[session.client_id];
+
+    return `
+      <article class="record compact-record">
+        <div class="record-body">
+          <strong>${h(formatDate(session.date))}</strong>
+          <span>${h(client?.name || "Unknown student")}</span>
+          <p>${h(session.topic || session.next_actions || "Session")}</p>
+        </div>
+        <div class="record-actions">
+          ${client ? `<button type="button" class="secondary dashboard-open-client" data-client-id="${client.id}">Open student</button>` : ""}
+          ${client ? `<button type="button" class="secondary dashboard-start-session" data-client-id="${client.id}">Start session</button>` : ""}
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  $$(".dashboard-open-client").forEach((button) => {
+    button.addEventListener("click", () => selectClient(button.dataset.clientId));
+  });
+
+  $$(".dashboard-start-session").forEach((button) => {
+    button.addEventListener("click", async () => {
+      await selectClient(button.dataset.clientId);
+      setActiveTab("sessions");
+      document.querySelector("[data-panel='sessions']")?.scrollIntoView({ block: "start" });
+    });
+  });
+}
+
+function renderAttentionItems() {
+  const items = [];
+  const sessionsByClient = countByClient(state.overviewSessions);
+  const openSupportByClient = countByClient(state.overviewSupport, (record) => !record.resolved);
+  const blockedByClient = countByClient(state.overviewProgress, (record) => record.status === "blocked");
+  const newRequests = state.intake.filter((request) => request.status === "new").length;
+
+  if (newRequests) {
+    items.push({
+      title: `${newRequests} new consultation request${newRequests === 1 ? "" : "s"}`,
+      detail: "Review and convert or archive."
+    });
+  }
+
+  state.clients
+    .filter((client) => client.status === "active" && !sessionsByClient[client.id])
+    .slice(0, 4)
+    .forEach((client) => {
+      items.push({
+        title: `${client.name}: no session scheduled`,
+        detail: client.current_goal || client.area || "Add next lesson."
+      });
+    });
+
+  state.clients
+    .filter((client) => openSupportByClient[client.id] || blockedByClient[client.id])
+    .slice(0, 6)
+    .forEach((client) => {
+      const openSupport = openSupportByClient[client.id] || 0;
+      const blocked = blockedByClient[client.id] || 0;
+      items.push({
+        title: client.name,
+        detail: `${openSupport} open message${openSupport === 1 ? "" : "s"} / ${blocked} blocker${blocked === 1 ? "" : "s"}`
+      });
+    });
+
+  if (!items.length) {
+    views.attentionRecords.innerHTML = `<div class="empty-list">No urgent open loops right now.</div>`;
+    return;
+  }
+
+  views.attentionRecords.innerHTML = items.slice(0, 8).map((item) => `
+    <article class="record compact-record">
+      <div class="record-body">
+        <strong>${h(item.title)}</strong>
+        <span>${h(item.detail)}</span>
+      </div>
+    </article>
+  `).join("");
+}
+
 function renderClients() {
   const clients = filteredClients();
 
   if (!clients.length) {
-    views.clientList.innerHTML = `<div class="empty-list">No clients yet.</div>`;
+    views.clientList.innerHTML = `<div class="empty-list">No students yet.</div>`;
     return;
   }
 
@@ -385,7 +528,7 @@ function renderSelectedClient() {
   show(views.deleteClientButton, Boolean(client));
 
   if (!client) {
-    views.selectedTitle.textContent = "No client selected";
+    views.selectedTitle.textContent = "No student selected";
     views.selectedStatus.textContent = "-";
     return;
   }
@@ -683,6 +826,22 @@ $("#magic-link-button").addEventListener("click", async () => {
   setMessage(error ? error.message : "Magic link sent. Check email.", Boolean(error));
 });
 
+$$("[data-oauth-provider]").forEach((button) => {
+  button.addEventListener("click", async () => {
+    const provider = button.dataset.oauthProvider;
+    setMessage(`Opening ${provider} sign in...`);
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: config.redirectUrl || `${window.location.origin}/crm/`
+      }
+    });
+
+    if (error) setMessage(error.message, true);
+  });
+});
+
 $("#sign-out-button").addEventListener("click", async () => {
   await supabase.auth.signOut();
 });
@@ -709,6 +868,12 @@ $("#template-button").addEventListener("click", () => {
     "name,email,timezone,plan,area,current_goal,status",
     "\"Example Client\",client@example.com,UK,session_only,\"programming, AI, setup\",\"First 50-minute session\",lead"
   ].join("\n"));
+});
+
+views.addStudentButton.addEventListener("click", openStudentModal);
+views.closeStudentModal.addEventListener("click", closeStudentModal);
+views.studentModal.addEventListener("click", (event) => {
+  if (event.target === views.studentModal) closeStudentModal();
 });
 
 $("#client-search").addEventListener("input", (event) => {
@@ -745,6 +910,7 @@ $("#client-form").addEventListener("submit", async (event) => {
   try {
     const [client] = await insertRecord("clients", event.currentTarget, { owner_id: state.user.id });
     state.selectedClient = client || null;
+    closeStudentModal();
     await loadClients();
   } catch (error) {
     alert(error.message);
@@ -789,11 +955,9 @@ $("#session-form").addEventListener("submit", async (event) => {
   try {
     const raw = formToObject(event.currentTarget);
     await insertRecord("sessions", event.currentTarget, {
-      ...raw,
+      ...buildSessionPayload(raw),
       owner_id: state.user.id,
-      client_id: state.selectedClient.id,
-      duration_minutes: Number(raw.duration_minutes || 50),
-      date: raw.date ? new Date(raw.date).toISOString() : new Date().toISOString()
+      client_id: state.selectedClient.id
     });
     await selectClient(state.selectedClient.id);
   } catch (error) {

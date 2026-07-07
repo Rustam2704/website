@@ -9,7 +9,7 @@ Build v0 as an admin-only tracker first:
 - Rustam logs in.
 - Rustam creates clients.
 - Rustam tracks sessions, progress, support notes, and useful links/files.
-- Client login comes later, after the tracker is useful.
+- Client login is available through `/portal/`, but the admin tracker should still lead the workflow.
 
 This avoids building a big client portal before the workflow is proven.
 
@@ -38,6 +38,12 @@ Current Supabase project:
 - Region: West EU (Ireland)
 - Status: database schema created
 - psql access: `DB_ACCESS.md`
+
+OAuth status:
+
+- Google and Apple buttons exist in `/crm/` and `/portal/`.
+- They require provider setup in Supabase Authentication before they work in production.
+- GitHub login is intentionally not shown.
 
 ## Tables Created
 
@@ -77,9 +83,10 @@ The first small web dashboard is in `crm/`:
 Client portal preparation:
 
 - `/portal/`
-- `client_access` table maps a Supabase auth user to a CRM client.
-- Client users can read their assigned client profile and progress items.
-- The portal is read-only for now.
+- `client_access` maps a client email/auth user to a CRM client.
+- Access can be granted before the client has logged in for the first time.
+- When the client opens a magic link, the portal claims any pending access for that email.
+- Client users can read their assigned profile, progress, sessions, files, and add progress/support/file-link updates.
 
 The current static route is:
 
@@ -101,7 +108,6 @@ in `crm/config.js`.
 
 ## Do Not Build Yet
 
-- Client login.
 - Payments.
 - Android app.
 - Complex analytics.

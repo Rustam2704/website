@@ -74,15 +74,34 @@ portal_user as (
   where lower(email) = lower($(ConvertTo-SqlText $UserEmail))
   limit 1
 ),
+updated_access as (
+  update public.client_access access
+  set
+    user_id = coalesce((select user_id from portal_user), access.user_id),
+    user_email = lower($(ConvertTo-SqlText $UserEmail)),
+    status = 'active',
+    updated_at = now()
+  where access.client_id = (select id from selected_client)
+    and lower(access.user_email) = lower($(ConvertTo-SqlText $UserEmail))
+  returning id, client_id, user_email, status
+),
 granted as (
   insert into public.client_access (owner_id, client_id, user_id, user_email, status)
   select
     selected_client.owner_id,
     selected_client.id,
-    portal_user.user_id,
+    (select user_id from portal_user),
     lower($(ConvertTo-SqlText $UserEmail)),
     'active'
-  from selected_client, portal_user
+  from selected_client
+  where not exists (select 1 from updated_access)
+    and not exists (
+      select 1
+      from public.client_access access
+      where access.client_id = selected_client.id
+        and access.user_id = (select user_id from portal_user)
+        and (select user_id from portal_user) is not null
+    )
   on conflict (client_id, user_id) do update
   set
     user_email = excluded.user_email,
@@ -97,12 +116,12 @@ select
   selected_client.status,
   selected_client.plan,
   case
+    when not exists (select 1 from portal_user) then 'pending_until_client_login'
+    when exists (select 1 from updated_access) then 'granted'
     when exists (select 1 from granted) then 'granted'
-    when exists (select 1 from portal_user) then 'not_granted'
-    else 'auth_user_missing'
+    else 'already_granted'
   end as portal_access
 from selected_client;
 "@
 
 Invoke-CrmPsql -ConnectionString $connection -Sql $sql
-

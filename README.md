@@ -81,7 +81,7 @@ Done:
 - Client portal deployed at `/portal/` and connected to Supabase.
 - Client portal can add progress, support notes, file links, and see safe session history.
 - Admin CRM can import clients from CSV in the browser.
-- CLI helpers support CSV import from the current spreadsheet, full backup bundles, client reports, file links, and portal access grant/list/revoke.
+- CLI helpers support CSV import from the current spreadsheet, full backup bundles, client reports, file links, and pending portal access grant/list/revoke.
 - Roadmap file created.
 - Immediate launch checklist created.
 
@@ -90,7 +90,8 @@ Files:
 - `index.html` - page structure and copy
 - `styles.css` - visual design
 - `script.js` - form behavior
-- `assets/online-tutoring-hero.png` - generated hero image
+- `assets/lenovo-technical-hero.png` - current Lenovo-style generated hero image
+- `assets/online-tutoring-hero.png` - previous generated hero image kept as fallback
 - `assets/favicon.svg` - simple favicon
 - `robots.txt` - search crawler instructions
 - `sitemap.xml` - public sitemap
@@ -160,9 +161,11 @@ Highest priority:
 
 1. Confirm Cloudflare Pages deploys after each push.
 2. Keep improving the Supabase-backed CRM until it can replace the spreadsheet.
-3. Test the client portal with a real invited client account after Supabase redirect URLs are updated.
+3. Test the client portal with a real invited client account when a real client email is ready.
 4. Keep the CRM and portal readable, simple, and portable instead of adding heavy product ceremony.
-5. Replace the phone/contact placeholder if a phone or messenger will be used.
+5. Configure Supabase Google and Apple OAuth providers if social login should work in production.
+6. Add Google Calendar integration only after the teaching CRM session workflow is stable.
+7. Replace the phone/contact placeholder if a phone or messenger will be used.
 
 Nice but not blocking:
 
@@ -186,6 +189,7 @@ Phase 1: Landing page and lead capture
 Phase 2: Minimal client CRM
 
 - Admin dashboard is deployed at `/crm/`.
+- CRM is being repositioned as a lightweight teaching CRM: dashboard first, students second.
 - Supabase project URL and publishable key are configured in `crm/config.js`.
 - Admin login is working.
 - Client portal is deployed at `/portal/`.

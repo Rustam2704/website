@@ -100,6 +100,7 @@ a {
   align-items: center;
   overflow: hidden;
   padding: 108px clamp(18px, 6vw, 84px) 70px;
+  background: #0d1918;
 }
 
 .hero-image {
@@ -617,7 +618,7 @@ textarea:focus {
   color: #ffffff;
   background:
     linear-gradient(90deg, rgba(13, 25, 24, 0.94), rgba(13, 25, 24, 0.72)),
-    url("assets/online-tutoring-hero.png") center / cover;
+    url("assets/lenovo-technical-hero.png") center / cover;
 }
 
 .not-found > div {
@@ -665,6 +666,7 @@ textarea:focus {
   .hero {
     min-height: 92vh;
     padding-top: 94px;
+    padding-bottom: 44px;
   }
 
   .hero-overlay {
@@ -683,6 +685,9 @@ textarea:focus {
   .tool-cloud {
     max-height: 120px;
     overflow: hidden;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(13, 25, 24, 0.58);
   }
 
   .proof-band,

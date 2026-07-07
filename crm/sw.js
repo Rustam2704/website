@@ -1,4 +1,4 @@
-const CACHE_NAME = "fanatic-crm-20260707-1";
+const CACHE_NAME = "fanatic-crm-20260707-2";
 const SHELL_ASSETS = [
   "/crm/",
   "/crm/index.html",
