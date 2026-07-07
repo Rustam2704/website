@@ -73,6 +73,12 @@ Run public deployment checks:
 .\tools\check-public.ps1
 ```
 
+Check live frontend asset versions:
+
+```powershell
+.\tools\check-live-assets.ps1
+```
+
 Run all infrastructure checks:
 
 ```powershell

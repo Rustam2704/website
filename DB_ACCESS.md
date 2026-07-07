@@ -274,6 +274,12 @@ $env:PGPASSWORD = "<database-password>"
 .\tools\check-supabase.ps1
 ```
 
+Check live frontend asset versions:
+
+```powershell
+.\tools\check-live-assets.ps1
+```
+
 Show CRM summary:
 
 ```powershell
