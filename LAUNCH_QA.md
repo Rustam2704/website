@@ -2,10 +2,18 @@
 
 Use this checklist after every meaningful site change.
 
+Automated check:
+
+```powershell
+.\tools\check-public.ps1
+```
+
 ## Public site
 
 - `https://fanatic.space/` loads.
 - `https://www.fanatic.space/` serves cleanly. Redirect to apex is a follow-up.
+- `https://fanatic.space/crm/` loads.
+- `https://fanatic.space/portal/` loads.
 - Hero image loads.
 - Form is visible.
 - Privacy note opens.
@@ -25,8 +33,8 @@ Use this checklist after every meaningful site change.
 
 ## DNS / Email
 
-- `fanatic.space` has GitHub Pages A records.
-- `www.fanatic.space` points to `Rustam2704.github.io`.
+- `fanatic.space` is attached to Cloudflare Pages project `fanatic-space`.
+- `www.fanatic.space` is attached to Cloudflare Pages and should later redirect to apex for SEO.
 - MX records point to Cloudflare Email Routing.
 - SPF includes Cloudflare Email Routing.
 
