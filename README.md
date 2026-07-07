@@ -97,6 +97,8 @@ Files:
 - `LAUNCH_QA.md` - public launch QA checklist
 - `CLOUDFLARE_PAGES.md` - Cloudflare Pages deployment notes
 - `CRM_SPEC.md` - first scoped CRM/product spec
+- `INTAKE_PLAYBOOK.md` - lead qualification and consultation workflow
+- `REPLY_TEMPLATES.md` - email replies for new leads
 
 ---
 

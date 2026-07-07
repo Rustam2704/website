@@ -13,6 +13,7 @@
 - FormSubmit is activated and tested.
 - `direct@fanatic.space` receives routed email.
 - The site has a short privacy note for form submissions.
+- Intake and reply templates are documented.
 
 ## Next practical steps
 
