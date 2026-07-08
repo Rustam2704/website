@@ -2,4 +2,5 @@ exports/
 node_modules/
 test-crm-src/node_modules/
 test-crm-src/dist/
+test-crm-src/*.tsbuildinfo
 инструкция1.txt
