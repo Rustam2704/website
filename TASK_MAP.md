@@ -84,7 +84,7 @@ Still needed:
 
 ## 4. Student Page
 
-Current priority.
+Current priority in the existing `/crm/`; the next larger UI pass should happen in `/test-crm/` first.
 
 Goal:
 
@@ -268,7 +268,8 @@ Status:
 - Sidebar width reduced.
 - Headings reduced somewhat.
 - Some hierarchy improvements started.
-- Export/backup/sign out still need to be moved.
+- Export/backup/sign out are grouped under `Tools`.
+- The next CRM UI should use a ready admin template/component system rather than hand-tuning every panel in the legacy static UI.
 
 ## 10. Product Concept
 

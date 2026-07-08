@@ -2,7 +2,7 @@
 
 ## Phase 1: Landing page, deploy, and lead capture
 
-Status: in progress
+Status: done / operating
 
 - Static landing page with clear positioning.
 - Free 15-minute consultation request form.
@@ -11,6 +11,7 @@ Status: in progress
 - Add domain and domain email.
 - Redirect `www.fanatic.space` to `fanatic.space` for SEO consistency. Done.
 - Replace the old Mac-style hero with a Lenovo-style technical workspace. Done.
+- Google OAuth is the only visible login path for CRM and portal. Done.
 
 Important rule:
 
@@ -18,7 +19,7 @@ Important rule:
 
 ## Phase 2: Minimal client CRM
 
-Status: in progress
+Status: in progress / UI migration next
 
 Goal: replace the current spreadsheet with a simple, respectable client portal without overbuilding.
 
@@ -40,7 +41,10 @@ Core features:
 Recommended first implementation:
 
 - Supabase for auth, database, file storage. Done.
-- Simple web app dashboard. In progress and deployed at `/crm/`.
+- Current simple web app dashboard is deployed at `/crm/`.
+- Next UI iteration should be built separately at `/test-crm/` so the existing CRM stays available.
+- Recommended stack for the next UI: Vite, React, TypeScript, Tailwind, shadcn/ui, Radix primitives, lucide-react, Supabase JS.
+- Use Atomic CRM and Cloudflare-style admin UI patterns as references, then map the screens to the existing Supabase tables.
 - Keep the spreadsheet as backup until the CRM feels stable.
 
 Upcoming integration:

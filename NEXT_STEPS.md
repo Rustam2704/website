@@ -45,16 +45,17 @@
 
 ## Next practical steps
 
-1. Keep improving the admin CRM until it can replace the spreadsheet.
-2. Keep improving the client portal after the admin workflow is stable.
-3. Apply optional Supabase migrations when ready: lesson fields, LMS-lite fields, Calendar fields.
-4. Add Google Calendar sync after the session workflow is stable.
-5. Add payment/lesson-balance tracking only when it is needed for real work.
-6. Turn the portal into a small Android-friendly PWA before building a native Android app.
-7. Replace the phone/contact placeholder if a phone or messenger will be used.
-8. Decide whether to add lightweight analytics.
-9. Prepare 2-4 static ad images for ages 8-18 programming / AI / computer lessons after the core flow is stable.
-10. Before May 2027, decide whether to renew `fanatic.space` or migrate to a cheaper domain.
+1. Preserve the current `/crm/` and `/portal/` paths as the working production tools.
+2. Build the next CRM UI separately at `/test-crm/` using a ready admin/CRM template approach.
+3. Reimplement the existing CRM actions against the same Supabase tables instead of changing the database first.
+4. Verify `/test-crm/` locally and through Cloudflare Pages before replacing `/crm/`.
+5. Keep improving the client portal only after the admin workflow is stable.
+6. Add Google Calendar sync after the session workflow is stable.
+7. Add payment/lesson-balance tracking only when it is needed for real work.
+8. Replace the phone/contact placeholder if a phone or messenger will be used.
+9. Decide whether to add lightweight analytics.
+10. Prepare 2-4 static ad images for ages 8-18 programming / AI / computer lessons after the core flow is stable.
+11. Before May 2027, decide whether to renew `fanatic.space` or migrate to a cheaper domain.
 
 ## Fast form options
 

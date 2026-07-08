@@ -6,7 +6,8 @@ Last updated: July 8, 2026
 
 - Landing: https://fanatic.space/
 - Admin CRM: https://fanatic.space/crm/
-- Client portal skeleton: https://fanatic.space/portal/
+- Client portal: https://fanatic.space/portal/
+- Planned CRM redesign test path: https://fanatic.space/test-crm/
 - Thank-you page: https://fanatic.space/thanks/
 
 ## Working Now
@@ -104,9 +105,18 @@ Last updated: July 8, 2026
   - `supabase_billing_fields.sql`
   - live Supabase database has paid session total and support-until fields applied
 
+## Current UI Migration Direction
+
+- Keep the current `/crm/` path stable.
+- Build the redesigned CRM at `/test-crm/` first.
+- Recommended stack: Vite, React, TypeScript, Tailwind, shadcn/ui, Radix primitives, lucide-react, Supabase JS.
+- Primary reference: Atomic CRM because it is a full CRM built with React, shadcn/ui, and Supabase under an MIT license.
+- Visual reference: Cloudflare-style admin navigation with compact left sidebar, dropdown menus, sheet-style side panels, dense tables, and calm neutral styling.
+
 ## Important Follow-Ups
 
 - Test installing `https://fanatic.space/crm/` as a PWA on Android/Chrome.
+- Build and verify `/test-crm/` before replacing the current admin CRM.
 - Keep improving the admin CRM and client portal until they can replace the spreadsheet workflow.
 - Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
 - Implement the Calendar Edge Function when moving into real calendar sync.

@@ -1,6 +1,15 @@
 # Morning Handoff
 
-Last updated: July 7, 2026
+Last updated: July 8, 2026
+
+This handoff is now a historical snapshot. Use `PROJECT_STATUS.md` for the current source of truth.
+
+Current active direction:
+
+- Existing `/crm/` and `/portal/` stay working.
+- New CRM UI work should happen on a separate branch and route, planned as `/test-crm/`.
+- Recommended stack for that branch: Vite, React, TypeScript, Tailwind, shadcn/ui, Radix primitives, lucide-react, Supabase JS.
+- Reuse the existing Supabase tables and CRM workflow; do not replace the database before the UI proves itself.
 
 ## Live
 
