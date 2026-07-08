@@ -32,6 +32,7 @@ See `MIGRATIONS.md` for the current SQL migration order.
 Site URL: https://fanatic.space
 Redirect URLs:
 https://fanatic.space/crm/
+https://fanatic.space/test-crm/
 https://fanatic.space/portal/
 ```
 
@@ -117,6 +118,13 @@ window.FANATIC_CRM_SUPABASE = {
 ```
 
 in `crm/config.js`.
+
+For the separate CRM redesign route, Supabase Authentication also needs:
+
+```text
+https://fanatic.space/test-crm/
+http://127.0.0.1:4173/test-crm/
+```
 
 ## Do Not Build Yet
 

@@ -13,5 +13,8 @@
 /crm/*
   X-Robots-Tag: noindex, nofollow
 
+/test-crm/*
+  X-Robots-Tag: noindex, nofollow
+
 /portal/*
   X-Robots-Tag: noindex, nofollow
