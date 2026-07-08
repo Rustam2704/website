@@ -6,6 +6,7 @@ import {
   CalendarClock,
   CheckSquare,
   Download,
+  ExternalLink,
   FileText,
   GraduationCap,
   Inbox,
@@ -264,6 +265,14 @@ const demoData: CrmData = {
   ],
   files: [
     {
+      id: "file-0",
+      client_id: "demo-1",
+      url: "storage://client-files/demo-owner/demo-1/setup-checklist.pdf",
+      label: "Setup checklist",
+      kind: "private_doc",
+      created_at: new Date().toISOString()
+    },
+    {
       id: "file-1",
       client_id: "demo-2",
       url: "https://example.com/demo-build",
@@ -333,6 +342,11 @@ function safeFileName(name: string) {
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 120) || "file";
+}
+
+function storagePathFromUrl(url: string | null | undefined) {
+  const prefix = "storage://client-files/";
+  return url?.startsWith(prefix) ? url.slice(prefix.length) : null;
 }
 
 function download(filename: string, content: string, type: string) {
@@ -624,8 +638,31 @@ function App() {
     }
 
     if (!supabase) return;
-    await requireResult(supabase.from("clients").insert(rows).select());
-    setMessage(`Imported ${rows.length} clients.`);
+    let created = 0;
+    let updated = 0;
+
+    for (const row of rows) {
+      const existing = data.clients.find((client) => {
+        return client.email && row.email && client.email.toLowerCase() === String(row.email).toLowerCase();
+      });
+
+      if (existing) {
+        await requireResult(
+          supabase
+            .from("clients")
+            .update(row)
+            .eq("owner_id", user.id)
+            .eq("id", existing.id)
+            .select()
+        );
+        updated += 1;
+      } else {
+        await requireResult(supabase.from("clients").insert(row).select());
+        created += 1;
+      }
+    }
+
+    setMessage(`CSV import complete. Created: ${created}. Updated: ${updated}.`);
     await loadAll();
   }
 
@@ -642,6 +679,31 @@ function App() {
     }));
     setMessage(`Portal access granted to ${email}.`);
     await loadAll();
+  }
+
+  async function openClientFile(url: string) {
+    const path = storagePathFromUrl(url);
+    if (!path) {
+      window.open(url, "_blank", "noreferrer");
+      return;
+    }
+
+    if (demoMode) {
+      setMessage(`Demo mode: signed URL requested for ${path}.`);
+      return;
+    }
+
+    if (!supabase) return;
+    const { data: signedData, error } = await supabase.storage
+      .from("client-files")
+      .createSignedUrl(path, 60);
+
+    if (error) {
+      setMessage(error.message);
+      return;
+    }
+
+    window.open(signedData.signedUrl, "_blank", "noreferrer");
   }
 
   async function saveClientFile(clientId: string, payload: Record<string, FormDataEntryValue | string>, file?: File | null) {
@@ -751,6 +813,7 @@ function App() {
               openSheet={setSheet}
               update={update}
               grantAccess={grantAccess}
+              openClientFile={openClientFile}
             />
           ) : null}
           {view === "requests" ? <RequestsView requests={data.intake} convert={convertRequest} /> : null}
@@ -917,8 +980,9 @@ function StudentsView(props: {
   openSheet: (value: "student" | "task" | "session" | "message" | "file") => void;
   update: (table: string, id: string, payload: Record<string, unknown>) => Promise<void>;
   grantAccess: (clientId: string, email: string) => Promise<void>;
+  openClientFile: (url: string) => Promise<void>;
 }) {
-  const { data, clients, selected, search, status, setSearch, setStatus, setSelectedId, selectedClientIds, setSelectedClientIds, openSheet, update, grantAccess } = props;
+  const { data, clients, selected, search, status, setSearch, setStatus, setSelectedId, selectedClientIds, setSelectedClientIds, openSheet, update, grantAccess, openClientFile } = props;
 
   function toggleClient(id: string, event: React.MouseEvent) {
     event.stopPropagation();
@@ -991,12 +1055,12 @@ function StudentsView(props: {
           ) : null}
         </CardContent>
       </Card>
-      <StudentDetail data={data} selected={selected} openSheet={openSheet} update={update} grantAccess={grantAccess} />
+      <StudentDetail data={data} selected={selected} openSheet={openSheet} update={update} grantAccess={grantAccess} openClientFile={openClientFile} />
     </div>
   );
 }
 
-function StudentDetail({ data, selected, openSheet, update, grantAccess }: { data: CrmData; selected: Client | null; openSheet: (value: "task" | "session" | "message" | "file") => void; update: (table: string, id: string, payload: Record<string, unknown>) => Promise<void>; grantAccess: (clientId: string, email: string) => Promise<void> }) {
+function StudentDetail({ data, selected, openSheet, update, grantAccess, openClientFile }: { data: CrmData; selected: Client | null; openSheet: (value: "task" | "session" | "message" | "file") => void; update: (table: string, id: string, payload: Record<string, unknown>) => Promise<void>; grantAccess: (clientId: string, email: string) => Promise<void>; openClientFile: (url: string) => Promise<void> }) {
   if (!selected) return <Card><CardContent className="p-6 text-muted-foreground">Select a student.</CardContent></Card>;
   const stats = clientStats(selected, data);
   const tasks = data.progress.filter((item) => item.client_id === selected.id);
@@ -1086,7 +1150,25 @@ function StudentDetail({ data, selected, openSheet, update, grantAccess }: { dat
               ))}
             </div>
           </TabsContent>
-          <TabsContent value="files"><RecordList title="Files" icon={FileText} action={() => openSheet("file")} items={files.map((item) => ({ id: item.id, title: item.label || item.kind, meta: item.url }))} /></TabsContent>
+          <TabsContent value="files">
+            <div className="grid gap-3 pt-3">
+              <div className="flex items-center justify-between">
+                <h3 className="flex items-center gap-2 font-semibold"><FileText className="size-4" /> Files</h3>
+                <Button size="sm" onClick={() => openSheet("file")}><Plus /> Add</Button>
+              </div>
+              {files.map((item) => (
+                <div className="grid gap-3 rounded-md border p-3 md:grid-cols-[1fr_auto]" key={item.id}>
+                  <div className="min-w-0">
+                    <strong className="block">{item.label || item.kind}</strong>
+                    <span className="block truncate text-sm text-muted-foreground">{item.url}</span>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={() => void openClientFile(item.url)}>
+                    <ExternalLink /> Open
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
           <TabsContent value="access">
             <div className="grid gap-3 pt-3">
               <form className="grid gap-2 md:grid-cols-[1fr_auto]" onSubmit={(event) => {
