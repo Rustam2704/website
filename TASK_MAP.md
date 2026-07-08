@@ -68,8 +68,8 @@ Started:
 - `supabase_calendar.sql` defines calendar connection and session event mapping fields.
 - `supabase_lesson_fields.sql` defines meeting URL and confirmation status fields.
 - `GOOGLE_CALENDAR_SETUP.md` documents setup and recommended architecture.
-- CRM and portal can display meeting URL / confirmation / calendar sync fields after migrations are applied.
-- CRM session form can capture meeting URL and confirmation status when the lesson fields migration is applied.
+- CRM and portal can display meeting URL / confirmation / calendar sync fields when data exists.
+- CRM session form can capture meeting URL and confirmation status.
 - Live Supabase database has lesson fields and calendar groundwork applied.
 - CRM has a Calendar panel and a Google Calendar access request button.
 - CRM records calendar connection state after Google OAuth returns provider access.
@@ -80,7 +80,7 @@ Still needed:
 - Create/find the `fanatic.space` calendar.
 - Sync CRM sessions to Google Calendar events.
 - Support repeat rules.
-- Add confirmation status if needed.
+- Build the Calendar Edge Function that creates/updates Google events from CRM sessions.
 
 ## 4. Student Page
 
@@ -242,7 +242,7 @@ Status:
 
 - `supabase_lms_fields.sql` adds task deadline, teacher comment, and student comment fields.
 - The base schema includes those fields for fresh installs.
-- CRM and portal display due dates/comments when the migration has been applied and data exists.
+- CRM and portal display due dates/comments when data exists.
 - Live Supabase database has the LMS-lite fields and note-update RPC applied.
 
 ## 9. Visual Direction

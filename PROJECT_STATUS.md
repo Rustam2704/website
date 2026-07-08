@@ -64,12 +64,12 @@ Last updated: July 8, 2026
   - active tab persists across reloads
   - delete actions ask for confirmation
   - session private notes supported
-  - sessions can display future meeting URL, confirmation status, and calendar sync status after lesson/calendar migrations are applied
-  - task cards can display due date, teacher comment, and student comment after LMS-lite migration is applied
+  - sessions display future meeting URL, confirmation status, and calendar sync status when those fields exist
+  - task cards display due date, teacher comment, and student comment when those fields exist
   - client cards show activity counts
   - quick Add session action
   - Start session and quick Add session prefill a 50-minute lesson window
-  - session form can optionally capture meeting URL and confirmation status after lesson migration is applied
+  - session form can optionally capture meeting URL and confirmation status
   - session cards can update confirmation status directly
   - student header can show paid lesson balance and support-until date after billing migration is applied
   - secondary tools are grouped under a Tools menu
@@ -114,6 +114,7 @@ Last updated: July 8, 2026
 - Visual reference: Cloudflare-style admin navigation with compact left sidebar, dropdown menus, sheet-style side panels, dense tables, and calm neutral styling.
 - Branch `codex/test-crm-template` contains the first React/Vite `/test-crm/` shell.
 - `/test-crm/?demo=1` opens a seeded demo dashboard for QA without Google OAuth.
+- `/test-crm/` already ports the Atomic/shadcn UI shell, existing Supabase auth/config path, client CSV import with update-by-email, private file upload/opening, portal access controls, task/message updates, and session confirmation controls.
 
 ## Important Follow-Ups
 

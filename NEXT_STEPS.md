@@ -40,14 +40,14 @@
 - CRM shell now starts moving from generic client tracker toward teaching CRM: Today, Students, Tasks, Messages.
 - Selected-student page has a header and Overview tab.
 - CRM Today dashboard detects open loops.
-- Student/task forms can prepare lesson links, confirmation status, deadlines, and comments after the optional migrations are applied.
+- Student/task forms can prepare lesson links, confirmation status, deadlines, and comments when those fields exist.
 - SQL migration order and a migration runner helper are documented.
 
 ## Next practical steps
 
 1. Preserve the current `/crm/` and `/portal/` paths as the working production tools.
 2. Build the next CRM UI separately at `/test-crm/` using a ready admin/CRM template approach.
-3. Reimplement the existing CRM actions against the same Supabase tables instead of changing the database first.
+3. Continue reimplementing the existing CRM actions against the same Supabase tables instead of changing the database first.
 4. Verify `/test-crm/` locally and through Cloudflare Pages before replacing `/crm/`.
 5. Keep improving the client portal only after the admin workflow is stable.
 6. Add Google Calendar sync after the session workflow is stable.
