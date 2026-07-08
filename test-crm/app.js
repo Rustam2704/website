@@ -92,6 +92,39 @@ function attentionItems(data) {
   return items.slice(0, 8);
 }
 
+function activityItems(data) {
+  const clientById = Object.fromEntries(data.clients.map((client) => [client.id, client]));
+  return [
+    ...data.sessions.map((session) => ({
+      type: "Session",
+      title: session.topic || session.next_actions || "Lesson recorded",
+      client: clientById[session.client_id]?.name || "Unknown student",
+      date: session.date
+    })),
+    ...data.progress.map((task) => ({
+      type: "Task",
+      title: task.title,
+      client: clientById[task.client_id]?.name || "Unknown student",
+      date: task.updated_at || task.created_at
+    })),
+    ...data.support.map((message) => ({
+      type: "Message",
+      title: message.message,
+      client: clientById[message.client_id]?.name || "Unknown student",
+      date: message.created_at
+    })),
+    ...data.files.map((file) => ({
+      type: "File",
+      title: file.label || file.kind,
+      client: clientById[file.client_id]?.name || "Unknown student",
+      date: file.created_at
+    }))
+  ]
+    .filter((item) => item.date)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 12);
+}
+
 async function requireResult(query) {
   const { data, error } = await query;
   if (error) throw error;
@@ -349,6 +382,16 @@ function TodayView({ data, onOpenStudents, onSelect }) {
     .slice(0, 6);
   const attention = attentionItems(data);
   const clientsById = Object.fromEntries(data.clients.map((client) => [client.id, client]));
+  const hotStudents = data.clients
+    .map((client) => ({ client, stats: countsFor(client, data) }))
+    .filter(({ client, stats }) => client.status === "active" || stats.blockers || stats.messages)
+    .sort((a, b) => (b.stats.blockers + b.stats.messages) - (a.stats.blockers + a.stats.messages))
+    .slice(0, 6);
+  const openTasks = data.progress
+    .filter((task) => task.status !== "done")
+    .sort((a, b) => String(a.due_at || "9999").localeCompare(String(b.due_at || "9999")))
+    .slice(0, 7);
+  const activity = activityItems(data);
 
   return html`
     <section class="metric-grid">
@@ -357,6 +400,47 @@ function TodayView({ data, onOpenStudents, onSelect }) {
       <${Metric} label="New requests" value=${requests} />
       <${Metric} label="Open tasks" value=${data.progress.filter((item) => item.status !== "done").length} />
     </section>
+    <section class="dashboard-grid">
+      <div class="panel">
+        <div class="panel-head"><h2>Hot students</h2><button class="secondary" onClick=${onOpenStudents}>Students</button></div>
+        <div class="stack">
+          ${hotStudents.length ? hotStudents.map(({ client, stats }) => html`
+            <button class="hot-row" onClick=${() => { onSelect(client.id); onOpenStudents(); }}>
+              <span><strong>${client.name}</strong><small>${client.current_goal || client.area || "No goal set"}</small></span>
+              <em>${stats.blockers} blockers / ${stats.messages} msgs</em>
+            </button>
+          `) : html`<div class="empty">No active students yet.</div>`}
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>Activity</h2></div>
+        <div class="activity-list">
+          ${activity.length ? activity.map((item) => html`
+            <article class="activity-row">
+              <span>${item.type}</span>
+              <div><strong>${item.title}</strong><small>${item.client} / ${formatDate(item.date, true)}</small></div>
+            </article>
+          `) : html`<div class="empty">No activity yet.</div>`}
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>Open tasks</h2></div>
+        <div class="stack">
+          ${openTasks.length ? openTasks.map((task) => {
+            const client = clientsById[task.client_id];
+            return html`
+              <article class="task-strip">
+                <div><strong>${task.title}</strong><span>${client?.name || "Unknown student"} / ${label(task.status)}</span></div>
+                ${client && html`<button class="secondary" onClick=${() => { onSelect(client.id); onOpenStudents(); }}>Open</button>`}
+              </article>
+            `;
+          }) : html`<div class="empty">No open tasks.</div>`}
+        </div>
+      </div>
+    </section>
+
     <section class="two-col">
       <div class="panel">
         <div class="panel-head"><h2>Upcoming sessions</h2><button class="secondary" onClick=${onOpenStudents}>Students</button></div>
@@ -592,7 +676,7 @@ function RequestsView({ requests, onConvert }) {
 function AddStudentModal({ onClose, onSubmit }) {
   return html`
     <div class="modal-backdrop" onClick=${(event) => event.target === event.currentTarget && onClose()}>
-      <section class="modal">
+      <section class="modal sheet-modal">
         <div class="panel-head">
           <h2>Add student</h2>
           <button class="secondary icon" onClick=${onClose}>x</button>

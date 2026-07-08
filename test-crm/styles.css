@@ -250,11 +250,16 @@ a {
 }
 
 .two-col,
+.dashboard-grid,
 .student-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(380px, 1.05fr);
   gap: 14px;
   align-items: start;
+}
+
+.dashboard-grid {
+  grid-template-columns: minmax(220px, 0.8fr) minmax(360px, 1.3fr) minmax(260px, 0.9fr);
 }
 
 .panel {
@@ -268,6 +273,8 @@ a {
 }
 
 .list-row,
+.hot-row,
+.task-strip,
 .attention,
 .empty {
   border: 1px solid var(--line-soft);
@@ -281,6 +288,86 @@ a {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px;
   align-items: center;
+}
+
+.hot-row,
+.task-strip {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  color: var(--ink);
+  background: #fff;
+  text-align: left;
+}
+
+.hot-row:hover,
+.task-strip:hover {
+  color: var(--ink);
+  background: #f8fbff;
+  border-color: #93c5fd;
+}
+
+.hot-row strong,
+.hot-row small,
+.hot-row em,
+.task-strip strong,
+.task-strip span {
+  display: block;
+}
+
+.hot-row small,
+.hot-row em,
+.task-strip span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.hot-row em {
+  font-style: normal;
+  text-align: right;
+}
+
+.activity-list {
+  display: grid;
+  gap: 0;
+  margin-top: 12px;
+}
+
+.activity-row {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 10px;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 10px 0;
+}
+
+.activity-row:last-child {
+  border-bottom: 0;
+}
+
+.activity-row > span {
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 7px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.activity-row strong,
+.activity-row small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.activity-row small {
+  margin-top: 3px;
+  color: var(--muted);
 }
 
 .list-row strong,
@@ -456,6 +543,12 @@ a {
   box-shadow: 0 24px 80px rgba(15, 23, 32, 0.22);
 }
 
+.sheet-modal {
+  margin-left: auto;
+  margin-right: 0;
+  min-height: calc(100vh - 88px);
+}
+
 .icon {
   width: 38px;
   padding: 0;
@@ -527,6 +620,7 @@ a {
 @media (max-width: 1040px) {
   .shell,
   .two-col,
+  .dashboard-grid,
   .student-layout {
     grid-template-columns: 1fr;
   }
