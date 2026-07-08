@@ -870,9 +870,46 @@ function StudentDetail({ data, selected, openSheet, update }: { data: CrmData; s
             <Info label="Latest message" value={stats.latestMessage ? stats.latestMessage.message : "No messages yet."} />
             <Info label="Open tasks" value={tasks.filter((item) => item.status !== "done").map((item) => item.title).join(", ") || "Nothing open."} />
           </TabsContent>
-          <TabsContent value="tasks"><RecordList title="Tasks" icon={CheckSquare} action={() => openSheet("task")} items={tasks.map((item) => ({ id: item.id, title: item.title, meta: `${label(item.status)}${item.due_at ? ` / due ${formatDate(item.due_at, true)}` : ""}` }))} /></TabsContent>
+          <TabsContent value="tasks">
+            <div className="grid gap-3 pt-3">
+              <div className="flex items-center justify-between">
+                <h3 className="flex items-center gap-2 font-semibold"><CheckSquare className="size-4" /> Tasks</h3>
+                <Button size="sm" onClick={() => openSheet("task")}><Plus /> Add</Button>
+              </div>
+              {tasks.map((item) => (
+                <div className="grid gap-3 rounded-md border p-3 md:grid-cols-[1fr_180px]" key={item.id}>
+                  <div>
+                    <strong className="block">{item.title}</strong>
+                    <span className="text-sm text-muted-foreground">{item.due_at ? `Due ${formatDate(item.due_at, true)}` : "No due date"}</span>
+                  </div>
+                  <Select defaultValue={item.status} onValueChange={(value) => void update("progress_items", item.id, { status: value })}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>{taskStatuses.map((status) => <SelectItem value={status} key={status}>{label(status)}</SelectItem>)}</SelectContent>
+                  </Select>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
           <TabsContent value="sessions"><RecordList title="Sessions" icon={CalendarClock} action={() => openSheet("session")} items={sessions.map((item) => ({ id: item.id, title: formatDate(item.date), meta: item.topic || item.next_actions || "Session" }))} /></TabsContent>
-          <TabsContent value="messages"><RecordList title="Messages" icon={MessageSquare} action={() => openSheet("message")} items={support.map((item) => ({ id: item.id, title: item.message, meta: `${formatDate(item.created_at, true)} / ${item.resolved ? "resolved" : "open"}` }))} /></TabsContent>
+          <TabsContent value="messages">
+            <div className="grid gap-3 pt-3">
+              <div className="flex items-center justify-between">
+                <h3 className="flex items-center gap-2 font-semibold"><MessageSquare className="size-4" /> Messages</h3>
+                <Button size="sm" onClick={() => openSheet("message")}><Plus /> Add</Button>
+              </div>
+              {support.map((item) => (
+                <div className="grid gap-3 rounded-md border p-3 md:grid-cols-[1fr_auto]" key={item.id}>
+                  <div>
+                    <strong className="block">{item.message}</strong>
+                    <span className="text-sm text-muted-foreground">{formatDate(item.created_at, true)} / {item.resolved ? "resolved" : "open"}</span>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={() => void update("support_notes", item.id, { resolved: !item.resolved })}>
+                    {item.resolved ? "Reopen" : "Resolve"}
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
           <TabsContent value="files"><RecordList title="Files" icon={FileText} action={() => openSheet("file")} items={files.map((item) => ({ id: item.id, title: item.label || item.kind, meta: item.url }))} /></TabsContent>
         </Tabs>
       </CardContent>
