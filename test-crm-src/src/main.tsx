@@ -282,6 +282,7 @@ const demoMode = Boolean(window.FANATIC_TEST_CRM_DEMO || window.location.href.in
 window.FANATIC_TEST_CRM_DEMO = demoMode;
 
 const statuses = ["lead", "active", "paused", "done"] as const;
+const plans = ["session_only", "session_plus_support"] as const;
 const taskStatuses = ["blocked", "in_progress", "improved", "done"] as const;
 
 function label(value: string | null | undefined) {
@@ -319,6 +320,52 @@ function toCsv(rows: Record<string, unknown>[]) {
   const headers = Object.keys(rows[0]);
   const escape = (value: unknown) => `"${String(value ?? "").replaceAll('"', '""')}"`;
   return [headers.join(","), ...rows.map((row) => headers.map((header) => escape(row[header])).join(","))].join("\n");
+}
+
+function parseCsv(text: string) {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let field = "";
+  let quoted = false;
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    const next = text[index + 1];
+
+    if (quoted) {
+      if (char === '"' && next === '"') {
+        field += '"';
+        index += 1;
+      } else if (char === '"') {
+        quoted = false;
+      } else {
+        field += char;
+      }
+    } else if (char === '"') {
+      quoted = true;
+    } else if (char === ",") {
+      row.push(field);
+      field = "";
+    } else if (char === "\n") {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else if (char !== "\r") {
+      field += char;
+    }
+  }
+
+  row.push(field);
+  rows.push(row);
+
+  const meaningfulRows = rows.filter((items) => items.some((item) => item.trim() !== ""));
+  if (!meaningfulRows.length) return [];
+
+  const headers = meaningfulRows[0].map((header) => header.trim().toLowerCase());
+  return meaningfulRows.slice(1).map((items) => {
+    return Object.fromEntries(headers.map((header, index) => [header, items[index]?.trim() || ""]));
+  });
 }
 
 async function requireResult<T>(query: PromiseLike<{ data: T | null; error: unknown }>) {
@@ -400,6 +447,7 @@ function App() {
   const [sheet, setSheet] = React.useState<"student" | "task" | "session" | "message" | "file" | null>(null);
   const [busy, setBusy] = React.useState(true);
   const [message, setMessage] = React.useState("");
+  const importInputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     void boot();
@@ -519,6 +567,37 @@ function App() {
     await loadAll();
   }
 
+  async function importClients(file: File) {
+    if (!user) return;
+    const rows = parseCsv(await file.text())
+      .map((row) => clean({
+        owner_id: user.id,
+        name: row.name,
+        email: row.email,
+        timezone: row.timezone,
+        plan: plans.includes(row.plan as Client["plan"]) ? row.plan : undefined,
+        area: row.area,
+        current_goal: row.current_goal || row.goal,
+        status: statuses.includes(row.status as Client["status"]) ? row.status : "lead"
+      }))
+      .filter((row) => row.name && row.email);
+
+    if (!rows.length) {
+      setMessage("CSV needs at least name and email columns.");
+      return;
+    }
+
+    if (demoMode) {
+      setMessage(`Demo mode: ${rows.length} imported client rows simulated.`);
+      return;
+    }
+
+    if (!supabase) return;
+    await requireResult(supabase.from("clients").insert(rows).select());
+    setMessage(`Imported ${rows.length} clients.`);
+    await loadAll();
+  }
+
   const selected = data.clients.find((client) => client.id === selectedId) || null;
   const filteredClients = data.clients.filter((client) => {
     const haystack = [client.name, client.email, client.area, client.current_goal].join(" ").toLowerCase();
@@ -541,6 +620,11 @@ function App() {
           <div className="flex items-center gap-2">
             <Badge variant="secondary">{user.email}</Badge>
             {demoMode ? <Badge>Demo</Badge> : null}
+            <input className="hidden" ref={importInputRef} type="file" accept=".csv,text/csv" onChange={(event) => {
+              const file = event.currentTarget.files?.[0];
+              if (file) void importClients(file);
+              event.currentTarget.value = "";
+            }} />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon"><MoreHorizontal /></Button>
@@ -548,6 +632,9 @@ function App() {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => download("fanatic-test-crm-clients.csv", toCsv(data.clients as unknown as Record<string, unknown>[]), "text/csv")}>
                   <Download /> Export clients CSV
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => importInputRef.current?.click()}>
+                  <FileText /> Import clients CSV
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => download("fanatic-test-crm-backup.json", JSON.stringify(data, null, 2), "application/json")}>
                   <FileText /> Backup JSON
