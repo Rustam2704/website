@@ -6,4 +6,5 @@ interface Window {
     anonKey?: string;
     redirectUrl?: string;
   };
+  FANATIC_TEST_CRM_DEMO?: boolean;
 }

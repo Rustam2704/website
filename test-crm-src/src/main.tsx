@@ -143,9 +143,143 @@ const emptyData: CrmData = {
   intake: []
 };
 
+const demoUser = {
+  id: "demo-owner",
+  email: "direct@fanatic.space"
+} as User;
+
+const demoData: CrmData = {
+  clients: [
+    {
+      id: "demo-1",
+      owner_id: "demo-owner",
+      name: "Maya Chen",
+      email: "maya@example.com",
+      timezone: "US East",
+      plan: "session_plus_support",
+      paid_sessions_total: 6,
+      support_until: null,
+      area: "Python / AI tools",
+      current_goal: "Build a small AI helper project and understand the code.",
+      status: "active",
+      created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 30).toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: "demo-2",
+      owner_id: "demo-owner",
+      name: "Alex Rivera",
+      email: "alex@example.com",
+      timezone: "UK",
+      plan: "session_only",
+      paid_sessions_total: 2,
+      support_until: null,
+      area: "Game dev / Godot",
+      current_goal: "Finish the first playable prototype.",
+      status: "active",
+      created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 16).toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: "demo-3",
+      owner_id: "demo-owner",
+      name: "Nina Patel",
+      email: "nina@example.com",
+      timezone: "CET",
+      plan: "session_only",
+      paid_sessions_total: 0,
+      support_until: null,
+      area: "Computer setup",
+      current_goal: "Clean Windows workspace and organize tools.",
+      status: "lead",
+      created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 4).toISOString(),
+      updated_at: new Date().toISOString()
+    }
+  ],
+  sessions: [
+    {
+      id: "session-1",
+      client_id: "demo-1",
+      date: new Date(Date.now() + 1000 * 60 * 60 * 20).toISOString(),
+      duration_minutes: 50,
+      topic: "Project structure and API keys",
+      notes: null,
+      next_actions: "Prepare project folder",
+      meeting_url: "https://meet.google.com/demo"
+    },
+    {
+      id: "session-2",
+      client_id: "demo-2",
+      date: new Date(Date.now() - 1000 * 60 * 60 * 26).toISOString(),
+      duration_minutes: 50,
+      topic: "Player movement polish",
+      notes: "Movement improved.",
+      next_actions: "Add one enemy type"
+    }
+  ],
+  progress: [
+    {
+      id: "task-1",
+      client_id: "demo-1",
+      title: "Make the API key loading safe",
+      status: "blocked",
+      priority: "high",
+      due_at: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2).toISOString(),
+      teacher_comment: "Use env vars, not pasted secrets.",
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: "task-2",
+      client_id: "demo-2",
+      title: "Record a 30-second gameplay clip",
+      status: "in_progress",
+      priority: "normal",
+      due_at: null,
+      teacher_comment: null,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+  ],
+  support: [
+    {
+      id: "support-1",
+      client_id: "demo-1",
+      message: "Can I use the same key from the browser?",
+      source: "manual",
+      resolved: false,
+      created_at: new Date(Date.now() - 1000 * 60 * 90).toISOString()
+    }
+  ],
+  files: [
+    {
+      id: "file-1",
+      client_id: "demo-2",
+      url: "https://example.com/demo-build",
+      label: "Prototype build",
+      kind: "project",
+      created_at: new Date().toISOString()
+    }
+  ],
+  intake: [
+    {
+      id: "request-1",
+      name: "Parent Lead",
+      email: "parent@example.com",
+      area: "Programming lessons",
+      goal: "Child wants to learn Python and AI.",
+      status: "new",
+      client_id: null,
+      created_at: new Date().toISOString()
+    }
+  ]
+};
+
 const config = window.FANATIC_CRM_SUPABASE || {};
 const hasConfig = Boolean(config.url && config.anonKey);
 const supabase = hasConfig ? createClient(config.url!, config.anonKey!) : null;
+const demoMode = Boolean(window.FANATIC_TEST_CRM_DEMO || window.location.href.includes("demo=1"));
+window.FANATIC_TEST_CRM_DEMO = demoMode;
 
 const statuses = ["lead", "active", "paused", "done"] as const;
 const taskStatuses = ["blocked", "in_progress", "improved", "done"] as const;
@@ -269,6 +403,7 @@ function App() {
 
   React.useEffect(() => {
     void boot();
+    if (demoMode) return;
     if (!supabase) return;
     const { data: auth } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
@@ -278,6 +413,14 @@ function App() {
   }, []);
 
   async function boot() {
+    if (demoMode) {
+      setUser(demoUser);
+      setData(demoData);
+      setSelectedId(demoData.clients[0].id);
+      setBusy(false);
+      return;
+    }
+
     if (!supabase) {
       setBusy(false);
       return;
@@ -289,6 +432,7 @@ function App() {
   }
 
   async function loadAll(ownerId = user?.id) {
+    if (demoMode) return;
     if (!supabase || !ownerId) return;
     setBusy(true);
     try {
@@ -310,6 +454,7 @@ function App() {
   }
 
   async function signIn() {
+    if (demoMode) return;
     if (!supabase) return;
     setMessage("Opening Google sign in...");
     const { error } = await supabase.auth.signInWithOAuth({
@@ -323,24 +468,40 @@ function App() {
   }
 
   async function signOut() {
+    if (demoMode) {
+      setMessage("Demo mode stays signed in. Remove ?demo=1 to test auth.");
+      return;
+    }
     await supabase?.auth.signOut();
     setUser(null);
     setData(emptyData);
   }
 
   async function insert(table: string, payload: Record<string, unknown>) {
+    if (demoMode) {
+      setMessage(`Demo mode: ${table} save simulated.`);
+      return;
+    }
     if (!supabase || !user) return;
     await requireResult(supabase.from(table).insert(clean(payload as Record<string, string>)).select());
     await loadAll();
   }
 
   async function update(table: string, id: string, payload: Record<string, unknown>) {
+    if (demoMode) {
+      setMessage(`Demo mode: ${table} update simulated.`);
+      return;
+    }
     if (!supabase || !user) return;
     await requireResult(supabase.from(table).update(clean(payload as Record<string, string>)).eq("owner_id", user.id).eq("id", id).select());
     await loadAll();
   }
 
   async function convertRequest(request: IntakeRequest) {
+    if (demoMode) {
+      setMessage(`Demo mode: ${request.name} conversion simulated.`);
+      return;
+    }
     if (!supabase || !user) return;
     const existing = data.clients.find((client) => client.email?.toLowerCase() === request.email.toLowerCase());
     const client = existing || (await requireResult<Client[]>(supabase.from("clients").insert({
@@ -365,7 +526,7 @@ function App() {
   });
 
   if (busy && !user) return <FullScreen title="Loading CRM..." />;
-  if (!hasConfig) return <FullScreen title="Supabase config missing" detail="This route reads the existing CRM config." />;
+  if (!hasConfig && !demoMode) return <FullScreen title="Supabase config missing" detail="This route reads the existing CRM config." />;
   if (!user) return <LoginScreen message={message} onSignIn={signIn} />;
 
   return (
@@ -379,6 +540,7 @@ function App() {
           </div>
           <div className="flex items-center gap-2">
             <Badge variant="secondary">{user.email}</Badge>
+            {demoMode ? <Badge>Demo</Badge> : null}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon"><MoreHorizontal /></Button>
