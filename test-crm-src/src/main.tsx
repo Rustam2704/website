@@ -21,6 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -259,6 +260,7 @@ function App() {
   const [data, setData] = React.useState<CrmData>(emptyData);
   const [view, setView] = React.useState<View>("today");
   const [selectedId, setSelectedId] = React.useState("");
+  const [selectedClientIds, setSelectedClientIds] = React.useState<string[]>([]);
   const [search, setSearch] = React.useState("");
   const [status, setStatus] = React.useState("all");
   const [sheet, setSheet] = React.useState<"student" | "task" | "session" | "message" | "file" | null>(null);
@@ -411,6 +413,8 @@ function App() {
               setSearch={setSearch}
               setStatus={setStatus}
               setSelectedId={setSelectedId}
+              selectedClientIds={selectedClientIds}
+              setSelectedClientIds={setSelectedClientIds}
               openSheet={setSheet}
               update={update}
             />
@@ -573,10 +577,28 @@ function StudentsView(props: {
   setSearch: (value: string) => void;
   setStatus: (value: string) => void;
   setSelectedId: (value: string) => void;
+  selectedClientIds: string[];
+  setSelectedClientIds: React.Dispatch<React.SetStateAction<string[]>>;
   openSheet: (value: "student" | "task" | "session" | "message" | "file") => void;
   update: (table: string, id: string, payload: Record<string, unknown>) => Promise<void>;
 }) {
-  const { data, clients, selected, search, status, setSearch, setStatus, setSelectedId, openSheet, update } = props;
+  const { data, clients, selected, search, status, setSearch, setStatus, setSelectedId, selectedClientIds, setSelectedClientIds, openSheet, update } = props;
+
+  function toggleClient(id: string, event: React.MouseEvent) {
+    event.stopPropagation();
+    setSelectedClientIds((current) => {
+      return current.includes(id) ? current.filter((item) => item !== id) : [...current, id];
+    });
+  }
+
+  function selectAllVisible() {
+    setSelectedClientIds((current) => {
+      const visibleIds = clients.map((client) => client.id);
+      const allSelected = visibleIds.every((id) => current.includes(id));
+      return allSelected ? current.filter((id) => !visibleIds.includes(id)) : Array.from(new Set([...current, ...visibleIds]));
+    });
+  }
+
   return (
     <div className="grid gap-5 xl:grid-cols-[minmax(460px,0.95fr)_minmax(0,1.05fr)]">
       <Card>
@@ -596,21 +618,41 @@ function StudentsView(props: {
             </Select>
           </div>
           <div className="overflow-x-auto">
-            <div className="grid min-w-[760px] grid-cols-[1.1fr_0.7fr_1.2fr_0.7fr] gap-2 px-3 pb-2 text-xs font-bold uppercase text-muted-foreground">
+            <div className="grid min-w-[820px] grid-cols-[48px_1.1fr_0.7fr_1.2fr_0.7fr] gap-2 px-3 pb-2 text-xs font-bold uppercase text-muted-foreground">
+              <span className="grid size-5 place-items-center rounded border bg-background" onClick={selectAllVisible} aria-label="Select all visible students">
+                <Checkbox checked={clients.length > 0 && clients.every((client) => selectedClientIds.includes(client.id))} />
+              </span>
               <span>Student</span><span>Next</span><span>Goal</span><span>Work</span>
             </div>
             {clients.map((client) => {
               const stats = clientStats(client, data);
               return (
-                <button className={`grid min-w-[760px] grid-cols-[1.1fr_0.7fr_1.2fr_0.7fr] gap-2 rounded-md border p-3 text-left hover:bg-accent ${selected?.id === client.id ? "border-primary bg-accent" : ""}`} key={client.id} onClick={() => setSelectedId(client.id)}>
+                <div className={`grid min-w-[820px] cursor-pointer grid-cols-[48px_1.1fr_0.7fr_1.2fr_0.7fr] items-center gap-2 rounded-md border p-3 text-left hover:bg-accent ${selected?.id === client.id ? "border-primary bg-accent" : ""}`} key={client.id} onClick={() => setSelectedId(client.id)} role="button" tabIndex={0} onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") setSelectedId(client.id);
+                }}>
+                  <span onClick={(event) => toggleClient(client.id, event)} className="grid size-6 place-items-center">
+                    <Checkbox checked={selectedClientIds.includes(client.id)} />
+                  </span>
                   <span><strong className="block">{client.name}</strong><small className="text-muted-foreground">{client.email || client.area}</small></span>
                   <span>{stats.nextSession ? formatDate(stats.nextSession.date, true) : "-"}</span>
                   <span className="truncate">{client.current_goal || client.area || "-"}</span>
                   <span>{stats.activeTasks} tasks / {stats.openMessages} msgs</span>
-                </button>
+                </div>
               );
             })}
           </div>
+          {selectedClientIds.length ? (
+            <div className="sticky bottom-3 flex items-center justify-between rounded-lg border bg-background p-3 shadow-sm">
+              <span className="text-sm font-medium">{selectedClientIds.length} selected</span>
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm" onClick={() => setSelectedClientIds([])}>Clear</Button>
+                <Button variant="outline" size="sm" onClick={() => {
+                  const selectedRows = data.clients.filter((client) => selectedClientIds.includes(client.id));
+                  download("fanatic-selected-students.csv", toCsv(selectedRows as unknown as Record<string, unknown>[]), "text/csv");
+                }}>Export selected</Button>
+              </div>
+            </div>
+          ) : null}
         </CardContent>
       </Card>
       <StudentDetail data={data} selected={selected} openSheet={openSheet} update={update} />
