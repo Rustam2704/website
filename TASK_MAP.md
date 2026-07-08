@@ -13,16 +13,21 @@ Done:
 - Add Google login UI.
 - Configure Google OAuth provider in Supabase.
 - Remove Apple login from the UI for now.
+- Make Google the only visible sign-in path in CRM and portal.
+- Add separate `F`, `C`, and `P` favicons for landing, CRM, and portal.
 
 Current decision:
 
 - GitHub login is not needed.
 - Apple login is not worth doing if it requires the paid Apple Developer Program.
 - Google login is the main social login target.
+- Email is still the account matching key in the database, but users should not need to choose between confusing login methods.
+- If a client's Google email matches a pending portal access email, the portal should attach that auth user to the existing client record.
 
 Parked / later:
 
 - Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
+- Decide later whether email magic links are worth restoring as a hidden/admin fallback.
 
 ## 2. Core CRM Direction
 

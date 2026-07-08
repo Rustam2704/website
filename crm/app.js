@@ -1260,36 +1260,6 @@ async function openStoredFile(path) {
   window.open(data.signedUrl, "_blank", "noreferrer");
 }
 
-$("#auth-form").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  setMessage("Signing in...");
-  const email = $("#auth-email").value;
-  const password = $("#auth-password").value;
-
-  if (!password) {
-    setMessage("Password is required for password sign in.", true);
-    return;
-  }
-
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  setMessage(error ? error.message : "Signed in.", Boolean(error));
-});
-
-$("#magic-link-button").addEventListener("click", async () => {
-  const email = $("#auth-email").value;
-  if (!email) {
-    setMessage("Enter email first.", true);
-    return;
-  }
-
-  setMessage("Sending magic link...");
-  const { error } = await supabase.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: config.redirectUrl || `${window.location.origin}/crm/` }
-  });
-  setMessage(error ? error.message : "Magic link sent. Check email.", Boolean(error));
-});
-
 $$("[data-oauth-provider]").forEach((button) => {
   button.addEventListener("click", async () => {
     const provider = button.dataset.oauthProvider;

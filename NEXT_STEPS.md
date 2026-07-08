@@ -31,9 +31,10 @@
 - Client portal can add file/project/screenshot/video links.
 - Client portal can show session history and next actions without private notes.
 - Client portal can open assigned private stored files through signed URLs.
-- Client portal can claim pending access after the client's first magic-link login.
+- Client portal can claim pending access after the client's first Google login.
 - Project status now includes live frontend asset versions and CRM data integrity checks.
 - Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
+- CRM and portal now show Google as the only normal sign-in option.
 - `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 - Landing hero now uses a Lenovo-style technical workspace image.
 - CRM shell now starts moving from generic client tracker toward teaching CRM: Today, Students, Tasks, Messages.

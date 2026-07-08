@@ -24,8 +24,9 @@ See `MIGRATIONS.md` for the current SQL migration order.
 5. Later, when task deadlines/comments are ready, paste and run `supabase_lms_fields.sql` after the client portal migration has been applied.
 6. Later, when paid lesson balance/support tracking is ready, paste and run `supabase_billing_fields.sql`.
 7. Later, when Calendar sync is ready, paste and run `supabase_calendar.sql`.
-8. In Authentication, enable Email login.
-9. In Authentication -> URL Configuration, set:
+8. In Authentication -> Providers, enable Google.
+9. Keep GitHub and Apple disabled for now.
+10. In Authentication -> URL Configuration, set:
 
 ```text
 Site URL: https://fanatic.space
@@ -34,9 +35,9 @@ https://fanatic.space/crm/
 https://fanatic.space/portal/
 ```
 
-10. Open Project Settings -> Data API.
-11. Copy the Project URL and anon public key into `crm/config.js`.
-12. Create the first Rustam admin user by signing in from `/crm/`.
+11. Open Project Settings -> Data API.
+12. Copy the Project URL and anon public key into `crm/config.js`.
+13. Create the first Rustam admin user by signing in from `/crm/` with Google.
 
 Current Supabase project:
 
@@ -47,11 +48,14 @@ Current Supabase project:
 
 OAuth status:
 
-- Google buttons exist in `/crm/` and `/portal/`.
+- Google is the only visible sign-in path in `/crm/` and `/portal/`.
 - Google provider is configured in Supabase Authentication and works in production.
+- Email stays important as the stable identity key for matching CRM records to auth users.
 - GitHub login is intentionally not shown.
 - Apple login is intentionally not shown unless it can be enabled without Apple Developer Program cost.
 - Rotate the Google OAuth client secret later because it appeared in a setup screenshot.
+
+Detailed OAuth notes: `GOOGLE_OAUTH_SETUP.md`.
 
 ## Tables Created
 
@@ -93,7 +97,7 @@ Client portal preparation:
 - `/portal/`
 - `client_access` maps a client email/auth user to a CRM client.
 - Access can be granted before the client has logged in for the first time.
-- When the client opens a magic link, the portal claims any pending access for that email.
+- When the client signs in with Google, the portal claims any pending access for that email.
 - Client users can read their assigned profile, progress, sessions, files, and add progress/support/file-link updates.
 
 The current static route is:

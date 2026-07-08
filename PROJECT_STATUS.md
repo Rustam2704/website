@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: July 7, 2026
+Last updated: July 8, 2026
 
 ## Live URLs
 
@@ -17,7 +17,7 @@ Last updated: July 7, 2026
 - FormSubmit contact form to `direct@fanatic.space`.
 - Landing form also saves requests into Supabase `intake_requests`.
 - Supabase project `fanatic-crm`.
-- Admin CRM login with Supabase magic link.
+- Admin CRM login with Google OAuth through Supabase.
 - Admin CRM client tracker:
   - clients
   - progress items
@@ -33,6 +33,7 @@ Last updated: July 7, 2026
 - Admin CRM can import clients from CSV directly in the browser.
 - Admin CRM is moving toward teaching CRM structure: Today dashboard, Students, Tasks, Messages.
 - CRM and portal Google login works through Supabase OAuth.
+- Google is the only visible sign-in path in CRM and portal.
 - psql installed.
 - CLI helpers for CRM operations in `tools/`.
 - CLI helpers can add and list client file/project/screenshot/video links.
@@ -53,7 +54,7 @@ Last updated: July 7, 2026
 - Client portal header shows timezone/area context when available.
 - Admin CRM can grant/revoke client portal access from the Access tab.
 - CRM and CLI can grant pending portal access by email before the client auth user exists.
-- Portal claims pending email access after the client's first magic-link login.
+- Portal claims pending email access after the client's first Google login.
 - Supabase Auth redirect URLs include both `/crm/` and `/portal/`.
 - `www.fanatic.space` redirects to `https://fanatic.space/` with a 301 for SEO consistency.
 - CRM quality-of-life:

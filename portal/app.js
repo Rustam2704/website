@@ -9,8 +9,6 @@ const views = {
   authStatus: $("#auth-status"),
   authPanel: $("#auth-panel"),
   dashboard: $("#portal-dashboard"),
-  authForm: $("#auth-form"),
-  authEmail: $("#auth-email"),
   authMessage: $("#auth-message"),
   supportMessage: $("#support-message"),
   clientName: $("#client-name"),
@@ -382,16 +380,6 @@ views.clientFileForm.addEventListener("submit", async (event) => {
   } catch (error) {
     alert(error.message);
   }
-});
-
-views.authForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  setMessage("Sending magic link...");
-  const { error } = await supabase.auth.signInWithOtp({
-    email: views.authEmail.value,
-    options: { emailRedirectTo: "https://fanatic.space/portal/" }
-  });
-  setMessage(error ? error.message : "Magic link sent. Check email.", Boolean(error));
 });
 
 document.querySelectorAll("[data-oauth-provider]").forEach((button) => {

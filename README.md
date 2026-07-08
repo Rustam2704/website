@@ -82,6 +82,7 @@ Done:
 - Client portal can add progress, support notes, file links, and see safe session history.
 - Client portal can be installed as a PWA shell on Android-compatible browsers.
 - Admin CRM can import clients from CSV in the browser.
+- CRM and portal use Google OAuth as the only visible sign-in path.
 - CLI helpers support CSV import from the current spreadsheet, full backup bundles, client reports, file links, and pending portal access grant/list/revoke.
 - Roadmap file created.
 - Immediate launch checklist created.
@@ -109,6 +110,7 @@ Files:
 - `CRM_SPEC.md` - first scoped CRM/product spec
 - `CRM_SETUP.md` - Supabase setup path for CRM v0
 - `DB_ACCESS.md` - psql / Supabase database access notes
+- `GOOGLE_OAUTH_SETUP.md` - Google-only auth setup notes for CRM and portal
 - `tools/apply-migration.ps1` - one-command SQL migration runner
 - `supabase_schema.sql` - first CRM database schema
 - `supabase_lesson_fields.sql` - optional lesson URL and confirmation fields for sessions

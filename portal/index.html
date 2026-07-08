@@ -7,7 +7,7 @@
     <title>Fanatic Client Portal</title>
     <link rel="icon" href="../assets/favicon-portal.svg" type="image/svg+xml">
     <link rel="manifest" href="./manifest.webmanifest">
-    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-07-10">
+    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-08-01">
   </head>
   <body>
     <div class="app-shell">
@@ -48,23 +48,15 @@
             <h2>Client access</h2>
             <p class="muted">Use the email that was invited to your client profile.</p>
           </div>
-          <form class="auth-form" id="auth-form">
+          <div class="auth-form oauth-only-auth">
             <div class="oauth-stack">
               <button type="button" class="oauth-button" data-oauth-provider="google">
                 <span class="google-mark" aria-hidden="true">G</span>
                 Continue with Google
               </button>
             </div>
-            <div class="auth-divider"><span>or</span></div>
-            <label>
-              Email
-              <input id="auth-email" type="email" autocomplete="email" required>
-            </label>
-            <div class="button-row">
-              <button type="submit">Send magic link</button>
-            </div>
             <p class="form-message" id="auth-message"></p>
-          </form>
+          </div>
         </section>
 
         <section class="dashboard hidden" id="portal-dashboard">
@@ -214,7 +206,7 @@
     </div>
 
     <script src="../crm/config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-07-18"></script>
+    <script type="module" src="./app.js?v=2026-07-08-01"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

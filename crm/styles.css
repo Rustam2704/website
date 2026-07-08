@@ -279,7 +279,7 @@ h3 {
 .oauth-stack {
   display: grid;
   gap: 10px;
-  width: min(100%, 340px);
+  width: min(100%, 300px);
 }
 
 .oauth-button {
@@ -287,14 +287,14 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 42px;
-  padding: 9px 14px;
+  gap: 9px;
+  min-height: 38px;
+  padding: 8px 12px;
   color: var(--ink);
   background: #ffffff;
   border: 1px solid var(--line);
   border-radius: 6px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -303,17 +303,24 @@ h3 {
   background: #f6f8f7;
 }
 
-.oauth-button span {
-  min-width: 20px;
+.oauth-button .google-mark {
+  min-width: 18px;
   font-weight: 850;
   text-align: center;
 }
 
 .google-mark {
   font-family: Arial, sans-serif;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1;
-  color: #4285f4;
+  background: conic-gradient(from -45deg, #4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.oauth-only-auth {
+  align-content: start;
 }
 
 .auth-divider {
