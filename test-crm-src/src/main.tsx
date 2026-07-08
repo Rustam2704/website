@@ -125,6 +125,15 @@ type IntakeRequest = {
   created_at: string;
 };
 
+type ClientAccess = {
+  id: string;
+  client_id: string;
+  user_id: string | null;
+  user_email: string | null;
+  status: "active" | "revoked";
+  created_at: string;
+};
+
 type CrmData = {
   clients: Client[];
   sessions: Session[];
@@ -132,6 +141,7 @@ type CrmData = {
   support: SupportNote[];
   files: ClientFile[];
   intake: IntakeRequest[];
+  access: ClientAccess[];
 };
 
 const emptyData: CrmData = {
@@ -140,7 +150,8 @@ const emptyData: CrmData = {
   progress: [],
   support: [],
   files: [],
-  intake: []
+  intake: [],
+  access: []
 };
 
 const demoUser = {
@@ -270,6 +281,16 @@ const demoData: CrmData = {
       goal: "Child wants to learn Python and AI.",
       status: "new",
       client_id: null,
+      created_at: new Date().toISOString()
+    }
+  ],
+  access: [
+    {
+      id: "access-1",
+      client_id: "demo-1",
+      user_id: null,
+      user_email: "maya@example.com",
+      status: "active",
       created_at: new Date().toISOString()
     }
   ]
@@ -484,15 +505,16 @@ function App() {
     if (!supabase || !ownerId) return;
     setBusy(true);
     try {
-      const [clients, progress, sessions, support, files, intake] = await Promise.all([
+      const [clients, progress, sessions, support, files, intake, access] = await Promise.all([
         requireResult<Client[]>(supabase.from("clients").select("*").eq("owner_id", ownerId).order("created_at", { ascending: false })),
         requireResult<ProgressItem[]>(supabase.from("progress_items").select("*").eq("owner_id", ownerId).order("updated_at", { ascending: false })),
         requireResult<Session[]>(supabase.from("sessions").select("*").eq("owner_id", ownerId).order("date", { ascending: false })),
         requireResult<SupportNote[]>(supabase.from("support_notes").select("*").eq("owner_id", ownerId).order("created_at", { ascending: false })),
         requireResult<ClientFile[]>(supabase.from("client_files").select("*").eq("owner_id", ownerId).order("created_at", { ascending: false })),
-        requireResult<IntakeRequest[]>(supabase.from("intake_requests").select("*").order("created_at", { ascending: false }))
+        requireResult<IntakeRequest[]>(supabase.from("intake_requests").select("*").order("created_at", { ascending: false })),
+        requireResult<ClientAccess[]>(supabase.from("client_access").select("*").eq("owner_id", ownerId).order("created_at", { ascending: false }))
       ]);
-      setData({ clients, progress, sessions, support, files, intake });
+      setData({ clients, progress, sessions, support, files, intake, access });
       setSelectedId((current) => current || clients[0]?.id || "");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : String(error));
@@ -598,6 +620,21 @@ function App() {
     await loadAll();
   }
 
+  async function grantAccess(clientId: string, email: string) {
+    if (demoMode) {
+      setMessage(`Demo mode: access grant for ${email} simulated.`);
+      return;
+    }
+
+    if (!supabase) return;
+    await requireResult(supabase.rpc("grant_client_access_by_email", {
+      p_client_id: clientId,
+      p_user_email: email
+    }));
+    setMessage(`Portal access granted to ${email}.`);
+    await loadAll();
+  }
+
   const selected = data.clients.find((client) => client.id === selectedId) || null;
   const filteredClients = data.clients.filter((client) => {
     const haystack = [client.name, client.email, client.area, client.current_goal].join(" ").toLowerCase();
@@ -666,6 +703,7 @@ function App() {
               setSelectedClientIds={setSelectedClientIds}
               openSheet={setSheet}
               update={update}
+              grantAccess={grantAccess}
             />
           ) : null}
           {view === "requests" ? <RequestsView requests={data.intake} convert={convertRequest} /> : null}
@@ -830,8 +868,9 @@ function StudentsView(props: {
   setSelectedClientIds: React.Dispatch<React.SetStateAction<string[]>>;
   openSheet: (value: "student" | "task" | "session" | "message" | "file") => void;
   update: (table: string, id: string, payload: Record<string, unknown>) => Promise<void>;
+  grantAccess: (clientId: string, email: string) => Promise<void>;
 }) {
-  const { data, clients, selected, search, status, setSearch, setStatus, setSelectedId, selectedClientIds, setSelectedClientIds, openSheet, update } = props;
+  const { data, clients, selected, search, status, setSearch, setStatus, setSelectedId, selectedClientIds, setSelectedClientIds, openSheet, update, grantAccess } = props;
 
   function toggleClient(id: string, event: React.MouseEvent) {
     event.stopPropagation();
@@ -904,18 +943,19 @@ function StudentsView(props: {
           ) : null}
         </CardContent>
       </Card>
-      <StudentDetail data={data} selected={selected} openSheet={openSheet} update={update} />
+      <StudentDetail data={data} selected={selected} openSheet={openSheet} update={update} grantAccess={grantAccess} />
     </div>
   );
 }
 
-function StudentDetail({ data, selected, openSheet, update }: { data: CrmData; selected: Client | null; openSheet: (value: "task" | "session" | "message" | "file") => void; update: (table: string, id: string, payload: Record<string, unknown>) => Promise<void> }) {
+function StudentDetail({ data, selected, openSheet, update, grantAccess }: { data: CrmData; selected: Client | null; openSheet: (value: "task" | "session" | "message" | "file") => void; update: (table: string, id: string, payload: Record<string, unknown>) => Promise<void>; grantAccess: (clientId: string, email: string) => Promise<void> }) {
   if (!selected) return <Card><CardContent className="p-6 text-muted-foreground">Select a student.</CardContent></Card>;
   const stats = clientStats(selected, data);
   const tasks = data.progress.filter((item) => item.client_id === selected.id);
   const sessions = data.sessions.filter((item) => item.client_id === selected.id);
   const support = data.support.filter((item) => item.client_id === selected.id);
   const files = data.files.filter((item) => item.client_id === selected.id);
+  const access = data.access.filter((item) => item.client_id === selected.id);
   return (
     <Card>
       <CardHeader className="gap-4">
@@ -950,6 +990,7 @@ function StudentDetail({ data, selected, openSheet, update }: { data: CrmData; s
             <TabsTrigger value="sessions">Sessions</TabsTrigger>
             <TabsTrigger value="messages">Messages</TabsTrigger>
             <TabsTrigger value="files">Files</TabsTrigger>
+            <TabsTrigger value="access">Access</TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="grid gap-3 md:grid-cols-2">
             <Info label="Next action" value={stats.nextSession ? "Prepare the next lesson context." : "Schedule the next lesson."} />
@@ -998,6 +1039,31 @@ function StudentDetail({ data, selected, openSheet, update }: { data: CrmData; s
             </div>
           </TabsContent>
           <TabsContent value="files"><RecordList title="Files" icon={FileText} action={() => openSheet("file")} items={files.map((item) => ({ id: item.id, title: item.label || item.kind, meta: item.url }))} /></TabsContent>
+          <TabsContent value="access">
+            <div className="grid gap-3 pt-3">
+              <form className="grid gap-2 md:grid-cols-[1fr_auto]" onSubmit={(event) => {
+                event.preventDefault();
+                const payload = formPayload(event.currentTarget);
+                const email = String(payload.email || "").trim();
+                if (email) void grantAccess(selected.id, email);
+                event.currentTarget.reset();
+              }}>
+                <Input name="email" type="email" placeholder="client@example.com" defaultValue={selected.email || ""} required />
+                <Button type="submit"><UserRound /> Grant portal access</Button>
+              </form>
+              {access.map((item) => (
+                <div className="grid gap-3 rounded-md border p-3 md:grid-cols-[1fr_auto]" key={item.id}>
+                  <div>
+                    <strong className="block">{item.user_email || item.user_id || "Unknown user"}</strong>
+                    <span className="text-sm text-muted-foreground">{item.status} / {item.user_id || "pending login"}</span>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={() => void update("client_access", item.id, { status: item.status === "active" ? "revoked" : "active" })}>
+                    Mark {item.status === "active" ? "revoked" : "active"}
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
         </Tabs>
       </CardContent>
     </Card>
