@@ -1003,46 +1003,117 @@ function renderStudentOverview() {
   const latestSession = sortedByDate(state.sessions, "date")[0];
   const latestMessage = sortedByDate(state.support, "created_at")[0];
   const latestFile = sortedByDate(state.files, "created_at")[0];
+  const nextAction = studentNextAction(client, nextSession, activeTasks, blockers, latestSession, latestMessage);
 
   views.studentOverview.innerHTML = `
-    ${overviewCard("Current goal", client.current_goal || "No current goal set.")}
+    ${overviewCard("Next action", nextAction.body, nextAction.label, nextAction.tab)}
+    ${overviewCard("Current goal", client.current_goal || "No current goal set.", "Edit student", "overview")}
     ${overviewCard("Next lesson", nextSession
       ? `${formatDate(nextSession.date)}${nextSession.topic ? ` / ${nextSession.topic}` : ""}`
-      : "No upcoming lesson scheduled.")}
-    ${overviewListCard("Active tasks", activeTasks, (item) => `${item.title} / ${statusLabel(item.status)}`)}
-    ${overviewListCard("Blockers", blockers, (item) => item.title)}
+      : "No upcoming lesson scheduled.", nextSession?.meeting_url ? "Join lesson" : "Open sessions", "sessions", nextSession?.meeting_url)}
+    ${overviewListCard("Active tasks", activeTasks, (item) => `${item.title} / ${statusLabel(item.status)}`, "Open tasks", "progress")}
+    ${overviewListCard("Blockers", blockers, (item) => item.title, "Open blockers", "progress")}
     ${overviewCard("Latest session", latestSession
       ? `${formatDate(latestSession.date)}${latestSession.next_actions ? ` / Next: ${latestSession.next_actions}` : ""}`
-      : "No session history yet.")}
+      : "No session history yet.", "Open sessions", "sessions")}
     ${overviewCard("Latest message", latestMessage
       ? `${formatDate(latestMessage.created_at)} / ${latestMessage.message}`
-      : "No messages yet.")}
+      : "No messages yet.", "Open messages", "support")}
     ${overviewCard("Latest file", latestFile
       ? `${latestFile.label || latestFile.kind} / ${latestFile.kind}`
-      : "No files or links yet.")}
+      : "No files or links yet.", latestFile ? "Open files" : "Add file", "files")}
   `;
+
+  bindOverviewActions();
 }
 
-function overviewCard(title, body) {
+function studentNextAction(client, nextSession, activeTasks, blockers, latestSession, latestMessage) {
+  if (!nextSession && client.status === "active") {
+    return {
+      body: "Schedule the next lesson before the student goes cold.",
+      label: "Add session",
+      tab: "sessions"
+    };
+  }
+
+  if (latestSession && new Date(latestSession.date).getTime() < Date.now() && !latestSession.next_actions && !latestSession.notes) {
+    return {
+      body: "The latest lesson needs a short summary or next action.",
+      label: "Open sessions",
+      tab: "sessions"
+    };
+  }
+
+  if (blockers.length) {
+    return {
+      body: `${blockers.length} blocker${blockers.length === 1 ? "" : "s"} need a decision.`,
+      label: "Open blockers",
+      tab: "progress"
+    };
+  }
+
+  if (latestMessage && !latestMessage.resolved) {
+    return {
+      body: "There is an open student message.",
+      label: "Open messages",
+      tab: "support"
+    };
+  }
+
+  if (activeTasks.length) {
+    return {
+      body: `${activeTasks.length} active task${activeTasks.length === 1 ? "" : "s"} to review.`,
+      label: "Open tasks",
+      tab: "progress"
+    };
+  }
+
+  return {
+    body: "Nothing urgent. Review the goal and decide the next useful move.",
+    label: "Review overview",
+    tab: "overview"
+  };
+}
+
+function overviewCard(title, body, actionLabel = "", tabName = "", href = "") {
+  const action = href
+    ? `<a class="overview-action" href="${h(href)}" target="_blank" rel="noreferrer">${h(actionLabel)}</a>`
+    : actionLabel
+      ? `<button type="button" class="overview-action" data-overview-tab="${h(tabName)}">${h(actionLabel)}</button>`
+      : "";
+
   return `
     <article class="overview-card">
       <span>${h(title)}</span>
       <p>${h(body)}</p>
+      ${action}
     </article>
   `;
 }
 
-function overviewListCard(title, items, formatItem) {
+function overviewListCard(title, items, formatItem, actionLabel = "", tabName = "") {
   const body = items.length
     ? `<ul>${items.map((item) => `<li>${h(formatItem(item))}</li>`).join("")}</ul>`
     : `<p>Nothing open.</p>`;
+  const action = actionLabel
+    ? `<button type="button" class="overview-action" data-overview-tab="${h(tabName)}">${h(actionLabel)}</button>`
+    : "";
 
   return `
     <article class="overview-card">
       <span>${h(title)}</span>
       ${body}
+      ${action}
     </article>
   `;
+}
+
+function bindOverviewActions() {
+  $$(".overview-action[data-overview-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setActiveTab(button.dataset.overviewTab || "overview");
+    });
+  });
 }
 
 function nextUpcomingRecord(records) {

@@ -696,6 +696,9 @@ h3 {
 
 .overview-card {
   min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 14px;
@@ -718,6 +721,24 @@ h3 {
 .overview-card li {
   color: var(--ink);
   overflow-wrap: anywhere;
+}
+
+.overview-action {
+  width: fit-content;
+  margin-top: 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: var(--ink);
+  background: #f6f8f7;
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.overview-action:hover {
+  color: var(--ink);
+  background: #e7f2ed;
 }
 
 .student-home-grid {
