@@ -326,6 +326,15 @@ function formPayload(form: HTMLFormElement) {
   return Object.fromEntries(new FormData(form).entries());
 }
 
+function safeFileName(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9._-]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 120) || "file";
+}
+
 function download(filename: string, content: string, type: string) {
   const blob = new Blob([content], { type });
   const url = URL.createObjectURL(blob);
@@ -635,6 +644,44 @@ function App() {
     await loadAll();
   }
 
+  async function saveClientFile(clientId: string, payload: Record<string, FormDataEntryValue | string>, file?: File | null) {
+    if (!user) return;
+
+    if (demoMode) {
+      setMessage("Demo mode: file save simulated.");
+      return;
+    }
+
+    if (!supabase) return;
+
+    let url = String(payload.url || "").trim();
+    const label = String(payload.label || "").trim();
+    const kind = String(payload.kind || "other");
+
+    if (file && file.size > 0) {
+      const path = `${user.id}/${clientId}/${Date.now()}-${safeFileName(file.name)}`;
+      const { error } = await supabase.storage
+        .from("client-files")
+        .upload(path, file, { upsert: false });
+      if (error) throw error;
+      url = `storage://client-files/${path}`;
+    }
+
+    if (!url) {
+      setMessage("Add a URL or choose a file.");
+      return;
+    }
+
+    await requireResult(supabase.from("client_files").insert({
+      owner_id: user.id,
+      client_id: clientId,
+      url,
+      label: label || file?.name || "File",
+      kind
+    }).select());
+    await loadAll();
+  }
+
   const selected = data.clients.find((client) => client.id === selectedId) || null;
   const filteredClients = data.clients.filter((client) => {
     const haystack = [client.name, client.email, client.area, client.current_goal].join(" ").toLowerCase();
@@ -714,6 +761,7 @@ function App() {
           selected={selected}
           user={user}
           insert={insert}
+          saveClientFile={saveClientFile}
         />
       </SidebarInset>
     </SidebarProvider>
@@ -1107,7 +1155,7 @@ function RequestsView({ requests, convert }: { requests: IntakeRequest[]; conver
   );
 }
 
-function RecordSheets({ sheet, close, selected, user, insert }: { sheet: "student" | "task" | "session" | "message" | "file" | null; close: () => void; selected: Client | null; user: User; insert: (table: string, payload: Record<string, unknown>) => Promise<void> }) {
+function RecordSheets({ sheet, close, selected, user, insert, saveClientFile }: { sheet: "student" | "task" | "session" | "message" | "file" | null; close: () => void; selected: Client | null; user: User; insert: (table: string, payload: Record<string, unknown>) => Promise<void>; saveClientFile: (clientId: string, payload: Record<string, FormDataEntryValue | string>, file?: File | null) => Promise<void> }) {
   const title = sheet === "student" ? "Add student" : sheet === "task" ? "Add task" : sheet === "session" ? "Add session" : sheet === "message" ? "Add message" : "Add file";
   return (
       <Sheet open={Boolean(sheet)} onOpenChange={(open: boolean) => !open && close()}>
@@ -1121,7 +1169,11 @@ function RecordSheets({ sheet, close, selected, user, insert }: { sheet: "studen
           if (sheet === "task" && selected) await insert("progress_items", { ...raw, owner_id: user.id, client_id: selected.id, priority: "normal" });
           if (sheet === "session" && selected) await insert("sessions", { ...raw, owner_id: user.id, client_id: selected.id, duration_minutes: 50, date: raw.date || new Date().toISOString() });
           if (sheet === "message" && selected) await insert("support_notes", { ...raw, owner_id: user.id, client_id: selected.id, source: "manual" });
-          if (sheet === "file" && selected) await insert("client_files", { ...raw, owner_id: user.id, client_id: selected.id, kind: "other" });
+          if (sheet === "file" && selected) {
+            const input = event.currentTarget.elements.namedItem("file");
+            const file = input instanceof HTMLInputElement ? input.files?.[0] : null;
+            await saveClientFile(selected.id, raw, file);
+          }
           close();
         }}>
           {sheet === "student" ? (
@@ -1153,8 +1205,15 @@ function RecordSheets({ sheet, close, selected, user, insert }: { sheet: "studen
           {sheet === "message" ? <Textarea name="message" placeholder="Message or support note" required /> : null}
           {sheet === "file" ? (
             <>
-              <Input name="url" type="url" placeholder="https://..." required />
+              <Input name="file" type="file" />
+              <Input name="url" type="url" placeholder="https://..." />
               <Input name="label" placeholder="Label" />
+              <Select name="kind" defaultValue="other">
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {["screenshot", "project", "video", "document", "other"].map((kind) => <SelectItem value={kind} key={kind}>{label(kind)}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </>
           ) : null}
           <SheetFooter className="px-0">
