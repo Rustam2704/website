@@ -540,6 +540,17 @@ function StudentDetail({ data, selected, tab, setTab, addRecord, updateRecord })
         </div>
       </div>
 
+      <form class="quick-edit" onSubmit=${(event) => {
+        event.preventDefault();
+        updateRecord("clients", selected.id, clean(formData(event.currentTarget)));
+      }}>
+        <select name="status" defaultValue=${selected.status}>
+          ${statusOptions.map((item) => html`<option value=${item}>${label(item)}</option>`)}
+        </select>
+        <input name="current_goal" defaultValue=${selected.current_goal || ""} placeholder="Current goal" />
+        <button type="submit" class="secondary">Save student</button>
+      </form>
+
       <div class="tabs">
         ${["overview", "tasks", "sessions", "messages", "files"].map((item) => html`
           <button class=${tab === item ? "active" : ""} onClick=${() => setTab(item)}>${label(item)}</button>

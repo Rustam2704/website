@@ -481,6 +481,14 @@ a {
   padding: 13px 0;
 }
 
+.quick-edit {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto;
+  gap: 8px;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 13px 0;
+}
+
 .tabs button {
   color: var(--ink);
   background: #fff;
@@ -661,6 +669,7 @@ a {
   .metric-grid,
   .overview-grid,
   .inline-form,
+  .quick-edit,
   .student-form {
     grid-template-columns: 1fr;
   }
