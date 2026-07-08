@@ -112,6 +112,8 @@ Last updated: July 8, 2026
 - Recommended stack: Vite, React, TypeScript, Tailwind, shadcn/ui, Radix primitives, lucide-react, Supabase JS.
 - Primary reference: Atomic CRM because it is a full CRM built with React, shadcn/ui, and Supabase under an MIT license.
 - Visual reference: Cloudflare-style admin navigation with compact left sidebar, dropdown menus, sheet-style side panels, dense tables, and calm neutral styling.
+- Branch `codex/test-crm-template` contains the first React/Vite `/test-crm/` shell.
+- `/test-crm/?demo=1` opens a seeded demo dashboard for QA without Google OAuth.
 
 ## Important Follow-Ups
 
