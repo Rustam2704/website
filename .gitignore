@@ -1,2 +1,5 @@
 exports/
+node_modules/
+test-crm-src/node_modules/
+test-crm-src/dist/
 инструкция1.txt
