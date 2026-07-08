@@ -82,7 +82,10 @@ type Session = {
   topic: string | null;
   notes: string | null;
   next_actions: string | null;
+  private_notes?: string | null;
   meeting_url?: string | null;
+  confirmation_status?: "unconfirmed" | "confirmed" | "cancelled" | "completed" | null;
+  google_calendar_sync_status?: string | null;
 };
 
 type ProgressItem = {
@@ -217,7 +220,9 @@ const demoData: CrmData = {
       topic: "Project structure and API keys",
       notes: null,
       next_actions: "Prepare project folder",
-      meeting_url: "https://meet.google.com/demo"
+      meeting_url: "https://meet.google.com/demo",
+      confirmation_status: "confirmed",
+      google_calendar_sync_status: "synced"
     },
     {
       id: "session-2",
@@ -226,7 +231,9 @@ const demoData: CrmData = {
       duration_minutes: 50,
       topic: "Player movement polish",
       notes: "Movement improved.",
-      next_actions: "Add one enemy type"
+      next_actions: "Add one enemy type",
+      confirmation_status: "unconfirmed",
+      google_calendar_sync_status: "pending"
     }
   ],
   progress: [
@@ -314,6 +321,7 @@ window.FANATIC_TEST_CRM_DEMO = demoMode;
 const statuses = ["lead", "active", "paused", "done"] as const;
 const plans = ["session_only", "session_plus_support"] as const;
 const taskStatuses = ["blocked", "in_progress", "improved", "done"] as const;
+const confirmationStatuses = ["unconfirmed", "confirmed", "cancelled", "completed"] as const;
 
 function label(value: string | null | undefined) {
   return String(value || "-").replaceAll("_", " ");
@@ -327,7 +335,7 @@ function formatDate(value: string | null | undefined, compact = false) {
   ).format(new Date(value));
 }
 
-function clean<T extends Record<string, FormDataEntryValue | string | null | undefined>>(payload: T) {
+function clean<T extends Record<string, unknown>>(payload: T) {
   return Object.fromEntries(Object.entries(payload).filter(([, value]) => value !== "" && value != null));
 }
 
@@ -347,6 +355,20 @@ function safeFileName(name: string) {
 function storagePathFromUrl(url: string | null | undefined) {
   const prefix = "storage://client-files/";
   return url?.startsWith(prefix) ? url.slice(prefix.length) : null;
+}
+
+function buildSessionPayload(raw: Record<string, FormDataEntryValue | string>) {
+  const date = String(raw.date || "").trim();
+  return clean({
+    date: date ? new Date(date).toISOString() : new Date().toISOString(),
+    duration_minutes: Number(raw.duration_minutes || 50),
+    topic: raw.topic,
+    notes: raw.notes,
+    next_actions: raw.next_actions,
+    private_notes: raw.private_notes,
+    meeting_url: raw.meeting_url,
+    confirmation_status: raw.confirmation_status || "unconfirmed"
+  });
 }
 
 function download(filename: string, content: string, type: string) {
@@ -1130,7 +1152,36 @@ function StudentDetail({ data, selected, openSheet, update, grantAccess, openCli
               ))}
             </div>
           </TabsContent>
-          <TabsContent value="sessions"><RecordList title="Sessions" icon={CalendarClock} action={() => openSheet("session")} items={sessions.map((item) => ({ id: item.id, title: formatDate(item.date), meta: item.topic || item.next_actions || "Session" }))} /></TabsContent>
+          <TabsContent value="sessions">
+            <div className="grid gap-3 pt-3">
+              <div className="flex items-center justify-between">
+                <h3 className="flex items-center gap-2 font-semibold"><CalendarClock className="size-4" /> Sessions</h3>
+                <Button size="sm" onClick={() => openSheet("session")}><Plus /> Add</Button>
+              </div>
+              {sessions.map((item) => (
+                <div className="grid gap-3 rounded-md border p-3 md:grid-cols-[1fr_180px]" key={item.id}>
+                  <div className="min-w-0">
+                    <strong className="block">{item.topic || "Session"}</strong>
+                    <span className="block text-sm text-muted-foreground">
+                      {formatDate(item.date)} / {item.duration_minutes} min
+                      {item.google_calendar_sync_status ? ` / Calendar: ${label(item.google_calendar_sync_status)}` : ""}
+                    </span>
+                    {item.next_actions || item.notes ? <p className="mt-2 text-sm">{item.next_actions || item.notes}</p> : null}
+                    {item.private_notes ? <p className="mt-2 text-sm text-muted-foreground">Private: {item.private_notes}</p> : null}
+                    {item.meeting_url ? (
+                      <Button className="mt-3" variant="outline" size="sm" onClick={() => window.open(item.meeting_url!, "_blank", "noreferrer")}>
+                        <ExternalLink /> Meeting
+                      </Button>
+                    ) : null}
+                  </div>
+                  <Select defaultValue={item.confirmation_status || "unconfirmed"} onValueChange={(value) => void update("sessions", item.id, { confirmation_status: value })}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>{confirmationStatuses.map((status) => <SelectItem value={status} key={status}>{label(status)}</SelectItem>)}</SelectContent>
+                  </Select>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
           <TabsContent value="messages">
             <div className="grid gap-3 pt-3">
               <div className="flex items-center justify-between">
@@ -1249,7 +1300,7 @@ function RecordSheets({ sheet, close, selected, user, insert, saveClientFile }: 
           const raw = formPayload(event.currentTarget);
           if (sheet === "student") await insert("clients", { ...raw, owner_id: user.id });
           if (sheet === "task" && selected) await insert("progress_items", { ...raw, owner_id: user.id, client_id: selected.id, priority: "normal" });
-          if (sheet === "session" && selected) await insert("sessions", { ...raw, owner_id: user.id, client_id: selected.id, duration_minutes: 50, date: raw.date || new Date().toISOString() });
+          if (sheet === "session" && selected) await insert("sessions", { ...buildSessionPayload(raw), owner_id: user.id, client_id: selected.id });
           if (sheet === "message" && selected) await insert("support_notes", { ...raw, owner_id: user.id, client_id: selected.id, source: "manual" });
           if (sheet === "file" && selected) {
             const input = event.currentTarget.elements.namedItem("file");
@@ -1280,8 +1331,14 @@ function RecordSheets({ sheet, close, selected, user, insert, saveClientFile }: 
           {sheet === "session" ? (
             <>
               <Input name="date" type="datetime-local" />
+              <Input name="duration_minutes" type="number" min="1" defaultValue="50" />
               <Input name="topic" placeholder="Topic" />
+              <Textarea name="next_actions" placeholder="Next actions" />
               <Input name="meeting_url" type="url" placeholder="Meeting URL" />
+              <Select name="confirmation_status" defaultValue="unconfirmed">
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>{confirmationStatuses.map((item) => <SelectItem value={item} key={item}>{label(item)}</SelectItem>)}</SelectContent>
+              </Select>
             </>
           ) : null}
           {sheet === "message" ? <Textarea name="message" placeholder="Message or support note" required /> : null}
