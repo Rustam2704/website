@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-copy-variant="10">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Write exactly as you would to a capable friend. I’ll understand the rough version and help turn it into useful direction.">
+    <title>10 · Capable Friend · Rustam</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"></div>
+
+    <header class="lab-toolbar">
+      <div class="lab-brand">
+        <span class="lab-dot" aria-hidden="true"></span>
+        <strong>RUSTAM</strong>
+        <span>personal technical help</span>
+      </div>
+      <nav class="lab-switcher" aria-label="Copy variant navigation">
+        <a id="previous-variant" href="index.html" aria-label="Previous copy variant">←</a>
+        <a class="lab-all" href="index.html"><span>Copy direction&nbsp;</span>10 / 20</a>
+        <a id="next-variant" href="index.html" aria-label="Next copy variant">→</a>
+      </nav>
+    </header>
+
+    <main class="experience">
+      <section class="hero-grid" aria-labelledby="hero-headline">
+        <article class="chat-panel" aria-label="Start a private conversation with Rustam">
+          <header class="chat-header">
+            <span class="avatar" aria-hidden="true">RA</span>
+            <span class="chat-person">
+              <strong>Rustam Alieskerov</strong>
+              <span>personal technical specialist · online</span>
+            </span>
+            <span class="chat-private">direct chat</span>
+          </header>
+
+          <div class="ghost-stream" aria-hidden="true">
+            <span class="ghost-line">Hi Rustam. I’m trying to formulate what I should do with my AI setup.</span>
+            <span class="ghost-line">I don’t know where to start.</span>
+            <span class="ghost-line">Everything works, but the whole process feels harder than it should.</span>
+          </div>
+
+          <div class="chat-thread" id="chat-thread" aria-live="polite">
+            <p class="message message-incoming" id="rotating-prompt">Hi Rustam. I have an idea, but honestly I do not know where to start.</p>
+          </div>
+
+          <form class="chat-composer" id="chat-form">
+            <label class="visually-hidden" for="chat-input">Your message to Rustam</label>
+            <textarea id="chat-input" rows="3" placeholder="Write the rough version…" required></textarea>
+            <div class="composer-row">
+              <p class="composer-status" id="composer-status">Local prototype · nothing leaves this browser</p>
+              <button class="send-button" type="submit">
+                <span id="send-button-label">Send this message</span>
+                <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </form>
+        </article>
+
+        <div class="promise-panel">
+          <p class="eyebrow">Talk like you would to a friend</p>
+          <h1 id="hero-headline">Arrive confused. Leave with a clear technical goal and next move.</h1>
+          <p class="support">Write exactly as you would to a capable friend. I’ll understand the rough version and help turn it into useful direction.</p>
+          <div class="clarity-path" aria-label="Expected output of the first conversation">
+            <strong>15 min</strong>
+            <span>problem → goal → next step</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-zone" aria-label="Why trust Rustam">
+        <h2 class="proof-heading">The person behind the chat</h2>
+        <div class="proof-item">
+            <strong>Rustam</strong>
+            <span>Alieskerov, also known as fanatic</span>
+          </div>
+        <div class="proof-item">
+            <strong>10+ years</strong>
+            <span>teaching programming</span>
+          </div>
+        <div class="proof-item">
+            <strong>No handoff</strong>
+            <span>direct personal consultations</span>
+          </div>
+      </section>
+    </main>
+
+    <script src="variants.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

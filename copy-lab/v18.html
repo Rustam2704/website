@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-copy-variant="18">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Talk to me like a friend. I’ll translate the messy details into a problem you can act on—and explain why it matters.">
+    <title>18 · Plain-Speaking Expert · Rustam</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"></div>
+
+    <header class="lab-toolbar">
+      <div class="lab-brand">
+        <span class="lab-dot" aria-hidden="true"></span>
+        <strong>RUSTAM</strong>
+        <span>personal technical help</span>
+      </div>
+      <nav class="lab-switcher" aria-label="Copy variant navigation">
+        <a id="previous-variant" href="index.html" aria-label="Previous copy variant">←</a>
+        <a class="lab-all" href="index.html"><span>Copy direction&nbsp;</span>18 / 20</a>
+        <a id="next-variant" href="index.html" aria-label="Next copy variant">→</a>
+      </nav>
+    </header>
+
+    <main class="experience">
+      <section class="hero-grid" aria-labelledby="hero-headline">
+        <article class="chat-panel" aria-label="Start a private conversation with Rustam">
+          <header class="chat-header">
+            <span class="avatar" aria-hidden="true">RA</span>
+            <span class="chat-person">
+              <strong>Rustam Alieskerov</strong>
+              <span>personal technical specialist · online</span>
+            </span>
+            <span class="chat-private">direct chat</span>
+          </header>
+
+          <div class="ghost-stream" aria-hidden="true">
+            <span class="ghost-line">Hi Rustam. I’m trying to formulate what I should do with my AI setup.</span>
+            <span class="ghost-line">I don’t know where to start.</span>
+            <span class="ghost-line">Everything works, but the whole process feels harder than it should.</span>
+          </div>
+
+          <div class="chat-thread" id="chat-thread" aria-live="polite">
+            <p class="message message-incoming" id="rotating-prompt">I can describe what is wrong, but every technical explanation loses me halfway through.</p>
+          </div>
+
+          <form class="chat-composer" id="chat-form">
+            <label class="visually-hidden" for="chat-input">Your message to Rustam</label>
+            <textarea id="chat-input" rows="3" placeholder="What is happening, in your own words?" required></textarea>
+            <div class="composer-row">
+              <p class="composer-status" id="composer-status">Local prototype · nothing leaves this browser</p>
+              <button class="send-button" type="submit">
+                <span id="send-button-label">Get a clear answer</span>
+                <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </form>
+        </article>
+
+        <div class="promise-panel">
+          <p class="eyebrow">Direct help. Plain language.</p>
+          <h1 id="hero-headline">No tech performance. Just clarity, judgment, and the next useful move.</h1>
+          <p class="support">Talk to me like a friend. I’ll translate the messy details into a problem you can act on—and explain why it matters.</p>
+          <div class="clarity-path" aria-label="Expected output of the first conversation">
+            <strong>15 min</strong>
+            <span>problem → goal → next step</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-zone" aria-label="Why trust Rustam">
+        <h2 class="proof-heading">Competence you can verify</h2>
+        <div class="proof-item">
+            <strong>10+ years</strong>
+            <span>teaching programming</span>
+          </div>
+        <div class="proof-item">
+            <strong>Existing work</strong>
+            <span>online school at portal.zt.ua</span>
+          </div>
+        <div class="proof-item">
+            <strong>Direct</strong>
+            <span>one-to-one work with Rustam</span>
+          </div>
+      </section>
+    </main>
+
+    <script src="variants.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
