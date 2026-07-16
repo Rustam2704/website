@@ -7,7 +7,7 @@
     <title>Fanatic Client Portal</title>
     <link rel="icon" href="../assets/favicon-portal.svg" type="image/svg+xml">
     <link rel="manifest" href="./manifest.webmanifest">
-    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-08-01">
+    <link rel="stylesheet" href="../crm/styles.css?v=2026-07-16-01">
   </head>
   <body>
     <div class="app-shell">
@@ -73,20 +73,18 @@
             <div class="panel-header">
               <div>
                 <p class="eyebrow">Home</p>
-                <h3>Next lesson and next steps</h3>
+                <h3>Your next step</h3>
               </div>
             </div>
-            <div class="student-home-grid">
+            <div class="next-action-card" id="next-action-card" aria-live="polite">
+              <p class="next-action-loading">Loading your next step...</p>
+            </div>
+            <div class="student-home-grid student-home-grid-secondary">
               <article>
                 <span>Next lesson</span>
                 <strong id="next-lesson-title">No lesson scheduled</strong>
                 <p id="next-lesson-detail">Rustam will add the next session here.</p>
                 <a class="text-action" id="next-lesson-action" href="#sessions">View sessions</a>
-              </article>
-              <article>
-                <span>Your next steps</span>
-                <div id="next-steps-list"></div>
-                <a class="text-action" href="#tasks">Open tasks</a>
               </article>
               <article>
                 <span>Current goal</span>
@@ -206,7 +204,7 @@
     </div>
 
     <script src="../crm/config.js?v=2026-07-07-1"></script>
-    <script type="module" src="./app.js?v=2026-07-08-01"></script>
+    <script type="module" src="./app.js?v=2026-07-16-01"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");

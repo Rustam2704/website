@@ -751,6 +751,134 @@ h3 {
   background: var(--line);
 }
 
+.next-action-card {
+  display: grid;
+  overflow: hidden;
+  margin-top: 18px;
+  border: 1px solid #9ac8b9;
+  border-radius: 8px;
+  background: #eef7f3;
+  box-shadow: 0 8px 24px rgba(28, 108, 90, 0.08);
+}
+
+.next-action-loading,
+.next-action-empty {
+  margin: 0;
+  padding: 20px;
+  color: var(--muted);
+}
+
+.next-action-empty {
+  display: grid;
+  gap: 8px;
+}
+
+.next-action-empty > span,
+.next-action-summary > span,
+.next-action-heading > div > span {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.next-action-empty strong {
+  color: var(--ink);
+  font-size: 22px;
+}
+
+.next-action-empty p,
+.next-action-summary p {
+  margin: 0;
+}
+
+.next-action-link {
+  width: fit-content;
+  margin-top: 4px;
+  color: var(--accent-dark);
+  font-weight: 800;
+}
+
+.next-action-summary {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+}
+
+.next-action-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 8px;
+  border-top: 1px solid #cfe2da;
+  padding-top: 16px;
+}
+
+.next-action-heading strong {
+  display: block;
+  margin-top: 4px;
+  font-size: clamp(21px, 2.4vw, 28px);
+}
+
+.next-action-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.next-action-meta span {
+  border: 1px solid #b8d5ca;
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: var(--accent-dark);
+  background: #ffffff;
+  font-size: 12px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.next-action-teacher {
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--ink);
+  background: #ffffff;
+}
+
+.next-action-form {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.32fr) minmax(260px, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  border-top: 1px solid #cfe2da;
+  padding: 16px 20px 18px;
+  background: #ffffff;
+}
+
+.next-action-form textarea {
+  min-height: 64px;
+}
+
+.next-action-form button {
+  min-height: 44px;
+  padding-inline: 20px;
+}
+
+.next-action-form button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.next-action-message {
+  grid-column: 1 / -1;
+}
+
+.student-home-grid-secondary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
 .student-home-grid article {
   min-width: 0;
   display: grid;
@@ -986,9 +1114,22 @@ h3 {
   .student-profile-metrics,
   .overview-grid,
   .student-home-grid,
+  .next-action-form,
   .inline-form,
   .record {
     grid-template-columns: 1fr;
+  }
+
+  .next-action-heading {
+    flex-direction: column;
+  }
+
+  .next-action-meta {
+    justify-content: flex-start;
+  }
+
+  .next-action-form button {
+    width: 100%;
   }
 
   .record select {
