@@ -18,6 +18,9 @@ const territoryByFilename = [
   [/scenario|pain|trigger/i, "Problem Scenarios"],
   [/short|sharp|concise/i, "Short & Sharp"],
   [/premium|calm|understated/i, "Premium & Calm"],
+  [/objection|trust|reassurance/i, "Objections & Trust"],
+  [/urgent|deadline|rescue/i, "Urgent & Practical"],
+  [/transform|before-after/i, "Transformations"],
   [/direct|bold|anti-hype/i, "Direct & Anti-Hype"],
   [/setup|workflow|systems/i, "Systems & Workflow"]
 ];
