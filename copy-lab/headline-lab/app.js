@@ -162,6 +162,7 @@
     const refinements = library.items.filter((item) => item.refinementPick);
     const challengers = library.items.filter((item) => item.batch.endsWith("challengers"));
     const challengerFinalists = library.items.filter((item) => item.challengerPick);
+    const abTests = library.items.filter((item) => item.batch.endsWith("ab-tests"));
     elements.curationNote.hidden = picks.length === 0;
     if (!picks.length) return;
     const lenses = new Set(picks.flatMap((item) => item.editorLenses || []));
@@ -169,7 +170,8 @@
     const refinementMessage = refinements.length ? ` ${refinements.length} second-pass systems also earned Refined finalist status.` : "";
     const challengerMessage = challengers.length ? ` ${challengers.length} new challengers are waiting beside them.` : "";
     const challengerFinalistMessage = challengerFinalists.length ? ` ${challengerFinalists.length} earned Challenger finalist status.` : "";
-    elements.curationNoteCopy.textContent = `${picks.length} systems were selected across ${lenses.size} independent editorial lenses; ${consensus} earned multiple votes.${refinementMessage}${challengerMessage}${challengerFinalistMessage} Start with the finalist filters, then explore Curated picks.`;
+    const abMessage = abTests.length ? ` ${abTests.length} final A/B alternatives remain deliberately unranked.` : "";
+    elements.curationNoteCopy.textContent = `${picks.length} systems were selected across ${lenses.size} independent editorial lenses; ${consensus} earned multiple votes.${refinementMessage}${challengerMessage}${challengerFinalistMessage}${abMessage} Start with the finalist filters, then explore Curated picks.`;
   }
 
   function renderFilters() {
@@ -179,13 +181,15 @@
     const refinementCount = library.items.filter((item) => item.refinementPick).length;
     const challengerCount = library.items.filter((item) => item.batch.endsWith("challengers")).length;
     const challengerFinalistCount = library.items.filter((item) => item.challengerPick).length;
-    const buttons = ["All", ...(challengerFinalistCount ? ["Challenger finalists"] : []), ...(challengerCount ? ["New challengers"] : []), ...(refinementCount ? ["Refined finalists"] : []), ...(consensusCount ? ["Consensus picks"] : []), ...(curatedCount ? ["Curated picks"] : []), ...territories];
+    const abTestCount = library.items.filter((item) => item.batch.endsWith("ab-tests")).length;
+    const buttons = ["All", ...(challengerFinalistCount ? ["Challenger finalists"] : []), ...(abTestCount ? ["Final A/B tests"] : []), ...(challengerCount ? ["New challengers"] : []), ...(refinementCount ? ["Refined finalists"] : []), ...(consensusCount ? ["Consensus picks"] : []), ...(curatedCount ? ["Curated picks"] : []), ...territories];
     const counts = Object.fromEntries(territories.map((territory) => [territory, library.items.filter((item) => item.territory === territory).length]));
     counts["Curated picks"] = curatedCount;
     counts["Consensus picks"] = consensusCount;
     counts["Refined finalists"] = refinementCount;
     counts["New challengers"] = challengerCount;
     counts["Challenger finalists"] = challengerFinalistCount;
+    counts["Final A/B tests"] = abTestCount;
     if (!buttons.includes(state.territory)) state.territory = "All";
     elements.filters.innerHTML = buttons.map((territory) => `
       <button class="territory-filter" type="button" data-territory="${escapeHtml(territory)}" aria-pressed="${territory === state.territory}">
@@ -197,12 +201,13 @@
   function renderCards() {
     const query = state.query.trim().toLowerCase();
     visibleItems = library.items.filter((item) => {
+      if (state.territory === "Final A/B tests" && !item.batch.endsWith("ab-tests")) return false;
       if (state.territory === "Challenger finalists" && !item.challengerPick) return false;
       if (state.territory === "New challengers" && !item.batch.endsWith("challengers")) return false;
       if (state.territory === "Refined finalists" && !item.refinementPick) return false;
       if (state.territory === "Consensus picks" && Number(item.editorVotes || 0) < 2) return false;
       if (state.territory === "Curated picks" && !item.editorPick) return false;
-      if (state.territory !== "All" && state.territory !== "Curated picks" && state.territory !== "Consensus picks" && state.territory !== "Refined finalists" && state.territory !== "New challengers" && state.territory !== "Challenger finalists" && item.territory !== state.territory) return false;
+      if (state.territory !== "All" && state.territory !== "Curated picks" && state.territory !== "Consensus picks" && state.territory !== "Refined finalists" && state.territory !== "New challengers" && state.territory !== "Challenger finalists" && state.territory !== "Final A/B tests" && item.territory !== state.territory) return false;
       if (state.favoritesOnly && !state.favorites.includes(item.id)) return false;
       if (!query) return true;
       return Object.values(item).join(" ").toLowerCase().includes(query);
@@ -248,13 +253,14 @@
     if (item.challengerPick) phrases.push(["Challenger note", item.challengerNote, "is-challenger-note"]);
 
     return `
-      <article class="direction-card${favorite ? " is-favorite" : ""}${item.editorPick ? " is-editor-pick" : ""}${item.refinementPick ? " is-refinement-pick" : ""}${item.batch.endsWith("challengers") ? " is-challenger" : ""}" id="direction-${escapeHtml(item.id)}" data-direction-id="${escapeHtml(item.id)}">
+      <article class="direction-card${favorite ? " is-favorite" : ""}${item.editorPick ? " is-editor-pick" : ""}${item.refinementPick ? " is-refinement-pick" : ""}${item.batch.endsWith("challengers") ? " is-challenger" : ""}${item.batch.endsWith("ab-tests") ? " is-ab-test" : ""}" id="direction-${escapeHtml(item.id)}" data-direction-id="${escapeHtml(item.id)}">
         <div class="card-topline">
           <div class="card-labels">
             <button class="direction-id direction-link" type="button" data-copy-link="${escapeHtml(item.id)}" aria-label="Copy a direct link to ${escapeHtml(item.id)}">${escapeHtml(item.id)}</button>
             ${item.editorPick ? `<span class="editor-pick-label">Curated · ${escapeHtml(item.editorScore)} · ${escapeHtml(item.editorVotes)} vote${item.editorVotes === 1 ? "" : "s"}</span>` : ""}
             ${item.refinementPick ? `<span class="refinement-pick-label">Refined · ${escapeHtml(item.refinementScore)} · ${escapeHtml(item.refinementVotes)} vote${item.refinementVotes === 1 ? "" : "s"}</span>` : ""}
             ${item.challengerPick ? `<span class="challenger-finalist-label">Challenger · ${escapeHtml(item.challengerScore)} · ${escapeHtml(item.challengerVotes)} vote${item.challengerVotes === 1 ? "" : "s"}</span>` : item.batch.endsWith("challengers") ? `<span class="challenger-label">New challenger</span>` : ""}
+            ${item.batch.endsWith("ab-tests") ? `<span class="ab-test-label">Final A/B</span>` : ""}
             <span class="direction-angle">${escapeHtml(item.territory)} · ${escapeHtml(item.angle)}</span>
           </div>
           <button class="favorite-button" type="button" data-favorite="${escapeHtml(item.id)}" aria-pressed="${favorite}" aria-label="${favorite ? "Remove from" : "Add to"} shortlist">${favorite ? "★" : "☆"}</button>

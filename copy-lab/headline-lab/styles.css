@@ -264,6 +264,10 @@
   border-color: rgba(125, 230, 173, 0.34);
 }
 
+.direction-card.is-ab-test {
+  border-color: rgba(255, 130, 104, 0.36);
+}
+
 .card-topline {
   display: flex;
   align-items: center;
@@ -330,6 +334,18 @@
   color: #06150d;
   background: var(--success);
   box-shadow: 0 0 0 3px rgba(125, 230, 173, 0.09);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ab-test-label {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 4px 7px;
+  color: #1b0905;
+  background: var(--send-light);
   font-size: 8px;
   font-weight: 900;
   letter-spacing: 0.08em;

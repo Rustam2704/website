@@ -1,0 +1,46 @@
+[
+  {
+    "angle": "Pending Request Confirmation",
+    "eyebrow": "Answer today without guessing what done means",
+    "headline": "Send the pending request; draft its confirmation line.",
+    "subheadline": "Paste the request waiting in your inbox. I'll restate the expected behavior and boundary, then draft a confirmation line you can send today.",
+    "chatStarter": "Rustam, this request is holding up work, and I need a precise reply I can send today without accepting the wrong scope.",
+    "cta": "Draft My Confirmation Line",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A pending request gains a sendable response while its meaning is still blocking work."
+  },
+  {
+    "angle": "Confirmable Acceptance Wording",
+    "eyebrow": "A calm boundary both sides can inspect",
+    "headline": "Translate the request into confirmable acceptance wording.",
+    "subheadline": "Share the original wording and surrounding constraint. Together we'll express actor, expected behavior, and boundary in language the requester can confirm or correct.",
+    "chatStarter": "Rustam, I want to confirm what this request means without sounding defensive or committing beyond what was asked.",
+    "cta": "Create Confirmable Acceptance Wording",
+    "proofLine": "Direct 1:1 guidance with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Confirmable wording replaces interpretation drift with a professional, correctable statement of scope."
+  },
+  {
+    "angle": "Action-Changing AI Claims",
+    "eyebrow": "Check the claims capable of changing what you do",
+    "headline": "Paste the AI answer; flag action-changing claims.",
+    "subheadline": "Send the answer with its source material. I'll mark which claims drive action, separate evidence from inference, and flag what needs verification now.",
+    "chatStarter": "Rustam, I am about to use this AI answer, but a wrong claim would change what I tell the team today.",
+    "cta": "Flag Action-Changing Claims",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Immediate stakes focus verification on claims capable of changing today's action."
+  },
+  {
+    "angle": "AI Evidence Map",
+    "eyebrow": "Keep useful output and visible uncertainty together",
+    "headline": "Map evidence, inference, and gaps in AI output.",
+    "subheadline": "Share the output and available sources. I'll return a compact evidence map showing supported statements, reasonable inference, and unresolved claims without discarding useful work.",
+    "chatStarter": "Rustam, this AI output may be useful, and I want a disciplined view of what it actually establishes.",
+    "cta": "Map My AI Evidence",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "An evidence map preserves useful output while making uncertainty visible and professionally manageable."
+  }
+]

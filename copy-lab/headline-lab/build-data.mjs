@@ -6,8 +6,8 @@ const directory = path.dirname(new URL(import.meta.url).pathname.replace(/^\/(?:
 const batchesDirectory = path.join(directory, "batches");
 const requiredFields = ["angle", "eyebrow", "headline", "subheadline", "chatStarter", "cta", "proofLine", "priceLine", "whyItWorks"];
 const territoryByFilename = [
-  [/conversion-(?:refinements|challengers)/i, "Outcomes & Momentum"],
-  [/voice-(?:refinements|challengers)/i, "Rustam's Voice"],
+  [/conversion-(?:refinements|challengers|ab-tests)/i, "Outcomes & Momentum"],
+  [/voice-(?:refinements|challengers|ab-tests)/i, "Rustam's Voice"],
   [/clarity|diagnosis/i, "Clarity & Diagnosis"],
   [/friend|human|partner/i, "Technical Friend"],
   [/outcome|momentum|value/i, "Outcomes & Momentum"],
