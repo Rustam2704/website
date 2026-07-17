@@ -7,6 +7,7 @@ const meta = JSON.parse(await fs.readFile(path.join(directory, "meta.json"), "ut
 const index = await fs.readFile(path.join(directory, "index.html"), "utf8");
 const app = await fs.readFile(path.join(directory, "app.js"), "utf8");
 const curation = await readOptionalJson(path.join(directory, "curation.json"), null);
+const refinementCuration = await readOptionalJson(path.join(directory, "refinement-curation.json"), null);
 const errors = [];
 const requiredFields = ["id", "territory", "angle", "eyebrow", "headline", "subheadline", "chatStarter", "cta", "proofLine", "priceLine", "whyItWorks"];
 const ids = new Set();
@@ -59,6 +60,23 @@ if (curation) {
     if (!curatedIds.has(item.id)) errors.push(`${item.id}: marked curated but absent from curation.json.`);
     if (!Number.isFinite(Number(item.editorScore)) || !Number.isFinite(Number(item.editorVotes))) errors.push(`${item.id}: invalid editor score or votes.`);
     if (!Array.isArray(item.editorLenses) || !item.editorLenses.length || !String(item.editorNote || "").trim()) errors.push(`${item.id}: incomplete editor metadata.`);
+  }
+}
+
+if (refinementCuration) {
+  if (refinementCuration.eligible !== 60) errors.push("refinement curation: expected 60 eligible systems.");
+  if (refinementCuration.count !== 15 || refinementCuration.picks?.length !== 15) errors.push("refinement curation: expected exactly 15 finalists.");
+  if (Number(refinementCuration.reviewers || 0) < 3) errors.push("refinement curation: expected at least 3 independent reviewers.");
+  const finalistIds = new Set((refinementCuration.picks || []).map((pick) => pick.id));
+  if (finalistIds.size !== (refinementCuration.picks || []).length) errors.push("refinement curation: duplicate ids.");
+  const enriched = (library.items || []).filter((item) => item.refinementPick);
+  if (enriched.length !== finalistIds.size) errors.push("refinement curation: data enrichment count does not match finalists.");
+  const representedBatches = new Set(enriched.map((item) => item.batch));
+  if (representedBatches.size !== 3) errors.push("refinement curation: all three refinement batches must be represented.");
+  for (const item of enriched) {
+    if (!finalistIds.has(item.id)) errors.push(`${item.id}: marked refinement finalist but absent from refinement-curation.json.`);
+    if (!Number.isFinite(Number(item.refinementScore)) || !Number.isFinite(Number(item.refinementVotes))) errors.push(`${item.id}: invalid refinement score or votes.`);
+    if (!Array.isArray(item.refinementLenses) || !item.refinementLenses.length || !String(item.refinementNote || "").trim()) errors.push(`${item.id}: incomplete refinement metadata.`);
   }
 }
 

@@ -1,0 +1,222 @@
+[
+  {
+    "angle": "Route With Checkpoints",
+    "eyebrow": "A useful reply should create movement",
+    "headline": "Send the snag; I'll return a route with checkpoints.",
+    "subheadline": "Write where progress stopped in your own words. I'll map a starting move, a checkpoint that tells us what changed, and the branch to take from there.",
+    "chatStarter": "Rustam, this is the part I keep circling. Here is what I tried and where movement stopped.",
+    "cta": "Send The Snag",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A route with checkpoints feels actionable while leaving room to adapt as evidence arrives."
+  },
+  {
+    "angle": "Constraint Filter",
+    "eyebrow": "Let reality narrow the field",
+    "headline": "Name the constraint; let unsuitable options fall away.",
+    "subheadline": "Paste the options and the limit none of them can violate. I'll use that constraint to remove poor fits and explain what remains.",
+    "chatStarter": "Rustam, these choices all look reasonable until I apply this constraint.",
+    "cta": "Filter My Options",
+    "proofLine": "Direct 1:1 guidance with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Filtering by a real constraint reduces choice without pretending there is a universal best answer."
+  },
+  {
+    "angle": "Bounded Success",
+    "eyebrow": "Make success small enough to inspect",
+    "headline": "Draw a small success box around the rough goal.",
+    "subheadline": "Send the goal as it currently sounds. Together we'll mark what must be true, what is outside the box, and what evidence would count as useful progress.",
+    "chatStarter": "Rustam, I know the outcome I want, but the goal keeps expanding every time I explain it.",
+    "cta": "Draw My Success Box",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The success-box metaphor turns a broad ambition into visible boundaries without shrinking its purpose."
+  },
+  {
+    "angle": "Honest Estimate",
+    "eyebrow": "A range needs a reason to change",
+    "headline": "Give the estimate a range and revision trigger.",
+    "subheadline": "Paste the estimate and what it assumes. I'll separate the steadier work from the volatile part, then name the evidence that should make the range move.",
+    "chatStarter": "Rustam, I have a number, but I do not trust the assumptions holding it together.",
+    "cta": "Make My Estimate Honest",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A range plus a revision trigger gives the client an estimate they can update instead of defend blindly."
+  },
+  {
+    "angle": "First Divergence",
+    "eyebrow": "Find where the run first changed",
+    "headline": "Trace the failed run to its first divergence.",
+    "subheadline": "Share the last known good run and the failing run. We'll compare their sequence and identify the earliest observable difference worth testing.",
+    "chatStarter": "Rustam, the same flow used to work. Here is the last good run and the first bad run I can show.",
+    "cta": "Trace The First Divergence",
+    "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The earliest divergence narrows investigation without claiming it is already the root cause."
+  },
+  {
+    "angle": "Deadline-Safe Promise",
+    "eyebrow": "Keep the promise, reduce the surface",
+    "headline": "Tight deadlines deserve a smaller promise, clearly kept.",
+    "subheadline": "Tell me what the deadline cannot move and what the client must still receive. We'll cut scope around that outcome and state the smaller promise plainly.",
+    "chatStarter": "Rustam, the date is fixed, but the current scope no longer fits it.",
+    "cta": "Protect The Smaller Promise",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "It replaces deadline panic with a specific scope conversation centered on the promise that still matters."
+  },
+  {
+    "angle": "Receiver-Ready Handoff",
+    "eyebrow": "The artifact should carry its context",
+    "headline": "Make the handoff usable without a rescue meeting.",
+    "subheadline": "Paste the handoff as the receiver sees it. I'll add the missing context, acceptance signal, and owner only where the work would otherwise stall.",
+    "chatStarter": "Rustam, I handed this over, but the same questions keep coming back to me.",
+    "cta": "Repair The Handoff",
+    "proofLine": "Direct 1:1 guidance with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The promise is practical: fewer context gaps, with the handoff itself as the first artifact to improve."
+  },
+  {
+    "angle": "Work-Creating Backlog",
+    "eyebrow": "Prioritize by downstream drag",
+    "headline": "Find the backlog item that keeps creating work.",
+    "subheadline": "Paste the crowded list and point out what keeps resurfacing in support, rework, or manual cleanup. I'll help identify the item whose delay is generating more work.",
+    "chatStarter": "Rustam, our backlog is long, but a few unresolved things keep coming back through other tasks.",
+    "cta": "Find The Work-Creating Item",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "It selects by recurring downstream cost, giving prioritization a concrete reason beyond urgency or volume."
+  },
+  {
+    "angle": "Workaround Carrying Cost",
+    "eyebrow": "Temporary fixes leave a recurring trail",
+    "headline": "The workaround reveals what maintenance really costs.",
+    "subheadline": "Describe the workaround and every recurring touch it requires. Together we'll map the time, failure points, and attention it consumes, then decide whether to contain or replace it.",
+    "chatStarter": "Rustam, this workaround works, but we keep paying for it in small interruptions.",
+    "cta": "Map The Workaround Cost",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Naming recurring maintenance turns a vague annoyance into a visible keep-or-replace tradeoff."
+  },
+  {
+    "angle": "Data Exit Map",
+    "eyebrow": "A useful choice includes the way out",
+    "headline": "Map how your data leaves the chosen tool.",
+    "subheadline": "Tell me which tool you're considering and where the important data lives. I'll trace export, ownership, dependencies, and the point where switching would become painful.",
+    "chatStarter": "Rustam, this tool is convenient now, but I need to understand what leaving it would involve.",
+    "cta": "Map My Data Exit",
+    "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The exit map makes lock-in concrete while the client still has room to choose."
+  },
+  {
+    "angle": "Observable Readiness",
+    "eyebrow": "Ready should be visible",
+    "headline": "Make launch readiness observable, not a shared feeling.",
+    "subheadline": "Share what is making launch feel unsafe. We'll turn that concern into a short set of observable checks and name what can wait.",
+    "chatStarter": "Rustam, everyone has a different feeling about whether this is ready to launch.",
+    "cta": "Make Readiness Observable",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Observable checks replace group mood with evidence while keeping the launch conversation bounded."
+  },
+  {
+    "angle": "Broken Product Promise",
+    "eyebrow": "Translate frustration into a broken moment",
+    "headline": "The complaint reveals where your product's promise breaks.",
+    "subheadline": "Paste the customer's words without cleaning them up. I'll connect the complaint to the expectation they carried and the exact moment the experience stopped matching it.",
+    "chatStarter": "Rustam, this complaint sounds emotional, but I think it points to a specific promise we failed to keep.",
+    "cta": "Trace The Broken Promise",
+    "proofLine": "Direct 1:1 guidance with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "It respects the customer's language and produces an inspectable product moment instead of a defensive reply."
+  },
+  {
+    "angle": "Recurring AI Moment",
+    "eyebrow": "Start with use, not novelty",
+    "headline": "Anchor the AI idea to a recurring moment.",
+    "subheadline": "Tell me when the user reaches for help, what context exists, and what useful change should follow. We'll anchor the AI to that moment—or learn it has no job.",
+    "chatStarter": "Rustam, I want to use AI here, but I cannot yet name the moment when it would help.",
+    "cta": "Anchor My AI Idea",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A recurring user moment gives the idea a trigger, context, and outcome without promising that AI belongs everywhere."
+  },
+  {
+    "angle": "Developer Caveat Translation",
+    "eyebrow": "Translate implementation risk into ownership",
+    "headline": "Turn a developer caveat into a client choice.",
+    "subheadline": "Paste the caveat exactly as written. I'll separate what engineering can verify from what only you can choose, then phrase that choice in plain language.",
+    "chatStarter": "Rustam, my developer sent this warning, and I am not sure what they need me to choose.",
+    "cta": "Translate The Caveat",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The result is not generic reassurance; it is the client-owned choice hiding inside implementation language."
+  },
+  {
+    "angle": "Observable Agreement",
+    "eyebrow": "Agreement needs a visible test",
+    "headline": "Turn meeting agreement into evidence everyone can recognize.",
+    "subheadline": "Paste the line everyone agreed to. Together we'll define what someone would see when it is true, who can show it, and what would disprove it.",
+    "chatStarter": "Rustam, the meeting ended in agreement, but I doubt we would recognize success the same way.",
+    "cta": "Make Agreement Observable",
+    "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "It converts polite consensus into a shared test, reducing the chance that agreement hides different expectations."
+  },
+  {
+    "angle": "Finishable Side Build",
+    "eyebrow": "Finish means serving a narrow use",
+    "headline": "Cut the side build to a finishable promise.",
+    "subheadline": "Show me what the build already does and the person it is meant to help. We'll choose a narrow promise, remove the ornamental scope, and define the evidence for done.",
+    "chatStarter": "Rustam, my side build keeps growing because every possible user suggests another feature.",
+    "cta": "Make The Build Finishable",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A narrow user promise gives the build an honest stopping point without asking the creator to abandon it."
+  },
+  {
+    "angle": "Evidence From Failure",
+    "eyebrow": "Let failure reduce uncertainty",
+    "headline": "Use the failed attempt to remove an assumption.",
+    "subheadline": "Describe what you expected, what happened, and which assumption the attempt actually touched. I'll mark what the evidence can remove and what still needs testing.",
+    "chatStarter": "Rustam, the attempt failed, but I do not want to throw away the information it produced.",
+    "cta": "Recover The Evidence",
+    "proofLine": "Direct 1:1 guidance with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The failed attempt gains value through a smaller assumption set, not through forced optimism."
+  },
+  {
+    "angle": "Human Judgment Boundary",
+    "eyebrow": "Automate repetition, preserve discernment",
+    "headline": "Separate repeatable steps from judgment calls worth keeping.",
+    "subheadline": "Paste the workflow as people perform it today. I'll mark stable rules, context-heavy choices, and the handoff where automation should ask for a human.",
+    "chatStarter": "Rustam, I want to automate this flow without flattening the parts that require experience.",
+    "cta": "Mark The Judgment Calls",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The separation produces a safer automation boundary instead of treating every manual step as waste."
+  },
+  {
+    "angle": "Role-Specific Tradeoff",
+    "eyebrow": "Make the cost legible across roles",
+    "headline": "Turn the tradeoff into consequences each person can see.",
+    "subheadline": "Name the options and the people affected. Together we'll write what each option improves, worsens, delays, and makes harder to reverse.",
+    "chatStarter": "Rustam, both options sound reasonable because different people are carrying different costs.",
+    "cta": "Map The Consequences",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Role-specific consequences make a difficult choice discussable without manufacturing certainty."
+  },
+  {
+    "angle": "Discriminating Symptom Test",
+    "eyebrow": "A useful test separates explanations",
+    "headline": "Turn the recurring symptom into a discriminating test.",
+    "subheadline": "Send examples of when the symptom appears and when it does not. I'll frame competing explanations and identify an observation that would make them diverge.",
+    "chatStarter": "Rustam, this symptom keeps returning, and every explanation seems to fit after the fact.",
+    "cta": "Design The Discriminating Test",
+    "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The test promises evidence that separates explanations, not an instant diagnosis from a single message."
+  }
+]

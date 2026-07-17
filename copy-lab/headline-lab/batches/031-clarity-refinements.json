@@ -46,7 +46,7 @@
   {
     "angle": "Focused Cause Test",
     "eyebrow": "A stuck moment can become evidence",
-    "headline": "Show the stuck point; leave with a focused test.",
+    "headline": "Show the stuck point; design a cause-separating test.",
     "subheadline": "Describe the exact step where progress stops. Together, define a small test that separates the two most plausible causes.",
     "chatStarter": "The handoff fails after approval, but I cannot tell whether permissions or missing data cause it.",
     "cta": "Design The Focused Test",
@@ -101,7 +101,7 @@
   {
     "angle": "Test With Purpose",
     "eyebrow": "Every experiment should answer something",
-    "headline": "Ask here; know what to test and why.",
+    "headline": "Ask here; choose the experiment that resolves doubt.",
     "subheadline": "Share the uncertain assumption. Rustam will define the smallest useful test, expected signal, and action each result would justify.",
     "chatStarter": "I can run several experiments, but I do not know which uncertainty should determine the test.",
     "cta": "Choose My Test",
@@ -123,7 +123,7 @@
   {
     "angle": "Checked Direction",
     "eyebrow": "Move with evidence, not borrowed certainty",
-    "headline": "This chat converts uncertainty into a checked direction.",
+    "headline": "This chat makes uncertain assumptions reviewable.",
     "subheadline": "Use the chat to separate known facts, reasonable inferences, and missing evidence, then choose a direction with a review condition.",
     "chatStarter": "I need to move this week, but I want the chosen route to show exactly what remains uncertain.",
     "cta": "Check My Direction",

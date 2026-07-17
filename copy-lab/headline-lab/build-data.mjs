@@ -6,6 +6,8 @@ const directory = path.dirname(new URL(import.meta.url).pathname.replace(/^\/(?:
 const batchesDirectory = path.join(directory, "batches");
 const requiredFields = ["angle", "eyebrow", "headline", "subheadline", "chatStarter", "cta", "proofLine", "priceLine", "whyItWorks"];
 const territoryByFilename = [
+  [/conversion-refinements/i, "Outcomes & Momentum"],
+  [/voice-refinements/i, "Rustam's Voice"],
   [/clarity|diagnosis/i, "Clarity & Diagnosis"],
   [/friend|human|partner/i, "Technical Friend"],
   [/outcome|momentum|value/i, "Outcomes & Momentum"],
@@ -100,6 +102,22 @@ items.forEach((item) => {
   item.editorVotes = pick.votes;
   item.editorLenses = pick.lenses;
   item.editorNote = pick.note;
+});
+
+const refinementCuration = await readOptionalJson(path.join(directory, "refinement-curation.json"), { picks: [] });
+const refinementPicks = new Map((refinementCuration.picks || []).map((pick) => [pick.id, pick]));
+for (const id of refinementPicks.keys()) {
+  if (!items.some((item) => item.id === id)) throw new Error(`refinement-curation.json: unknown headline id ${id}.`);
+}
+
+items.forEach((item) => {
+  const pick = refinementPicks.get(item.id);
+  if (!pick) return;
+  item.refinementPick = true;
+  item.refinementScore = pick.score;
+  item.refinementVotes = pick.votes;
+  item.refinementLenses = pick.lenses;
+  item.refinementNote = pick.note;
 });
 
 const canonicalItems = JSON.stringify(items);
