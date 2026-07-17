@@ -29,6 +29,10 @@ for (const [indexNumber, item] of (library.items || []).entries()) {
   headlines.add(normalizedHeadline);
 
   if (String(item.headline || "").trim().split(/\s+/).length > 16) errors.push(`${item.id}: headline is too long.`);
+  const fieldLimits = { eyebrow: 12, subheadline: 30, chatStarter: 30, cta: 6, proofLine: 18, whyItWorks: 18 };
+  for (const [field, limit] of Object.entries(fieldLimits)) {
+    if (String(item[field] || "").trim().split(/\s+/).filter(Boolean).length > limit) errors.push(`${item.id}: ${field} is too long.`);
+  }
   if (item.priceLine !== "$400–$520 a month") errors.push(`${item.id}: wrong monthly offer.`);
   if (/\$100|\$130/.test(JSON.stringify(item))) errors.push(`${item.id}: legacy pricing remains.`);
 }

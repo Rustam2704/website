@@ -13,6 +13,8 @@ const territoryByFilename = [
   [/learning|mentor/i, "Learning & Mentorship"],
   [/decision|strategy/i, "Decisions & Strategy"],
   [/builder|founder|creator|team/i, "Builders & Teams"],
+  [/chat|conversation|message/i, "Chat-First Experience"],
+  [/distinctive|metaphor|memorable/i, "Distinctive & Memorable"],
   [/direct|bold|anti-hype/i, "Direct & Anti-Hype"],
   [/setup|workflow|systems/i, "Systems & Workflow"]
 ];
@@ -46,6 +48,12 @@ for (const filename of files) {
 
     const headlineWords = item.headline.trim().split(/\s+/).length;
     if (headlineWords > 16) throw new Error(`${filename} item ${index + 1}: headline has ${headlineWords} words.`);
+
+    const limits = { eyebrow: 12, subheadline: 30, chatStarter: 30, cta: 6, proofLine: 18, whyItWorks: 18 };
+    for (const [field, limit] of Object.entries(limits)) {
+      const words = wordCount(item[field]);
+      if (words > limit) throw new Error(`${filename} item ${index + 1}: ${field} has ${words} words (max ${limit}).`);
+    }
 
     const normalizedHeadline = normalize(item.headline);
     if (headlines.has(normalizedHeadline)) throw new Error(`${filename} item ${index + 1}: duplicate headline “${item.headline}”.`);
@@ -83,4 +91,8 @@ function inferTerritory(filename) {
 
 function normalize(value) {
   return String(value).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function wordCount(value) {
+  return String(value).trim().split(/\s+/).filter(Boolean).length;
 }

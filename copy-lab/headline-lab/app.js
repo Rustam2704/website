@@ -126,10 +126,11 @@
   function renderFilters() {
     const territories = [...new Set(library.items.map((item) => item.territory))].sort();
     const buttons = ["All", ...territories];
+    const counts = Object.fromEntries(territories.map((territory) => [territory, library.items.filter((item) => item.territory === territory).length]));
     if (!buttons.includes(state.territory)) state.territory = "All";
     elements.filters.innerHTML = buttons.map((territory) => `
       <button class="territory-filter" type="button" data-territory="${escapeHtml(territory)}" aria-pressed="${territory === state.territory}">
-        ${escapeHtml(territory)}${territory === "All" ? ` · ${library.items.length}` : ""}
+        ${escapeHtml(territory)} · ${territory === "All" ? library.items.length : counts[territory]}
       </button>
     `).join("");
   }
