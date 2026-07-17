@@ -6,6 +6,7 @@ const library = JSON.parse(await fs.readFile(path.join(directory, "data.json"), 
 const stopwords = new Set(["a", "an", "and", "as", "at", "before", "for", "from", "get", "in", "into", "it", "of", "on", "one", "or", "the", "to", "with", "without", "you", "your"]);
 const riskyClaims = /guaranteed|best in|world-class|instant results?|perfect solution|always works|zero risk|100%/i;
 const pairs = [];
+const iterationPairs = [];
 const issues = [];
 
 for (const [index, item] of library.items.entries()) {
@@ -18,6 +19,9 @@ for (const [index, item] of library.items.entries()) {
     const other = library.items[otherIndex];
     const similarity = jaccard(tokens(item.headline), tokens(other.headline));
     if (similarity >= 0.66) pairs.push({ left: item.id, right: other.id, similarity, a: item.headline, b: other.headline });
+    if (similarity >= 0.5 && (isIteration(item) || isIteration(other))) {
+      iterationPairs.push({ left: item.id, right: other.id, similarity, a: item.headline, b: other.headline });
+    }
   }
 }
 
@@ -28,6 +32,11 @@ console.log(`High-overlap headline pairs: ${pairs.length}.`);
 pairs.slice(0, 30).forEach((pair) => {
   console.log(`${pair.left}/${pair.right} ${(pair.similarity * 100).toFixed(0)}%\n  ${pair.a}\n  ${pair.b}`);
 });
+console.log(`Strict iteration-overlap pairs: ${iterationPairs.length}.`);
+iterationPairs.slice(0, 20).forEach((pair) => {
+  console.log(`${pair.left}/${pair.right} ${(pair.similarity * 100).toFixed(0)}%\n  ${pair.a}\n  ${pair.b}`);
+});
+if (iterationPairs.length) issues.push(`Strict iteration audit found ${iterationPairs.length} headline pair(s) at or above 50% similarity.`);
 
 if (issues.length) {
   console.error(issues.join("\n"));
@@ -44,4 +53,8 @@ function jaccard(left, right) {
   const intersection = [...left].filter((word) => right.has(word)).length;
   const union = new Set([...left, ...right]).size;
   return union ? intersection / union : 0;
+}
+
+function isIteration(item) {
+  return /(?:refinements|challengers|ab-tests)$/.test(String(item.batch));
 }

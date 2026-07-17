@@ -4,7 +4,7 @@ A growing, public-but-noindexed comparison library for Rustam's landing-page cop
 
 Each JSON file in `batches/` contributes copy sets. Run `node build-data.mjs` to validate, deduplicate, assign stable IDs, and rebuild `data.json` plus the browser fallback `data.js`. Run `node validate.mjs` before publishing.
 
-Run `node audit-data.mjs` to surface unusually similar headlines and reject inflated or unverified claim language before a release.
+Run `node audit-data.mjs` to surface unusually similar headlines and reject inflated or unverified claim language before a release. Iteration batches (`refinements`, `challengers`, and `ab-tests`) use a stricter 50% token-overlap ceiling.
 
 Editorial workflow:
 
