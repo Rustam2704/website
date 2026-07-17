@@ -15,6 +15,9 @@ const territoryByFilename = [
   [/builder|founder|creator|team/i, "Builders & Teams"],
   [/chat|conversation|message/i, "Chat-First Experience"],
   [/distinctive|metaphor|memorable/i, "Distinctive & Memorable"],
+  [/scenario|pain|trigger/i, "Problem Scenarios"],
+  [/short|sharp|concise/i, "Short & Sharp"],
+  [/premium|calm|understated/i, "Premium & Calm"],
   [/direct|bold|anti-hype/i, "Direct & Anti-Hype"],
   [/setup|workflow|systems/i, "Systems & Workflow"]
 ];

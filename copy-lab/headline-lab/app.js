@@ -26,6 +26,7 @@
 
   bindControls();
   renderAll();
+  restoreLinkedDirection();
   window.setInterval(checkForUpdates, REFRESH_INTERVAL);
 
   function bindControls() {
@@ -93,6 +94,17 @@
         if (!item) return;
         await copyText(formatCopySystem(item));
         showToast(`${item.id} copied`);
+        return;
+      }
+
+      const copyLink = event.target.closest("[data-copy-link]");
+      if (copyLink) {
+        const id = copyLink.dataset.copyLink;
+        const url = new URL(window.location.href);
+        url.hash = `direction-${id}`;
+        await copyText(url.toString());
+        window.history.replaceState(null, "", url);
+        showToast(`${id} link copied`);
       }
     });
 
@@ -171,10 +183,10 @@
     ];
 
     return `
-      <article class="direction-card${favorite ? " is-favorite" : ""}" data-direction-id="${escapeHtml(item.id)}">
+      <article class="direction-card${favorite ? " is-favorite" : ""}" id="direction-${escapeHtml(item.id)}" data-direction-id="${escapeHtml(item.id)}">
         <div class="card-topline">
           <div class="card-labels">
-            <span class="direction-id">${escapeHtml(item.id)}</span>
+            <button class="direction-id direction-link" type="button" data-copy-link="${escapeHtml(item.id)}" aria-label="Copy a direct link to ${escapeHtml(item.id)}">${escapeHtml(item.id)}</button>
             <span class="direction-angle">${escapeHtml(item.territory)} · ${escapeHtml(item.angle)}</span>
           </div>
           <button class="favorite-button" type="button" data-favorite="${escapeHtml(item.id)}" aria-pressed="${favorite}" aria-label="${favorite ? "Remove from" : "Add to"} shortlist">${favorite ? "★" : "☆"}</button>
@@ -213,6 +225,18 @@
     saveState();
     renderSummary();
     renderCards();
+  }
+
+  function restoreLinkedDirection() {
+    if (!window.location.hash.startsWith("#direction-H")) return;
+    const id = window.location.hash.replace("#direction-", "");
+    if (library.items.some((item) => item.id === id) && !document.querySelector(window.location.hash)) {
+      state.query = "";
+      state.territory = "All";
+      state.favoritesOnly = false;
+      renderAll();
+    }
+    window.requestAnimationFrame(() => document.querySelector(window.location.hash)?.scrollIntoView({ block: "center" }));
   }
 
   async function checkForUpdates() {

@@ -256,6 +256,21 @@
   white-space: nowrap;
 }
 
+.direction-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.direction-link:hover,
+.direction-link:focus-visible {
+  color: var(--text);
+  outline: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .favorite-button {
   width: 36px;
   height: 36px;
