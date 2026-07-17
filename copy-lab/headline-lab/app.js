@@ -12,6 +12,7 @@
     search: document.querySelector("#headline-search"),
     sort: document.querySelector("#headline-sort"),
     favoritesOnly: document.querySelector("#favorites-only"),
+    compactMode: document.querySelector("#compact-mode"),
     random: document.querySelector("#random-direction"),
     copyShortlist: document.querySelector("#copy-shortlist"),
     filters: document.querySelector("#territory-filters"),
@@ -43,6 +44,12 @@
       state.favoritesOnly = !state.favoritesOnly;
       saveState();
       renderAll();
+    });
+
+    elements.compactMode?.addEventListener("click", () => {
+      state.compact = !state.compact;
+      saveState();
+      renderSummary();
     });
 
     elements.random?.addEventListener("click", () => {
@@ -109,6 +116,9 @@
     elements.updatedAt.textContent = formatDate(library.updatedAt);
     elements.favoritesOnly.setAttribute("aria-pressed", String(state.favoritesOnly));
     elements.favoritesOnly.textContent = state.favoritesOnly ? "Showing shortlist" : "Shortlist only";
+    elements.compactMode.setAttribute("aria-pressed", String(state.compact));
+    elements.compactMode.textContent = state.compact ? "Full cards" : "Compact scan";
+    document.body.classList.toggle("is-compact", state.compact);
     if (elements.search && elements.search.value !== state.query) elements.search.value = state.query;
     if (elements.sort) elements.sort.value = state.sort;
   }
@@ -266,6 +276,7 @@
           sort: saved.sort || "newest",
           territory: saved.territory || "All",
           favoritesOnly: Boolean(saved.favoritesOnly),
+          compact: Boolean(saved.compact),
           favorites: Array.isArray(saved.favorites) ? saved.favorites : [],
           notes: saved.notes && typeof saved.notes === "object" ? saved.notes : {}
         };
@@ -273,7 +284,7 @@
     } catch (error) {
       console.warn("Could not read headline lab preferences.", error);
     }
-    return { query: "", sort: "newest", territory: "All", favoritesOnly: false, favorites: [], notes: {} };
+    return { query: "", sort: "newest", territory: "All", favoritesOnly: false, compact: false, favorites: [], notes: {} };
   }
 
   function saveState() {
@@ -281,6 +292,7 @@
       sort: state.sort,
       territory: state.territory,
       favoritesOnly: state.favoritesOnly,
+      compact: state.compact,
       favorites: state.favorites,
       notes: state.notes
     }));

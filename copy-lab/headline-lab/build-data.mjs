@@ -12,6 +12,7 @@ const territoryByFilename = [
   [/ai|automation/i, "AI & Automation"],
   [/learning|mentor/i, "Learning & Mentorship"],
   [/decision|strategy/i, "Decisions & Strategy"],
+  [/builder|founder|creator|team/i, "Builders & Teams"],
   [/direct|bold|anti-hype/i, "Direct & Anti-Hype"],
   [/setup|workflow|systems/i, "Systems & Workflow"]
 ];

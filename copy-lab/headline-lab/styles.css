@@ -102,7 +102,7 @@
   z-index: 15;
   top: 48px;
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) 190px auto auto auto;
+  grid-template-columns: minmax(240px, 1fr) 190px repeat(4, auto);
   gap: 10px;
   align-items: end;
   margin-top: 18px;
@@ -408,6 +408,27 @@
   text-align: center;
 }
 
+.is-compact .direction-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.is-compact .direction-card {
+  gap: 13px;
+  padding: 18px;
+}
+
+.is-compact .copy-system h2 {
+  max-width: 17ch;
+  font-size: clamp(25px, 2.45vw, 35px);
+  line-height: 1;
+}
+
+.is-compact .direction-subheadline,
+.is-compact .phrase-list,
+.is-compact .card-footer {
+  display: none;
+}
+
 .copy-toast {
   position: fixed;
   z-index: 50;
@@ -431,11 +452,15 @@
 
 @media (max-width: 1080px) {
   .library-controls {
-    grid-template-columns: minmax(240px, 1fr) 180px repeat(3, auto);
+    grid-template-columns: minmax(240px, 1fr) 180px repeat(4, auto);
   }
 
   .direction-grid {
     grid-template-columns: 1fr;
+  }
+
+  .is-compact .direction-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .copy-system h2 {
@@ -509,6 +534,10 @@
 
   .direction-card {
     padding: 18px;
+  }
+
+  .is-compact .direction-grid {
+    grid-template-columns: 1fr;
   }
 
   .copy-system h2 {
