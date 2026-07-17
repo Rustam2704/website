@@ -4,6 +4,7 @@
   const state = loadState();
   let library = normalizeLibrary(window.HEADLINE_LAB);
   let visibleItems = [];
+  let renderLimit = state.compact ? 120 : 60;
   let toastTimer = 0;
 
   const elements = {
@@ -16,6 +17,7 @@
     random: document.querySelector("#random-direction"),
     copyShortlist: document.querySelector("#copy-shortlist"),
     filters: document.querySelector("#territory-filters"),
+    loadMore: document.querySelector("#load-more"),
     totalCount: document.querySelector("#total-count"),
     visibleCount: document.querySelector("#visible-count"),
     favoriteCount: document.querySelector("#favorite-count"),
@@ -32,31 +34,41 @@
   function bindControls() {
     elements.search?.addEventListener("input", (event) => {
       state.query = event.target.value;
+      resetRenderLimit();
       renderCards();
     });
 
     elements.sort?.addEventListener("change", (event) => {
       state.sort = event.target.value;
       saveState();
+      resetRenderLimit();
       renderCards();
     });
 
     elements.favoritesOnly?.addEventListener("click", () => {
       state.favoritesOnly = !state.favoritesOnly;
       saveState();
+      resetRenderLimit();
       renderAll();
     });
 
     elements.compactMode?.addEventListener("click", () => {
       state.compact = !state.compact;
       saveState();
+      resetRenderLimit();
       renderSummary();
+      renderCards();
     });
 
     elements.random?.addEventListener("click", () => {
       if (!visibleItems.length) return;
       const item = visibleItems[Math.floor(Math.random() * visibleItems.length)];
-      document.querySelector(`[data-direction-id="${item.id}"]`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const itemIndex = visibleItems.findIndex((entry) => entry.id === item.id);
+      if (itemIndex >= renderLimit) {
+        renderLimit = itemIndex + 1;
+        renderCards();
+      }
+      window.requestAnimationFrame(() => document.querySelector(`[data-direction-id="${item.id}"]`)?.scrollIntoView({ behavior: "smooth", block: "center" }));
     });
 
     elements.copyShortlist?.addEventListener("click", async () => {
@@ -71,7 +83,13 @@
       if (!button) return;
       state.territory = button.dataset.territory;
       saveState();
+      resetRenderLimit();
       renderAll();
+    });
+
+    elements.loadMore?.addEventListener("click", () => {
+      renderLimit += state.compact ? 120 : 60;
+      renderCards();
     });
 
     elements.grid?.addEventListener("click", async (event) => {
@@ -169,7 +187,11 @@
     elements.visibleCount.textContent = visibleItems.length;
     elements.favoriteCount.textContent = state.favorites.length;
     elements.empty.hidden = visibleItems.length > 0;
-    elements.grid.innerHTML = visibleItems.map(renderCard).join("");
+    const renderedItems = visibleItems.slice(0, renderLimit);
+    elements.grid.innerHTML = renderedItems.map(renderCard).join("");
+    const remaining = Math.max(0, visibleItems.length - renderedItems.length);
+    elements.loadMore.hidden = remaining === 0;
+    elements.loadMore.textContent = remaining ? `Load ${Math.min(remaining, state.compact ? 120 : 60)} more · ${remaining} remaining` : "All matching directions loaded";
   }
 
   function renderCard(item) {
@@ -234,9 +256,14 @@
       state.query = "";
       state.territory = "All";
       state.favoritesOnly = false;
+      renderLimit = library.items.length;
       renderAll();
     }
     window.requestAnimationFrame(() => document.querySelector(window.location.hash)?.scrollIntoView({ block: "center" }));
+  }
+
+  function resetRenderLimit() {
+    renderLimit = state.compact ? 120 : 60;
   }
 
   async function checkForUpdates() {
