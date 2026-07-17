@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="A growing laboratory of headline and supporting-copy directions for Rustam's personal technical mentorship website.">
+    <title>Rustam · Headline Lab</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"></div>
+
+    <header class="lab-toolbar headline-toolbar">
+      <div class="lab-brand">
+        <span class="lab-dot" aria-hidden="true"></span>
+        <strong>RUSTAM / HEADLINE LAB</strong>
+        <span>growing copy library</span>
+      </div>
+      <nav class="toolbar-links" aria-label="Copy lab navigation">
+        <a href="../index.html">Original 20</a>
+        <span id="sync-status">Live library</span>
+      </nav>
+    </header>
+
+    <main class="headline-lab">
+      <header class="headline-intro">
+        <p class="eyebrow">Text first · one offer · many angles</p>
+        <h1>Find the sentence that makes the right client stop.</h1>
+        <p class="intro-copy">
+          Every direction includes the full opening system: headline, support line, first chat message,
+          CTA, proof, and the <strong>$400–$520 monthly offer</strong>.
+        </p>
+      </header>
+
+      <section class="library-summary" aria-label="Library summary">
+        <div><strong id="total-count">0</strong><span>directions</span></div>
+        <div><strong id="visible-count">0</strong><span>shown</span></div>
+        <div><strong id="favorite-count">0</strong><span>shortlisted</span></div>
+        <div><strong id="updated-at">—</strong><span>last update</span></div>
+      </section>
+
+      <section class="library-controls" aria-label="Filter and sort headline directions">
+        <label class="search-box" for="headline-search">
+          <span>Search every phrase</span>
+          <input id="headline-search" type="search" placeholder="Try: clarity, AI, next step…" autocomplete="off">
+        </label>
+
+        <label class="sort-box" for="headline-sort">
+          <span>Order</span>
+          <select id="headline-sort">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="shortest">Shortest headline</option>
+            <option value="favorites">Shortlist first</option>
+          </select>
+        </label>
+
+        <button class="control-button" id="favorites-only" type="button" aria-pressed="false">Shortlist only</button>
+        <button class="control-button" id="random-direction" type="button">Surprise me</button>
+        <button class="control-button export-button" id="copy-shortlist" type="button">Copy shortlist</button>
+      </section>
+
+      <nav class="territory-filters" id="territory-filters" aria-label="Filter by strategic territory"></nav>
+
+      <section class="direction-grid" id="direction-grid" aria-live="polite"></section>
+      <p class="empty-state" id="empty-state" hidden>No directions match this filter yet.</p>
+    </main>
+
+    <div class="copy-toast" id="copy-toast" role="status" aria-live="polite"></div>
+
+    <script src="data.js"></script>
+    <script src="../app.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

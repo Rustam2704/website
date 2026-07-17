@@ -158,6 +158,22 @@ a {
   padding: 0 12px;
 }
 
+.lab-live-link {
+  border: 1px solid rgba(110, 203, 255, 0.18);
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.lab-live-link:hover,
+.lab-live-link:focus-visible {
+  border-color: var(--line-strong);
+  color: var(--text);
+  background: rgba(110, 203, 255, 0.07);
+  outline: none;
+}
+
 .experience {
   width: min(1180px, calc(100% - 36px));
   min-height: calc(100svh - 48px);
