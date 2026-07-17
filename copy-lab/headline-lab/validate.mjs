@@ -8,6 +8,7 @@ const index = await fs.readFile(path.join(directory, "index.html"), "utf8");
 const app = await fs.readFile(path.join(directory, "app.js"), "utf8");
 const curation = await readOptionalJson(path.join(directory, "curation.json"), null);
 const refinementCuration = await readOptionalJson(path.join(directory, "refinement-curation.json"), null);
+const challengerCuration = await readOptionalJson(path.join(directory, "challenger-curation.json"), null);
 const errors = [];
 const requiredFields = ["id", "territory", "angle", "eyebrow", "headline", "subheadline", "chatStarter", "cta", "proofLine", "priceLine", "whyItWorks"];
 const ids = new Set();
@@ -80,9 +81,25 @@ if (refinementCuration) {
   }
 }
 
+if (challengerCuration) {
+  if (challengerCuration.eligible !== 30) errors.push("challenger curation: expected 30 eligible systems.");
+  if (challengerCuration.count !== 6 || challengerCuration.picks?.length !== 6) errors.push("challenger curation: expected exactly 6 finalists.");
+  if (Number(challengerCuration.reviewers || 0) < 3) errors.push("challenger curation: expected at least 3 independent reviewers.");
+  const finalistIds = new Set((challengerCuration.picks || []).map((pick) => pick.id));
+  if (finalistIds.size !== (challengerCuration.picks || []).length) errors.push("challenger curation: duplicate ids.");
+  const enriched = (library.items || []).filter((item) => item.challengerPick);
+  if (enriched.length !== finalistIds.size) errors.push("challenger curation: data enrichment count does not match finalists.");
+  if (new Set(enriched.map((item) => item.batch)).size !== 3) errors.push("challenger curation: all three challenger batches must be represented.");
+  for (const item of enriched) {
+    if (!finalistIds.has(item.id)) errors.push(`${item.id}: marked challenger finalist but absent from challenger-curation.json.`);
+    if (!Number.isFinite(Number(item.challengerScore)) || !Number.isFinite(Number(item.challengerVotes))) errors.push(`${item.id}: invalid challenger score or votes.`);
+    if (!Array.isArray(item.challengerLenses) || !item.challengerLenses.length || !String(item.challengerNote || "").trim()) errors.push(`${item.id}: incomplete challenger metadata.`);
+  }
+}
+
 if (!index.includes('id="direction-grid"')) errors.push("index: direction grid is missing.");
 if (!index.includes('meta name="robots" content="noindex, nofollow"')) errors.push("index: noindex is missing.");
-for (const capability of ["data-favorite", "data-copy-card", "data-note", "checkForUpdates"]) {
+for (const capability of ["data-favorite", "data-copy-card", "data-note", "checkForUpdates", "Refined finalists", "Consensus picks", "New challengers"]) {
   if (!app.includes(capability)) errors.push(`app: ${capability} capability is missing.`);
 }
 

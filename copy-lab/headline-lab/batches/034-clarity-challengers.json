@@ -1,0 +1,112 @@
+[
+  {
+    "angle": "Shared Working Brief",
+    "eyebrow": "Turn an unpolished message into shared working context",
+    "headline": "Message Rustam, get a brief others can use.",
+    "subheadline": "Write the messy version. Rustam will return five lines: situation, desired change, binding constraint, open unknown, and first check.",
+    "chatStarter": "Rustam, I need to explain why this AI handoff fails without forwarding our entire chat history.",
+    "cta": "Build My Shared Brief",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A fixed five-line artifact makes clarification portable across clients, teammates, and developers."
+  },
+  {
+    "angle": "Caveat Ownership Map",
+    "eyebrow": "Turn implementation warnings into accountable client action",
+    "headline": "Send me the caveat, assign its owner.",
+    "subheadline": "Paste the warning unchanged. I'll label verified fact, unresolved condition, client-owned choice, and the person accountable for follow-through.",
+    "chatStarter": "Rustam, my developer says this is risky, but I cannot tell who must choose or act.",
+    "cta": "Assign The Caveat Owner",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Four labels expose where engineering ends and client responsibility begins."
+  },
+  {
+    "angle": "Prediction Split",
+    "eyebrow": "Make competing explanations predict different observations",
+    "headline": "Chat with Rustam, find evidence that separates causes.",
+    "subheadline": "Share two examples and two counterexamples. Rustam will build competing prediction columns, then choose the cheapest observation on which they disagree.",
+    "chatStarter": "Rustam, the sync fails unpredictably, and every explanation seems plausible after the fact.",
+    "cta": "Separate My Explanations",
+    "proofLine": "Direct 1:1 guidance from Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Prediction columns turn vague causes into an affordable observation that can reject a cause."
+  },
+  {
+    "angle": "Continuity Threshold",
+    "eyebrow": "Let the problem earn ongoing support",
+    "headline": "Chat with me, pay only when continuity helps.",
+    "subheadline": "Use the free fit check. I'll score continuity on retained context, follow-up evidence, and recurring judgment; without those, I'll recommend a concise answer.",
+    "chatStarter": "Rustam, I need help now, but I do not know whether value continues after the first answer.",
+    "cta": "Test Whether Continuity Helps",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Three continuity tests make monthly support conditional on value the first answer cannot provide."
+  },
+  {
+    "angle": "Transferable Judgment",
+    "eyebrow": "Every answer should survive beyond its original case",
+    "headline": "Rustam's replies build judgment you reuse alone.",
+    "subheadline": "Each reply ends with a rule, its exception, and a transfer question you apply to a different case without Rustam.",
+    "chatStarter": "Rustam, help me choose this workflow, then show me how to judge a similar choice independently.",
+    "cta": "Build Reusable Judgment",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Rule, exception, and transfer question convert advice into independent capability."
+  },
+  {
+    "angle": "Observable Fit",
+    "eyebrow": "Let improvement establish fit",
+    "headline": "Message Rustam, test whether clarity earns support.",
+    "subheadline": "After the free chat, test three outputs: a sharper problem, a named evidence target, and a boundary that removes irrelevant work.",
+    "chatStarter": "Rustam, I want to see whether our conversation materially improves this problem before I choose ongoing help.",
+    "cta": "Test Clarity With Rustam",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Three visible outputs make fit observable instead of relying on rapport or reassurance."
+  },
+  {
+    "angle": "Monthly Proof Ledger",
+    "eyebrow": "Ongoing value should leave visible evidence",
+    "headline": "Ask Rustam, define proof that earns the month.",
+    "subheadline": "Rustam will set a four-line ledger: monthly question, changed action, avoided rework, and review date. Empty lines trigger a scope reset.",
+    "chatStarter": "Rustam, what would we record each month to know whether your support is changing my work?",
+    "cta": "Define My Proof Ledger",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "An explicit ledger ties recurring fees to changed work and prompts correction when value disappears."
+  },
+  {
+    "angle": "Awkward-Line Contrast",
+    "eyebrow": "Compare the polished story with the sentence you withheld",
+    "headline": "Send me the awkward line, uncover its cost.",
+    "subheadline": "Paste the polished version beside the awkward line. I'll mark the changed actor, hidden consequence, and constraint the official story omitted.",
+    "chatStarter": "Officially, adoption is slow. Awkwardly, our team does not trust the results enough to show clients.",
+    "cta": "Compare The Two Versions",
+    "proofLine": "Direct 1:1 work with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Side-by-side wording reveals which consequence disappears when the situation gets polished."
+  },
+  {
+    "angle": "Promise-Safe Fallback",
+    "eyebrow": "Protect what the customer must still receive",
+    "headline": "Message Rustam, protect the deadline with a fallback.",
+    "subheadline": "Name the immovable date. Rustam will define the minimum customer promise, latest safe switch time, fallback delivery, and notification line.",
+    "chatStarter": "Rustam, the launch date stays, but the integration may fail and customers still need a usable result.",
+    "cta": "Build My Deadline Fallback",
+    "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Four fallback elements protect the customer promise when the preferred route becomes unsafe."
+  },
+  {
+    "angle": "Testable Disagreement",
+    "eyebrow": "Candor should include a path to revision",
+    "headline": "Get testable disagreement in Rustam's direct reply.",
+    "subheadline": "Rustam will steelman your preferred option, name its weakest assumption, then set rescue evidence and a stop condition you can observe.",
+    "chatStarter": "Rustam, challenge my plan fairly and show what evidence would make you withdraw the objection.",
+    "cta": "Test The Disagreement",
+    "proofLine": "Recommendations include assumptions, evidence, and conditions for revision.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Steelman, falsifier, and stop condition make disagreement useful without turning it into authority."
+  }
+]

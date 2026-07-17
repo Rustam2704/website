@@ -260,6 +260,10 @@
   box-shadow: 0 20px 64px rgba(255, 96, 111, 0.07);
 }
 
+.direction-card.is-challenger {
+  border-color: rgba(125, 230, 173, 0.34);
+}
+
 .card-topline {
   display: flex;
   align-items: center;
@@ -307,12 +311,41 @@
   text-transform: uppercase;
 }
 
+.challenger-label {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 4px 7px;
+  color: #06150d;
+  background: var(--success);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.challenger-finalist-label {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 4px 7px;
+  color: #06150d;
+  background: var(--success);
+  box-shadow: 0 0 0 3px rgba(125, 230, 173, 0.09);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .phrase-row.is-editor-note .phrase-value {
   color: var(--blue);
 }
 
 .phrase-row.is-refinement-note .phrase-value {
   color: var(--send-light);
+}
+
+.phrase-row.is-challenger-note .phrase-value {
+  color: var(--success);
 }
 
 .direction-angle {

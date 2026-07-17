@@ -120,6 +120,22 @@ items.forEach((item) => {
   item.refinementNote = pick.note;
 });
 
+const challengerCuration = await readOptionalJson(path.join(directory, "challenger-curation.json"), { picks: [] });
+const challengerPicks = new Map((challengerCuration.picks || []).map((pick) => [pick.id, pick]));
+for (const id of challengerPicks.keys()) {
+  if (!items.some((item) => item.id === id)) throw new Error(`challenger-curation.json: unknown headline id ${id}.`);
+}
+
+items.forEach((item) => {
+  const pick = challengerPicks.get(item.id);
+  if (!pick) return;
+  item.challengerPick = true;
+  item.challengerScore = pick.score;
+  item.challengerVotes = pick.votes;
+  item.challengerLenses = pick.lenses;
+  item.challengerNote = pick.note;
+});
+
 const canonicalItems = JSON.stringify(items);
 const revision = crypto.createHash("sha256").update(canonicalItems).digest("hex").slice(0, 12);
 const library = {

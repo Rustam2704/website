@@ -1,0 +1,112 @@
+[
+  {
+    "angle": "Confirmation Sentence",
+    "eyebrow": "Turn inbox ambiguity into something both sides can confirm",
+    "headline": "Paste the vague request; draft a confirmation sentence.",
+    "subheadline": "Paste the request exactly as received. I'll restate the expected behavior and boundary in a sentence the sender can confirm or correct.",
+    "chatStarter": "Rustam, this request landed today, and I cannot act without either overcommitting or asking a dozen unfocused questions.",
+    "cta": "Draft The Confirmation Sentence",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A confirmation sentence creates immediate progress and exposes misunderstanding before work expands."
+  },
+  {
+    "angle": "Vendor Proof Criteria",
+    "eyebrow": "Replace persuasive claims with observable checks",
+    "headline": "Bring the vendor claim; leave with proof criteria.",
+    "subheadline": "Paste the claim and the conditions you expect. I'll translate it into observable behavior, evidence to request, and a failure case worth testing.",
+    "chatStarter": "Rustam, the vendor wants an answer this week, but the demo does not prove how their promise survives our busiest day.",
+    "cta": "Test The Vendor Claim",
+    "proofLine": "Direct 1:1 guidance with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Proof criteria replace sales confidence with a calm, reusable basis for choosing."
+  },
+  {
+    "angle": "Unsupported AI Leap",
+    "eyebrow": "Keep useful output, verify costly claims",
+    "headline": "Paste the AI output; mark unsupported leaps.",
+    "subheadline": "Send the output with its source material. I'll separate supported facts, plausible inference, and claims needing verification, then mark the highest-consequence gap.",
+    "chatStarter": "Rustam, this AI answer sounds coherent, but I may act on a claim I have not actually verified.",
+    "cta": "Check My AI Output",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The first exchange preserves useful work while making the riskiest unsupported leap visible."
+  },
+  {
+    "angle": "Planning Correction",
+    "eyebrow": "Recover planning value from the miss",
+    "headline": "Trace the missed deadline; write a planning correction.",
+    "subheadline": "Bring the original plan and actual sequence. We'll record the assumption, contradicting evidence, and revised rule that should shape the next estimate.",
+    "chatStarter": "Rustam, we missed the date yesterday, and blaming execution will not explain why the plan looked believable.",
+    "cta": "Write The Planning Correction",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A written correction recovers planning value from the miss without turning reflection into blame."
+  },
+  {
+    "angle": "Workaround Expiry Signal",
+    "eyebrow": "Temporary help needs a visible ending",
+    "headline": "Give the rushed workaround an expiry signal.",
+    "subheadline": "Describe what the workaround protects and what it costs. I'll define the frequency, failure, or risk that should force review, replacement, or retirement.",
+    "chatStarter": "Rustam, we shipped this workaround under pressure, and nobody knows when temporary becomes too expensive to keep.",
+    "cta": "Set The Expiry Signal",
+    "proofLine": "Direct 1:1 guidance with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "An expiry signal keeps urgent relief from quietly becoming permanent, ownerless maintenance."
+  },
+  {
+    "angle": "Wait-Work Split",
+    "eyebrow": "Measure delay before prescribing faster work",
+    "headline": "Time the slow step; separate wait from work.",
+    "subheadline": "Send the step and its timestamps if available. I'll split active work, queue time, approval wait, and retry time, then name the dominant delay.",
+    "chatStarter": "Rustam, this step keeps delaying delivery, but nobody can tell whether processing, waiting, approval, or retries consume the time.",
+    "cta": "Separate Wait From Work",
+    "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The timeline identifies the kind of delay, so improvement targets the correct mechanism."
+  },
+  {
+    "angle": "Request-To-Job",
+    "eyebrow": "Look behind the requested interface",
+    "headline": "Reframe the feature request around the user's job.",
+    "subheadline": "Paste the request in the customer's words. We'll identify the triggering situation, current struggle, desired change, and smallest evidence that the job exists.",
+    "chatStarter": "Rustam, a client wants another dashboard, but I do not know what they cannot accomplish today.",
+    "cta": "Find The User Job",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The job reframes feature pressure into a customer outcome that can be tested."
+  },
+  {
+    "angle": "Access Ownership Route",
+    "eyebrow": "Permission failures often cross invisible owners",
+    "headline": "Send the permission error; map who owns access.",
+    "subheadline": "Share the exact error, actor, and resource. I'll map the identity source, granting authority, revocation owner, and the specific access request to send.",
+    "chatStarter": "Rustam, access fails between systems, and every administrator says another account or team controls the permission.",
+    "cta": "Map Access Ownership",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "An ownership route turns a frustrating error into a precise request someone can answer."
+  },
+  {
+    "angle": "Displaced Work Price",
+    "eyebrow": "Every addition spends existing capacity",
+    "headline": "Price the new requirement in displaced work.",
+    "subheadline": "Paste the requirement and the delivery constraint. Together we'll identify the existing commitment, dependency, or quality check it displaces and make that cost visible.",
+    "chatStarter": "Rustam, this new request sounds small, but the team has no empty capacity and something else must move.",
+    "cta": "Map The Displaced Work",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Visible displacement makes scope negotiation concrete without automatically rejecting the new requirement."
+  },
+  {
+    "angle": "Scope Exclusion Line",
+    "eyebrow": "A boundary should be sendable",
+    "headline": "Write the exclusion line disputed scope needs.",
+    "subheadline": "Paste the disputed item and promised outcome. I'll draft a sentence stating what is excluded, why, and which evidence would justify reopening it.",
+    "chatStarter": "Rustam, the client assumes this behavior is included, while our team believes it sits outside the agreed scope.",
+    "cta": "Write The Exclusion Line",
+    "proofLine": "Direct 1:1 guidance with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A sendable boundary reduces ambiguity while leaving a fair, evidence-based route back into scope."
+  }
+]
