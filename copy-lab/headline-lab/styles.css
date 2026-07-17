@@ -201,6 +201,32 @@
   background: rgba(110, 203, 255, 0.08);
 }
 
+.curation-note {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin: -6px 0 22px;
+  border: 1px solid rgba(110, 203, 255, 0.22);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: var(--muted);
+  background: rgba(110, 203, 255, 0.06);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.curation-note[hidden] {
+  display: none;
+}
+
+.curation-note strong {
+  flex: 0 0 auto;
+  color: var(--blue);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .direction-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -592,6 +618,10 @@
 
   .direction-card {
     padding: 18px;
+  }
+
+  .curation-note {
+    display: grid;
   }
 
   .is-compact .direction-grid {

@@ -1,0 +1,305 @@
+{
+  "lens": "Voice & Distinctiveness",
+  "picks": [
+    {
+      "id": "H007",
+      "score": 9.8,
+      "reason": "Invites imperfect language warmly, then promises collaborative precision in a naturally conversational voice."
+    },
+    {
+      "id": "H018",
+      "score": 9.4,
+      "reason": "Removes pressure to arrive prepared while making Rustam’s diagnostic role immediately clear."
+    },
+    {
+      "id": "H050",
+      "score": 9.5,
+      "reason": "Warmly names cognitive overload and positions Rustam as calm continuity, not another process."
+    },
+    {
+      "id": "H057",
+      "score": 9.9,
+      "reason": "A memorable human metaphor makes Rustam feel helpful, patient, and personally present."
+    },
+    {
+      "id": "H067",
+      "score": 9.9,
+      "reason": "The blunt opening feels real; the promise turns embarrassment into precise, usable help."
+    },
+    {
+      "id": "H103",
+      "score": 9.4,
+      "reason": "Names the invisible mental burden, then offers one calm place to put it."
+    },
+    {
+      "id": "H333",
+      "score": 9.6,
+      "reason": "Makes continuity tangible through a fresh, specific image of questions becoming progressively deeper."
+    },
+    {
+      "id": "H126",
+      "score": 9.2,
+      "reason": "Human-centered boundaries sound responsible, practical, and more trustworthy than generic AI enthusiasm."
+    },
+    {
+      "id": "H148",
+      "score": 9.4,
+      "reason": "Plain anti-hype advice proves Rustam will protect the client’s money before selling automation."
+    },
+    {
+      "id": "H155",
+      "score": 9.4,
+      "reason": "Reframes blockers as growth without denying difficulty, sounding hopeful and professionally grounded."
+    },
+    {
+      "id": "H174",
+      "score": 9.9,
+      "reason": "Balances challenge and safety in one unforgettable promise of serious, humane mentorship."
+    },
+    {
+      "id": "H181",
+      "score": 10,
+      "reason": "Sounds exactly like a trusted technical friend: direct, personal, unpolished, and useful."
+    },
+    {
+      "id": "H182",
+      "score": 9.9,
+      "reason": "Turns uncertainty into integrity and action, differentiating Rustam through honest confidence limits."
+    },
+    {
+      "id": "H208",
+      "score": 9.6,
+      "reason": "States an unusually honest goal: stronger client judgment instead of manufactured dependence."
+    },
+    {
+      "id": "H223",
+      "score": 9,
+      "reason": "The reversal is memorable yet practical, promising a system that supports ordinary behavior."
+    },
+    {
+      "id": "H240",
+      "score": 9.1,
+      "reason": "Names a familiar private burden plainly and promises transferable clarity without jargon."
+    },
+    {
+      "id": "H250",
+      "score": 9.2,
+      "reason": "A concrete future-bill image makes technical debt understandable without sounding theatrical."
+    },
+    {
+      "id": "H264",
+      "score": 9.1,
+      "reason": "Puts the real team above architectural elegance, conveying mature judgment and care."
+    },
+    {
+      "id": "H284",
+      "score": 9.6,
+      "reason": "Names founder isolation honestly and makes direct challenge feel supportive rather than adversarial."
+    },
+    {
+      "id": "H296",
+      "score": 9.5,
+      "reason": "Protects nontechnical confidence while promising sharper questions, not a performance of expertise."
+    },
+    {
+      "id": "H305",
+      "score": 9.7,
+      "reason": "‘No client voice to perform’ is warm, disarming, memorable, and perfectly suited to chat."
+    },
+    {
+      "id": "H330",
+      "score": 9.8,
+      "reason": "A tiny, original phrase turns uncertainty from a barrier into the exact invitation."
+    },
+    {
+      "id": "H902",
+      "score": 9.5,
+      "reason": "Promises one intelligent response instead of intake burden, making personal attention immediately believable."
+    },
+    {
+      "id": "H373",
+      "score": 9,
+      "reason": "The weather metaphor feels familiar and useful, making resilience sound calm rather than dramatic."
+    },
+    {
+      "id": "H387",
+      "score": 9.1,
+      "reason": "Offers safety inside uncertainty with a restrained metaphor and a concrete next move."
+    },
+    {
+      "id": "H402",
+      "score": 9.2,
+      "reason": "Wryly names a common technical trap while promising a clear, responsible boundary."
+    },
+    {
+      "id": "H404",
+      "score": 9.4,
+      "reason": "Feels personally observed, respects limited time, and offers an achievable finish line."
+    },
+    {
+      "id": "H423",
+      "score": 9.2,
+      "reason": "Three plain words express mature technical taste and resist fashionable complexity."
+    },
+    {
+      "id": "H439",
+      "score": 9.5,
+      "reason": "Removes fear from starting the chat and makes correction feel like normal collaboration."
+    },
+    {
+      "id": "H460",
+      "score": 9.7,
+      "reason": "A balanced two-sentence promise protects ownership while making difficult thinking feel shared."
+    },
+    {
+      "id": "H462",
+      "score": 9.5,
+      "reason": "First-person restraint communicates seriousness, patience, and confidence without any performance."
+    },
+    {
+      "id": "H487",
+      "score": 9.4,
+      "reason": "Reassures non-coders without condescension and reframes plain experience as legitimate technical evidence."
+    },
+    {
+      "id": "H505",
+      "score": 9.3,
+      "reason": "Makes direct access concrete and distinguishes Rustam from agencies without naming competitors."
+    },
+    {
+      "id": "H519",
+      "score": 9.4,
+      "reason": "A crisp distinction preserves rigor under pressure and sounds like seasoned judgment."
+    },
+    {
+      "id": "H525",
+      "score": 9.2,
+      "reason": "Turns uncertainty into a humane decision rule clients can remember and use."
+    },
+    {
+      "id": "H550",
+      "score": 9.4,
+      "reason": "Respects abandoned work and promises continuity from what remains useful, not shameful restarting."
+    },
+    {
+      "id": "H565",
+      "score": 9.2,
+      "reason": "Three humane categories make overload feel sortable without pretending everything needs resolution."
+    },
+    {
+      "id": "H573",
+      "score": 9.5,
+      "reason": "One sharp question exposes bad automation without jargon, blame, or fashionable optimism."
+    },
+    {
+      "id": "H598",
+      "score": 9.5,
+      "reason": "Invites the feared detail directly, creating an immediate opening for careful personal help."
+    },
+    {
+      "id": "H601",
+      "score": 9.5,
+      "reason": "Opens with the client’s deadline and answers with protective, practical partnership."
+    },
+    {
+      "id": "H620",
+      "score": 9.7,
+      "reason": "Promises remembered context in Rustam’s own voice, making monthly continuity emotionally concrete."
+    },
+    {
+      "id": "H627",
+      "score": 9.9,
+      "reason": "The invitation feels like Telegram: personal, low-friction, selective, and confidently helpful."
+    },
+    {
+      "id": "H653",
+      "score": 9.1,
+      "reason": "‘An ordinary week’ makes workflow advice humane, realistic, and immediately credible."
+    },
+    {
+      "id": "H660",
+      "score": 9,
+      "reason": "Translates technical proposals into daily consequences, sounding practical and client-centered."
+    },
+    {
+      "id": "H661",
+      "score": 9.7,
+      "reason": "Clean contrast makes Rustam’s adaptive mentorship tangible without criticizing courses or overselling himself."
+    },
+    {
+      "id": "H667",
+      "score": 9.6,
+      "reason": "‘The same mind’ memorably expresses direct accountability across diagnosis, advice, and results."
+    },
+    {
+      "id": "H705",
+      "score": 9.3,
+      "reason": "Names direct ownership of reasoning, making trust personal, specific, and verifiable."
+    },
+    {
+      "id": "H717",
+      "score": 9.7,
+      "reason": "An unusually honest commitment rule lets the working conversation prove its own value."
+    },
+    {
+      "id": "H731",
+      "score": 9.8,
+      "reason": "Explicitly puts problem clarity before selling, creating immediate trust in the free conversation."
+    },
+    {
+      "id": "H738",
+      "score": 9.6,
+      "reason": "Invites clients to evaluate Rustam’s actual thinking before paying, not merely his claims."
+    },
+    {
+      "id": "H774",
+      "score": 9.4,
+      "reason": "Sounds like a generous personal invitation and names the hidden cost of founder-only context."
+    },
+    {
+      "id": "H776",
+      "score": 9.3,
+      "reason": "Personifies the stalled project lightly, then promises criteria, ownership, evidence, and closure."
+    },
+    {
+      "id": "H784",
+      "score": 9.6,
+      "reason": "The working-day image makes overwhelm feel understood, bounded, and immediately manageable."
+    },
+    {
+      "id": "H796",
+      "score": 9.8,
+      "reason": "A humane distinction preserves client ownership while relieving the loneliness of difficult decisions."
+    },
+    {
+      "id": "H816",
+      "score": 9.9,
+      "reason": "Rejects shame in unmistakably human language while turning missed action into useful diagnosis."
+    },
+    {
+      "id": "H831",
+      "score": 9.7,
+      "reason": "Separates learning from obedience with rare warmth, honesty, and professional maturity."
+    },
+    {
+      "id": "H842",
+      "score": 9.6,
+      "reason": "The surprising line is vivid, truthful, and directly useful for diagnosis."
+    },
+    {
+      "id": "H845",
+      "score": 9.6,
+      "reason": "‘Your tired team’ brings empathy into architecture and rejects idealized technical advice."
+    },
+    {
+      "id": "H881",
+      "score": 8.8,
+      "reason": "Makes progress visible without another meeting, connecting proof directly to the next decision."
+    },
+    {
+      "id": "H897",
+      "score": 9.2,
+      "reason": "An exit test makes mentorship independence concrete and proves Rustam is not selling dependency."
+    }
+  ]
+}

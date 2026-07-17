@@ -1,0 +1,222 @@
+[
+  {
+    "angle": "Solvable Problem",
+    "eyebrow": "Direct clarity starts in chat",
+    "headline": "Message Rustam; leave with a solvable problem.",
+    "subheadline": "Describe the situation in ordinary language. Rustam will restate the core issue, separate assumptions, and draw a boundary you can work within.",
+    "chatStarter": "Hi Rustam. Our setup keeps failing, but I cannot tell whether the tool or the process is responsible.",
+    "cta": "Frame My Problem",
+    "proofLine": "Direct 1:1 work with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Names the person, interaction, deliverable, and practical payoff without inflating the promise."
+  },
+  {
+    "angle": "Effort Filter",
+    "eyebrow": "Spend attention where it changes the outcome",
+    "headline": "This chat reveals which issue deserves effort.",
+    "subheadline": "List the competing issues. Together, compare consequence, urgency, and dependency so effort goes toward the work capable of changing the result.",
+    "chatStarter": "Three parts of the setup feel broken, and I cannot tell which deserves this week’s attention.",
+    "cta": "Focus My Effort",
+    "proofLine": "10+ years teaching programming.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The chat location and effort payoff are immediate; the mechanism explains prioritization."
+  },
+  {
+    "angle": "Message To Brief",
+    "eyebrow": "No polished intake required",
+    "headline": "Your messy message becomes a usable working brief.",
+    "subheadline": "Send the unedited version. Rustam will extract the context, goal, constraints, unknowns, and first action into a compact brief.",
+    "chatStarter": "I need to explain this to a developer, but my notes are still a disorganized paragraph.",
+    "cta": "Shape My Brief",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A messy input becomes a named, portable artifact with clear practical value."
+  },
+  {
+    "angle": "Blocker Isolation",
+    "eyebrow": "Fix the limiting cause, not nearby noise",
+    "headline": "Rustam isolates the blocker worth solving.",
+    "subheadline": "Bring the visible symptom. Rustam will test what it depends on and distinguish the limiting cause from issues that can safely wait.",
+    "chatStarter": "Work keeps stopping at the same place, but every symptom points toward a different cause.",
+    "cta": "Isolate My Blocker",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Personal guidance produces a single diagnostic target and protects effort from distraction."
+  },
+  {
+    "angle": "Focused Cause Test",
+    "eyebrow": "A stuck moment can become evidence",
+    "headline": "Show the stuck point; leave with a focused test.",
+    "subheadline": "Describe the exact step where progress stops. Together, define a small test that separates the two most plausible causes.",
+    "chatStarter": "The handoff fails after approval, but I cannot tell whether permissions or missing data cause it.",
+    "cta": "Design The Focused Test",
+    "proofLine": "Direct 1:1 guidance from Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The promise converts a concrete stuck point into a cause-separating experiment."
+  },
+  {
+    "angle": "Reality-Shaped Criteria",
+    "eyebrow": "Choose with constraints, not generic rankings",
+    "headline": "Bring your options; gain criteria shaped by reality.",
+    "subheadline": "Bring the finalists. Rustam will compare them against budget, capacity, maintenance, and reversibility, leaving criteria you can reuse.",
+    "chatStarter": "Both tools look equally capable, but our small team will have to maintain whichever we choose.",
+    "cta": "Build My Criteria",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The client receives reusable criteria grounded in the conditions that actually govern the choice."
+  },
+  {
+    "angle": "Goal Into Action",
+    "eyebrow": "Begin where the goal is still vague",
+    "headline": "Start here; shape your vague goal into action.",
+    "subheadline": "Name the change you want. Rustam will make it observable, set a useful boundary, and shape an action you can start.",
+    "chatStarter": "I want AI to improve our client workflow, but improve is still too vague to plan.",
+    "cta": "Shape My Goal",
+    "proofLine": "10+ years teaching programming.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The page location, transformation, and reason to care appear immediately and credibly."
+  },
+  {
+    "angle": "Usable Direction",
+    "eyebrow": "Personal context turns uncertainty into movement",
+    "headline": "Direct chat turns unclear work into usable direction.",
+    "subheadline": "Keep the situation in a direct thread with Rustam; clarify the outcome, constraints, and reason the chosen direction fits.",
+    "chatStarter": "I have enough information to move, but no direction feels justified by our actual constraints.",
+    "cta": "Find Usable Direction",
+    "proofLine": "Direct 1:1 work with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Direct chat is the mechanism; justified movement is the practical reward."
+  },
+  {
+    "angle": "Symptom Separation",
+    "eyebrow": "Start from what you can observe",
+    "headline": "Talk directly; separate symptoms from the real issue.",
+    "subheadline": "Describe what happens and what you expected. Rustam will separate the visible effect from the issue that actually needs attention.",
+    "chatStarter": "Customers see duplicate updates, but I do not know whether the failure begins in the CRM or our workflow.",
+    "cta": "Separate Cause From Symptom",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "A direct exchange turns observable effects into a clearer target for action."
+  },
+  {
+    "angle": "Test With Purpose",
+    "eyebrow": "Every experiment should answer something",
+    "headline": "Ask here; know what to test and why.",
+    "subheadline": "Share the uncertain assumption. Rustam will define the smallest useful test, expected signal, and action each result would justify.",
+    "chatStarter": "I can run several experiments, but I do not know which uncertainty should determine the test.",
+    "cta": "Choose My Test",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The promise includes both the experiment and the reason its result matters."
+  },
+  {
+    "angle": "Grounded Recommendation",
+    "eyebrow": "Advice built from your actual conditions",
+    "headline": "Scattered context becomes a grounded recommendation from Rustam.",
+    "subheadline": "Rustam combines your goal, current setup, constraints, and available evidence, then states the recommendation, rationale, and limits.",
+    "chatStarter": "Generic advice says to replace the platform, but our budget and current integrations may change that answer.",
+    "cta": "Ground My Recommendation",
+    "proofLine": "Direct 1:1 guidance from Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The named inputs and explicit limits make personalized advice believable rather than promotional."
+  },
+  {
+    "angle": "Checked Direction",
+    "eyebrow": "Move with evidence, not borrowed certainty",
+    "headline": "This chat converts uncertainty into a checked direction.",
+    "subheadline": "Use the chat to separate known facts, reasonable inferences, and missing evidence, then choose a direction with a review condition.",
+    "chatStarter": "I need to move this week, but I want the chosen route to show exactly what remains uncertain.",
+    "cta": "Check My Direction",
+    "proofLine": "10+ years teaching programming.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The direction is trustworthy because facts, inferences, gaps, and review conditions remain visible."
+  },
+  {
+    "angle": "Evidence-Based Move",
+    "eyebrow": "Doubt can produce useful information",
+    "headline": "Start with doubt; finish with an evidence-based move.",
+    "subheadline": "Name the doubt and its consequence. Rustam will shape a reversible action that reduces uncertainty while preserving room to correct course.",
+    "chatStarter": "I doubt this architecture will survive our real workload, but rebuilding immediately feels premature.",
+    "cta": "Shape The Evidence Move",
+    "proofLine": "Direct 1:1 work with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The promise respects uncertainty and converts it into a reversible, informative action."
+  },
+  {
+    "angle": "Constraint-Fit Advice",
+    "eyebrow": "Recommendations must survive your reality",
+    "headline": "Real constraints produce advice you can actually use.",
+    "subheadline": "Put budget, deadline, team capacity, maintenance, and risk into the conversation; advice stays inside those limits and names the tradeoff.",
+    "chatStarter": "The ideal solution is clear, but our team cannot support its maintenance or timeline.",
+    "cta": "Fit Advice To Reality",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The headline promises usable advice; the support names exactly what usable means here."
+  },
+  {
+    "angle": "Clarity Before Commitment",
+    "eyebrow": "Experience the work before choosing the month",
+    "headline": "Chat first; commit only after the problem sharpens.",
+    "subheadline": "Use the free fit check to sharpen the problem, name a useful outcome, and decide whether Rustam’s monthly support fits.",
+    "chatStarter": "I am interested in support, but I want to see whether this problem becomes clearer in conversation first.",
+    "cta": "Test The Fit",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "It reduces commitment risk by making problem improvement the first proof of fit."
+  },
+  {
+    "angle": "Explainable Setup",
+    "eyebrow": "A setup you can understand and discuss",
+    "headline": "Direct guidance makes your unclear setup explainable.",
+    "subheadline": "Map the tools, owners, handoffs, and failure points with Rustam, then describe the setup in plain language someone else can follow.",
+    "chatStarter": "I built the setup gradually, and now I cannot explain how the tools, accounts, and handoffs fit together.",
+    "cta": "Explain My Setup",
+    "proofLine": "Direct 1:1 work with Rustam.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The outcome is comprehension; the mechanism is a concrete map of the working system."
+  },
+  {
+    "angle": "Cost Driver",
+    "eyebrow": "Find what makes the symptom expensive",
+    "headline": "Message the costly symptom; uncover its true driver.",
+    "subheadline": "Describe the visible problem and its cost in time, rework, delay, or risk; Rustam will trace the driver worth addressing.",
+    "chatStarter": "This small failure looks harmless, yet it creates hours of manual correction every week.",
+    "cta": "Trace The Cost Driver",
+    "proofLine": "10+ years teaching programming.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "It links a familiar symptom to the hidden source of its operational cost."
+  },
+  {
+    "angle": "Structure From Plain Words",
+    "eyebrow": "No vocabulary test before useful thinking",
+    "headline": "Plain words become structure through Rustam’s questions.",
+    "subheadline": "Explain it as you naturally would. Rustam will ask focused questions that reveal the outcome, constraint, uncertainty, and missing distinction.",
+    "chatStarter": "I know what feels wrong, but I do not have the vocabulary to explain the system precisely.",
+    "cta": "Speak In Plain Words",
+    "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "Plain language is the entry; focused questioning supplies the missing structure."
+  },
+  {
+    "angle": "Challengeable Reasoning",
+    "eyebrow": "Direct access includes the reasoning",
+    "headline": "Work directly; receive reasoning you can challenge.",
+    "subheadline": "Rustam states the assumptions, tradeoffs, and evidence behind the recommendation, so you can question it without an intermediary.",
+    "chatStarter": "I want advice, but I also need to understand and challenge the reasoning behind it.",
+    "cta": "Question The Reasoning",
+    "proofLine": "Work directly with Rustam, 1:1.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "No-handoff access becomes valuable through reasoning the client can inspect and challenge."
+  },
+  {
+    "angle": "Provable Monthly Value",
+    "eyebrow": "Define value before choosing ongoing support",
+    "headline": "Ask Rustam; define how monthly value gets proven.",
+    "subheadline": "Use the free fit check to set a monthly question, useful outcome, evidence target, and review point with Rustam.",
+    "chatStarter": "Before paying monthly, I want to know what evidence would show that the support was useful.",
+    "cta": "Define The Value Test",
+    "proofLine": "Start with a free 15-minute fit check.",
+    "priceLine": "$400–$520 a month",
+    "whyItWorks": "The promise ties monthly value to shared evidence instead of reassurance."
+  }
+]

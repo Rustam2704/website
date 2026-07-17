@@ -6,6 +6,7 @@ const library = JSON.parse(await fs.readFile(path.join(directory, "data.json"), 
 const meta = JSON.parse(await fs.readFile(path.join(directory, "meta.json"), "utf8"));
 const index = await fs.readFile(path.join(directory, "index.html"), "utf8");
 const app = await fs.readFile(path.join(directory, "app.js"), "utf8");
+const curation = await readOptionalJson(path.join(directory, "curation.json"), null);
 const errors = [];
 const requiredFields = ["id", "territory", "angle", "eyebrow", "headline", "subheadline", "chatStarter", "cta", "proofLine", "priceLine", "whyItWorks"];
 const ids = new Set();
@@ -42,6 +43,25 @@ for (const [indexNumber, item] of (library.items || []).entries()) {
   if (/\$100|\$130/.test(JSON.stringify(item))) errors.push(`${item.id}: legacy pricing remains.`);
 }
 
+if (curation) {
+  if (curation.count !== 60 || curation.picks?.length !== 60) errors.push("curation: expected exactly 60 picks.");
+  if (Number(curation.reviewers || 0) < 3) errors.push("curation: expected at least 3 independent reviewers.");
+  const curatedIds = new Set((curation.picks || []).map((pick) => pick.id));
+  if (curatedIds.size !== (curation.picks || []).length) errors.push("curation: duplicate ids.");
+  const enriched = (library.items || []).filter((item) => item.editorPick);
+  if (enriched.length !== curatedIds.size) errors.push("curation: data enrichment count does not match picks.");
+  const curatedTerritories = new Set(enriched.map((item) => item.territory));
+  const allTerritories = new Set((library.items || []).map((item) => item.territory));
+  for (const territory of allTerritories) {
+    if (!curatedTerritories.has(territory)) errors.push(`curation: missing territory ${territory}.`);
+  }
+  for (const item of enriched) {
+    if (!curatedIds.has(item.id)) errors.push(`${item.id}: marked curated but absent from curation.json.`);
+    if (!Number.isFinite(Number(item.editorScore)) || !Number.isFinite(Number(item.editorVotes))) errors.push(`${item.id}: invalid editor score or votes.`);
+    if (!Array.isArray(item.editorLenses) || !item.editorLenses.length || !String(item.editorNote || "").trim()) errors.push(`${item.id}: incomplete editor metadata.`);
+  }
+}
+
 if (!index.includes('id="direction-grid"')) errors.push("index: direction grid is missing.");
 if (!index.includes('meta name="robots" content="noindex, nofollow"')) errors.push("index: noindex is missing.");
 for (const capability of ["data-favorite", "data-copy-card", "data-note", "checkForUpdates"]) {
@@ -53,4 +73,13 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   console.log(`Validated ${library.items.length} unique headline systems with filters, shortlist, notes, copying, and live refresh.`);
+}
+
+async function readOptionalJson(file, fallback) {
+  try {
+    return JSON.parse(await fs.readFile(file, "utf8"));
+  } catch (error) {
+    if (error?.code === "ENOENT") return fallback;
+    throw error;
+  }
 }

@@ -52,6 +52,7 @@
           <span>Order</span>
           <select id="headline-sort">
             <option value="newest">Newest first</option>
+            <option value="curated">Curated score</option>
             <option value="oldest">Oldest first</option>
             <option value="shortest">Shortest headline</option>
             <option value="favorites">Shortlist first</option>
@@ -65,6 +66,11 @@
       </section>
 
       <nav class="territory-filters" id="territory-filters" aria-label="Filter by strategic territory"></nav>
+
+      <aside class="curation-note" id="curation-note" hidden>
+        <strong>Curated picks</strong>
+        <span id="curation-note-copy"></span>
+      </aside>
 
       <section class="direction-grid" id="direction-grid" aria-live="polite"></section>
       <button class="load-more" id="load-more" type="button" hidden>Load more directions</button>

@@ -1,0 +1,305 @@
+{
+  "lens": "Conversion & Action",
+  "picks": [
+    {
+      "id": "H002",
+      "score": 9.7,
+      "reason": "Immediate fifteen-minute outcome makes the first click feel useful and low-risk."
+    },
+    {
+      "id": "H007",
+      "score": 9.6,
+      "reason": "Permission to be messy removes friction while precision supplies a credible result."
+    },
+    {
+      "id": "H026",
+      "score": 9.3,
+      "reason": "Welcomes an unfinished problem and promises a tangible brief the visitor can use."
+    },
+    {
+      "id": "H041",
+      "score": 9.5,
+      "reason": "Recognizable research fatigue, clear next-step value, and a conversational CTA align tightly."
+    },
+    {
+      "id": "H054",
+      "score": 9.4,
+      "reason": "Names costly symptom-fixing and offers root-cause clarity before another week disappears."
+    },
+    {
+      "id": "H069",
+      "score": 9.5,
+      "reason": "One message is an exceptionally small action for a sharper problem and practical move."
+    },
+    {
+      "id": "H103",
+      "score": 9.3,
+      "reason": "Directly names mental overload and makes unloading questions the immediate action."
+    },
+    {
+      "id": "H104",
+      "score": 9.6,
+      "reason": "Links clarification to avoided spending, creating credible urgency before implementation."
+    },
+    {
+      "id": "H331",
+      "score": 9.0,
+      "reason": "Connects advice to observed results, making ongoing support feel accountable and practical."
+    },
+    {
+      "id": "H121",
+      "score": 9.3,
+      "reason": "A fuzzy AI ambition becomes one bounded workflow with a visible first test."
+    },
+    {
+      "id": "H150",
+      "score": 9.2,
+      "reason": "One operational workflow this month is concrete, valuable, and believable."
+    },
+    {
+      "id": "H151",
+      "score": 9.2,
+      "reason": "Transforms a live project into personalized learning without adding a separate curriculum."
+    },
+    {
+      "id": "H169",
+      "score": 9.3,
+      "reason": "Real work is easy to bring, and applicable feedback is an immediate payoff."
+    },
+    {
+      "id": "H181",
+      "score": 9.4,
+      "reason": "Personal candor meets messy input, making the offer feel human and useful immediately."
+    },
+    {
+      "id": "H190",
+      "score": 9.7,
+      "reason": "A free fifteen-minute fit verdict sharply reduces commitment risk and invites action."
+    },
+    {
+      "id": "H220",
+      "score": 9.3,
+      "reason": "Everyone recognizes lost commitments; the promised capture path is concrete and urgent."
+    },
+    {
+      "id": "H237",
+      "score": 9.4,
+      "reason": "Repeated data entry is visceral pain with a specific, valuable workflow outcome."
+    },
+    {
+      "id": "H250",
+      "score": 9.2,
+      "reason": "Makes shortcut cost tangible before convenience quietly creates a maintenance burden."
+    },
+    {
+      "id": "H259",
+      "score": 9.4,
+      "reason": "Promises leverage: one decision can visibly unblock several stalled tasks."
+    },
+    {
+      "id": "H271",
+      "score": 9.3,
+      "reason": "Founders instantly recognize the role burden; ongoing guidance promises relief without takeover."
+    },
+    {
+      "id": "H281",
+      "score": 9.5,
+      "reason": "A developer-ready brief is tangible, time-sensitive, and directly connected to spending."
+    },
+    {
+      "id": "H308",
+      "score": 9.5,
+      "reason": "Expected versus actual is an effortless first-message formula with strong diagnostic value."
+    },
+    {
+      "id": "H319",
+      "score": 9.7,
+      "reason": "Directly attacks polishing delay and makes sending the rough version the obvious action."
+    },
+    {
+      "id": "H329",
+      "score": 9.5,
+      "reason": "Open chat captures existing intent before forms or calendars can kill momentum."
+    },
+    {
+      "id": "H902",
+      "score": 9.6,
+      "reason": "Promises one focused reply instead of homework, dramatically lowering first-message friction."
+    },
+    {
+      "id": "H364",
+      "score": 8.9,
+      "reason": "The runway metaphor makes wasted effort urgent while evidence provides a credible remedy."
+    },
+    {
+      "id": "H398",
+      "score": 9.3,
+      "reason": "A notorious developer dispute becomes a reproducible artifact anyone can inspect."
+    },
+    {
+      "id": "H404",
+      "score": 9.4,
+      "reason": "Specific two-evening scope makes finishing a side project feel immediately achievable."
+    },
+    {
+      "id": "H419",
+      "score": 9.4,
+      "reason": "Estimate anxiety meets a concrete approval outcome without demanding implementation expertise."
+    },
+    {
+      "id": "H422",
+      "score": 9.3,
+      "reason": "Sharp contrast converts research fatigue into the immediate action of eliminating options."
+    },
+    {
+      "id": "H440",
+      "score": 9.1,
+      "reason": "Compactly promises serious clarity while removing the ceremony that delays contact."
+    },
+    {
+      "id": "H470",
+      "score": 9.4,
+      "reason": "Explicitly makes the free conversation about fit, neutralizing sales pressure before contact."
+    },
+    {
+      "id": "H481",
+      "score": 9.3,
+      "reason": "A single example replaces vocabulary anxiety and provides an obvious first message."
+    },
+    {
+      "id": "H498",
+      "score": 9.6,
+      "reason": "Frames the downside as fifteen minutes, making trial feel financially safe."
+    },
+    {
+      "id": "H512",
+      "score": 9.5,
+      "reason": "Blocked-launch visitors see one specific deliverable that can reopen movement."
+    },
+    {
+      "id": "H538",
+      "score": 9.2,
+      "reason": "Protects trust while offering the deadline tradeoff visitors urgently need."
+    },
+    {
+      "id": "H543",
+      "score": 9.3,
+      "reason": "A dated proof of progress gives abandoned projects a credible restart point."
+    },
+    {
+      "id": "H552",
+      "score": 9.4,
+      "reason": "Turns estimate fear into three discussable parts and a sensible investigation."
+    },
+    {
+      "id": "H560",
+      "score": 9.5,
+      "reason": "Almost done is instantly recognizable; a finish test offers closure."
+    },
+    {
+      "id": "H573",
+      "score": 9.2,
+      "reason": "The provocative question exposes wasted automation effort and invites process diagnosis."
+    },
+    {
+      "id": "H592",
+      "score": 9.4,
+      "reason": "Names the real side-project problem and promises a simple, motivating finish line."
+    },
+    {
+      "id": "H610",
+      "score": 9.5,
+      "reason": "Invites unfinished work and promises the clearest motivating artifact: a finish line."
+    },
+    {
+      "id": "H627",
+      "score": 9.7,
+      "reason": "As-is permission plus selective questions makes sending the first message exceptionally easy."
+    },
+    {
+      "id": "H640",
+      "score": 9.1,
+      "reason": "Designers recognize late technical surprises; early cost clarity creates credible urgency."
+    },
+    {
+      "id": "H658",
+      "score": 9.3,
+      "reason": "Gives nontechnical owners repeatable approval criteria without asking them to perform expertise."
+    },
+    {
+      "id": "H672",
+      "score": 9.2,
+      "reason": "Contrasts endless information with one deciding test, creating closure and action."
+    },
+    {
+      "id": "H678",
+      "score": 9.4,
+      "reason": "Welcomes a live decision immediately and removes presentation work before contact."
+    },
+    {
+      "id": "H715",
+      "score": 9.3,
+      "reason": "Names the paid month’s job before purchase, making value and commitment concrete."
+    },
+    {
+      "id": "H717",
+      "score": 9.5,
+      "reason": "Makes continuation earned by a real conversation, reducing perceived sales risk."
+    },
+    {
+      "id": "H721",
+      "score": 9.4,
+      "reason": "A free quarter-hour promises one valuable diagnostic outcome with minimal commitment."
+    },
+    {
+      "id": "H738",
+      "score": 9.7,
+      "reason": "Lets visitors evaluate Rustam’s thinking on their actual problem before paying."
+    },
+    {
+      "id": "H753",
+      "score": 9.3,
+      "reason": "Translates one priority into today’s observable move, balancing ambition with immediacy."
+    },
+    {
+      "id": "H765",
+      "score": 9.2,
+      "reason": "Precisely names founder role overload and offers judgment without role takeover."
+    },
+    {
+      "id": "H781",
+      "score": 9.2,
+      "reason": "Five-to-one reduction makes overload visibly smaller and the next action obvious."
+    },
+    {
+      "id": "H796",
+      "score": 9.1,
+      "reason": "Resolves the fear that asking for help means surrendering decision ownership."
+    },
+    {
+      "id": "H822",
+      "score": 9.1,
+      "reason": "One representative use contains risk and produces fast evidence before scaling."
+    },
+    {
+      "id": "H841",
+      "score": 9.4,
+      "reason": "Highly recognizable prompt-tweaking loop opens a broader, more valuable systems diagnosis."
+    },
+    {
+      "id": "H843",
+      "score": 9.2,
+      "reason": "A messy real file is easy to share and promises hidden workflow clarity."
+    },
+    {
+      "id": "H871",
+      "score": 9.3,
+      "reason": "Separates evidence from theory in a useful brief, giving confusion a tangible output."
+    },
+    {
+      "id": "H892",
+      "score": 9.2,
+      "reason": "A developer acceptance packet directly reduces ambiguity before implementation spend."
+    }
+  ]
+}

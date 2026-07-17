@@ -5,6 +5,7 @@ const directory = path.dirname(new URL(import.meta.url).pathname.replace(/^\/(?:
 const reviewsDirectory = path.join(directory, "curation", "reviews");
 const library = JSON.parse(await fs.readFile(path.join(directory, "data.json"), "utf8"));
 const byId = new Map(library.items.map((item) => [item.id, item]));
+const territories = [...new Set(library.items.map((item) => item.territory))];
 const files = (await fs.readdir(reviewsDirectory)).filter((filename) => filename.endsWith(".json")).sort();
 
 if (files.length < 3) throw new Error(`Expected at least 3 independent review files; received ${files.length}.`);
@@ -14,6 +15,13 @@ const candidates = new Map();
 for (const filename of files) {
   const review = JSON.parse(await fs.readFile(path.join(reviewsDirectory, filename), "utf8"));
   if (!review.lens || !Array.isArray(review.picks)) throw new Error(`${filename}: expected lens and picks.`);
+  if (review.picks.length !== 60) throw new Error(`${filename}: expected exactly 60 picks; received ${review.picks.length}.`);
+
+  const reviewIds = new Set(review.picks.map((pick) => pick.id));
+  if (reviewIds.size !== review.picks.length) throw new Error(`${filename}: contains duplicate ids.`);
+  const coveredTerritories = new Set(review.picks.map((pick) => byId.get(pick.id)?.territory).filter(Boolean));
+  const missingTerritories = territories.filter((territory) => !coveredTerritories.has(territory));
+  if (missingTerritories.length) throw new Error(`${filename}: missing territories: ${missingTerritories.join(", ")}.`);
 
   for (const pick of review.picks) {
     const item = byId.get(pick.id);
@@ -21,6 +29,7 @@ for (const filename of files) {
     const score = Number(pick.score);
     if (!Number.isFinite(score) || score < 1 || score > 10) throw new Error(`${filename}: invalid score for ${pick.id}.`);
     if (!String(pick.reason || "").trim()) throw new Error(`${filename}: missing reason for ${pick.id}.`);
+    if (wordCount(pick.reason) > 16) throw new Error(`${filename}: reason for ${pick.id} exceeds 16 words.`);
 
     const candidate = candidates.get(pick.id) || { id: pick.id, territory: item.territory, headline: item.headline, scores: [], lenses: [], reasons: [] };
     candidate.scores.push(score);
@@ -38,7 +47,6 @@ const ranked = [...candidates.values()].map((candidate) => ({
 
 const selected = [];
 const selectedIds = new Set();
-const territories = [...new Set(library.items.map((item) => item.territory))];
 
 for (const territory of territories) {
   const candidate = ranked.find((entry) => entry.territory === territory && !selectedIds.has(entry.id));
@@ -49,6 +57,11 @@ for (const candidate of ranked) {
   if (selected.length >= 60) break;
   add(candidate);
 }
+
+if (selected.length !== 60) throw new Error(`Expected 60 curated picks; selected ${selected.length}.`);
+const selectedTerritories = new Set(selected.map((candidate) => candidate.territory));
+const missingSelectedTerritories = territories.filter((territory) => !selectedTerritories.has(territory));
+if (missingSelectedTerritories.length) throw new Error(`Curated set missing territories: ${missingSelectedTerritories.join(", ")}.`);
 
 const curation = {
   generatedAt: new Date().toISOString(),
@@ -78,4 +91,8 @@ function compareCandidates(left, right) {
 
 function numericId(id) {
   return Number(String(id).replace(/\D/g, "")) || 0;
+}
+
+function wordCount(value) {
+  return String(value).trim().split(/\s+/).filter(Boolean).length;
 }

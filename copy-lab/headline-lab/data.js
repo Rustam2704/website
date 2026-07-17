@@ -1,7 +1,7 @@
 window.HEADLINE_LAB = {
-  "revision": "0c3df0151cd2",
-  "updatedAt": "2026-07-17T22:37:17.963Z",
-  "count": 930,
+  "revision": "7844bf4df8f6",
+  "updatedAt": "2026-07-17T22:46:34.302Z",
+  "count": 950,
   "items": [
     {
       "id": "H001",
@@ -15,7 +15,14 @@ window.HEADLINE_LAB = {
       "cta": "Untangle My Problem",
       "proofLine": "10+ years teaching programming.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It meets confusion directly and promises a specific, believable outcome."
+      "whyItWorks": "It meets confusion directly and promises a specific, believable outcome.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Immediate, specific transformation; the subheadline explains a credible three-part path."
     },
     {
       "id": "H002",
@@ -29,7 +36,14 @@ window.HEADLINE_LAB = {
       "cta": "Find My Next Step",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "A short timeframe makes the promise tangible without exaggerating the result."
+      "whyItWorks": "A short timeframe makes the promise tangible without exaggerating the result.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Conversion & Action"
+      ],
+      "editorNote": "Immediate fifteen-minute outcome makes the first click feel useful and low-risk."
     },
     {
       "id": "H003",
@@ -99,7 +113,15 @@ window.HEADLINE_LAB = {
       "cta": "Send The Mess",
       "proofLine": "Direct 1:1 work with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Permission to be unclear makes sending the first message feel safer."
+      "whyItWorks": "Permission to be unclear makes sending the first message feel safer.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Permission to be messy removes friction while precision supplies a credible result. Invites imperfect language warmly, then promises collaborative precision in a naturally conversational voice."
     },
     {
       "id": "H008",
@@ -365,7 +387,15 @@ window.HEADLINE_LAB = {
       "cta": "Shape My Brief",
       "proofLine": "10+ years teaching programming.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The before-and-after transformation is concrete and useful beyond the conversation."
+      "whyItWorks": "The before-and-after transformation is concrete and useful beyond the conversation.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Conversion & Action"
+      ],
+      "editorNote": "Concrete deliverable turns an imperfect opening into usable structure. Welcomes an unfinished problem and promises a tangible brief the visitor can use."
     },
     {
       "id": "H027",
@@ -575,7 +605,14 @@ window.HEADLINE_LAB = {
       "cta": "Start the conversation",
       "proofLine": "Direct 1:1 guidance with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Names the desired outcome and contrasts it with the client’s current research loop."
+      "whyItWorks": "Names the desired outcome and contrasts it with the client’s current research loop.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Conversion & Action"
+      ],
+      "editorNote": "Recognizable research fatigue, clear next-step value, and a conversational CTA align tightly."
     },
     {
       "id": "H042",
@@ -701,7 +738,14 @@ window.HEADLINE_LAB = {
       "cta": "Open a direct chat",
       "proofLine": "Ongoing direct 1:1 guidance.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Speaks directly to founder overload and offers calm, ongoing cognitive support."
+      "whyItWorks": "Speaks directly to founder overload and offers calm, ongoing cognitive support.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Warmly names cognitive overload and positions Rustam as calm continuity, not another process."
     },
     {
       "id": "H051",
@@ -799,7 +843,14 @@ window.HEADLINE_LAB = {
       "cta": "Hand over the thread",
       "proofLine": "You speak directly with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Uses a tactile metaphor to make complex problem-solving feel approachable."
+      "whyItWorks": "Uses a tactile metaphor to make complex problem-solving feel approachable.",
+      "editorPick": true,
+      "editorScore": 9.9,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "A memorable human metaphor makes Rustam feel helpful, patient, and personally present."
     },
     {
       "id": "H058",
@@ -939,7 +990,14 @@ window.HEADLINE_LAB = {
       "cta": "Say it your way",
       "proofLine": "Direct 1:1 guidance with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Permission to be messy creates warmth; precision provides the professional promise."
+      "whyItWorks": "Permission to be messy creates warmth; precision provides the professional promise.",
+      "editorPick": true,
+      "editorScore": 9.9,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "The blunt opening feels real; the promise turns embarrassment into precise, usable help."
     },
     {
       "id": "H068",
@@ -967,7 +1025,14 @@ window.HEADLINE_LAB = {
       "cta": "Send one honest message",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Makes the first action extremely small while keeping the result meaningful."
+      "whyItWorks": "Makes the first action extremely small while keeping the result meaningful.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Conversion & Action"
+      ],
+      "editorNote": "One message is an exceptionally small action for a sharper problem and practical move."
     },
     {
       "id": "H070",
@@ -1443,7 +1508,15 @@ window.HEADLINE_LAB = {
       "cta": "Unload The Questions",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It translates technical uncertainty into a familiar problem: exhausting mental load."
+      "whyItWorks": "It translates technical uncertainty into a familiar problem: exhausting mental load.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Directly names mental overload and makes unloading questions the immediate action. Names the invisible mental burden, then offers one calm place to put it."
     },
     {
       "id": "H104",
@@ -1457,7 +1530,15 @@ window.HEADLINE_LAB = {
       "cta": "Clarify Before Building",
       "proofLine": "Free 15-minute fit check with direct 1:1 conversation.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It ties problem framing directly to avoided waste and better purchasing decisions."
+      "whyItWorks": "It ties problem framing directly to avoided waste and better purchasing decisions.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Conversion & Action"
+      ],
+      "editorNote": "Connects clarity to avoided waste with a disciplined diagnostic mechanism. Links clarification to avoided spending, creating credible urgency before implementation."
     },
     {
       "id": "H105",
@@ -1849,7 +1930,14 @@ window.HEADLINE_LAB = {
       "cta": "Map Before Automating",
       "proofLine": "10+ years teaching programming.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It prevents automation from scaling inconsistencies the team has not acknowledged."
+      "whyItWorks": "It prevents automation from scaling inconsistencies the team has not acknowledged.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Clear safeguard against automating fiction; mechanism names sequence, exceptions, and judgment."
     },
     {
       "id": "H133",
@@ -2031,7 +2119,14 @@ window.HEADLINE_LAB = {
       "cta": "Set Approval Gates",
       "proofLine": "Direct 1:1 work with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It gives cautious clients a practical control model instead of vague reassurance."
+      "whyItWorks": "It gives cautious clients a practical control model instead of vague reassurance.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Balances efficiency with human control using explicit approval and stopping rules."
     },
     {
       "id": "H146",
@@ -2437,7 +2532,14 @@ window.HEADLINE_LAB = {
       "cta": "Stretch With Support",
       "proofLine": "10+ years teaching programming.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Offers challenge and psychological safety without promising effortless growth."
+      "whyItWorks": "Offers challenge and psychological safety without promising effortless growth.",
+      "editorPick": true,
+      "editorScore": 9.9,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Balances challenge and safety in one unforgettable promise of serious, humane mentorship."
     },
     {
       "id": "H175",
@@ -2535,7 +2637,15 @@ window.HEADLINE_LAB = {
       "cta": "Get The Straight Answer",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The blunt opening establishes candor before describing a disciplined way to think."
+      "whyItWorks": "The blunt opening establishes candor before describing a disciplined way to think.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Personal candor meets messy input, making the offer feel human and useful immediately. Sounds exactly like a trusted technical friend: direct, personal, unpolished, and useful."
     },
     {
       "id": "H182",
@@ -2549,7 +2659,15 @@ window.HEADLINE_LAB = {
       "cta": "Test The Uncertainty",
       "proofLine": "Direct 1:1 support. Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Admitting uncertainty makes the testing promise more credible and professionally mature."
+      "whyItWorks": "Admitting uncertainty makes the testing promise more credible and professionally mature.",
+      "editorPick": true,
+      "editorScore": 9.8,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Signals honest uncertainty and offers a practical way to reduce it. Turns uncertainty into integrity and action, differentiating Rustam through honest confidence limits."
     },
     {
       "id": "H183",
@@ -2661,7 +2779,14 @@ window.HEADLINE_LAB = {
       "cta": "Test The Fit",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It gives the free call a clear purpose and lowers commitment pressure."
+      "whyItWorks": "It gives the free call a clear purpose and lowers commitment pressure.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Conversion & Action"
+      ],
+      "editorNote": "A free fifteen-minute fit verdict sharply reduces commitment risk and invites action."
     },
     {
       "id": "H191",
@@ -2745,7 +2870,14 @@ window.HEADLINE_LAB = {
       "cta": "Show Me The Reasoning",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Transparency makes expertise collaborative and keeps the client intellectually independent."
+      "whyItWorks": "Transparency makes expertise collaborative and keeps the client intellectually independent.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Builds trust by making reasoning, tradeoffs, and disconfirming evidence visible."
     },
     {
       "id": "H197",
@@ -2871,7 +3003,14 @@ window.HEADLINE_LAB = {
       "cta": "Separate Facts From Guesses",
       "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It offers a precise reasoning habit instead of a vague promise of clarity."
+      "whyItWorks": "It offers a precise reasoning habit instead of a vague promise of clarity.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Separates evidence from assumptions in plain language and supplies a learning path."
     },
     {
       "id": "H206",
@@ -2913,7 +3052,14 @@ window.HEADLINE_LAB = {
       "cta": "Build My Own Judgment",
       "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It presents mentorship as capability transfer instead of permanent reliance."
+      "whyItWorks": "It presents mentorship as capability transfer instead of permanent reliance.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "States an unusually honest goal: stronger client judgment instead of manufactured dependence."
     },
     {
       "id": "H209",
@@ -3151,7 +3297,14 @@ window.HEADLINE_LAB = {
       "cta": "Check My Backups",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It shifts backup thinking from possession of copies to recoverability."
+      "whyItWorks": "It shifts backup thinking from possession of copies to recoverability.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Defines backup trust through restoration, not vague claims of safety."
     },
     {
       "id": "H226",
@@ -3501,7 +3654,15 @@ window.HEADLINE_LAB = {
       "cta": "Price the Shortcut",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Treats speed as a trade with named consequences, not free time."
+      "whyItWorks": "Treats speed as a trade with named consequences, not free time.",
+      "editorPick": true,
+      "editorScore": 9.2,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Makes shortcut cost tangible before convenience quietly creates a maintenance burden. A concrete future-bill image makes technical debt understandable without sounding theatrical."
     },
     {
       "id": "H251",
@@ -3683,7 +3844,14 @@ window.HEADLINE_LAB = {
       "cta": "Assign the Assumptions",
       "proofLine": "Direct 1:1 guidance with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Transforms assumptions from background beliefs into managed strategic work."
+      "whyItWorks": "Transforms assumptions from background beliefs into managed strategic work.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Turns assumptions into owned, testable, time-bound work."
     },
     {
       "id": "H264",
@@ -3935,7 +4103,15 @@ window.HEADLINE_LAB = {
       "cta": "Prepare The Build Brief",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "An estimatable brief is a concrete bridge between operator intent and developer work."
+      "whyItWorks": "An estimatable brief is a concrete bridge between operator intent and developer work.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Conversion & Action"
+      ],
+      "editorNote": "Offers a practical brief with exactly what makes estimates trustworthy. A developer-ready brief is tangible, time-sensitive, and directly connected to spending."
     },
     {
       "id": "H282",
@@ -3977,7 +4153,14 @@ window.HEADLINE_LAB = {
       "cta": "Pressure-Test My Plan",
       "proofLine": "Direct 1:1 support. Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It addresses the founder’s lack of an honest technical peer."
+      "whyItWorks": "It addresses the founder’s lack of an honest technical peer.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Names founder isolation honestly and makes direct challenge feel supportive rather than adversarial."
     },
     {
       "id": "H285",
@@ -4271,7 +4454,14 @@ window.HEADLINE_LAB = {
       "cta": "Use My Own Words",
       "proofLine": "Direct 1:1 guidance from Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It removes the social performance that often delays an honest first message."
+      "whyItWorks": "It removes the social performance that often delays an honest first message.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "‘No client voice to perform’ is warm, disarming, memorable, and perfectly suited to chat."
     },
     {
       "id": "H306",
@@ -4467,7 +4657,14 @@ window.HEADLINE_LAB = {
       "cta": "Send It Rough",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It identifies self-editing as friction and offers Send as the immediate release."
+      "whyItWorks": "It identifies self-editing as friction and offers Send as the immediate release.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Conversion & Action"
+      ],
+      "editorNote": "Directly attacks polishing delay and makes sending the rough version the obvious action."
     },
     {
       "id": "H320",
@@ -4621,7 +4818,14 @@ window.HEADLINE_LAB = {
       "cta": "Send The Uncertainty",
       "proofLine": "Direct 1:1 guidance from Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It turns uncertainty from a reason to wait into acceptable message content."
+      "whyItWorks": "It turns uncertainty from a reason to wait into acceptable message content.",
+      "editorPick": true,
+      "editorScore": 9.8,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "A tiny, original phrase turns uncertainty from a barrier into the exact invitation."
     },
     {
       "id": "H331",
@@ -4663,7 +4867,14 @@ window.HEADLINE_LAB = {
       "cta": "Keep the Context Working",
       "proofLine": "Direct 1:1 guidance with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Makes retained context feel like compounding value, not passive memory."
+      "whyItWorks": "Makes retained context feel like compounding value, not passive memory.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Makes continuity tangible through a fresh, specific image of questions becoming progressively deeper."
     },
     {
       "id": "H334",
@@ -5153,7 +5364,14 @@ window.HEADLINE_LAB = {
       "cta": "Choose At The Crossroads",
       "proofLine": "Direct 1:1 support. Free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The crossroads image adds emotion while criteria keep the promise professional."
+      "whyItWorks": "The crossroads image adds emotion while criteria keep the promise professional.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Promises criteria instead of borrowed confidence, then explains the comparison mechanism."
     },
     {
       "id": "H369",
@@ -5657,7 +5875,15 @@ window.HEADLINE_LAB = {
       "cta": "Set My Weekend Finish",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It respects the real time constraint and promises a bounded, visible result."
+      "whyItWorks": "It respects the real time constraint and promises a bounded, visible result.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Specific two-evening scope makes finishing a side project feel immediately achievable. Feels personally observed, respects limited time, and offers an achievable finish line."
     },
     {
       "id": "H405",
@@ -5867,7 +6093,15 @@ window.HEADLINE_LAB = {
       "cta": "Review The Estimate",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It offers decision authority without asking the client to perform engineering expertise."
+      "whyItWorks": "It offers decision authority without asking the client to perform engineering expertise.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Conversion & Action"
+      ],
+      "editorNote": "Makes estimates challengeable without asking clients to pretend technical expertise. Estimate anxiety meets a concrete approval outcome without demanding implementation expertise."
     },
     {
       "id": "H420",
@@ -6245,7 +6479,14 @@ window.HEADLINE_LAB = {
       "cta": "Ask for the Limits",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Builds trust by making the boundaries of technical advice explicit."
+      "whyItWorks": "Builds trust by making the boundaries of technical advice explicit.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Trustworthy advice states applicability, assumptions, unknowns, and boundaries."
     },
     {
       "id": "H447",
@@ -6371,7 +6612,14 @@ window.HEADLINE_LAB = {
       "cta": "Ask For A Considered Answer",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It promises usefulness even when immediate action would be premature."
+      "whyItWorks": "It promises usefulness even when immediate action would be premature.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Balances decisiveness with restraint and names what justifies either response."
     },
     {
       "id": "H456",
@@ -6441,7 +6689,14 @@ window.HEADLINE_LAB = {
       "cta": "Share The Hard Thinking",
       "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Shared thinking communicates partnership while preserving client ownership."
+      "whyItWorks": "Shared thinking communicates partnership while preserving client ownership.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "A balanced two-sentence promise protects ownership while making difficult thinking feel shared."
     },
     {
       "id": "H461",
@@ -6721,7 +6976,14 @@ window.HEADLINE_LAB = {
       "cta": "Find The Evidence Edge",
       "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The line is memorable, restrained, and operationally precise."
+      "whyItWorks": "The line is memorable, restrained, and operationally precise.",
+      "editorPick": true,
+      "editorScore": 9.8,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Exceptionally concise trust promise backed by known, inferred, and testable categories."
     },
     {
       "id": "H481",
@@ -6973,7 +7235,14 @@ window.HEADLINE_LAB = {
       "cta": "Check Before Committing",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It answers commitment risk with a concrete, already-verified checkpoint."
+      "whyItWorks": "It answers commitment risk with a concrete, already-verified checkpoint.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Conversion & Action"
+      ],
+      "editorNote": "Frames the downside as fifteen minutes, making trial feel financially safe."
     },
     {
       "id": "H499",
@@ -7071,7 +7340,15 @@ window.HEADLINE_LAB = {
       "cta": "Message Rustam Directly",
       "proofLine": "Direct 1:1 guidance from Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It expresses no handoff through a simple identity: reader equals thinker."
+      "whyItWorks": "It expresses no handoff through a simple identity: reader equals thinker.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Directly proves no handoff by making reader and thinker the same person. Makes direct access concrete and distinguishes Rustam from agencies without naming competitors."
     },
     {
       "id": "H506",
@@ -7393,7 +7670,14 @@ window.HEADLINE_LAB = {
       "cta": "Frame the Estimate Honestly",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Protects estimate credibility without pretending pressure removes uncertainty."
+      "whyItWorks": "Protects estimate credibility without pretending pressure removes uncertainty.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Replaces false precision with transparent assumptions, unknowns, dependencies, and range."
     },
     {
       "id": "H529",
@@ -7729,7 +8013,15 @@ window.HEADLINE_LAB = {
       "cta": "Open The Estimate",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Opening the estimate converts fear into categories the client can question."
+      "whyItWorks": "Opening the estimate converts fear into categories the client can question.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Conversion & Action"
+      ],
+      "editorNote": "Decomposes estimate anxiety into known work, risks, and investigable unknowns. Turns estimate fear into three discussable parts and a sensible investigation."
     },
     {
       "id": "H553",
@@ -8023,7 +8315,15 @@ window.HEADLINE_LAB = {
       "cta": "Inspect Before Automating",
       "proofLine": "Direct 1:1 work with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It challenges automation enthusiasm with a constructive process-design sequence."
+      "whyItWorks": "It challenges automation enthusiasm with a constructive process-design sequence.",
+      "editorPick": true,
+      "editorScore": 9.3,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "The provocative question exposes wasted automation effort and invites process diagnosis. One sharp question exposes bad automation without jargon, blame, or fashionable optimism."
     },
     {
       "id": "H574",
@@ -8653,7 +8953,14 @@ window.HEADLINE_LAB = {
       "cta": "Keep My Constraints Inside",
       "proofLine": "10+ years teaching programming.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Makes contextual advice the promise, not abstract technical elegance."
+      "whyItWorks": "Makes contextual advice the promise, not abstract technical elegance.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Shows personal judgment respecting budget, capacity, maintenance, deadline, and risk."
     },
     {
       "id": "H619",
@@ -8681,7 +8988,14 @@ window.HEADLINE_LAB = {
       "cta": "Keep the Project Context",
       "proofLine": "Direct 1:1 guidance with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Frames continuity as retained reasoning, not mere conversation history."
+      "whyItWorks": "Frames continuity as retained reasoning, not mere conversation history.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Promises remembered context in Rustam’s own voice, making monthly continuity emotionally concrete."
     },
     {
       "id": "H621",
@@ -8779,7 +9093,15 @@ window.HEADLINE_LAB = {
       "cta": "Send It As-Is",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Lowers chat friction while keeping follow-up questions decision-relevant."
+      "whyItWorks": "Lowers chat friction while keeping follow-up questions decision-relevant.",
+      "editorPick": true,
+      "editorScore": 9.8,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "As-is permission plus selective questions makes sending the first message exceptionally easy. The invitation feels like Telegram: personal, low-friction, selective, and confidently helpful."
     },
     {
       "id": "H628",
@@ -9241,7 +9563,15 @@ window.HEADLINE_LAB = {
       "cta": "Translate The Working-Day Change",
       "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Working-day impact translates technical value into language any accountable operator can evaluate."
+      "whyItWorks": "Working-day impact translates technical value into language any accountable operator can evaluate.",
+      "editorPick": true,
+      "editorScore": 9.3,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Forces technical proposals to explain concrete changes in daily work. Translates technical proposals into daily consequences, sounding practical and client-centered."
     },
     {
       "id": "H661",
@@ -9255,7 +9585,14 @@ window.HEADLINE_LAB = {
       "cta": "Learn From The Decision",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It contrasts sequence by syllabus with sequence by immediate relevance."
+      "whyItWorks": "It contrasts sequence by syllabus with sequence by immediate relevance.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Clean contrast makes Rustam’s adaptive mentorship tangible without criticizing courses or overselling himself."
     },
     {
       "id": "H662",
@@ -9339,7 +9676,14 @@ window.HEADLINE_LAB = {
       "cta": "Work Directly With Rustam",
       "proofLine": "Direct 1:1 work with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It compresses the practical value of no handoff into three connected moments."
+      "whyItWorks": "It compresses the practical value of no handoff into three connected moments.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "‘The same mind’ memorably expresses direct accountability across diagnosis, advice, and results."
     },
     {
       "id": "H668",
@@ -10011,7 +10355,15 @@ window.HEADLINE_LAB = {
       "cta": "Define the Month’s Job",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The free fit check reduces ambiguity around the paid engagement instead of merely reducing purchase friction."
+      "whyItWorks": "The free fit check reduces ambiguity around the paid engagement instead of merely reducing purchase friction.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Conversion & Action"
+      ],
+      "editorNote": "Defines first-month purpose before payment through the free fit check. Names the paid month’s job before purchase, making value and commitment concrete."
     },
     {
       "id": "H716",
@@ -10039,7 +10391,15 @@ window.HEADLINE_LAB = {
       "cta": "Try One Real Question",
       "proofLine": "Free 15-minute fit check, then direct 1:1 work with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The claim is modest and testable: the first direct conversation must justify continuing."
+      "whyItWorks": "The claim is modest and testable: the first direct conversation must justify continuing.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Makes continuation earned by a real conversation, reducing perceived sales risk. An unusually honest commitment rule lets the working conversation prove its own value."
     },
     {
       "id": "H718",
@@ -10235,7 +10595,15 @@ window.HEADLINE_LAB = {
       "cta": "Sharpen Before Selling",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It directly opposes sales pressure and gives the free check an earned purpose."
+      "whyItWorks": "It directly opposes sales pressure and gives the free check an earned purpose.",
+      "editorPick": true,
+      "editorScore": 9.8,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "The fit check earns trust by improving the problem even without a sale. Explicitly puts problem clarity before selling, creating immediate trust in the free conversation."
     },
     {
       "id": "H732",
@@ -10333,7 +10701,15 @@ window.HEADLINE_LAB = {
       "cta": "Hear The Problem Framed",
       "proofLine": "10+ years teaching programming. Free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The free check becomes a sample of reasoning rather than a sales promise."
+      "whyItWorks": "The free check becomes a sample of reasoning rather than a sales promise.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Lets visitors evaluate Rustam’s thinking on their actual problem before paying. Invites clients to evaluate Rustam’s actual thinking before paying, not merely his claims."
     },
     {
       "id": "H739",
@@ -10837,7 +11213,14 @@ window.HEADLINE_LAB = {
       "cta": "Untangle It Together",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The warm invitation meets founder dependency with a shared mapping task."
+      "whyItWorks": "The warm invitation meets founder dependency with a shared mapping task.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Sounds like a generous personal invitation and names the hidden cost of founder-only context."
     },
     {
       "id": "H775",
@@ -10977,7 +11360,14 @@ window.HEADLINE_LAB = {
       "cta": "Size the Active Problem",
       "proofLine": "10+ years teaching programming.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "A workday-sized boundary makes overload manageable without implying the full problem has become simple."
+      "whyItWorks": "A workday-sized boundary makes overload manageable without implying the full problem has become simple.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "The working-day image makes overwhelm feel understood, bounded, and immediately manageable."
     },
     {
       "id": "H785",
@@ -11145,7 +11535,15 @@ window.HEADLINE_LAB = {
       "cta": "Examine the Decision Together",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It names accompaniment and ownership in one precise professional boundary."
+      "whyItWorks": "It names accompaniment and ownership in one precise professional boundary.",
+      "editorPick": true,
+      "editorScore": 9.4,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Resolves the fear that asking for help means surrendering decision ownership. A humane distinction preserves client ownership while relieving the loneliness of difficult decisions."
     },
     {
       "id": "H797",
@@ -11425,7 +11823,14 @@ window.HEADLINE_LAB = {
       "cta": "Inspect The Friction",
       "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It treats missed action as diagnostic information rather than a personal failure."
+      "whyItWorks": "It treats missed action as diagnostic information rather than a personal failure.",
+      "editorPick": true,
+      "editorScore": 9.9,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Rejects shame in unmistakably human language while turning missed action into useful diagnosis."
     },
     {
       "id": "H817",
@@ -11635,7 +12040,14 @@ window.HEADLINE_LAB = {
       "cta": "Use Learning-Based Follow-Through",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It replaces compliance language with the real purpose of follow-through: learning."
+      "whyItWorks": "It replaces compliance language with the real purpose of follow-through: learning.",
+      "editorPick": true,
+      "editorScore": 9.7,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Separates learning from obedience with rare warmth, honesty, and professional maturity."
     },
     {
       "id": "H832",
@@ -11789,7 +12201,14 @@ window.HEADLINE_LAB = {
       "cta": "Read The Bug’s Evidence",
       "proofLine": "Direct 1:1 work with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It treats failure as truth-telling evidence rather than only damage."
+      "whyItWorks": "It treats failure as truth-telling evidence rather than only damage.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "The surprising line is vivid, truthful, and directly useful for diagnosis."
     },
     {
       "id": "H843",
@@ -11831,7 +12250,15 @@ window.HEADLINE_LAB = {
       "cta": "Choose For Ordinary Weeks",
       "proofLine": "Direct 1:1 guidance from Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It defines intelligence through sustainable operation under normal conditions."
+      "whyItWorks": "It defines intelligence through sustainable operation under normal conditions.",
+      "editorPick": true,
+      "editorScore": 9.5,
+      "editorVotes": 2,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Grounds smart choices in ordinary capacity, documentation, and recovery. ‘Your tired team’ brings empathy into architecture and rejects idealized technical advice."
     },
     {
       "id": "H846",
@@ -12419,7 +12846,14 @@ window.HEADLINE_LAB = {
       "cta": "Write the Release Gate",
       "proofLine": "10+ years teaching programming.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The card joins readiness, recovery, and observation without claiming to replace a full launch process."
+      "whyItWorks": "The card joins readiness, recovery, and observation without claiming to replace a full launch process.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 1,
+      "editorLenses": [
+        "Clarity & Trust"
+      ],
+      "editorNote": "Compact release artifact combines launch threshold, recovery, and observation ownership."
     },
     {
       "id": "H888",
@@ -12629,7 +13063,16 @@ window.HEADLINE_LAB = {
       "cta": "Send The Rough Paragraph",
       "proofLine": "Direct 1:1 support. Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "One clarifying question promises focus without pretending the first message contains enough context."
+      "whyItWorks": "One clarifying question promises focus without pretending the first message contains enough context.",
+      "editorPick": true,
+      "editorScore": 9.6,
+      "editorVotes": 3,
+      "editorLenses": [
+        "Clarity & Trust",
+        "Conversion & Action",
+        "Voice & Distinctiveness"
+      ],
+      "editorNote": "Precisely replaces intake burden with the single highest-value clarifying question. Promises one focused reply instead of homework, dramatically lowering first-message friction."
     },
     {
       "id": "H903",
@@ -13022,6 +13465,286 @@ window.HEADLINE_LAB = {
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
       "whyItWorks": "Readiness classification gives one message a concrete, non-inflated result."
+    },
+    {
+      "id": "H931",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Solvable Problem",
+      "eyebrow": "Direct clarity starts in chat",
+      "headline": "Message Rustam; leave with a solvable problem.",
+      "subheadline": "Describe the situation in ordinary language. Rustam will restate the core issue, separate assumptions, and draw a boundary you can work within.",
+      "chatStarter": "Hi Rustam. Our setup keeps failing, but I cannot tell whether the tool or the process is responsible.",
+      "cta": "Frame My Problem",
+      "proofLine": "Direct 1:1 work with Rustam.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "Names the person, interaction, deliverable, and practical payoff without inflating the promise."
+    },
+    {
+      "id": "H932",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Effort Filter",
+      "eyebrow": "Spend attention where it changes the outcome",
+      "headline": "This chat reveals which issue deserves effort.",
+      "subheadline": "List the competing issues. Together, compare consequence, urgency, and dependency so effort goes toward the work capable of changing the result.",
+      "chatStarter": "Three parts of the setup feel broken, and I cannot tell which deserves this week’s attention.",
+      "cta": "Focus My Effort",
+      "proofLine": "10+ years teaching programming.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The chat location and effort payoff are immediate; the mechanism explains prioritization."
+    },
+    {
+      "id": "H933",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Message To Brief",
+      "eyebrow": "No polished intake required",
+      "headline": "Your messy message becomes a usable working brief.",
+      "subheadline": "Send the unedited version. Rustam will extract the context, goal, constraints, unknowns, and first action into a compact brief.",
+      "chatStarter": "I need to explain this to a developer, but my notes are still a disorganized paragraph.",
+      "cta": "Shape My Brief",
+      "proofLine": "Start with a free 15-minute fit check.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "A messy input becomes a named, portable artifact with clear practical value."
+    },
+    {
+      "id": "H934",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Blocker Isolation",
+      "eyebrow": "Fix the limiting cause, not nearby noise",
+      "headline": "Rustam isolates the blocker worth solving.",
+      "subheadline": "Bring the visible symptom. Rustam will test what it depends on and distinguish the limiting cause from issues that can safely wait.",
+      "chatStarter": "Work keeps stopping at the same place, but every symptom points toward a different cause.",
+      "cta": "Isolate My Blocker",
+      "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "Personal guidance produces a single diagnostic target and protects effort from distraction."
+    },
+    {
+      "id": "H935",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Focused Cause Test",
+      "eyebrow": "A stuck moment can become evidence",
+      "headline": "Show the stuck point; leave with a focused test.",
+      "subheadline": "Describe the exact step where progress stops. Together, define a small test that separates the two most plausible causes.",
+      "chatStarter": "The handoff fails after approval, but I cannot tell whether permissions or missing data cause it.",
+      "cta": "Design The Focused Test",
+      "proofLine": "Direct 1:1 guidance from Rustam.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The promise converts a concrete stuck point into a cause-separating experiment."
+    },
+    {
+      "id": "H936",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Reality-Shaped Criteria",
+      "eyebrow": "Choose with constraints, not generic rankings",
+      "headline": "Bring your options; gain criteria shaped by reality.",
+      "subheadline": "Bring the finalists. Rustam will compare them against budget, capacity, maintenance, and reversibility, leaving criteria you can reuse.",
+      "chatStarter": "Both tools look equally capable, but our small team will have to maintain whichever we choose.",
+      "cta": "Build My Criteria",
+      "proofLine": "Start with a free 15-minute fit check.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The client receives reusable criteria grounded in the conditions that actually govern the choice."
+    },
+    {
+      "id": "H937",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Goal Into Action",
+      "eyebrow": "Begin where the goal is still vague",
+      "headline": "Start here; shape your vague goal into action.",
+      "subheadline": "Name the change you want. Rustam will make it observable, set a useful boundary, and shape an action you can start.",
+      "chatStarter": "I want AI to improve our client workflow, but improve is still too vague to plan.",
+      "cta": "Shape My Goal",
+      "proofLine": "10+ years teaching programming.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The page location, transformation, and reason to care appear immediately and credibly."
+    },
+    {
+      "id": "H938",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Usable Direction",
+      "eyebrow": "Personal context turns uncertainty into movement",
+      "headline": "Direct chat turns unclear work into usable direction.",
+      "subheadline": "Keep the situation in a direct thread with Rustam; clarify the outcome, constraints, and reason the chosen direction fits.",
+      "chatStarter": "I have enough information to move, but no direction feels justified by our actual constraints.",
+      "cta": "Find Usable Direction",
+      "proofLine": "Direct 1:1 work with Rustam.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "Direct chat is the mechanism; justified movement is the practical reward."
+    },
+    {
+      "id": "H939",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Symptom Separation",
+      "eyebrow": "Start from what you can observe",
+      "headline": "Talk directly; separate symptoms from the real issue.",
+      "subheadline": "Describe what happens and what you expected. Rustam will separate the visible effect from the issue that actually needs attention.",
+      "chatStarter": "Customers see duplicate updates, but I do not know whether the failure begins in the CRM or our workflow.",
+      "cta": "Separate Cause From Symptom",
+      "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "A direct exchange turns observable effects into a clearer target for action."
+    },
+    {
+      "id": "H940",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Test With Purpose",
+      "eyebrow": "Every experiment should answer something",
+      "headline": "Ask here; know what to test and why.",
+      "subheadline": "Share the uncertain assumption. Rustam will define the smallest useful test, expected signal, and action each result would justify.",
+      "chatStarter": "I can run several experiments, but I do not know which uncertainty should determine the test.",
+      "cta": "Choose My Test",
+      "proofLine": "Start with a free 15-minute fit check.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The promise includes both the experiment and the reason its result matters."
+    },
+    {
+      "id": "H941",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Grounded Recommendation",
+      "eyebrow": "Advice built from your actual conditions",
+      "headline": "Scattered context becomes a grounded recommendation from Rustam.",
+      "subheadline": "Rustam combines your goal, current setup, constraints, and available evidence, then states the recommendation, rationale, and limits.",
+      "chatStarter": "Generic advice says to replace the platform, but our budget and current integrations may change that answer.",
+      "cta": "Ground My Recommendation",
+      "proofLine": "Direct 1:1 guidance from Rustam.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The named inputs and explicit limits make personalized advice believable rather than promotional."
+    },
+    {
+      "id": "H942",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Checked Direction",
+      "eyebrow": "Move with evidence, not borrowed certainty",
+      "headline": "This chat converts uncertainty into a checked direction.",
+      "subheadline": "Use the chat to separate known facts, reasonable inferences, and missing evidence, then choose a direction with a review condition.",
+      "chatStarter": "I need to move this week, but I want the chosen route to show exactly what remains uncertain.",
+      "cta": "Check My Direction",
+      "proofLine": "10+ years teaching programming.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The direction is trustworthy because facts, inferences, gaps, and review conditions remain visible."
+    },
+    {
+      "id": "H943",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Evidence-Based Move",
+      "eyebrow": "Doubt can produce useful information",
+      "headline": "Start with doubt; finish with an evidence-based move.",
+      "subheadline": "Name the doubt and its consequence. Rustam will shape a reversible action that reduces uncertainty while preserving room to correct course.",
+      "chatStarter": "I doubt this architecture will survive our real workload, but rebuilding immediately feels premature.",
+      "cta": "Shape The Evidence Move",
+      "proofLine": "Direct 1:1 work with Rustam.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The promise respects uncertainty and converts it into a reversible, informative action."
+    },
+    {
+      "id": "H944",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Constraint-Fit Advice",
+      "eyebrow": "Recommendations must survive your reality",
+      "headline": "Real constraints produce advice you can actually use.",
+      "subheadline": "Put budget, deadline, team capacity, maintenance, and risk into the conversation; advice stays inside those limits and names the tradeoff.",
+      "chatStarter": "The ideal solution is clear, but our team cannot support its maintenance or timeline.",
+      "cta": "Fit Advice To Reality",
+      "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The headline promises usable advice; the support names exactly what usable means here."
+    },
+    {
+      "id": "H945",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Clarity Before Commitment",
+      "eyebrow": "Experience the work before choosing the month",
+      "headline": "Chat first; commit only after the problem sharpens.",
+      "subheadline": "Use the free fit check to sharpen the problem, name a useful outcome, and decide whether Rustam’s monthly support fits.",
+      "chatStarter": "I am interested in support, but I want to see whether this problem becomes clearer in conversation first.",
+      "cta": "Test The Fit",
+      "proofLine": "Start with a free 15-minute fit check.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "It reduces commitment risk by making problem improvement the first proof of fit."
+    },
+    {
+      "id": "H946",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Explainable Setup",
+      "eyebrow": "A setup you can understand and discuss",
+      "headline": "Direct guidance makes your unclear setup explainable.",
+      "subheadline": "Map the tools, owners, handoffs, and failure points with Rustam, then describe the setup in plain language someone else can follow.",
+      "chatStarter": "I built the setup gradually, and now I cannot explain how the tools, accounts, and handoffs fit together.",
+      "cta": "Explain My Setup",
+      "proofLine": "Direct 1:1 work with Rustam.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The outcome is comprehension; the mechanism is a concrete map of the working system."
+    },
+    {
+      "id": "H947",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Cost Driver",
+      "eyebrow": "Find what makes the symptom expensive",
+      "headline": "Message the costly symptom; uncover its true driver.",
+      "subheadline": "Describe the visible problem and its cost in time, rework, delay, or risk; Rustam will trace the driver worth addressing.",
+      "chatStarter": "This small failure looks harmless, yet it creates hours of manual correction every week.",
+      "cta": "Trace The Cost Driver",
+      "proofLine": "10+ years teaching programming.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "It links a familiar symptom to the hidden source of its operational cost."
+    },
+    {
+      "id": "H948",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Structure From Plain Words",
+      "eyebrow": "No vocabulary test before useful thinking",
+      "headline": "Plain words become structure through Rustam’s questions.",
+      "subheadline": "Explain it as you naturally would. Rustam will ask focused questions that reveal the outcome, constraint, uncertainty, and missing distinction.",
+      "chatStarter": "I know what feels wrong, but I do not have the vocabulary to explain the system precisely.",
+      "cta": "Speak In Plain Words",
+      "proofLine": "10+ years teaching programming. Direct 1:1 support.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "Plain language is the entry; focused questioning supplies the missing structure."
+    },
+    {
+      "id": "H949",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Challengeable Reasoning",
+      "eyebrow": "Direct access includes the reasoning",
+      "headline": "Work directly; receive reasoning you can challenge.",
+      "subheadline": "Rustam states the assumptions, tradeoffs, and evidence behind the recommendation, so you can question it without an intermediary.",
+      "chatStarter": "I want advice, but I also need to understand and challenge the reasoning behind it.",
+      "cta": "Question The Reasoning",
+      "proofLine": "Work directly with Rustam, 1:1.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "No-handoff access becomes valuable through reasoning the client can inspect and challenge."
+    },
+    {
+      "id": "H950",
+      "territory": "Clarity & Diagnosis",
+      "batch": "031-clarity-refinements",
+      "angle": "Provable Monthly Value",
+      "eyebrow": "Define value before choosing ongoing support",
+      "headline": "Ask Rustam; define how monthly value gets proven.",
+      "subheadline": "Use the free fit check to set a monthly question, useful outcome, evidence target, and review point with Rustam.",
+      "chatStarter": "Before paying monthly, I want to know what evidence would show that the support was useful.",
+      "cta": "Define The Value Test",
+      "proofLine": "Start with a free 15-minute fit check.",
+      "priceLine": "$400–$520 a month",
+      "whyItWorks": "The promise ties monthly value to shared evidence instead of reassurance."
     }
   ]
 };

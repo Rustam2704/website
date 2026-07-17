@@ -17,6 +17,8 @@
     random: document.querySelector("#random-direction"),
     copyShortlist: document.querySelector("#copy-shortlist"),
     filters: document.querySelector("#territory-filters"),
+    curationNote: document.querySelector("#curation-note"),
+    curationNoteCopy: document.querySelector("#curation-note-copy"),
     loadMore: document.querySelector("#load-more"),
     totalCount: document.querySelector("#total-count"),
     visibleCount: document.querySelector("#visible-count"),
@@ -151,6 +153,16 @@
     document.body.classList.toggle("is-compact", state.compact);
     if (elements.search && elements.search.value !== state.query) elements.search.value = state.query;
     if (elements.sort) elements.sort.value = state.sort;
+    renderCurationNote();
+  }
+
+  function renderCurationNote() {
+    if (!elements.curationNote || !elements.curationNoteCopy) return;
+    const picks = library.items.filter((item) => item.editorPick);
+    elements.curationNote.hidden = picks.length === 0;
+    if (!picks.length) return;
+    const lenses = new Set(picks.flatMap((item) => item.editorLenses || []));
+    elements.curationNoteCopy.textContent = `${picks.length} systems survived ${lenses.size} independent editorial lenses. Use the Curated picks filter, then order by Curated score.`;
   }
 
   function renderFilters() {
@@ -178,6 +190,12 @@
     });
 
     visibleItems.sort((a, b) => {
+      if (state.sort === "curated") {
+        return Number(Boolean(b.editorPick)) - Number(Boolean(a.editorPick))
+          || Number(b.editorVotes || 0) - Number(a.editorVotes || 0)
+          || Number(b.editorScore || 0) - Number(a.editorScore || 0)
+          || numericId(a.id) - numericId(b.id);
+      }
       if (state.sort === "oldest") return numericId(a.id) - numericId(b.id);
       if (state.sort === "shortest") return wordCount(a.headline) - wordCount(b.headline) || numericId(a.id) - numericId(b.id);
       if (state.sort === "favorites") {
@@ -213,7 +231,7 @@
         <div class="card-topline">
           <div class="card-labels">
             <button class="direction-id direction-link" type="button" data-copy-link="${escapeHtml(item.id)}" aria-label="Copy a direct link to ${escapeHtml(item.id)}">${escapeHtml(item.id)}</button>
-            ${item.editorPick ? `<span class="editor-pick-label">Curated · ${escapeHtml(item.editorScore)}</span>` : ""}
+            ${item.editorPick ? `<span class="editor-pick-label">Curated · ${escapeHtml(item.editorScore)} · ${escapeHtml(item.editorVotes)} vote${item.editorVotes === 1 ? "" : "s"}</span>` : ""}
             <span class="direction-angle">${escapeHtml(item.territory)} · ${escapeHtml(item.angle)}</span>
           </div>
           <button class="favorite-button" type="button" data-favorite="${escapeHtml(item.id)}" aria-pressed="${favorite}" aria-label="${favorite ? "Remove from" : "Add to"} shortlist">${favorite ? "★" : "☆"}</button>

@@ -1,0 +1,305 @@
+{
+  "lens": "Clarity & Trust",
+  "picks": [
+    {
+      "id": "H001",
+      "score": 9.7,
+      "reason": "Immediate, specific transformation; the subheadline explains a credible three-part path."
+    },
+    {
+      "id": "H026",
+      "score": 9.4,
+      "reason": "Concrete deliverable turns an imperfect opening into usable structure."
+    },
+    {
+      "id": "H056",
+      "score": 9.3,
+      "reason": "Removes preparation anxiety and gives believable examples of acceptable first messages."
+    },
+    {
+      "id": "H072",
+      "score": 9.2,
+      "reason": "Promises contextual advice and clearly names the inputs that personalize it."
+    },
+    {
+      "id": "H104",
+      "score": 9.6,
+      "reason": "Connects clarity to avoided waste with a disciplined diagnostic mechanism."
+    },
+    {
+      "id": "H337",
+      "score": 9.4,
+      "reason": "Makes ongoing support accountable through evidence, revision, and closure."
+    },
+    {
+      "id": "H132",
+      "score": 9.6,
+      "reason": "Clear safeguard against automating fiction; mechanism names sequence, exceptions, and judgment."
+    },
+    {
+      "id": "H145",
+      "score": 9.5,
+      "reason": "Balances efficiency with human control using explicit approval and stopping rules."
+    },
+    {
+      "id": "H133",
+      "score": 9.4,
+      "reason": "A bounded pilot, owner, threshold, and stopping rule create a credible promise."
+    },
+    {
+      "id": "H159",
+      "score": 9.4,
+      "reason": "Distinguishes durable teaching from patching and explains how insight transfers."
+    },
+    {
+      "id": "H164",
+      "score": 9.2,
+      "reason": "Promises reusable understanding through cause, mechanism, and recognition."
+    },
+    {
+      "id": "H182",
+      "score": 9.7,
+      "reason": "Signals honest uncertainty and offers a practical way to reduce it."
+    },
+    {
+      "id": "H196",
+      "score": 9.6,
+      "reason": "Builds trust by making reasoning, tradeoffs, and disconfirming evidence visible."
+    },
+    {
+      "id": "H205",
+      "score": 9.7,
+      "reason": "Separates evidence from assumptions in plain language and supplies a learning path."
+    },
+    {
+      "id": "H225",
+      "score": 9.5,
+      "reason": "Defines backup trust through restoration, not vague claims of safety."
+    },
+    {
+      "id": "H226",
+      "score": 9.4,
+      "reason": "Names the four controls every invisible automation needs."
+    },
+    {
+      "id": "H246",
+      "score": 9.4,
+      "reason": "Directs effort toward the riskiest assumption before architecture hardens around it."
+    },
+    {
+      "id": "H263",
+      "score": 9.5,
+      "reason": "Turns assumptions into owned, testable, time-bound work."
+    },
+    {
+      "id": "H273",
+      "score": 9.5,
+      "reason": "Respects non-engineer ownership while promising understandable tradeoffs and questions."
+    },
+    {
+      "id": "H281",
+      "score": 9.5,
+      "reason": "Offers a practical brief with exactly what makes estimates trustworthy."
+    },
+    {
+      "id": "H301",
+      "score": 9.3,
+      "reason": "The interface promise is obvious, low-friction, and supported by conversational discovery."
+    },
+    {
+      "id": "H902",
+      "score": 9.6,
+      "reason": "Precisely replaces intake burden with the single highest-value clarifying question."
+    },
+    {
+      "id": "H901",
+      "score": 9.5,
+      "reason": "A correctable restatement creates immediate trust before recommendations begin."
+    },
+    {
+      "id": "H361",
+      "score": 9.1,
+      "reason": "Memorable metaphor resolves into four concrete decision fields."
+    },
+    {
+      "id": "H368",
+      "score": 9.4,
+      "reason": "Promises criteria instead of borrowed confidence, then explains the comparison mechanism."
+    },
+    {
+      "id": "H403",
+      "score": 9.5,
+      "reason": "Transforms a vague integration request into six implementation-ready dimensions."
+    },
+    {
+      "id": "H419",
+      "score": 9.6,
+      "reason": "Makes estimates challengeable without asking clients to pretend technical expertise."
+    },
+    {
+      "id": "H427",
+      "score": 9.4,
+      "reason": "Simple distinction prevents emergency work from becoming permanent architecture."
+    },
+    {
+      "id": "H446",
+      "score": 9.7,
+      "reason": "Trustworthy advice states applicability, assumptions, unknowns, and boundaries."
+    },
+    {
+      "id": "H455",
+      "score": 9.6,
+      "reason": "Balances decisiveness with restraint and names what justifies either response."
+    },
+    {
+      "id": "H480",
+      "score": 9.8,
+      "reason": "Exceptionally concise trust promise backed by known, inferred, and testable categories."
+    },
+    {
+      "id": "H486",
+      "score": 9.5,
+      "reason": "Clarifies ownership boundaries without demanding technical fluency."
+    },
+    {
+      "id": "H500",
+      "score": 9.4,
+      "reason": "Offers specific privacy-preserving behaviors instead of unverifiable security reassurance."
+    },
+    {
+      "id": "H505",
+      "score": 9.6,
+      "reason": "Directly proves no handoff by making reader and thinker the same person."
+    },
+    {
+      "id": "H515",
+      "score": 9.3,
+      "reason": "Pairs immediate containment with evidence preservation, avoiding reckless diagnostic cleanup."
+    },
+    {
+      "id": "H528",
+      "score": 9.6,
+      "reason": "Replaces false precision with transparent assumptions, unknowns, dependencies, and range."
+    },
+    {
+      "id": "H552",
+      "score": 9.5,
+      "reason": "Decomposes estimate anxiety into known work, risks, and investigable unknowns."
+    },
+    {
+      "id": "H553",
+      "score": 9.4,
+      "reason": "Converts disagreement into one observable test without pretending consensus already exists."
+    },
+    {
+      "id": "H575",
+      "score": 9.5,
+      "reason": "Natural trust question followed by explicit human decision and escalation boundaries."
+    },
+    {
+      "id": "H600",
+      "score": 9.4,
+      "reason": "Addresses price honestly through a shared evidence target and review point."
+    },
+    {
+      "id": "H603",
+      "score": 9.3,
+      "reason": "Conversational invitation leads directly to a disciplined before-and-after comparison."
+    },
+    {
+      "id": "H618",
+      "score": 9.6,
+      "reason": "Shows personal judgment respecting budget, capacity, maintenance, deadline, and risk."
+    },
+    {
+      "id": "H647",
+      "score": 9.4,
+      "reason": "Replaces performed confidence with outcome, tradeoff, and evidence criteria."
+    },
+    {
+      "id": "H660",
+      "score": 9.5,
+      "reason": "Forces technical proposals to explain concrete changes in daily work."
+    },
+    {
+      "id": "H662",
+      "score": 9.3,
+      "reason": "Fairly distinguishes explanation from feedback on real application."
+    },
+    {
+      "id": "H683",
+      "score": 9.4,
+      "reason": "Explains continuity through evidence-driven keep, revise, or retire decisions."
+    },
+    {
+      "id": "H695",
+      "score": 9.4,
+      "reason": "Connects explanation to an observable reality check across outputs and failures."
+    },
+    {
+      "id": "H715",
+      "score": 9.5,
+      "reason": "Defines first-month purpose before payment through the free fit check."
+    },
+    {
+      "id": "H731",
+      "score": 9.7,
+      "reason": "The fit check earns trust by improving the problem even without a sale."
+    },
+    {
+      "id": "H735",
+      "score": 9.4,
+      "reason": "Promises a compact shared problem statement with three clear components."
+    },
+    {
+      "id": "H762",
+      "score": 9.2,
+      "reason": "Conditional wording respects uncertainty and offers a small deciding test."
+    },
+    {
+      "id": "H777",
+      "score": 9.4,
+      "reason": "Concrete four-line artifact preserves both closure and legitimate reopening."
+    },
+    {
+      "id": "H787",
+      "score": 9.3,
+      "reason": "Reduces overwhelm without minimizing complexity; assigns a precise responsibility."
+    },
+    {
+      "id": "H791",
+      "score": 9.4,
+      "reason": "Replaces impossible certainty with bounded risk and a reversible step."
+    },
+    {
+      "id": "H819",
+      "score": 9.4,
+      "reason": "Makes every recommendation accountable to a future observation."
+    },
+    {
+      "id": "H839",
+      "score": 9.3,
+      "reason": "Pairs completion with learning, preventing activity from masquerading as progress."
+    },
+    {
+      "id": "H845",
+      "score": 9.4,
+      "reason": "Grounds smart choices in ordinary capacity, documentation, and recovery."
+    },
+    {
+      "id": "H852",
+      "score": 9.2,
+      "reason": "Provocative but credible; places accountability before another technical connection."
+    },
+    {
+      "id": "H887",
+      "score": 9.6,
+      "reason": "Compact release artifact combines launch threshold, recovery, and observation ownership."
+    },
+    {
+      "id": "H899",
+      "score": 9.5,
+      "reason": "Translates proposals into five decision-relevant fields clients can inspect."
+    }
+  ]
+}
