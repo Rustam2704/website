@@ -269,10 +269,13 @@
   async function checkForUpdates() {
     try {
       elements.syncStatus.textContent = "Checking for new copy…";
-      const response = await fetch(`data.json?refresh=${Date.now()}`, { cache: "no-store" });
-      if (!response.ok) throw new Error(`Update check returned ${response.status}`);
-      const incoming = normalizeLibrary(await response.json());
-      if (incoming.revision !== library.revision) {
+      const metaResponse = await fetch(`meta.json?refresh=${Date.now()}`, { cache: "no-store" });
+      if (!metaResponse.ok) throw new Error(`Update check returned ${metaResponse.status}`);
+      const meta = await metaResponse.json();
+      if (meta.revision !== library.revision) {
+        const response = await fetch(`data.json?revision=${encodeURIComponent(meta.revision)}`, { cache: "no-store" });
+        if (!response.ok) throw new Error(`Library refresh returned ${response.status}`);
+        const incoming = normalizeLibrary(await response.json());
         const added = Math.max(0, incoming.items.length - library.items.length);
         library = incoming;
         renderAll();

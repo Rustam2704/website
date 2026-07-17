@@ -27,6 +27,9 @@ const territoryByFilename = [
   [/alternative|contrast|versus/i, "Alternative Contrast"],
   [/proof-led|evidence/i, "Proof-Led"],
   [/fifteen-minute|15-minute/i, "15-Minute Promise"],
+  [/promise-architecture|headline-formula/i, "Promise Architecture"],
+  [/emotional-relief|calm-relief/i, "Emotional Relief"],
+  [/follow-through|accountability|feedback-loop/i, "Follow-Through"],
   [/direct|bold|anti-hype/i, "Direct & Anti-Hype"],
   [/setup|workflow|systems/i, "Systems & Workflow"]
 ];
@@ -89,10 +92,12 @@ const library = {
   items
 };
 const json = `${JSON.stringify(library, null, 2)}\n`;
+const meta = `${JSON.stringify({ revision: library.revision, updatedAt: library.updatedAt, count: library.count }, null, 2)}\n`;
 
 await Promise.all([
   fs.writeFile(path.join(directory, "data.json"), json, "utf8"),
-  fs.writeFile(path.join(directory, "data.js"), `window.HEADLINE_LAB = ${json.trim()};\n`, "utf8")
+  fs.writeFile(path.join(directory, "data.js"), `window.HEADLINE_LAB = ${json.trim()};\n`, "utf8"),
+  fs.writeFile(path.join(directory, "meta.json"), meta, "utf8")
 ]);
 
 console.log(`Built ${items.length} headline systems from ${files.length} batches (revision ${revision}).`);

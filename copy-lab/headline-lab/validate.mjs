@@ -3,6 +3,7 @@ import path from "node:path";
 
 const directory = path.dirname(new URL(import.meta.url).pathname.replace(/^\/(?:([A-Za-z]:))/, "$1"));
 const library = JSON.parse(await fs.readFile(path.join(directory, "data.json"), "utf8"));
+const meta = JSON.parse(await fs.readFile(path.join(directory, "meta.json"), "utf8"));
 const index = await fs.readFile(path.join(directory, "index.html"), "utf8");
 const app = await fs.readFile(path.join(directory, "app.js"), "utf8");
 const errors = [];
@@ -12,6 +13,10 @@ const headlines = new Set();
 
 if (!Array.isArray(library.items) || library.items.length <= 20) {
   errors.push(`Expected more than 20 headline systems; received ${library.items?.length ?? 0}.`);
+}
+
+if (meta.revision !== library.revision || meta.count !== library.items.length) {
+  errors.push("meta: revision or item count is stale.");
 }
 
 for (const [indexNumber, item] of (library.items || []).entries()) {
