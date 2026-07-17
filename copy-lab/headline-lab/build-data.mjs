@@ -24,6 +24,9 @@ const territoryByFilename = [
   [/question-led|questions/i, "Question-Led"],
   [/rustam-voice|first-person/i, "Rustam's Voice"],
   [/audience|role-specific/i, "Audience-Specific"],
+  [/alternative|contrast|versus/i, "Alternative Contrast"],
+  [/proof-led|evidence/i, "Proof-Led"],
+  [/fifteen-minute|15-minute/i, "15-Minute Promise"],
   [/direct|bold|anti-hype/i, "Direct & Anti-Hype"],
   [/setup|workflow|systems/i, "Systems & Workflow"]
 ];
