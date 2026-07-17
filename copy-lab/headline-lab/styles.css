@@ -225,6 +225,10 @@
   box-shadow: 0 20px 60px rgba(255, 96, 111, 0.08);
 }
 
+.direction-card.is-editor-pick {
+  border-color: rgba(110, 203, 255, 0.3);
+}
+
 .card-topline {
   display: flex;
   align-items: center;
@@ -246,6 +250,22 @@
   font-weight: 800;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+}
+
+.editor-pick-label {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 4px 7px;
+  color: #06111b;
+  background: var(--blue);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.phrase-row.is-editor-note .phrase-value {
+  color: var(--blue);
 }
 
 .direction-angle {

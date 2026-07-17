@@ -155,8 +155,10 @@
 
   function renderFilters() {
     const territories = [...new Set(library.items.map((item) => item.territory))].sort();
-    const buttons = ["All", ...territories];
+    const curatedCount = library.items.filter((item) => item.editorPick).length;
+    const buttons = ["All", ...(curatedCount ? ["Curated picks"] : []), ...territories];
     const counts = Object.fromEntries(territories.map((territory) => [territory, library.items.filter((item) => item.territory === territory).length]));
+    counts["Curated picks"] = curatedCount;
     if (!buttons.includes(state.territory)) state.territory = "All";
     elements.filters.innerHTML = buttons.map((territory) => `
       <button class="territory-filter" type="button" data-territory="${escapeHtml(territory)}" aria-pressed="${territory === state.territory}">
@@ -168,7 +170,8 @@
   function renderCards() {
     const query = state.query.trim().toLowerCase();
     visibleItems = library.items.filter((item) => {
-      if (state.territory !== "All" && item.territory !== state.territory) return false;
+      if (state.territory === "Curated picks" && !item.editorPick) return false;
+      if (state.territory !== "All" && state.territory !== "Curated picks" && item.territory !== state.territory) return false;
       if (state.favoritesOnly && !state.favorites.includes(item.id)) return false;
       if (!query) return true;
       return Object.values(item).join(" ").toLowerCase().includes(query);
@@ -203,12 +206,14 @@
       ["Offer", item.priceLine, "is-offer"],
       ["Reason", item.whyItWorks, ""]
     ];
+    if (item.editorPick) phrases.push(["Editor note", item.editorNote, "is-editor-note"]);
 
     return `
-      <article class="direction-card${favorite ? " is-favorite" : ""}" id="direction-${escapeHtml(item.id)}" data-direction-id="${escapeHtml(item.id)}">
+      <article class="direction-card${favorite ? " is-favorite" : ""}${item.editorPick ? " is-editor-pick" : ""}" id="direction-${escapeHtml(item.id)}" data-direction-id="${escapeHtml(item.id)}">
         <div class="card-topline">
           <div class="card-labels">
             <button class="direction-id direction-link" type="button" data-copy-link="${escapeHtml(item.id)}" aria-label="Copy a direct link to ${escapeHtml(item.id)}">${escapeHtml(item.id)}</button>
+            ${item.editorPick ? `<span class="editor-pick-label">Curated · ${escapeHtml(item.editorScore)}</span>` : ""}
             <span class="direction-angle">${escapeHtml(item.territory)} · ${escapeHtml(item.angle)}</span>
           </div>
           <button class="favorite-button" type="button" data-favorite="${escapeHtml(item.id)}" aria-pressed="${favorite}" aria-label="${favorite ? "Remove from" : "Add to"} shortlist">${favorite ? "★" : "☆"}</button>

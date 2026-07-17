@@ -30,6 +30,9 @@ const territoryByFilename = [
   [/promise-architecture|headline-formula/i, "Promise Architecture"],
   [/emotional-relief|calm-relief/i, "Emotional Relief"],
   [/follow-through|accountability|feedback-loop/i, "Follow-Through"],
+  [/counterintuitive|provocative/i, "Counterintuitive"],
+  [/deliverable|artifact|output/i, "Concrete Deliverables"],
+  [/one-message|single-message/i, "One-Message Promise"],
   [/direct|bold|anti-hype/i, "Direct & Anti-Hype"],
   [/setup|workflow|systems/i, "Systems & Workflow"]
 ];
@@ -83,6 +86,22 @@ for (const filename of files) {
   });
 }
 
+const curation = await readOptionalJson(path.join(directory, "curation.json"), { picks: [] });
+const picks = new Map((curation.picks || []).map((pick) => [pick.id, pick]));
+for (const id of picks.keys()) {
+  if (!items.some((item) => item.id === id)) throw new Error(`curation.json: unknown headline id ${id}.`);
+}
+
+items.forEach((item) => {
+  const pick = picks.get(item.id);
+  if (!pick) return;
+  item.editorPick = true;
+  item.editorScore = pick.score;
+  item.editorVotes = pick.votes;
+  item.editorLenses = pick.lenses;
+  item.editorNote = pick.note;
+});
+
 const canonicalItems = JSON.stringify(items);
 const revision = crypto.createHash("sha256").update(canonicalItems).digest("hex").slice(0, 12);
 const library = {
@@ -112,4 +131,13 @@ function normalize(value) {
 
 function wordCount(value) {
   return String(value).trim().split(/\s+/).filter(Boolean).length;
+}
+
+async function readOptionalJson(filename, fallback) {
+  try {
+    return JSON.parse(await fs.readFile(filename, "utf8"));
+  } catch (error) {
+    if (error?.code === "ENOENT") return fallback;
+    throw error;
+  }
 }
