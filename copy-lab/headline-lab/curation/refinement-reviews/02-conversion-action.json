@@ -1,0 +1,80 @@
+{
+  "lens": "Conversion & Action — Refinements",
+  "picks": [
+    {
+      "id": "H933",
+      "score": 9.5,
+      "reason": "Messy input becomes a portable brief, with a natural low-friction CTA."
+    },
+    {
+      "id": "H935",
+      "score": 9.7,
+      "reason": "A visible stuck point leads directly to a focused, answer-producing test."
+    },
+    {
+      "id": "H940",
+      "score": 9.6,
+      "reason": "The first message yields a test, expected signal, and action for either result."
+    },
+    {
+      "id": "H945",
+      "score": 9.8,
+      "reason": "Free problem-sharpening proves fit before asking for monthly commitment."
+    },
+    {
+      "id": "H950",
+      "score": 9.5,
+      "reason": "It makes monthly value testable, lowering risk with a concrete first conversation."
+    },
+    {
+      "id": "H954",
+      "score": 9.6,
+      "reason": "A doubtful estimate becomes an updatable range with an explicit revision trigger."
+    },
+    {
+      "id": "H956",
+      "score": 9.8,
+      "reason": "Fixed-deadline urgency meets a calm, concrete scope promise and aligned CTA."
+    },
+    {
+      "id": "H963",
+      "score": 9.5,
+      "reason": "The AI idea gains a real usage moment—or an honest reason to stop."
+    },
+    {
+      "id": "H964",
+      "score": 9.7,
+      "reason": "Pasting the caveat produces a plain client choice instead of vague reassurance."
+    },
+    {
+      "id": "H970",
+      "score": 9.7,
+      "reason": "Recurring symptoms create urgency; examples lead to evidence that separates competing explanations."
+    },
+    {
+      "id": "H974",
+      "score": 9.8,
+      "reason": "Normalized friction becomes visible cost, a replaced rule, and a responsible repair."
+    },
+    {
+      "id": "H975",
+      "score": 9.8,
+      "reason": "A stalled team choice gains ownership, criteria, and a credible route to closure."
+    },
+    {
+      "id": "H976",
+      "score": 9.9,
+      "reason": "It removes sales pressure while making the right-sized answer the immediate product."
+    },
+    {
+      "id": "H988",
+      "score": 9.9,
+      "reason": "A fixed date creates urgency; fallback, switch signal, and owner make action concrete."
+    },
+    {
+      "id": "H990",
+      "score": 9.8,
+      "reason": "The almost-deleted sentence is natural chat input with a specific diagnostic payoff."
+    }
+  ]
+}

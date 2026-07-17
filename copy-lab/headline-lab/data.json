@@ -1,6 +1,6 @@
 {
-  "revision": "e8b027d0ce4f",
-  "updatedAt": "2026-07-17T22:55:45.839Z",
+  "revision": "e73d398216b9",
+  "updatedAt": "2026-07-17T22:59:33.614Z",
   "count": 990,
   "items": [
     {
@@ -13506,7 +13506,15 @@
       "cta": "Shape My Brief",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "A messy input becomes a named, portable artifact with clear practical value."
+      "whyItWorks": "A messy input becomes a named, portable artifact with clear practical value.",
+      "refinementPick": true,
+      "refinementScore": 9.4,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Conversion & Action — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "Messy input becomes a portable brief, with a natural low-friction CTA. Warmly converts an imperfect message into a concrete brief; every supporting line reinforces that transformation."
     },
     {
       "id": "H934",
@@ -13674,7 +13682,16 @@
       "cta": "Test The Fit",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It reduces commitment risk by making problem improvement the first proof of fit."
+      "whyItWorks": "It reduces commitment risk by making problem improvement the first proof of fit.",
+      "refinementPick": true,
+      "refinementScore": 9.7,
+      "refinementVotes": 3,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Conversion & Action — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "The chat-first fit check demonstrates problem clarity before asking for a monthly commitment. Free problem-sharpening proves fit before asking for monthly commitment."
     },
     {
       "id": "H946",
@@ -13716,7 +13733,15 @@
       "cta": "Speak In Plain Words",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Plain language is the entry; focused questioning supplies the missing structure."
+      "whyItWorks": "Plain language is the entry; focused questioning supplies the missing structure.",
+      "refinementPick": true,
+      "refinementScore": 9.6,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "Ordinary language enters; focused questions produce named structure without demanding specialist vocabulary. Plain language, focused questions, and the sample message create a genuinely welcoming expert voice."
     },
     {
       "id": "H949",
@@ -13730,7 +13755,15 @@
       "cta": "Question The Reasoning",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "No-handoff access becomes valuable through reasoning the client can inspect and challenge."
+      "whyItWorks": "No-handoff access becomes valuable through reasoning the client can inspect and challenge.",
+      "refinementPick": true,
+      "refinementScore": 9.5,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "Direct access includes inspectable assumptions, evidence, and tradeoffs, so trust rests on reasoning. Direct access becomes meaningful through challengeable reasoning, with precise supporting copy and no inflated claims."
     },
     {
       "id": "H950",
@@ -13744,7 +13777,15 @@
       "cta": "Define The Value Test",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The promise ties monthly value to shared evidence instead of reassurance."
+      "whyItWorks": "The promise ties monthly value to shared evidence instead of reassurance.",
+      "refinementPick": true,
+      "refinementScore": 9.7,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Conversion & Action — Refinements"
+      ],
+      "refinementNote": "Defines monthly value through shared evidence, making the commitment testable before ongoing support begins. It makes monthly value testable, lowering risk with a concrete first conversation."
     },
     {
       "id": "H951",
@@ -13758,7 +13799,15 @@
       "cta": "Send The Snag",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "A route with checkpoints feels actionable while leaving room to adapt as evidence arrives."
+      "whyItWorks": "A route with checkpoints feels actionable while leaving room to adapt as evidence arrives.",
+      "refinementPick": true,
+      "refinementScore": 9.7,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "Sending a snag produces a starting route, evidence checkpoint, and explicit branch without false certainty. Personal first-person guidance turns a vague snag into an adaptive route, checkpoint, and branch."
     },
     {
       "id": "H952",
@@ -13828,7 +13877,15 @@
       "cta": "Protect The Smaller Promise",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It replaces deadline panic with a specific scope conversation centered on the promise that still matters."
+      "whyItWorks": "It replaces deadline panic with a specific scope conversation centered on the promise that still matters.",
+      "refinementPick": true,
+      "refinementScore": 9.6,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Conversion & Action — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "Fixed-deadline urgency meets a calm, concrete scope promise and aligned CTA. Calmly reframes deadline pressure around a smaller promise the client can honestly keep."
     },
     {
       "id": "H957",
@@ -13940,7 +13997,16 @@
       "cta": "Translate The Caveat",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The result is not generic reassurance; it is the client-owned choice hiding inside implementation language."
+      "whyItWorks": "The result is not generic reassurance; it is the client-owned choice hiding inside implementation language.",
+      "refinementPick": true,
+      "refinementScore": 9.6,
+      "refinementVotes": 3,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Conversion & Action — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "It separates verifiable engineering facts from the client-owned choice, turning confusion into accountable action. Pasting the caveat produces a plain client choice instead of vague reassurance."
     },
     {
       "id": "H965",
@@ -14024,7 +14090,15 @@
       "cta": "Design The Discriminating Test",
       "proofLine": "10+ years teaching programming. Direct 1:1 guidance.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The test promises evidence that separates explanations, not an instant diagnosis from a single message."
+      "whyItWorks": "The test promises evidence that separates explanations, not an instant diagnosis from a single message.",
+      "refinementPick": true,
+      "refinementScore": 9.8,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Conversion & Action — Refinements"
+      ],
+      "refinementNote": "The promised test separates competing explanations while explicitly avoiding an instant diagnosis. Recurring symptoms create urgency; examples lead to evidence that separates competing explanations."
     },
     {
       "id": "H971",
@@ -14052,7 +14126,14 @@
       "cta": "Check The Confidence",
       "proofLine": "Recommendations separate evidence, inference, and uncertainty.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The personal exchange turns uncertainty into professional honesty and an actionable way to learn more."
+      "whyItWorks": "The personal exchange turns uncertainty into professional honesty and an actionable way to learn more.",
+      "refinementPick": true,
+      "refinementScore": 9.8,
+      "refinementVotes": 1,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements"
+      ],
+      "refinementNote": "Evidence, inference, uncertainty, and a changeable test make honest limits useful rather than evasive."
     },
     {
       "id": "H973",
@@ -14108,7 +14189,16 @@
       "cta": "Get The Right-Sized Answer",
       "proofLine": "Fit is judged from the real issue, not a predetermined engagement.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The candid promise differentiates Rustam by refusing to inflate the help a small issue requires."
+      "whyItWorks": "The candid promise differentiates Rustam by refusing to inflate the help a small issue requires.",
+      "refinementPick": true,
+      "refinementScore": 9.9,
+      "refinementVotes": 3,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Conversion & Action — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "The candid promise refuses unnecessary monthly work and makes right-sized help the first proof of fit. It removes sales pressure while making the right-sized answer the immediate product."
     },
     {
       "id": "H977",
@@ -14220,7 +14310,15 @@
       "cta": "Invite Honest Disagreement",
       "proofLine": "Direct feedback includes the reason, evidence, and conditions that could change it.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The line combines emotional safety with candor, giving Rustam a distinctive professional posture."
+      "whyItWorks": "The line combines emotional safety with candor, giving Rustam a distinctive professional posture.",
+      "refinementPick": true,
+      "refinementScore": 9.8,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "Respectful disagreement comes with the weak assumption and evidence that could change the answer. Balances warmth and disagreement beautifully, then grounds candor in evidence and conditions for revision."
     },
     {
       "id": "H985",
@@ -14262,7 +14360,15 @@
       "cta": "Build My Independence",
       "proofLine": "Useful guidance explains the judgment instead of protecting dependence.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The honest promise differentiates mentorship by naming less dependence as a successful outcome."
+      "whyItWorks": "The honest promise differentiates mentorship by naming less dependence as a successful outcome.",
+      "refinementPick": true,
+      "refinementScore": 9.9,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Clarity & Trust — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "Success means growing client judgment and reducing dependence, a rare and credible mentorship promise. Memorable, ethical promise makes growing independence the product, with reusable reasoning as its mechanism."
     },
     {
       "id": "H988",
@@ -14276,7 +14382,14 @@
       "cta": "Design The Visible Fallback",
       "proofLine": "The primary path, switch signal, fallback, and owner stay explicit.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The promise turns deadline anxiety into a concrete recovery structure without offering false certainty."
+      "whyItWorks": "The promise turns deadline anxiety into a concrete recovery structure without offering false certainty.",
+      "refinementPick": true,
+      "refinementScore": 9.9,
+      "refinementVotes": 1,
+      "refinementLenses": [
+        "Conversion & Action — Refinements"
+      ],
+      "refinementNote": "A fixed date creates urgency; fallback, switch signal, and owner make action concrete."
     },
     {
       "id": "H989",
@@ -14304,7 +14417,15 @@
       "cta": "Send The Awkward Sentence",
       "proofLine": "The chat accepts uncertainty and correction as useful working context.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "It feels intimate without becoming casual and invites the context most likely to sharpen the work."
+      "whyItWorks": "It feels intimate without becoming casual and invites the context most likely to sharpen the work.",
+      "refinementPick": true,
+      "refinementScore": 9.8,
+      "refinementVotes": 2,
+      "refinementLenses": [
+        "Conversion & Action — Refinements",
+        "Voice & Distinctiveness — Refinements"
+      ],
+      "refinementNote": "The almost-deleted sentence is natural chat input with a specific diagnostic payoff. The almost-deleted sentence is intimate without gimmicks; supporting copy converts vulnerability into useful context."
     }
   ]
 }

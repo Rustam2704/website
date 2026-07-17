@@ -333,6 +333,8 @@
       `TRUST: ${item.proofLine}`,
       `OFFER: ${item.priceLine}`,
       `WHY: ${item.whyItWorks}`,
+      item.editorPick ? `EDITOR: ${item.editorNote}` : "",
+      item.refinementPick ? `REFINEMENT: ${item.refinementNote}` : "",
       state.notes[item.id] ? `NOTE: ${state.notes[item.id]}` : ""
     ].filter(Boolean).join("\n");
   }
