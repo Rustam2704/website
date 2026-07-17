@@ -7,9 +7,14 @@ const variantsSource = await fs.readFile(path.join(directory, "variants.js"), "u
 const scope = {};
 vm.runInNewContext(variantsSource, { window: scope });
 const variants = scope.COPY_VARIANTS;
+const offer = scope.COPY_OFFER;
 
 if (!Array.isArray(variants) || variants.length !== 20) {
   throw new Error(`Expected exactly 20 copy variants, received ${variants?.length ?? 0}.`);
+}
+
+if (!offer?.label || !offer?.price || !offer?.detail) {
+  throw new Error("Expected a complete monthly offer in COPY_OFFER.");
 }
 
 const escapeHtml = (value) => String(value ?? "")
@@ -88,6 +93,11 @@ const page = (variant) => `<!doctype html>
           <div class="clarity-path" aria-label="Expected output of the first conversation">
             <strong>15 min</strong>
             <span>problem → goal → next step</span>
+          </div>
+          <div class="monthly-offer" aria-label="${escapeHtml(offer.label)}: ${escapeHtml(offer.price)}">
+            <span>${escapeHtml(offer.label)}</span>
+            <strong>${escapeHtml(offer.price)}</strong>
+            <small>${escapeHtml(offer.detail)}</small>
           </div>
         </div>
       </section>

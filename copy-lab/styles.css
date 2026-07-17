@@ -492,6 +492,41 @@ a {
   text-transform: uppercase;
 }
 
+.monthly-offer {
+  width: min(100%, 570px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 18px;
+  align-items: end;
+  margin-top: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(10, 18, 27, 0.58);
+}
+
+.monthly-offer > span {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.monthly-offer strong {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  color: var(--text);
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.monthly-offer small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
 .proof-zone {
   display: grid;
   grid-template-columns: minmax(190px, 0.78fr) repeat(3, minmax(0, 1fr));
@@ -624,6 +659,29 @@ a {
   line-height: 1.5;
 }
 
+.variant-card .variant-card-offer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+}
+
+.variant-card-offer span {
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.variant-card-offer strong {
+  color: var(--text);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
 .variant-card-arrow {
   position: absolute;
   top: 20px;
@@ -729,6 +787,17 @@ a {
   .clarity-path {
     width: 100%;
     border-radius: 14px;
+  }
+
+  .monthly-offer {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .monthly-offer strong {
+    grid-row: auto;
+    grid-column: auto;
+    font-size: 20px;
   }
 
   .proof-zone {

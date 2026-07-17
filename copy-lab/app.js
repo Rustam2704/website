@@ -1,5 +1,6 @@
 (function () {
   const variants = Array.isArray(window.COPY_VARIANTS) ? window.COPY_VARIANTS : [];
+  const offer = window.COPY_OFFER || {};
   const variantId = document.documentElement.dataset.copyVariant;
   const currentVariant = variants.find((item) => item.id === variantId);
 
@@ -38,6 +39,10 @@
           <h2>${escapeHtml(variant.headline)}</h2>
         </div>
         <p>${escapeHtml(variant.support)}</p>
+        <p class="variant-card-offer">
+          <span>${escapeHtml(offer.label)}</span>
+          <strong>${escapeHtml(offer.price)}</strong>
+        </p>
       </a>
     `).join("");
   }

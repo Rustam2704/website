@@ -1,3 +1,9 @@
+window.COPY_OFFER = {
+  label: "Monthly technical partnership",
+  price: "$400–$520 a month",
+  detail: "Ongoing direct support after the free 15-minute fit check"
+};
+
 window.COPY_VARIANTS = [
   {
     id: "01",
@@ -106,9 +112,9 @@ window.COPY_VARIANTS = [
     button: "Send my decision",
     proofHeading: "Trust the process, not a slogan",
     proof: [
-      ["Free fit check", "15 minutes before any paid session"],
-      ["Focused work", "50-minute direct session blocks"],
-      ["Clear terms", "$100 or $130 with weekly support"]
+      ["Free fit check", "15 minutes before a monthly plan"],
+      ["Ongoing work", "direct support across the month"],
+      ["Clear terms", "one monthly plan, no per-session billing"]
     ]
   },
   {
@@ -130,16 +136,16 @@ window.COPY_VARIANTS = [
   {
     id: "09",
     name: "Honest Fit Check",
-    eyebrow: "Clarity before any paid session",
+    eyebrow: "Clarity before monthly support",
     headline: "Define what you need before paying anyone to help.",
-    support: "The first 15 minutes are for diagnosis and fit. We’ll clarify the goal and decide honestly whether a paid session makes sense.",
+    support: "The first 15 minutes are for diagnosis and fit. We’ll clarify the goal and decide honestly whether ongoing monthly support makes sense.",
     incoming: "I am not even sure this is a problem worth paying someone to solve.",
     placeholder: "Tell me the situation. I’ll check the fit.",
     button: "Check the fit",
     proofHeading: "Transparent before you commit",
     proof: [
       ["Free", "the first 15-minute conversation"],
-      ["Honest", "no session sold without a useful fit"],
+      ["Honest", "no monthly plan suggested without a useful fit"],
       ["Published", "simple prices and support boundaries"]
     ]
   },
@@ -188,7 +194,7 @@ window.COPY_VARIANTS = [
     proof: [
       ["10+ years", "teaching programming"],
       ["Wide range", "software, setup, workflow and learning"],
-      ["Free fit check", "before a paid session"]
+      ["Free fit check", "before monthly support"]
     ]
   },
   {
@@ -299,7 +305,7 @@ window.COPY_VARIANTS = [
     proofHeading: "Broad range. One accountable person.",
     proof: [
       ["End to end", "learning, decisions, setup and workflow"],
-      ["One specialist", "from first message through the session"],
+      ["One specialist", "from first message through the work"],
       ["Visible output", "what changed and what comes next"]
     ]
   },
@@ -316,7 +322,7 @@ window.COPY_VARIANTS = [
     proof: [
       ["10+ years", "teaching programming"],
       ["Free first step", "15 minutes before paid work"],
-      ["Simple formats", "one session, with or without support"]
+      ["Simple format", "ongoing support billed monthly"]
     ]
   }
 ];
