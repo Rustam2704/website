@@ -99,7 +99,7 @@ if (challengerCuration) {
 
 if (!index.includes('id="direction-grid"')) errors.push("index: direction grid is missing.");
 if (!index.includes('meta name="robots" content="noindex, nofollow"')) errors.push("index: noindex is missing.");
-for (const capability of ["data-favorite", "data-copy-card", "data-note", "checkForUpdates", "Refined finalists", "Consensus picks", "New challengers"]) {
+for (const capability of ["data-favorite", "data-copy-card", "data-note", "checkForUpdates", "Refined finalists", "Consensus picks", "New challengers", "Challenger finalists"]) {
   if (!app.includes(capability)) errors.push(`app: ${capability} capability is missing.`);
 }
 

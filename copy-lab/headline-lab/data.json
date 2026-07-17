@@ -1,6 +1,6 @@
 {
-  "revision": "b88066464328",
-  "updatedAt": "2026-07-17T23:09:27.141Z",
+  "revision": "54dc1b0d964a",
+  "updatedAt": "2026-07-17T23:12:41.398Z",
   "count": 1020,
   "items": [
     {
@@ -14523,7 +14523,14 @@
       "cta": "Define My Proof Ledger",
       "proofLine": "Work directly with Rustam, 1:1.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "An explicit ledger ties recurring fees to changed work and prompts correction when value disappears."
+      "whyItWorks": "An explicit ledger ties recurring fees to changed work and prompts correction when value disappears.",
+      "challengerPick": true,
+      "challengerScore": 9.9,
+      "challengerVotes": 1,
+      "challengerLenses": [
+        "Clarity & Trust — Challengers"
+      ],
+      "challengerNote": "A personal chat produces a four-line value ledger, tying monthly fees to changed work."
     },
     {
       "id": "H998",
@@ -14537,7 +14544,15 @@
       "cta": "Compare The Two Versions",
       "proofLine": "Direct 1:1 work with Rustam.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "Side-by-side wording reveals which consequence disappears when the situation gets polished."
+      "whyItWorks": "Side-by-side wording reveals which consequence disappears when the situation gets polished.",
+      "challengerPick": true,
+      "challengerScore": 9.7,
+      "challengerVotes": 2,
+      "challengerLenses": [
+        "Conversion & Action — Challengers",
+        "Voice & Distinctiveness — Challengers"
+      ],
+      "challengerNote": "A withheld sentence creates urgency; side-by-side wording reveals the hidden operational cost. The awkward-line contrast feels intimate and concrete; every field extends the same revealing comparison."
     },
     {
       "id": "H999",
@@ -14579,7 +14594,15 @@
       "cta": "Draft The Confirmation Sentence",
       "proofLine": "Start with a free 15-minute fit check.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "A confirmation sentence creates immediate progress and exposes misunderstanding before work expands."
+      "whyItWorks": "A confirmation sentence creates immediate progress and exposes misunderstanding before work expands.",
+      "challengerPick": true,
+      "challengerScore": 9.7,
+      "challengerVotes": 2,
+      "challengerLenses": [
+        "Conversion & Action — Challengers",
+        "Voice & Distinctiveness — Challengers"
+      ],
+      "challengerNote": "A live inbox problem becomes a sendable sentence both sides can confirm. Natural inbox language, a sendable artifact, and correctable wording make the chat immediately useful."
     },
     {
       "id": "H1002",
@@ -14607,7 +14630,15 @@
       "cta": "Check My AI Output",
       "proofLine": "10+ years teaching programming. Direct 1:1 support.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The first exchange preserves useful work while making the riskiest unsupported leap visible."
+      "whyItWorks": "The first exchange preserves useful work while making the riskiest unsupported leap visible.",
+      "challengerPick": true,
+      "challengerScore": 9.8,
+      "challengerVotes": 2,
+      "challengerLenses": [
+        "Clarity & Trust — Challengers",
+        "Conversion & Action — Challengers"
+      ],
+      "challengerNote": "Pasted output becomes an evidence map that preserves useful work while exposing the riskiest gap. Immediate AI risk becomes a focused verification task without discarding useful output."
     },
     {
       "id": "H1004",
@@ -14747,7 +14778,15 @@
       "cta": "Leave Harmless Mess Alone",
       "proofLine": "Recommendations may preserve rough edges that carry no meaningful cost.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "The anti-cleanup promise feels unusually honest and turns restraint into a useful professional judgment."
+      "whyItWorks": "The anti-cleanup promise feels unusually honest and turns restraint into a useful professional judgment.",
+      "challengerPick": true,
+      "challengerScore": 9.8,
+      "challengerVotes": 2,
+      "challengerLenses": [
+        "Clarity & Trust — Challengers",
+        "Voice & Distinctiveness — Challengers"
+      ],
+      "challengerNote": "The personal reply separates harmless mess from recurring cost, protecting attention without selling needless cleanup. Warm anti-cleanup honesty sounds unmistakably personal, while every supporting line makes restraint professionally credible."
     },
     {
       "id": "H1014",
@@ -14761,7 +14800,15 @@
       "cta": "Define The Ending",
       "proofLine": "The engagement includes evidence for continuing, changing, or closing.",
       "priceLine": "$400–$520 a month",
-      "whyItWorks": "A visible ending makes monthly support more trustworthy and gives independence a concrete measure."
+      "whyItWorks": "A visible ending makes monthly support more trustworthy and gives independence a concrete measure.",
+      "challengerPick": true,
+      "challengerScore": 9.9,
+      "challengerVotes": 2,
+      "challengerLenses": [
+        "Conversion & Action — Challengers",
+        "Voice & Distinctiveness — Challengers"
+      ],
+      "challengerNote": "A visible ending removes subscription pressure and makes ongoing support earn its place. A strikingly honest ending promise makes monthly support safer; the full system defines earned completion."
     },
     {
       "id": "H1015",

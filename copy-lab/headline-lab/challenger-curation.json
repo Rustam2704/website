@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-07-17T23:12:41.125Z",
+  "reviewers": 3,
+  "eligible": 30,
+  "count": 6,
+  "picks": [
+    {
+      "id": "H1014",
+      "score": 9.9,
+      "votes": 2,
+      "lenses": [
+        "Conversion & Action — Challengers",
+        "Voice & Distinctiveness — Challengers"
+      ],
+      "note": "A visible ending removes subscription pressure and makes ongoing support earn its place. A strikingly honest ending promise makes monthly support safer; the full system defines earned completion."
+    },
+    {
+      "id": "H1003",
+      "score": 9.8,
+      "votes": 2,
+      "lenses": [
+        "Clarity & Trust — Challengers",
+        "Conversion & Action — Challengers"
+      ],
+      "note": "Pasted output becomes an evidence map that preserves useful work while exposing the riskiest gap. Immediate AI risk becomes a focused verification task without discarding useful output."
+    },
+    {
+      "id": "H1013",
+      "score": 9.8,
+      "votes": 2,
+      "lenses": [
+        "Clarity & Trust — Challengers",
+        "Voice & Distinctiveness — Challengers"
+      ],
+      "note": "The personal reply separates harmless mess from recurring cost, protecting attention without selling needless cleanup. Warm anti-cleanup honesty sounds unmistakably personal, while every supporting line makes restraint professionally credible."
+    },
+    {
+      "id": "H998",
+      "score": 9.7,
+      "votes": 2,
+      "lenses": [
+        "Conversion & Action — Challengers",
+        "Voice & Distinctiveness — Challengers"
+      ],
+      "note": "A withheld sentence creates urgency; side-by-side wording reveals the hidden operational cost. The awkward-line contrast feels intimate and concrete; every field extends the same revealing comparison."
+    },
+    {
+      "id": "H1001",
+      "score": 9.7,
+      "votes": 2,
+      "lenses": [
+        "Conversion & Action — Challengers",
+        "Voice & Distinctiveness — Challengers"
+      ],
+      "note": "A live inbox problem becomes a sendable sentence both sides can confirm. Natural inbox language, a sendable artifact, and correctable wording make the chat immediately useful."
+    },
+    {
+      "id": "H997",
+      "score": 9.9,
+      "votes": 1,
+      "lenses": [
+        "Clarity & Trust — Challengers"
+      ],
+      "note": "A personal chat produces a four-line value ledger, tying monthly fees to changed work."
+    }
+  ]
+}
