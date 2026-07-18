@@ -16,7 +16,7 @@ const views = {
   nextLessonTitle: $("#next-lesson-title"),
   nextLessonDetail: $("#next-lesson-detail"),
   nextLessonAction: $("#next-lesson-action"),
-  nextStepsList: $("#next-steps-list"),
+  nextActionCard: $("#next-action-card"),
   currentGoal: $("#current-goal"),
   recentProgressList: $("#recent-progress-list"),
   progressRecords: $("#progress-records"),
@@ -49,6 +49,12 @@ function formatDate(value) {
     dateStyle: "medium",
     timeStyle: "short"
   }).format(new Date(value));
+}
+
+function formatDueDate(value) {
+  if (!value) return "No deadline";
+  const localDate = /^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T00:00:00` : value;
+  return new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(localDate));
 }
 
 function setMessage(message, isError = false) {
@@ -96,6 +102,8 @@ async function renderRoute() {
 }
 
 async function loadPortalData() {
+  renderNextActionLoading();
+
   try {
     await requireResult(supabase.rpc("claim_client_access_by_email"));
 
@@ -117,7 +125,10 @@ async function loadPortalData() {
       views.nextLessonAction.href = "#sessions";
       views.nextLessonAction.removeAttribute("target");
       views.nextLessonAction.removeAttribute("rel");
-      views.nextStepsList.innerHTML = `<p>No assigned work yet.</p>`;
+      renderNextActionEmpty(
+        "No profile assigned",
+        "Ask Rustam to invite this Google email to your client profile."
+      );
       views.currentGoal.textContent = "-";
       views.recentProgressList.innerHTML = `<p>No progress is available yet.</p>`;
       views.progressRecords.innerHTML = `<div class="empty-list">No progress is available yet.</div>`;
@@ -232,6 +243,7 @@ async function loadPortalData() {
       `).join("")
       : `<div class="empty-list">No messages yet.</div>`;
   } catch (error) {
+    renderNextActionError(error.message);
     alert(error.message);
   }
 }
@@ -241,9 +253,6 @@ function renderStudentHome(client, progress, sessions) {
   const upcoming = sessions
     .filter((session) => session.date && new Date(session.date).getTime() >= now)
     .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
-  const activeTasks = progress
-    .filter((item) => item.status !== "done")
-    .slice(0, 4);
   const recentProgress = progress.slice(0, 4);
 
   views.nextLessonTitle.textContent = upcoming ? formatDate(upcoming.date) : "No lesson scheduled";
@@ -260,12 +269,133 @@ function renderStudentHome(client, progress, sessions) {
   }
 
   views.currentGoal.textContent = client.current_goal || "-";
-  views.nextStepsList.innerHTML = activeTasks.length
-    ? activeTasks.map((item) => `<p>${h(item.title)} <span>${h(item.status.replaceAll("_", " "))}</span></p>`).join("")
-    : `<p>No active tasks yet.</p>`;
+  renderNextAction(client, progress);
   views.recentProgressList.innerHTML = recentProgress.length
     ? recentProgress.map((item) => `<p>${h(item.title)} <span>${h(item.status.replaceAll("_", " "))}</span></p>`).join("")
     : `<p>No progress is available yet.</p>`;
+}
+
+function renderNextActionLoading() {
+  views.nextActionCard.innerHTML = `<p class="next-action-loading">Loading your next step...</p>`;
+}
+
+function renderNextActionEmpty(title, detail) {
+  views.nextActionCard.innerHTML = `
+    <div class="next-action-empty">
+      <span>Next step</span>
+      <strong>${h(title)}</strong>
+      <p>${h(detail)}</p>
+      <a class="next-action-link" href="#tasks">Open tasks</a>
+      <p class="form-message" id="next-action-message"></p>
+    </div>
+  `;
+}
+
+function renderNextActionError(message) {
+  views.nextActionCard.innerHTML = `
+    <div class="next-action-empty">
+      <span>Next step</span>
+      <strong>Could not load your next step</strong>
+      <p class="form-message error">${h(message)}</p>
+      <button type="button" class="secondary" id="next-action-retry">Try again</button>
+    </div>
+  `;
+  $("#next-action-retry")?.addEventListener("click", loadPortalData);
+}
+
+function renderNextAction(client, progress) {
+  const priorityRank = { high: 0, normal: 1, low: 2 };
+  const activeTasks = progress
+    .filter((item) => item.status !== "done")
+    .sort((a, b) => {
+      const aDue = a.due_at ? new Date(a.due_at).getTime() : Number.POSITIVE_INFINITY;
+      const bDue = b.due_at ? new Date(b.due_at).getTime() : Number.POSITIVE_INFINITY;
+      if (aDue !== bDue) return aDue - bDue;
+
+      const priorityDifference = (priorityRank[a.priority] ?? 1) - (priorityRank[b.priority] ?? 1);
+      if (priorityDifference) return priorityDifference;
+
+      return new Date(b.updated_at || b.created_at || 0) - new Date(a.updated_at || a.created_at || 0);
+    });
+  const task = activeTasks[0];
+
+  if (!task) {
+    renderNextActionEmpty(
+      "You are up to date",
+      "There are no active tasks. Add a new step when you are ready to continue."
+    );
+    return;
+  }
+
+  views.nextActionCard.innerHTML = `
+    <div class="next-action-summary">
+      <span>Current goal</span>
+      <p>${h(client.current_goal || "No goal has been set yet.")}</p>
+      <div class="next-action-heading">
+        <div>
+          <span>Do this next</span>
+          <strong>${h(task.title)}</strong>
+        </div>
+        <div class="next-action-meta">
+          <span>${h(task.priority || "normal")} priority</span>
+          <span>${h(formatDueDate(task.due_at))}</span>
+        </div>
+      </div>
+      ${task.teacher_comment ? `<p class="next-action-teacher"><strong>Rustam:</strong> ${h(task.teacher_comment)}</p>` : ""}
+    </div>
+    <form class="next-action-form" id="next-action-form" data-progress-id="${h(task.id)}">
+      <label>
+        Progress status
+        <select name="status">
+          ${progressStatusOptions(task.status)}
+        </select>
+      </label>
+      <label>
+        Short update
+        <textarea name="client_comment" rows="2" placeholder="What changed, or what is blocking you?">${h(task.client_comment || "")}</textarea>
+      </label>
+      <button type="submit">Save progress</button>
+      <p class="form-message next-action-message" id="next-action-message"></p>
+    </form>
+  `;
+
+  $("#next-action-form")?.addEventListener("submit", saveNextActionProgress);
+}
+
+async function saveNextActionProgress(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const button = form.querySelector("button[type='submit']");
+  const message = form.querySelector(".next-action-message");
+  const payload = Object.fromEntries(new FormData(form).entries());
+
+  button.disabled = true;
+  button.textContent = "Saving...";
+  message.textContent = "Saving your update...";
+  message.classList.remove("error");
+
+  try {
+    await requireResult(
+      supabase.rpc("client_update_progress_status", {
+        p_progress_id: form.dataset.progressId,
+        p_status: payload.status
+      })
+    );
+    await requireResult(
+      supabase.rpc("client_update_progress_note", {
+        p_progress_id: form.dataset.progressId,
+        p_client_comment: payload.client_comment || ""
+      })
+    );
+    await loadPortalData();
+    const refreshedMessage = $("#next-action-message");
+    if (refreshedMessage) refreshedMessage.textContent = "Progress saved. Here is your current next step.";
+  } catch (error) {
+    message.textContent = error.message;
+    message.classList.add("error");
+    button.disabled = false;
+    button.textContent = "Save progress";
+  }
 }
 
 function progressStatusOptions(currentStatus) {

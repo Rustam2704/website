@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: July 8, 2026
+Last updated: July 16, 2026
 
 ## Live URLs
 
@@ -51,6 +51,7 @@ Last updated: July 8, 2026
 - Client portal has its own manifest and service worker.
 - Client portal manifest includes PNG icons for Android-compatible install prompts.
 - Client portal home has direct actions to sessions and tasks, with add forms collapsed until needed.
+- Client portal home has one prioritized `Your next step` card with the current goal, nearest unfinished task, deadline/priority context, and inline status/comment saving.
 - Client portal home shows `Join lesson` when the next session has a meeting link.
 - Client portal header shows timezone/area context when available.
 - Admin CRM can grant/revoke client portal access from the Access tab.
